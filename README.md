@@ -129,3 +129,7 @@ ___
 2.  **(既)** バーチャル植林機能➡blender、three.js、webGLでミニアプリ試験的に作成（ログイン後「植林」ボタンをクリックで3D空間に木を複製、木の座標保存、木の名前保存/編集、木の上に「木の名前」と「ユーザー名」が表示ができるところまで検証済みです。この検証では木の生える範囲を広く、かつランダムにしていますが、植林範囲を狭めることも可能です。)<br>
 イメージ画像①[![Image from Gyazo](https://i.gyazo.com/70d4fe4a45aabeb124e88e04c6ac5386.png)](https://gyazo.com/70d4fe4a45aabeb124e88e04c6ac5386)
 イメージGIF②[![Image from Gyazo](https://i.gyazo.com/d15721c72ec7dca8fc09dc712f24d523.gif)](https://gyazo.com/d15721c72ec7dca8fc09dc712f24d523)
+
+画面遷移図⓵（日本語切り替えバージョン）：https://www.figma.com/design/Ob45fBnHDNmSaJCAmWNx7a/Online-Room-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-?t=1fZk0QVtWA81FmSt-1
+
+画面遷移図⓶（英語切り替えバージョン）：https://www.figma.com/design/YnKgRziTDMr0ffOpeo5FQZ/Online-Room--English-ver.-?t=1fZk0QVtWA81FmSt-1
