@@ -16,11 +16,16 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <script src="https://kit.fontawesome.com/3e9d8d532b.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex bg-beige">
+  <body class="flex flex-col min-h-screen">
+    <%= render 'shared/header' %>
+    <!--render 'shared/before_login_header' -->
+    <main class="container mx-auto flex bg-beige">
       <%= yield %>
     </main>
+    <%= render 'shared/footer' %>
   </body>
 </html>
