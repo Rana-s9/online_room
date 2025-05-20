@@ -1,0 +1,27 @@
+<div class="container mx-auto">
+  <div class="flex justify-center">
+    <div class="w-full max-w-lg">
+      <h1 class="text-2xl text-brown font-bold mb-6">新規登録</h1> 
+      <%= form_with model: resource, url: registration_path(resource_name), local: true do |f| %>
+        <%= render "devise/registrations/shared/error_messages", resource: resource %>
+        <div>
+          <%= f.label :name, class: "block text-sm font-medium text-dark-gray" %>
+          <%= f.text_field :name, class: "mt-1 mb-6 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-400 focus:border-green-600 text-dark-gray" %>
+        </div>
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-dark-gray" %>
+          <%= f.email_field :email, class: "mt-1 mb-6 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-400 focus:border-green-600 text-dark-gray" %>
+        </div>
+        <div>
+          <%= f.label :password, class: "block text-sm font-medium text-dark-gray" %>
+          <%= f.password_field :password, class: "mt-1 mb-6 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-400 focus:border-green-600 text-dark-gray" %>
+        </div>
+        <div>
+          <%= f.label :password_confirmation, class: "block text-sm font-medium text-dark-gray" %>
+          <%= f.password_field :password_confirmation, class: "mt-1 mb-6 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-400 focus:border-green-600 text-dark-gray" %>
+        </div>
+        <%= f.submit '新規登録', class: "w-full bg-light-blue hover:bg-light-blue text-dark-gray font-bold py-2 px-2 rounded-md shadow-md transition" %>
+      <% end %>
+    </div>
+  </div>
+</div>

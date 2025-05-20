@@ -21,9 +21,12 @@
   </head>
 
   <body class="flex flex-col min-h-screen">
-    <%= render 'shared/header' %>
-    <!--render 'shared/before_login_header' -->
-    <main class="container mx-auto flex bg-beige">
+    <% if user_signed_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+    <main class="container mx-auto flex-1 flex bg-beige">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
