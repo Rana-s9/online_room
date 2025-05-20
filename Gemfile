@@ -46,6 +46,7 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
+  gem "rubocop", require: false
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 end
@@ -63,3 +64,7 @@ end
 
 gem "tailwindcss-rails"
 gem "tailwindcss-ruby", "3.4.17"
+
+gem "devise"
+gem "rails-i18n"
+gem "devise-i18n"
