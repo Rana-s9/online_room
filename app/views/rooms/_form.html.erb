@@ -1,0 +1,18 @@
+<%= form_with model: @room, url: rooms_path, remote: true do |f| %>
+  <% if @room.errors.any? %>
+    <div class= "text-bold text-brown">
+        <% @room.errors.full_messages.each do |message| %>
+          <ul>
+            <li><%= message %></li>
+          </ul>
+        <% end %>
+    </div>
+  <% end %> 
+  <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
+    <%= f.label :name, "家の名前", class: "text-sm text-dark-gray" %>
+    <%= f.text_field :name, placeholder: "家の名前を入力してください", class: "bg-light-gray w-full p-2 border rounded text-gray" %>
+    <div class="flex justify-center">
+      <%= f.submit "登録", class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+    </div>
+  </div>
+<% end %>

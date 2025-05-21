@@ -9,6 +9,13 @@
 
     <%= yield :head %>
 
+    <% flash.each do |key, message| %>
+      <% text_color = key == "notice" ? "text-matcha" : "text-brown" %>
+      <div class="flash <%= key %> <%= text_color %> font-semibold">
+        <%= message %>
+      </div>
+    <% end %>
+
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
