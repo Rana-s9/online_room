@@ -68,3 +68,5 @@ gem "tailwindcss-ruby", "3.4.17"
 gem "devise"
 gem "rails-i18n"
 gem "devise-i18n"
+
+gem "kaminari"
