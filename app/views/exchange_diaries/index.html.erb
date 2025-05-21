@@ -1,0 +1,20 @@
+<div class="container mx-auto px-4">
+  <div class="max-w-xl mx-auto">
+
+    <%= render partial: 'exchange_diary', locals: { exchange_diaries: @exchange_diaries } %>
+    <% if @diary_count < 2 %>
+      <%= render 'form' %>
+    <% end %>
+
+    <!-- 新規追加ボタン -->
+    <div class="text-center mt-4">
+      <%= button_to '<i class="fa-solid fa-plus text-gray/50"></i>'.html_safe, exchange_diaries_path, id: "show-form-button", method: :post, class: "text-3xl" %>
+    </div>
+
+    <!-- 新規日記フォーム -->
+    <div id="diary-form" class="hidden mt-4">
+      <%= render 'form' %>
+    </div>
+  </div>
+  <%= paginate @exchange_diaries %>
+</div>
