@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Notification {
+  @apply text-center;
+}
+
+.Notification .notice {
+  @apply text-matcha text-center;
+}
+
+.Notification .alert {
+  @apply text-brown text-center;
+}

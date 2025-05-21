@@ -1,4 +1,13 @@
 <%= form_with model: @exchange_diary, url: exchange_diaries_path, remote: true do |f| %>
+  <% if @exchange_diary.errors.any? %>
+    <div class= "text-bold text-brown">
+        <% @exchange_diary.errors.full_messages.each do |message| %>
+          <ul>
+            <li><%= message %></li>
+          </ul>
+        <% end %>
+    </div>
+  <% end %>  
   <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
     <div class="text-sm text-dark-gray"><%= Time.current.strftime("%y年%m月%d日") %></div>
     <%= f.text_area :body, placeholder: "今日の出来事は？", rows: 5, class: "bg-light-gray w-full p-2 border rounded text-gray" %>

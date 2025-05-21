@@ -1,6 +1,5 @@
 <div class="container mx-auto px-4">
   <div class="max-w-xl mx-auto">
-
     <%= render partial: 'exchange_diary', locals: { exchange_diaries: @exchange_diaries } %>
     <% if @diary_count < 2 %>
       <%= render 'form' %>
@@ -18,3 +17,4 @@
   </div>
   <%= paginate @exchange_diaries %>
 </div>
+<%= link_to '部屋に戻る', rooms_path %>
