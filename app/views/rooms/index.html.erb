@@ -2,7 +2,7 @@
   <% if @current_user.rooms.empty? %>
     <p class="text-gray text-center text-lg">登録部屋はまだありません</p>
     <div class="max-w-xl mx-auto">
-        <%= render 'form' %>
+        <%= render 'form_room' %>
     </div>
   <% else %>
     <%= render 'room' %>
@@ -11,6 +11,6 @@
     <%= button_to '<i class="fa-solid fa-plus text-gray/50"></i>'.html_safe, rooms_path, id: "room-form-button", method: :post, class: "text-3xl" %>
   </div>
   <div id="room-form" class="hidden mt-4">
-    <%= render 'form' %>
+    <%= render 'form_room' %>
   </div>
 </div>
