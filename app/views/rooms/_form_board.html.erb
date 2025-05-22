@@ -1,0 +1,18 @@
+<%= form_with(model: [@room, @whiteboard],  local: true ) do |f| %>
+  <% if @whiteboard.errors.any? %>
+    <div class= "text-bold text-brown">
+        <% @whiteboard.errors.full_messages.each do |message| %>
+          <ul>
+            <li><%= message %></li>
+          </ul>
+        <% end %>
+    </div>
+  <% end %> 
+  <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
+    <%= f.label :body, "伝言", class: "text-sm text-dark-gray" %>
+    <%= f.text_area :body, placeholder: "伝言を書き残す", class: "bg-light-gray w-full p-2 border rounded text-gray" %>
+    <div class="flex justify-center">
+      <%= f.submit "伝言を残す", class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+    </div>
+  </div>
+<% end %>

@@ -22,6 +22,8 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @whiteboards = @room.whiteboards.includes(:user).order(created_at: :desc)
+    @whiteboard = @room.whiteboards.build
   end
 
   private

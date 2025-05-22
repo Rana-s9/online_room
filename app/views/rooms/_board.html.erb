@@ -1,0 +1,17 @@
+<% if @whiteboards.empty? %>
+    <p class="text-dark-gray text-center text-lg">伝言はまだありません</p>
+<% else %>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-light-gray/75 ">
+    <% @whiteboards.each do |board| %>
+        <div class="text-dark-gray rounded-lg shadow-md p-6">
+        <li><%= board.body %></li>
+        <p>住民:
+            <span class="<%= "text-dark-gray font-bold" if board.user == current_user %>">
+                <%= board.user.name %>
+            </span>
+        </p>
+        <p>伝言時：<%= board.created_at.strftime("%m月%d日") %></p>
+        </div>
+    <% end %>
+    </div>
+<% end %>
