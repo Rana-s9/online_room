@@ -1,28 +1,41 @@
 class ExchangeDiariesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_room
 
   def index
-    @exchange_diaries = ExchangeDiary.includes(:user).order(created_at: :desc).page(params[:page])
+    @room = Room.find(params[:room_id])
+    @exchange_diaries = @room.exchange_diaries.includes(:user).order(created_at: :desc).page(params[:page])
     @exchange_diary = current_user.exchange_diaries.new
-    # @diaries_rank = ExchangeDiary.order(:created_at).pluck(:id).index(@exchange_diary.id)
-    @diary_count = ExchangeDiary.count
+    @diary_count = @exchange_diaries.count
+    @diary_order = @room.exchange_diaries.order(:created_at).pluck(:id)
   end
 
   def create
+    @room = Room.find(params[:room_id])
     @exchange_diary = current_user.exchange_diaries.new(exchange_diary_params)
+    @exchange_diaries = @room.exchange_diaries.includes(:user).order(created_at: :desc)
+    @exchange_diary.room = @room
 
-    respond_to do |format|
-      if @exchange_diary.save
-        format.js
-      else
-        format.js { render :error }
-      end
+    if @exchange_diary.save
+      redirect_to room_exchange_diaries_path(@room), notice: "日記を保存しました"
+    else
+      flash.now[:alert] = "日記の保存に失敗しました"
+      @exchange_diaries = @room.exchange_diaries.order(created_at: :desc) # index の再表示用に必要
+
+      render :index, status: :unprocessable_entity
     end
   end
 
   private
 
+  def set_room
+    @room = current_user.rooms.find_by(id: params[:room_id])
+    unless @room
+      redirect_to root_path, alert: "部屋が見つかりませんでした。"
+    end
+  end
+
   def exchange_diary_params
-    params.require(:exchange_diary).permit(:body)
+    params.require(:exchange_diary).permit(:body, :room_id)
   end
 end

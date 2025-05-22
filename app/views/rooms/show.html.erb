@@ -1,1 +1,6 @@
-<%= link_to "交換日記", exchange_diaries_path %>
+<div class="text-matcha text-2xl font-bold rounded-lg shadow-md p-4">
+  <p>
+    <%= @room.name %> <i class="fa-solid fa-house-user text-light-blue"></i>
+  </p>
+</div>
+<%= link_to "交換日記", room_exchange_diaries_path(@room) %>

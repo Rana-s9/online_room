@@ -6,10 +6,12 @@
 #
 one:
   user: one
+  room: one
   body: hello
 # column: value
 #
 two:
   user: two
+  room: two
   body: hi
 # column: value
