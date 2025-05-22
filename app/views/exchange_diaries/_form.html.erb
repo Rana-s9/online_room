@@ -1,4 +1,4 @@
-<%= form_with model: @exchange_diary, url: exchange_diaries_path, remote: true do |f| %>
+<%= form_with model: @exchange_diary, url: room_exchange_diaries_path(@room), local: true, data: { turbo: false } do |f| %>
   <% if @exchange_diary.errors.any? %>
     <div class= "text-bold text-brown">
         <% @exchange_diary.errors.full_messages.each do |message| %>
