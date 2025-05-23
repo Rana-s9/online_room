@@ -1,34 +1,36 @@
-<% if @exchange_diaries.empty? %>
-  <p class="text-dark-gray text-center text-lg">日記はまだありません</p>
-<% else %>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <% @exchange_diaries.each do |diary| %>
-      <div class="bg-light-gray/75 p-4 my-4 rounded shadow text-dark-gray">
-        <p class="mt-2 text-gray"><%= @diary_order.index(diary.id) + 1 %>日記目</p>
-        <div class="text-sm"><%= diary.created_at.strftime("%y年%m月%d日") %></div>
-        <% if diary.user == current_user %>
-          <!-- 編集フォーム -->
-          <%= form_with model: [@room, diary], local: true, method: :patch do |f| %>
-            <%= f.text_area :body, rows: 5, class: "w-full p-2 mt-2 rounded text-dark-gray" %>
-            <div class="flex justify-end mt-2 gap-x-2">
-              <div class="text-sm"><%= diary.user.name %></div>
-              <div>
-                <%= link_to '<i class="fa-solid fa-eraser text-xl"></i>'.html_safe, room_exchange_diary_path(@room, diary), data: { turbo_method: :delete, turbo_confirm: "本当に日記を消しますか？"} %>
-              </div>
-            </div>
-            <div class="flex justify-end">
-              <%= f.submit "更新", class: "bg-light-blue text-dark-gray px-4 py-1 mt-2 rounded hover:bg-light-blue/80 transition" %>
-            </div>
-          <% end %>
-        <% else %>
-          <!-- 通常表示 -->
-          <p class="mt-2"><%= diary.body %></p>
-          <div class="text-right mt-2 text-sm"><%= diary.user.name %></div>
-        <% end %>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="bg-light-gray/75 p-4 my-4 rounded shadow text-dark-gray">
+    <p class="mt-2 text-gray"><%= @diary_order.index(diary.id) + 1 %>日記目</p>
+    <div class="text-sm"><%= diary.created_at.strftime("%y年%m月%d日") %></div>
+    <% if diary.user == current_user %>
+      <!-- 非同期編集可能エリア -->
+      <div
+        data-controller="diary"
+        data-diary-room-id-value="<%= @room.id %>"
+        data-diary-diary-id-value="<%= diary.id %>"
+        data-diary-target="diary"
+        data-action="input->diary#save"
+        contenteditable="true"
+        class="min-h-[100px] whitespace-pre-wrap focus:outline-none border rounded p-2 bg-white"
+      >
+        <%= h(diary.body) %>
       </div>
+      <p>diary.id: <%= diary.id.inspect %></p>
+
+      <div class="flex justify-end mt-2 gap-x-2">
+        <div class="text-sm"><%= diary.user.name %></div>
+        <div>
+          <%= link_to '<i class="fa-solid fa-eraser text-xl"></i>'.html_safe, room_exchange_diary_path(@room, diary), data: { turbo_method: :delete, turbo_confirm: "本当に日記を消しますか？" } %>
+        </div>
+      </div>
+    <% else %>
+      <!-- 通常表示 -->
+      <p class="mt-2"><%= diary.body %></p>
+      <div class="text-right mt-2 text-sm"><%= diary.user.name %></div>
     <% end %>
   </div>
-<% end %>
+</div>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

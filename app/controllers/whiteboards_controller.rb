@@ -32,6 +32,6 @@ class WhiteboardsController < ApplicationController
   end
 
   def whiteboard_params
-    params.require(:whiteboard).permit(:body, :room_id)
+    params.require(:whiteboard).permit(:body, :user_id, :room_id)
   end
 end
