@@ -1,21 +1,22 @@
 class WhiteboardsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room
+  before_action :set_whiteboard, only: %i[update]
 
   def create
-    @whiteboard = @room.whiteboards.build(whiteboard_params)
-    @whiteboard.user = current_user
-    if current_user.whiteboards.where(room_id: @room.id).exists?
-      flash[:alert] = "1人あたり伝言は1枠です。"
-      redirect_to room_path(@room) and return
-    end
-
-    if @whiteboard.save
-      redirect_to room_path(@room), notice: "ホワイトボードに伝言を残しました。"
+    @whiteboard = @room.whiteboards.find_or_initialize_by(user: current_user)
+    if @whiteboard.update(whiteboard_params)
+      render json: { id: @whiteboard.id }, status: :ok
     else
-      @whiteboards = @room.whiteboards.order(created_at: :desc)           # 再表示用
-      flash.now[:alert] = "ホワイトボードの伝言更新に失敗しました。"
-      render "rooms/show"
+      render json: { errors: @whiteboard.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @whiteboard.update(whiteboard_params)
+      head :ok
+    else
+      render json: { errors: @whiteboard.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -23,6 +24,11 @@ class WhiteboardsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:room_id])
+  end
+
+  def set_whiteboard
+    @whiteboard = @room.whiteboards.find_by(user: current_user)
+    render json: { error: "Not Found" }, status: :not_found unless @whiteboard
   end
 
   def whiteboard_params
