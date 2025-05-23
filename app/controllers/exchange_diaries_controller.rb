@@ -29,7 +29,7 @@ class ExchangeDiariesController < ApplicationController
   def update
     @room = Room.find(params[:room_id])
     @exchange_diary = @room.exchange_diaries.find_by(user: current_user, id: params[:id])
-    
+
     if @exchange_diary.update(exchange_diary_params)
       redirect_to room_exchange_diaries_path(@room), notice: "日記を更新しました"
     else
