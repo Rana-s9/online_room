@@ -8,16 +8,15 @@
     contenteditable="true"
     class="min-h-[200px] whitespace-pre-wrap focus:outline-none"
   >
-    <%= raw @room.whiteboards.find_by(user: current_user)&.body %>
+  <%= h(@whiteboard&.body || "") %>
   </div>
 
   <!-- 投稿者と作成日 -->
-  <% board = @room.whiteboards.find_by(user: current_user) %>
-  <% if board.present? %>
+  <% if @whiteboard.present? %>
     <div class="text-sm text-gray-600 border-t border-gray-200 pt-2">
-      <p class= "text-matcha">
-        <span class="<%= board.user == current_user ? 'text-gray-800 font-semibold' : '' %>">
-          <%= board.user.name %>（<%= board.created_at.strftime("%m月%d日") %>）
+      <p class="text-matcha">
+        <span class="<%= @whiteboard.user == current_user ? 'text-gray-800 font-semibold' : '' %>">
+          <%= @whiteboard.user.name %>（<%= @whiteboard.created_at.strftime("%m月%d日") %>）
         </span>
       </p>
     </div>
