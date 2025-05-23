@@ -22,9 +22,24 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @room } # JSONが来たらJSONで返す
+    end
     @whiteboards = @room.whiteboards.includes(:user).order(created_at: :desc)
-    @whiteboard = @room.whiteboards.build
+    @whiteboard = @room.whiteboards.find_or_create_by(user: current_user)
   end
+
+  def whiteboard
+  @room = Room.find(params[:id])
+  whiteboard = @room.whiteboards.find_or_initialize_by(user: current_user)
+
+  if whiteboard.update(body: params[:body])
+    head :ok
+  else
+    render json: { errors: whiteboard.errors.full_messages }, status: :unprocessable_entity
+  end
+end
 
   private
 
