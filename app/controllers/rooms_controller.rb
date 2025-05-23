@@ -30,17 +30,6 @@ class RoomsController < ApplicationController
     @whiteboard = @room.whiteboards.find_or_create_by(user: current_user)
   end
 
-  def whiteboard
-  @room = Room.find(params[:id])
-  whiteboard = @room.whiteboards.find_or_initialize_by(user: current_user)
-
-  if whiteboard.update(body: params[:body])
-    head :ok
-  else
-    render json: { errors: whiteboard.errors.full_messages }, status: :unprocessable_entity
-  end
-end
-
   private
 
   def room_params

@@ -1,15 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="board"
+// Connects to data-controller="diary"
 export default class extends Controller {
   static values = {
     roomId: Number,
-    whiteboardId: Number
+    diaryId: Number
   };
-  static targets = ["board"];
+  static targets = ["diary"];
 
   connect() {
-    console.log("Board controller connected");
+    console.log("Diary controller connected");
+    console.log("初期 diaryIdValue:", this.diaryIdValue);
     this.timeout = null;
   }
 
@@ -18,12 +19,12 @@ export default class extends Controller {
     console.log("diaryIdValue:", this.diaryIdValue);
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      const body = this.boardTarget.innerHTML;
-      const url = this.whiteboardIdValue
-        ? `/rooms/${this.roomIdValue}/whiteboards/${this.whiteboardIdValue}`
-        : `/rooms/${this.roomIdValue}/whiteboards`;
+      const body = this.diaryTarget.innerHTML;
+      const url = this.diaryIdValue
+        ? `/rooms/${this.roomIdValue}/exchange_diaries/${this.diaryIdValue}`
+        : `/rooms/${this.roomIdValue}/exchange_diaries`;
 
-      const method = this.whiteboardIdValue ? "PATCH" : "POST";
+      const method = this.diaryIdValue ? "PATCH" : "POST";
 
       fetch(url, {
         method: method,
@@ -32,17 +33,17 @@ export default class extends Controller {
           "Accept": "application/json",
           "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
         },
-        body: JSON.stringify({ whiteboard: { body: body } }),
+        body: JSON.stringify({ exchange_diary: { body: body } }),
       })
         .then((response) => {
           if (!response.ok) throw new Error("保存失敗");
-          if (!this.whiteboardIdValue && method === "POST") {
+          if (!this.diaryIdValue && method === "POST") {
             return response.json();
           }
         })
         .then((data) => {
           if (data && data.id) {
-            this.whiteboardIdValue = data.id; // 初回作成後にIDを保持しupdateへ切り替え
+            this.diaryIdValue = data.id; // 初回作成後にIDを保持しupdateへ切り替え
           }
         })
         .catch((error) => {
@@ -51,4 +52,5 @@ export default class extends Controller {
     }, 1000);
   }
 }
+
 

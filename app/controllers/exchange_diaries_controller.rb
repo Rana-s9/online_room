@@ -1,6 +1,7 @@
 class ExchangeDiariesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room
+  before_action :set_exchange_diary, only: %i[update]
 
   def index
     @room = Room.find(params[:room_id])
@@ -8,34 +9,41 @@ class ExchangeDiariesController < ApplicationController
     @exchange_diary = current_user.exchange_diaries.new
     @diary_count = @exchange_diaries.count
     @diary_order = @room.exchange_diaries.order(:created_at).pluck(:id)
-  end
 
-  def create
-    @room = Room.find(params[:room_id])
-    @exchange_diary = current_user.exchange_diaries.new(exchange_diary_params)
-    @exchange_diaries = @room.exchange_diaries.includes(:user).order(created_at: :desc)
-    @exchange_diary.room = @room
-
-    if @exchange_diary.save
-      redirect_to room_exchange_diaries_path(@room), notice: "日記を保存しました"
-    else
-      flash.now[:alert] = "日記の保存に失敗しました"
-      @exchange_diaries = @room.exchange_diaries.order(created_at: :desc) # index の再表示用に必要
-
-      render :index, status: :unprocessable_entity
+    respond_to do |format|
+      format.html
+      format.json { render json: @exchange_diaries }
     end
   end
 
-  def update
-    @room = Room.find(params[:room_id])
-    @exchange_diary = @room.exchange_diaries.find_by(user: current_user, id: params[:id])
+  def create
+  @room = Room.find(params[:room_id])
+  @exchange_diary = current_user.exchange_diaries.new(exchange_diary_params)
+  @exchange_diary.room = @room
 
-    if @exchange_diary.update(exchange_diary_params)
-      redirect_to room_exchange_diaries_path(@room), notice: "日記を更新しました"
+    if @exchange_diary.save
+      respond_to do |format|
+        format.html { redirect_to room_exchange_diaries_path(@room), notice: "日記を保存しました" }
+        format.json { render json: { id: @exchange_diary.id }, status: :created }
+      end
     else
-      @exchange_diaries = @room.exchange_diaries.includes(:user).order(created_at: :desc)
-      flash.now[:alert] = "日記の更新に失敗しました"
-      render :index, status: :unprocessable_entity
+      respond_to do |format|
+        format.html do
+          flash.now[:alert] = "日記の保存に失敗しました"
+          @exchange_diaries = @room.exchange_diaries.order(created_at: :desc)
+          render :index, status: :unprocessable_entity
+        end
+        format.json { render json: @exchange_diary.errors.full_messages, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  respond_to :html, :json
+  def update
+    if @exchange_diary.update(exchange_diary_params)
+      render json: { message: "更新成功" }, status: :ok
+    else
+      render json: { errors: @exchange_diary.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -61,7 +69,15 @@ class ExchangeDiariesController < ApplicationController
     end
   end
 
+  def set_exchange_diary
+    @exchange_diary = @room.exchange_diaries.find_by(id: params[:id], user: current_user)
+    unless @exchange_diary
+      render json: { error: "Not Found" }, status: :not_found
+    end
+  end
+
+
   def exchange_diary_params
-    params.require(:exchange_diary).permit(:body, :room_id)
+    params.require(:exchange_diary).permit(:body, :user_id, :room_id)
   end
 end
