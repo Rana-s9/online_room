@@ -26,6 +26,32 @@ class ExchangeDiariesController < ApplicationController
     end
   end
 
+  def update
+    @room = Room.find(params[:room_id])
+    @exchange_diary = @room.exchange_diaries.find_by(user: current_user, id: params[:id])
+
+    if @exchange_diary.update(exchange_diary_params)
+      redirect_to room_exchange_diaries_path(@room), notice: "日記を更新しました"
+    else
+      @exchange_diaries = @room.exchange_diaries.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = "日記の更新に失敗しました"
+      render :index, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @room = Room.find(params[:room_id])
+    @exchange_diary = @room.exchange_diaries.find_by(user: current_user, id: params[:id])
+
+    if @exchange_diary.destroy
+      redirect_to room_exchange_diaries_path(@room), notice: "日記を消しました"
+    else
+      @exchange_diaries = @room.exchange_diaries.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = "日記の削除に失敗しました"
+      render :index, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_room

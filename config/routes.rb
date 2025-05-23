@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "top/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :rooms, only: %i[index show create] do
-    resources :exchange_diaries, only: %i[index create]
+    resources :exchange_diaries, only: %i[index create update destroy]
     resources :whiteboards, only: %i[create update]
   end
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

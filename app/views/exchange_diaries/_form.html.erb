@@ -10,9 +10,9 @@
   <% end %>  
   <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
     <div class="text-sm text-dark-gray"><%= Time.current.strftime("%y年%m月%d日") %></div>
-    <%= f.text_area :body, placeholder: "今日の出来事は？", rows: 5, class: "bg-light-gray w-full p-2 border rounded text-gray" %>
+    <%= f.text_area :body, placeholder: "今日の出来事は？", rows: 5, class: "w-full p-2 mt-2 rounded text-dark-gray" %>
     <div class="flex justify-center">
-      <%= f.submit "保存", class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+      <%= f.submit @exchange_diary.persisted? ? "更新" : "日記を書く", class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
     </div>
   </div>
 <% end %>
