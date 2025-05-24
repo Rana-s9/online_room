@@ -2,6 +2,7 @@ class RoomsController < ApplicationController
   def index
     @room = Room.new
     @rooms = current_user.rooms.includes(:user).order(created_at: :desc)
+    @area = current_user.area || current_user.build_area
   end
 
   def create
@@ -28,6 +29,7 @@ class RoomsController < ApplicationController
     end
     @whiteboards = @room.whiteboards.includes(:user).order(created_at: :desc)
     @whiteboard = @room.whiteboards.find_or_create_by(user: current_user)
+    @area = current_user.area
   end
 
   private

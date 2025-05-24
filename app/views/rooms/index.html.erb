@@ -13,4 +13,10 @@
   <div id="room-form" class="hidden mt-4">
     <%= render 'form_room' %>
   </div>
+  <% if @area.nil? %>
+    <p class="text-dark-gray text-center text-lg">お住まいの地域が登録されていません</p>
+    <%= render 'form_area' %>
+  <% else %>
+    <%= render 'area' %>
+  <% end %>
 </div>
