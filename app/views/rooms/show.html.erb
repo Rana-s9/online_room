@@ -3,6 +3,12 @@
     <%= @room.name %> <i class="fa-solid fa-house-user text-light-blue"></i>
   </p>
 </div>
+<% if @area.nil? %>
+  <p>お住まいの地域が登録されていません</p>
+<% else %>
+  <p><%= @area.city %></p>
+<% end %>
+
 <%= render 'form_board' %>
 <%= render 'board' %>
 <%= link_to "交換日記", room_exchange_diaries_path(@room) %>
