@@ -4,7 +4,7 @@
     data-controller="board"
     data-board-room-id-value="<%= @room.id %>"
     data-board-target="board"
-    data-action="input->board#save"
+    data-action="keydown->board#insertBreak input->board#save"
     contenteditable="true"
     class="min-h-[200px] whitespace-pre-wrap focus:outline-none"
   >

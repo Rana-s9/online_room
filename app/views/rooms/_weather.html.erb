@@ -2,7 +2,11 @@
   <p>お住まいの地域が登録されていません</p>
 <% else %>
   <p><%= @area.city %></p>
-  <%= button_to "天気を取得する", weather_records_path(area_id: @area.id), method: :post, data: { turbo: false } %>
+  <% if @weather_record.nil? %>
+    <%= button_to "天気を取得する", weather_records_path(area_id: @area.id, room_id: @room.id), method: :post, data: { turbo: false } %>
+  <% else %>
+    <%= button_to "天気を更新する", weather_record_path(@weather_record, area_id: @area.id, room_id: @room.id), method: :patch, data: { turbo: false } %>
+  <% end %>
 
   <% if @weather_record %>
     <p>天気: <%= @weather_record.description %></p>
