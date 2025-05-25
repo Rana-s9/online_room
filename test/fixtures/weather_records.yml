@@ -5,13 +5,19 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  id: 3
-  user: one
-  city: amsterdam
+  area_id: 3
+  temperature: 18
+  humidity: 50
+  description: "曇りがち"
+  temp_min: 14
+  temp_max: 20
 # column: value
 #
 two:
-  id: 4
-  user: two
-  city: fukuoka
+  area_id: 4
+  temperature: 14
+  humidity: 30
+  description: "晴天"
+  temp_min: 12
+  temp_max: 27
 # column: value

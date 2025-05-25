@@ -110,6 +110,10 @@ GEM
     devise-i18n (1.13.0)
       devise (>= 4.9.0)
       rails-i18n
+    dotenv (3.1.8)
+    dotenv-rails (3.1.8)
+      dotenv (= 3.1.8)
+      railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.1)
     et-orbi (1.2.11)
@@ -372,6 +376,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
+  dotenv-rails
   jbuilder
   jsbundling-rails
   kaminari

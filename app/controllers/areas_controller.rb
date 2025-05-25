@@ -1,4 +1,20 @@
+require "net/http"
+require "uri"
+require "json"
 class AreasController < ApplicationController
+  def index
+    api_key = ENV["WEATHER_API"]
+    city = "madagascar"
+    url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=ja")
+
+    response = Net::HTTP.get_response(url)
+    weather_data = JSON.parse(response.body)
+
+    Rails.logger.debug(weather_data)
+
+    @weather_data = weather_data
+  end
+
   def create
     @area = current_user.build_area(area_params)
     if @area.save

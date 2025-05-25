@@ -1,0 +1,13 @@
+<% if @area.nil? %>
+  <p>お住まいの地域が登録されていません</p>
+<% else %>
+  <p><%= @area.city %></p>
+  <%= button_to "天気を取得する", weather_records_path(area_id: @area.id), method: :post, data: { turbo: false } %>
+
+  <% if @weather_record %>
+    <p>天気: <%= @weather_record.description %></p>
+    <p>気温：<%= @weather_record.temperature %>℃</p>
+  <% else %>
+    <p>天気情報はまだありません</p>
+  <% end %>
+<% end %>
