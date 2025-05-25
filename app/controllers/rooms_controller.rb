@@ -30,6 +30,7 @@ class RoomsController < ApplicationController
     @whiteboards = @room.whiteboards.includes(:user).order(created_at: :desc)
     @whiteboard = @room.whiteboards.find_or_create_by(user: current_user)
     @area = current_user.area
+    @weather_record = @area&.weather_record
   end
 
   private

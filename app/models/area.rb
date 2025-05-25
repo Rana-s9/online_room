@@ -1,5 +1,6 @@
 class Area < ApplicationRecord
   belongs_to :user
+  has_one :weather_record
 
   validates :city, presence: true,
                    format: { with: /\A[a-zA-Z]+\z/, message: "はローマ字（英字）のみで入力してください" }

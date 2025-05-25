@@ -10,7 +10,7 @@
     <%= yield :head %>
 
     <% flash.each do |key, message| %>
-      <% text_color = key == "notice" ? "text-matcha" : "text-brown" %>
+      <% text_color = key == "notice" ? "text-matcha" : "text-red-500" %>
       <div class="flash <%= key %> <%= text_color %> font-semibold">
         <%= message %>
       </div>
