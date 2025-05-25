@@ -15,7 +15,7 @@ export default class extends Controller {
 
   save() {
     console.log("input received");
-    console.log("diaryIdValue:", this.diaryIdValue);
+    console.log("whiteboardIdValue:", this.whiteboardIdValue);
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       const body = this.boardTarget.innerHTML;
