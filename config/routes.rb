@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[index show create] do
     resources :exchange_diaries, only: %i[index create update destroy]
     resources :whiteboards, only: %i[create update]
-    resources :state_calendars, only: %i[new create index]
+    resources :state_calendars, only: %i[new create index update destroy]
   end
 
   resources :areas, only: %i[create update index]
