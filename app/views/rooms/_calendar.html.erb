@@ -1,0 +1,41 @@
+<div class="text-center mt-4">
+  <button id="calendar-button" class="text-3xl">
+    <i class="fa-regular fa-calendar-days"></i>
+  </button>
+</div>
+
+<div
+  id="calendar-wrapper"
+  class="hidden inline-block max-w-[30%] w-full cursor-pointer rounded shadow-lg hover:ring-2 hover:ring-blue transition"
+  data-url="<%= room_state_calendars_path(@room) %>"
+>
+  <%= week_calendar(events: @state_calendars, attribute: :calendar_date) do |date, states_on_day| %>
+    <% states_on_day.each do |state| %>
+      <p><%= state.mental_state %></p>
+      <p><%= state.physical_state %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const wrapper = document.getElementById("calendar-wrapper");
+    const button = document.getElementById("calendar-button");
+
+    if (wrapper) {
+      wrapper.addEventListener("click", function () {
+        const url = wrapper.dataset.url;
+        if (url) window.location.href = url;
+      });
+    }
+
+    if (button && wrapper) {
+      button.addEventListener("click", function (e) {
+        e.preventDefault();
+        wrapper.classList.toggle("hidden");
+      });
+    }
+  });
+</script>
+
+

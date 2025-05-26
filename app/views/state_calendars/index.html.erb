@@ -1,0 +1,13 @@
+<%= month_calendar(events: @state_calendars, attribute: :calendar_date) do |date, states_on_day| %>
+  <% states_on_day.each do |state| %>
+    <div class= "flex">
+        <%= state.mental_state %>
+        <%= state.physical_state %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to "+ 心身の登録", new_room_state_calendar_path(@room) %>
+<div class="text-brown flex space-x-2">
+    <%= link_to "部屋に戻る", room_path(@room),data: { turbo: false }, method: :delete %>
+</div>

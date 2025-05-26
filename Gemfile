@@ -71,3 +71,5 @@ gem "devise-i18n"
 
 gem "kaminari"
 gem "dotenv-rails"
+
+gem "simple_calendar"
