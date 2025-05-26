@@ -1,6 +1,6 @@
 <%= link_to "一覧へもどる", room_state_calendars_path(@room) %>
 
-<%= form_with model: @state_calendar, url: room_state_calendars_path(@room), local: true, data: { turbo: false } do |f| %>
+<%= form_with model: @state_calendar, url: @form_url, method: @form_method, local: true do |f| %>
   <%= f.date_field :date, value: @state_calendar.date || Date.current %>
   <div class="field">
     <%= f.label :mental_state, "心の状態" %><br>
@@ -27,8 +27,12 @@
       ], 
       prompt: "一番近い状態を選ぶ" %>
   </div>
-
-  <%= f.submit "保存", style: "padding: 10px 20px; background-color: #ccc;" %>
+  <div class="flex">
+    <%= f.submit @form_method == :patch ? "更新" : "保存", style: "padding: 10px 20px; background-color: #ccc;" %>
+    <% if @form_method == :patch %>
+      <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_state_calendar_path(@room, @state_calendar), data: { turbo_method: :delete, turbo_confirm: "本当に記録を消しますか？" } %>
+    <% end %>
+  </div>
 <% end %>
 
 

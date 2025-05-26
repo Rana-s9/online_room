@@ -9,10 +9,16 @@ class StateCalendarsController < ApplicationController
   end
 
   def new
-    @room = Room.find(params[:room_id])
-    @state_calendar = current_user.state_calendars.new
-    @state_calendar.room = @room
-    @state_calendar.date = params[:date] || Date.current
+  @room = Room.find(params[:room_id])
+  # date指定で既存の記録があれば取得する例
+  @state_calendar = current_user.state_calendars.find_by(room: @room, date: params[:date]) || current_user.state_calendars.new(room: @room, date: params[:date] || Date.current)
+    if @state_calendar.persisted?
+        @form_url = room_state_calendar_path(@room, @state_calendar)
+        @form_method = :patch
+    else
+        @form_url = room_state_calendars_path(@room)
+        @form_method = :post
+    end
   end
 
   def create
@@ -21,19 +27,42 @@ class StateCalendarsController < ApplicationController
     @state_calendar.room = @room
 
     if @state_calendar.save
-        respond_to do |format|
-          format.html { redirect_to room_state_calendars_path(@room), notice: "心身コンディションを保存しました" }
-          format.json { render json: { id: @state_calendar.id }, status: :created }
-        end
+      redirect_to room_state_calendars_path(@room), notice: "心身コンディションを保存しました"
     else
-        respond_to do |format|
-          format.html do
-            flash.now[:alert] = "心身コンディションの保存に失敗しました"
-            @state_calendars = @room.state_calendars.order(created_at: :desc)
-            render :new, status: :unprocessable_entity
-          end
-          format.json { render json: @state_calendar.errors.full_messages, status: :unprocessable_entity }
-        end
+    if @state_calendar.persisted?
+      @form_url = room_state_calendar_path(@room, @state_calendar)
+      @form_method = :patch
+    else
+      @form_url = room_state_calendars_path(@room)
+      @form_method = :post
+    end
+    render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    @room = Room.find(params[:room_id])
+    @state_calendar = @room.state_calendars.find_by(user: current_user, id: params[:id])
+
+    if @state_calendar.update(state_calendar_params)
+      redirect_to room_state_calendars_path(@room), notice: "心身コンディションを更新しました"
+    else
+      @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = "心身コンディションの更新に失敗しました"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @room = Room.find(params[:room_id])
+    @state_calendar = @room.state_calendars.find_by(user: current_user, id: params[:id])
+
+    if @state_calendar.destroy
+      redirect_to room_state_calendars_path(@room), notice: "心身コンディションを削除しました"
+    else
+      @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = "心身コンディションの削除に失敗しました"
+      render :index, status: :unprocessable_entity
     end
   end
 
