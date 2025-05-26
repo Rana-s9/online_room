@@ -1,0 +1,48 @@
+<div class="simple-calendar rounded-2xl border border-gray shadow-lg p-4 bg-white max-w-4xl mx-auto">
+  <div class="text-sm font-semibold text-gray mb-2">
+    <i class="fa-solid fa-user"></i>
+    <% @calendar_users.each do |user| %>
+      <span class="<%= 'text-blue font-bold' if user == current_user %>">
+        <%= user.name %>
+      </span><% unless user == @calendar_users.last %>, <% end %>
+    <% end %>
+    さんのカレンダー
+  </div>
+  <div class="calendar-heading flex items-center justify-between mb-4">
+    <span class="calendar-title text-sm font-semibold text-gray">
+      <%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %>
+      <% if calendar.number_of_weeks > 1 %>
+        - <%= calendar.end_week %>
+      <% end %>
+    </span>
+
+    <nav class="space-x-2">
+      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: "px-3 py-1 bg-light-gray/50 hover:bg-light-gray rounded-lg text-sm text-dark-gray" %>
+      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, class: "px-3 py-1 bg-green-100 hover:bg-green-200 rounded-lg text-sm text-green-700" %>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: "px-3 py-1 bg-light-gray/50 hover:bg-light-gray rounded-lg text-sm text-dark-gray" %>
+    </nav>
+  </div>
+
+  <table class="table-auto w-full text-center border-collapse">
+    <thead>
+      <tr class="bg-light-blue">
+        <% date_range.slice(0, 7).each do |day| %>
+          <th class="p-2 text-dark-gray text-sm"><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: "#{calendar.td_classes_for(day)} border p-2 align-top hover:bg-light-blue/50 transition duration-200 ease-in-out" do %>
+              <%= link_to day.day, new_room_state_calendar_path(@room, date: day.to_date), class: "block w-full h-full" %>
+              <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

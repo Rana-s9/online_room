@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_25_081323) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_26_110258) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_25_081323) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "state_calendars", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.string "mental_state"
+    t.string "physical_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "date"
+    t.index ["room_id"], name: "index_state_calendars_on_room_id"
+    t.index ["user_id"], name: "index_state_calendars_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,6 +91,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_25_081323) do
   add_foreign_key "exchange_diaries", "rooms"
   add_foreign_key "exchange_diaries", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "state_calendars", "rooms"
+  add_foreign_key "state_calendars", "users"
   add_foreign_key "weather_records", "areas"
   add_foreign_key "whiteboards", "rooms"
   add_foreign_key "whiteboards", "users"

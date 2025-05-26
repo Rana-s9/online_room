@@ -17,25 +17,25 @@ class ExchangeDiariesController < ApplicationController
   end
 
   def create
-  @room = Room.find(params[:room_id])
-  @exchange_diary = current_user.exchange_diaries.new(exchange_diary_params)
-  @exchange_diary.room = @room
+    @room = Room.find(params[:room_id])
+    @exchange_diary = current_user.exchange_diaries.new(exchange_diary_params)
+    @exchange_diary.room = @room
 
-    if @exchange_diary.save
-      respond_to do |format|
-        format.html { redirect_to room_exchange_diaries_path(@room), notice: "日記を保存しました" }
-        format.json { render json: { id: @exchange_diary.id }, status: :created }
-      end
-    else
-      respond_to do |format|
-        format.html do
-          flash.now[:alert] = "日記の保存に失敗しました"
-          @exchange_diaries = @room.exchange_diaries.order(created_at: :desc)
-          render :index, status: :unprocessable_entity
+      if @exchange_diary.save
+        respond_to do |format|
+          format.html { redirect_to room_exchange_diaries_path(@room), notice: "日記を保存しました" }
+          format.json { render json: { id: @exchange_diary.id }, status: :created }
         end
-        format.json { render json: @exchange_diary.errors.full_messages, status: :unprocessable_entity }
+      else
+        respond_to do |format|
+          format.html do
+            flash.now[:alert] = "日記の保存に失敗しました"
+            @exchange_diaries = @room.exchange_diaries.order(created_at: :desc)
+            render :index, status: :unprocessable_entity
+          end
+          format.json { render json: @exchange_diary.errors.full_messages, status: :unprocessable_entity }
+        end
       end
-    end
   end
 
   respond_to :html, :json

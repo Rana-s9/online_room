@@ -31,6 +31,10 @@ class RoomsController < ApplicationController
     @whiteboard = @room.whiteboards.find_or_create_by(user: current_user)
     @area = current_user.area
     @weather_record = @area&.weather_record
+
+    @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
+    @state_calendar = current_user.state_calendars.new
+    @calendar_users = @state_calendars.includes(:user).map(&:user).uniq
   end
 
   private
