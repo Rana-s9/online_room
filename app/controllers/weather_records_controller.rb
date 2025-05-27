@@ -2,6 +2,8 @@ require "net/http"
 require "uri"
 require "json"
 class WeatherRecordsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     area = Area.find(params[:area_id])
     @weather_record = WeatherRecord.new(area_id: area.id)

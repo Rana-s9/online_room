@@ -3,11 +3,24 @@
     <div class="text-dark-gray rounded-lg shadow-md p-6">
       <p>家の名前<i class="fa-solid fa-house-user text-light-blue"></i>:<%= link_to room.name, room_path(room), class: "text-matcha underline hover:text-matcha/60" %></p>
       <p>住民:
-        <span class="<%= "text-dark-gray font-bold" if room.user == current_user %>">
-            <%= room.user.name %>
+        <span class="<%= "text-blue font-bold" if room.user == current_user %>">
+            <p>住民:
+              <% room.roommates.each do |member| %>
+                <span class="<%= 'text-blue font-bold' if member == current_user %>">
+                  <%= member.name %><%= ',' unless member == room.roommates.last %>
+                </span>
+              <% end %>
+            </p>
         </span>
       </p>
-      <p>入居日：<%= room.created_at.strftime("%y年%m月%d日") %></p>
+      <p>入居日：
+        <% if room.user == current_user %>
+          <%= room.created_at.strftime("%y年%m月%d日") %>
+        <% else %>
+          <% invitation = @invitation_map[room.id] %>
+          <%= invitation ? invitation.created_at.strftime("%y年%m月%d日") : "不明" %>
+        <% end %>
+      </p>
       <div class= "text-right">
         <%= link_to "この家に帰宅する", room_path(room), class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
       </div>

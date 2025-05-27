@@ -63,8 +63,8 @@ class ExchangeDiariesController < ApplicationController
   private
 
   def set_room
-    @room = current_user.rooms.find_by(id: params[:room_id])
-    unless @room
+    @room = Room.find_by(id: params[:room_id])
+    unless @room && (@room.user_id == current_user.id || RoommateList.exists?(user_id: current_user.id, room_id: @room.id))
       redirect_to root_path, alert: "部屋が見つかりませんでした。"
     end
   end

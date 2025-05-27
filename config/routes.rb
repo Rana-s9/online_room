@@ -11,10 +11,17 @@ Rails.application.routes.draw do
     resources :exchange_diaries, only: %i[index create update destroy]
     resources :whiteboards, only: %i[create update]
     resources :state_calendars, only: %i[new create index update destroy]
+    resources :invitation_tokens, only: %i[create index update]
   end
 
   resources :areas, only: %i[create update index]
   resources :weather_records, only: %i[create update]
+  resources :roommate_lists, only: %i[] do
+    collection do
+      get "join"  # /roommate_lists/join?token=xxx
+    end
+  end
+
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
