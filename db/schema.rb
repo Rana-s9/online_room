@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_26_145122) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_27_115551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,29 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_26_145122) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_exchange_diaries_on_room_id"
     t.index ["user_id"], name: "index_exchange_diaries_on_user_id"
+  end
+
+  create_table "invitation_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.string "token", null: false
+    t.datetime "used_at"
+    t.datetime "expires_at", null: false
+    t.integer "invited_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_invitation_tokens_on_room_id"
+    t.index ["token"], name: "index_invitation_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_invitation_tokens_on_user_id"
+  end
+
+  create_table "roommate_lists", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_roommate_lists_on_room_id"
+    t.index ["user_id"], name: "index_roommate_lists_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -91,6 +114,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_26_145122) do
   add_foreign_key "areas", "users"
   add_foreign_key "exchange_diaries", "rooms"
   add_foreign_key "exchange_diaries", "users"
+  add_foreign_key "invitation_tokens", "rooms"
+  add_foreign_key "invitation_tokens", "users"
+  add_foreign_key "roommate_lists", "rooms"
+  add_foreign_key "roommate_lists", "users"
   add_foreign_key "rooms", "users"
   add_foreign_key "state_calendars", "rooms"
   add_foreign_key "state_calendars", "users"

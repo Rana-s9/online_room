@@ -1,7 +1,17 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_room, only: [ :show ]
+  before_action :authorize_room_access!, only: [ :show ]
+
   def index
     @room = Room.new
-    @rooms = current_user.rooms.includes(:user).order(created_at: :desc)
+    my_rooms = current_user.rooms
+    join_rooms = Room.joins(:invitation_tokens).where(invitation_tokens: { invited_user: current_user.id })
+    @rooms = (my_rooms + join_rooms).uniq
+    @invitation_map = InvitationToken
+                      .where(invited_user: current_user, room_id: @rooms.map(&:id))
+                      .index_by(&:room_id)
+    @rooms = Room.where(id: @rooms.map(&:id)).includes(:user, :roommates)
     @area = current_user.area || current_user.build_area
   end
 
@@ -29,8 +39,7 @@ class RoomsController < ApplicationController
     end
     @whiteboards = @room.whiteboards.includes(:user).order(created_at: :desc)
     @whiteboard = @room.whiteboards.find_or_create_by(user: current_user)
-    @area = current_user.area
-    @weather_record = @area&.weather_record
+    @roommates = User.joins(:roommate_lists).where(roommate_lists: { room_id: @room.id }).includes(area: :weather_record)
 
     @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
     @state_calendar = current_user.state_calendars.new
@@ -38,6 +47,16 @@ class RoomsController < ApplicationController
   end
 
   private
+
+  def set_room
+    @room = Room.find(params[:id])
+  end
+
+  def authorize_room_access!
+    unless @room.user_id == current_user.id || RoommateList.exists?(user_id: current_user.id, room_id: @room.id)
+      redirect_to root_path, alert: "この部屋にアクセスできません"
+    end
+  end
 
   def room_params
     params.require(:room).permit(:name)

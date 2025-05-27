@@ -1,0 +1,31 @@
+<h2>招待トークン一覧</h2>
+
+<%= form_with url: room_invitation_tokens_path(@room), method: :post, local: true, data: { turbo: false } do |f| %>
+  <%= f.submit "トークンを発行する", class: "btn btn-primary" %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>トークン</th>
+      <th>有効期限</th>
+      <th>使用済み？</th>
+      <th>発行日</th>
+      <th>使用日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invitation_tokens.each do |token| %>
+      <tr>
+        <td><%= token.token %></td>
+        <td>
+          <%= link_to "招待リンク", join_roommate_lists_url(token: token.token), target: "_blank" %>
+        </td>
+        <td><%= l(token.expires_at, format: :short) %></td>
+        <td><%= token.used_at.present? ? "はい" : "いいえ" %></td>
+        <td><%= l(token.created_at, format: :short) %></td>
+        <td><%= token.used_at ? l(token.used_at, format: :short) : "-" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

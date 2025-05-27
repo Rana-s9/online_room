@@ -1,5 +1,5 @@
 <div class="container mx-auto px-4 ">
-  <% if @current_user.rooms.empty? %>
+  <% if @rooms.empty? %>
     <p class="text-gray text-center text-lg">登録部屋はまだありません</p>
     <div class="max-w-xl mx-auto">
         <%= render 'form_room' %>
