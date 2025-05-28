@@ -44,6 +44,9 @@ class RoomsController < ApplicationController
     @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
     @state_calendar = current_user.state_calendars.new
     @calendar_users = @state_calendars.includes(:user).map(&:user).uniq
+    @greetings = @room.greetings.includes(:user).order(created_at: :desc)
+    @welcome = @greetings.welcome
+    @return = @greetings.return
   end
 
   private
