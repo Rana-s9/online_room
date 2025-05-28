@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :whiteboards, only: %i[create update]
     resources :state_calendars, only: %i[new create index update destroy]
     resources :invitation_tokens, only: %i[create index update]
+    resources :greetings, only: %i[new create index]
   end
 
   resources :areas, only: %i[create update index]

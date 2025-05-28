@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :state_calendars, dependent: :destroy
   has_many :roommate_lists, dependent: :destroy
   has_many :invitation_tokens, dependent: :destroy
+  has_many :greetings, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

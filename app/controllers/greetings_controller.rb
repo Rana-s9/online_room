@@ -1,0 +1,39 @@
+class GreetingsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_room
+  def index
+    @room = Room.find(params[:room_id])
+    @greetings = @room.greetings.includes(:user).order(created_at: :desc)
+    @welcome = @greetings.welcome
+    @return = @greetings.return
+  end
+
+  def new
+    @room = Room.find(params[:room_id])
+  end
+
+  def create
+    @room = Room.find(params[:room_id])
+    @greeting = @room.greetings.new(greeting_params)
+    @greeting.user = current_user
+
+    if @greeting.save
+        redirect_to room_greetings_path(@room), notice: "メッセージを登録しました"
+    else
+        redirect_to new_room_greeting_path(@room), alert: "メッセージの登録に失敗しました"
+    end
+  end
+
+  private
+
+  def set_room
+    @room = Room.find_by(id: params[:room_id])
+    unless @room && (@room.user_id == current_user.id || RoommateList.exists?(user_id: current_user.id, room_id: @room.id))
+      redirect_to root_path, alert: "部屋が見つかりませんでした。"
+    end
+  end
+
+  def greeting_params
+    params.require(:greeting).permit(:message, :greeting_type, :room_id, :user_id)
+  end
+end

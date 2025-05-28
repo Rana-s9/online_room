@@ -1,0 +1,27 @@
+    <% if @return.present? %>
+        <h2>おかえりメッセージ一覧</h2>
+        <% @greetings.return.each do |greeting| %>
+          <% if greeting.user == current_user %>
+            <div>
+                <p><%= greeting.message %></p>
+                <p><%= l(greeting.created_at, format: :short) %></p>
+            </div>
+          <% end %>
+        <% end %>
+    <% else %>
+        <h2>おかえりメッセージはありません</h2>
+    <% end %>
+
+    <% if @welcome.present? %>
+        <h2>ただいまメッセージ一覧</h2>
+        <% @greetings.welcome.each do |greeting| %>
+        <div>
+            <p><%= greeting.message %></p>
+            <p><%= l(greeting.created_at, format: :short) %></p>
+        </div>
+        <% end %>
+    <% else %>
+        <h2>ただいまメッセージはありません</h2>
+    <% end %>
+
+    <%= link_to "メッセージ作成", new_room_greeting_path() %>

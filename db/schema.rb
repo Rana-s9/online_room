@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_27_115551) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_28_082559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_27_115551) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_exchange_diaries_on_room_id"
     t.index ["user_id"], name: "index_exchange_diaries_on_user_id"
+  end
+
+  create_table "greetings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.string "message", null: false
+    t.integer "greeting_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_greetings_on_room_id"
+    t.index ["user_id"], name: "index_greetings_on_user_id"
   end
 
   create_table "invitation_tokens", force: :cascade do |t|
@@ -114,6 +125,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_27_115551) do
   add_foreign_key "areas", "users"
   add_foreign_key "exchange_diaries", "rooms"
   add_foreign_key "exchange_diaries", "users"
+  add_foreign_key "greetings", "rooms"
+  add_foreign_key "greetings", "users"
   add_foreign_key "invitation_tokens", "rooms"
   add_foreign_key "invitation_tokens", "users"
   add_foreign_key "roommate_lists", "rooms"
