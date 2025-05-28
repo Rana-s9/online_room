@@ -1,23 +1,43 @@
-<h2>ルームメイトの天気情報一覧</h2>
+<h2>天気情報</h2>
 
-<% @roommates.each do |user| %>
-  <div class="user-weather">
-    <h3><%= user.name %>さんの情報</h3>
+<% if @roommates.present? %>
+  <% @roommates.each do |user| %>
+    <div class="user-weather">
+      <h3><%= user.name %>さんの情報</h3>
 
-    <% if user.area.nil? %>
-      <p>お住まいの地域が登録されていません</p>
-    <% else %>
-      <p>地域: <%= user.area.city %></p>
-
-      <% weather_record = user.area.weather_record %>
-
-      <% if weather_record.nil? %>
-        <%= button_to "天気を取得する", weather_records_path(area_id: user.area.id, room_id: @room.id), method: :post, data: { turbo: false } %>
+      <% if user.area.nil? %>
+        <p>お住まいの地域が登録されていません</p>
       <% else %>
-        <%= button_to "天気を更新する", weather_record_path(weather_record, area_id: user.area.id, room_id: @room.id), method: :patch, data: { turbo: false } %>
-        <p>天気: <%= weather_record.description %></p>
-        <p>気温：<%= weather_record.temperature %>℃</p>
+        <p>地域: <%= user.area.city %></p>
+
+        <% weather_record = user.area.weather_record %>
+
+        <% if weather_record.nil? %>
+          <%= button_to "天気を取得する", weather_records_path(area_id: user.area.id, room_id: @room.id), method: :post, data: { turbo: false } %>
+        <% else %>
+          <%= button_to "天気を更新する", weather_record_path(weather_record, area_id: user.area.id, room_id: @room.id), method: :patch, data: { turbo: false } %>
+          <p>天気: <%= weather_record.description %></p>
+          <p>気温：<%= weather_record.temperature %>℃</p>
+        <% end %>
       <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <h3><%= current_user.name %>さんの情報</h3>
+
+  <% if current_user.area.nil? %>
+    <p>お住まいの地域が登録されていません</p>
+  <% else %>
+    <p>地域: <%= current_user.area.city %></p>
+
+    <% weather_record = current_user.area.weather_record %>
+
+    <% if weather_record.nil? %>
+      <%= button_to "天気を取得する", weather_records_path(area_id: current_user.area.id, room_id: @room.id), method: :post, data: { turbo: false } %>
+    <% else %>
+      <%= button_to "天気を更新する", weather_record_path(weather_record, area_id: current_user.area.id, room_id: @room.id), method: :patch, data: { turbo: false } %>
+      <p>天気: <%= weather_record.description %></p>
+      <p>気温：<%= weather_record.temperature %>℃</p>
     <% end %>
-  </div>
+  <% end %>
 <% end %>
