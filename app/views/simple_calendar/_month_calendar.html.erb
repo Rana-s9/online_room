@@ -1,13 +1,4 @@
 <div class="simple-calendar rounded-2xl border border-gray shadow-lg p-4 bg-white max-w-4xl mx-auto">
-  <div class="text-lg font-semibold text-gray mb-2">
-    <i class="fa-solid fa-user"></i>
-    <% @calendar_users.each do |user| %>
-      <span class="<%= 'text-blue font-bold' if user == current_user %>">
-        <%= user.name %>
-      </span><% unless user == @calendar_users.last %>, <% end %>
-    <% end %>
-    さんのカレンダー
-  </div>
   <div class="calendar-heading flex items-center justify-between mb-4">
     <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title text-xl font-semibold text-dark-gray">
       <%= t('date.month_names')[start_date.month] %> <%= start_date.year %>
@@ -34,7 +25,7 @@
         <tr>
           <% week.each do |day| %>
             <%= content_tag :td, class: "#{calendar.td_classes_for(day)} border p-2 align-top hover:bg-light-blue/50 transition duration-200 ease-in-out" do %>
-              <%= link_to day.day, new_room_state_calendar_path(@room, date: day.to_date), class: "block w-full h-full" %>
+              <% events = calendar.sorted_events_for(day) %>
               <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
             <% end %>
           <% end %>

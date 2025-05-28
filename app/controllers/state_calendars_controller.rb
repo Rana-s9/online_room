@@ -4,45 +4,44 @@ class StateCalendarsController < ApplicationController
   def index
     @room = Room.find(params[:room_id])
     @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
-    @state_calendar = current_user.state_calendars.new
     @calendar_users = @state_calendars.includes(:user).map(&:user).uniq
+    @calendars_by_user = @state_calendars.group_by(&:user_id)
   end
 
   def new
   @room = Room.find(params[:room_id])
   # date指定で既存の記録があれば取得する例
   @state_calendar = current_user.state_calendars.find_by(room: @room, date: params[:date]) || current_user.state_calendars.new(room: @room, date: params[:date] || Date.current)
-    if @state_calendar.persisted?
-        @form_url = room_state_calendar_path(@room, @state_calendar)
-        @form_method = :patch
-    else
-        @form_url = room_state_calendars_path(@room)
-        @form_method = :post
-    end
   end
 
   def create
     @room = Room.find(params[:room_id])
     @state_calendar = current_user.state_calendars.new(state_calendar_params)
     @state_calendar.room = @room
+    @state_calendar.user = current_user
 
     if @state_calendar.save
       redirect_to room_state_calendars_path(@room), notice: "心身コンディションを保存しました"
     else
-      if @state_calendar.persisted?
-        @form_url = room_state_calendar_path(@room, @state_calendar)
-        @form_method = :patch
-      else
-        @form_url = room_state_calendars_path(@room)
-        @form_method = :post
-      end
-    render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @room = Room.find(params[:room_id])
+    @state_calendar = @room.state_calendars.find_by(user: current_user, id: params[:id])
+    unless @state_calendar&.user == current_user
+      redirect_to room_state_calendars_path(@room), alert: "不正なアクセスです"
     end
   end
 
   def update
     @room = Room.find(params[:room_id])
     @state_calendar = @room.state_calendars.find_by(user: current_user, id: params[:id])
+
+    unless @state_calendar&.user == current_user
+      redirect_to room_state_calendars_path(@room), alert: "不正なアクセスです"
+    end
 
     if @state_calendar.update(state_calendar_params)
       redirect_to room_state_calendars_path(@room), notice: "心身コンディションを更新しました"

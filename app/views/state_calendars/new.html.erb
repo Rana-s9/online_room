@@ -1,38 +1,10 @@
 <%= link_to "一覧へもどる", room_state_calendars_path(@room) %>
 
-<%= form_with model: @state_calendar, url: @form_url, method: @form_method, local: true do |f| %>
+<%= form_with model: [@room, @state_calendar], local: true do |f| %>
   <%= f.date_field :date, value: @state_calendar.date || Date.current %>
-  <div class="field">
-    <%= f.label :mental_state, "心の状態" %><br>
-    <%= f.select :mental_state, 
-      [
-        ["🥳 : とても元気", "🥳"],
-        ["☺ : 元気", "☺"],
-        ["😐 : 少しもやっとしている", "😐"],
-        ["😭 : 激しい落ち込み・涙が出る", "😭"],
-        ["😣 : SOS / 相談に乗ってほしい", "😣"]
-      ], 
-      prompt: "一番近い状態を選ぶ" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :physical_state, "体の状態" %><br>
-    <%= f.select :physical_state, 
-      [
-        ["💃 : エネルギッシュ", "💃"],
-        ["🚶‍♀️ : 元気", "🚶‍♀️"],
-        ["🧍‍♀️ : 少しだるい", "🧍‍♀️"],
-        ["🛌 : とても辛くて動けない", "🛌"],
-        ["🤒 : SOS / 声をかけてほしい", "🤒"]
-      ], 
-      prompt: "一番近い状態を選ぶ" %>
-  </div>
+    <%= render 'form', f: f %>
   <div class="flex">
-    <%= f.submit @form_method == :patch ? "更新" : "保存", style: "padding: 10px 20px; background-color: #ccc;" %>
-    <% if @form_method == :patch %>
-      <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_state_calendar_path(@room, @state_calendar), data: { turbo_method: :delete, turbo_confirm: "本当に記録を消しますか？" } %>
-    <% end %>
+    <%= f.submit "保存", style: "padding: 10px 20px; background-color: #ccc;" %>
   </div>
 <% end %>
-
 

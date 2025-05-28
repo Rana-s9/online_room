@@ -1,0 +1,10 @@
+<%= link_to "一覧へもどる", room_state_calendars_path(@room) %>
+
+<%= form_with model: [@room, @state_calendar], local: true do |f| %>
+  <%= f.date_field :date, value: @state_calendar.date || Date.current %>
+    <%= render 'form', f: f %>
+        <div class="flex">
+            <%= f.submit "更新", style: "padding: 10px 20px; background-color: #ccc;" %>
+            <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_state_calendar_path(@room, @state_calendar), data: { turbo_method: :delete, turbo_confirm: "本当に記録を消しますか？" } %>
+        </div>
+<% end %>
