@@ -5,5 +5,7 @@
   <%= f.label :greeting_type, "種類" %>
   <%= f.select :greeting_type, Greeting.greeting_types.keys.map { |k| [k.titleize, k] } %>
 
-  <%= f.submit "登録" %>
+  <%= f.submit "保存", style: "padding: 10px 20px; background-color: #ccc;" %>
 <% end %>
+
+<%= link_to "戻る", room_greetings_path(@room) %>
