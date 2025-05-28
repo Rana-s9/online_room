@@ -1,10 +1,10 @@
     <% if @return.present? %>
-        <h2>おかえりメッセージ一覧</h2>
+        <h2>ただいまメッセージ一覧</h2>
         <% @greetings.return.each do |greeting| %>
           <% if greeting.user == current_user %>
-            <div>
-                <p><%= greeting.message %></p>
-                <p><%= l(greeting.created_at, format: :short) %></p>
+            <div class="flex">
+                <%= l(greeting.created_at, format: :short) %>
+                <%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>
             </div>
           <% end %>
         <% end %>
@@ -13,12 +13,12 @@
     <% end %>
 
     <% if @welcome.present? %>
-        <h2>ただいまメッセージ一覧</h2>
+        <h2>おかえりメッセージ一覧</h2>
         <% @greetings.welcome.each do |greeting| %>
-        <div>
-            <p><%= greeting.message %></p>
-            <p><%= l(greeting.created_at, format: :short) %></p>
-        </div>
+            <div class="flex">
+                <%= l(greeting.created_at, format: :short) %>
+                <%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>
+            </div>
         <% end %>
     <% else %>
         <h2>ただいまメッセージはありません</h2>

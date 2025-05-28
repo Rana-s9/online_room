@@ -24,6 +24,37 @@ class GreetingsController < ApplicationController
     end
   end
 
+  def update
+    @room = Room.find(params[:room_id])
+    @greeting = @room.greetings.find_by(user: current_user, id: params[:id])
+
+    if @greeting.update(greeting_params)
+      redirect_to room_greetings_path(@room), notice: "メッセージを更新しました"
+    else
+      @greetings = @room.greetings.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = "メッセージの更新に失敗しました"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @room = Room.find(params[:room_id])
+    @greeting = @room.greetings.find_by(user: current_user, id: params[:id])
+  end
+
+  def destroy
+    @room = Room.find(params[:room_id])
+    @greeting = @room.greetings.find_by(user: current_user, id: params[:id])
+
+    if @greeting.destroy
+      redirect_to room_greetings_path(@room), notice: "メッセージを削除しました"
+    else
+      @greetings = @room.greetings.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = "メッセージの削除に失敗しました"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_room

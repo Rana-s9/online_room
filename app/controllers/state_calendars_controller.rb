@@ -29,13 +29,13 @@ class StateCalendarsController < ApplicationController
     if @state_calendar.save
       redirect_to room_state_calendars_path(@room), notice: "心身コンディションを保存しました"
     else
-    if @state_calendar.persisted?
-      @form_url = room_state_calendar_path(@room, @state_calendar)
-      @form_method = :patch
-    else
-      @form_url = room_state_calendars_path(@room)
-      @form_method = :post
-    end
+      if @state_calendar.persisted?
+        @form_url = room_state_calendar_path(@room, @state_calendar)
+        @form_method = :patch
+      else
+        @form_url = room_state_calendars_path(@room)
+        @form_method = :post
+      end
     render :new, status: :unprocessable_entity
     end
   end

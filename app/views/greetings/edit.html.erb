@@ -1,0 +1,14 @@
+<%= form_with model: [@room, @greeting], local: true do |f| %>
+  <%= f.label :message, "メッセージ" %>
+  <%= f.text_field :message %>
+
+  <%= f.label :greeting_type, "種類" %>
+  <%= f.select :greeting_type, Greeting.greeting_types.keys.map { |k| [k.titleize, k] } %>
+
+  <div class="flex">
+    <%= f.submit "更新", style: "padding: 10px 20px; background-color: #ccc;" %>
+    <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_greeting_path(@room, @greeting), data: { turbo_method: :delete, turbo_confirm: "本当にメッセージを削除しますか？" } %>
+  </div>
+<% end %>
+
+<%= link_to "戻る", room_greetings_path(@room) %>
