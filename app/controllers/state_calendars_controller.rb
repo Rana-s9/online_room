@@ -4,8 +4,14 @@ class StateCalendarsController < ApplicationController
   def index
     @room = Room.find(params[:room_id])
     @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
-    @calendar_users = @room.users
+    @calendar_users = current_user.grouped_shared_users[@room.id] || []
+    logger.debug("grouped_shared_users keys: #{current_user.grouped_shared_users.keys}")
+    logger.debug("current room id: #{@room.id}")
     @calendars_by_user = @state_calendars.group_by(&:user_id)
+    logger.debug("@calendar_users count: #{@calendar_users.size}")
+    logger.debug("@calendar_users ids: #{@calendar_users.map(&:id)}")
+    logger.debug("@calendars_by_user keys: #{@calendars_by_user.keys}")
+    logger.debug("@state_calendars count: #{@state_calendars.size}")
   end
 
   def new
