@@ -4,7 +4,7 @@ class StateCalendarsController < ApplicationController
   def index
     @room = Room.find(params[:room_id])
     @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
-    @calendar_users = @state_calendars.includes(:user).map(&:user).uniq
+    @calendar_users = @room.users
     @calendars_by_user = @state_calendars.group_by(&:user_id)
   end
 
