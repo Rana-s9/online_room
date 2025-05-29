@@ -5,27 +5,22 @@ class RoomsController < ApplicationController
 
   def index
     @room = Room.new
-    my_rooms = current_user.rooms
-    join_rooms = Room.joins(:invitation_tokens).where(invitation_tokens: { invited_user: current_user.id })
-    @rooms = (my_rooms + join_rooms).uniq
-    @invitation_map = InvitationToken
-                      .where(invited_user: current_user, room_id: @rooms.map(&:id))
-                      .index_by(&:room_id)
-    @rooms = Room.where(id: @rooms.map(&:id)).includes(:user, :roommates)
-    @area = current_user.area || current_user.build_area
+    invited_and_own_room
   end
 
   def create
-    if current_user.rooms.count >= 5
+    if current_user.owned_rooms.count >= 5
       flash[:alert] = "1人あたり5部屋まで登録できます。"
       redirect_to rooms_path and return
     end
 
-    @room= current_user.rooms.new(room_params)
+    @room = current_user.owned_rooms.new(room_params)
+
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: "部屋を作成しました" }
       else
+        invited_and_own_room
         format.html { render :index, alert: "部屋を作成できませんでした", status: :unprocessable_entity }
       end
     end
@@ -53,6 +48,17 @@ class RoomsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:id])
+  end
+
+  def invited_and_own_room
+    my_rooms = current_user.owned_rooms
+    join_rooms = Room.joins(:invitation_tokens).where(invitation_tokens: { invited_user: current_user.id })
+    @rooms = (my_rooms + join_rooms).uniq
+    @invitation_map = InvitationToken
+                      .where(invited_user: current_user, room_id: @rooms.map(&:id))
+                      .index_by(&:room_id)
+    @rooms = Room.where(id: @rooms.map(&:id)).includes(:user, :roommates)
+    @area = current_user.area || current_user.build_area
   end
 
   def authorize_room_access!
