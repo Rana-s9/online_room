@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   validates :name, presence: true
 
-  has_many :rooms
+  has_many :owned_rooms, class_name: "Room", foreign_key: "user_id", dependent: :destroy
   has_many :exchange_diaries, dependent: :destroy
   has_many :whiteboards, dependent: :destroy
   has_one :area, dependent: :destroy
