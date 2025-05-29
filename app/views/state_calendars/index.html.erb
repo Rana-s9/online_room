@@ -1,31 +1,39 @@
 <% @calendar_users.each do |user| %>
-  <% @user_is_current = user == current_user %>
-  <div class="user-calendar mb-8 p-4 border rounded <%= user == current_user ? 'border-blue' : 'border-gray' %>">
-    <h3 class="font-semibold mb-2 <%= user == current_user ? 'text-blue' : 'text-gray' %>">
+  <% user_is_current = user == current_user %>
+  <% user_calendars = @calendars_by_user[user.id] || [] %>
+  <div class="user-calendar mb-8 p-4 border rounded <%= user_is_current ? 'border-bright-blue' : 'border-gray' %>">
+    <h3 class="font-semibold mb-2 <%= user_is_current ? 'text-bright-blue' : 'text-gray' %>">
       <i class="fa-solid fa-user"></i> <%= user.name %> さんのカレンダー
     </h3>
-
-    <%= month_calendar(events: @calendars_by_user[user.id] || [], attribute: :calendar_date) do |date, states_on_day| %>
-      <% has_data = states_on_day.present? %>
-      <% if @user_is_current %>
-        <% if has_data %>
-          <% state_calendar = states_on_day.first %>
-          <%= link_to date.day, edit_room_state_calendar_path(@room, state_calendar, date: date), class: "block w-full h-full" %>
-        <% else %>
-          <%= link_to date.day, new_room_state_calendar_path(@room, date: date), class: "block w-full h-full" %>
-        <% end %>
-      <% else %>
-        <span class="block w-full h-full"><%= date.day %></span>
+    <% if user_calendars.empty? && user_is_current %>
+      <%= month_calendar(events: [], attribute: :calendar_date) do |date, _| %>
+        <%= link_to date.day, new_room_state_calendar_path(@room, date: date), class: "block w-full h-full text-center" %>
       <% end %>
-      <% states_on_day.each do |state| %>
-        <div class="flex space-x-2 mb-1">
-          <span class="px-1 py-1 rounded bg-yellow"><%= state.mental_state %></span>
-          <span class="px-1 py-1 rounded bg-light-blue/30"><%= state.physical_state %></span>
-        </div>
+
+    <% else %>
+      <%= month_calendar(events: user_calendars, attribute: :calendar_date) do |date, states_on_day| %>
+        <% if user_is_current %>
+          <% if states_on_day.present? %>
+            <% state_calendar = states_on_day.first %>
+            <%= link_to date.day, edit_room_state_calendar_path(@room, state_calendar, date: date), class: "block w-full h-full text-center" %>
+          <% else %>
+            <%= link_to date.day, new_room_state_calendar_path(@room, date: date), class: "block w-full h-full text-center" %>
+          <% end %>
+        <% else %>
+          <span class="block w-full h-full text-center"><%= date.day %></span>
+        <% end %>
+
+        <% states_on_day.each do |state| %>
+          <div class="flex space-x-2 mb-1">
+            <span class="px-1 py-1 rounded bg-yellow"><%= state.mental_state %></span>
+            <span class="px-1 py-1 rounded bg-light-blue/30"><%= state.physical_state %></span>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
 <% end %>
+
 
 <%= link_to "+ 心身の登録", new_room_state_calendar_path(@room) %>
 <div class="text-brown flex space-x-2">
