@@ -18,4 +18,14 @@ class User < ApplicationRecord
   def own?(object)
     id == object&.user_id
   end
+
+  # 同じ部屋に所属するユーザー全員
+  def grouped_shared_users
+    Room.where(id: owned_rooms.pluck(:id) + rooms.pluck(:id))
+      .includes(:users)
+      .each_with_object({}) do |room, hash|
+        all_users = (room.users + [ room.user ]).uniq
+        hash[room.id] = all_users
+      end
+  end
 end
