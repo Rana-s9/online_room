@@ -73,3 +73,4 @@ gem "kaminari"
 gem "dotenv-rails"
 
 gem "simple_calendar"
+gem "geocoder"

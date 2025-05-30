@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :rooms, through: :roommate_lists
   has_many :invitation_tokens, dependent: :destroy
   has_many :greetings, dependent: :destroy
+  has_many :spots, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
