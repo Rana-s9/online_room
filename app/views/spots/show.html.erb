@@ -1,0 +1,56 @@
+<% content_for(:spot, @spot.name) %>
+
+<div class="container pt-5">
+    <div class="flex justify-center mb-3">
+    <div class="w-full max-w-2xl">
+        <div class="bg-white rounded-lg shadow-md">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-semibold text-green-600"><%= @spot.name %></h3>
+
+                <p class="text-sm text-gray-700">
+                <strong>場所ID:</strong> <%= @spot.id %><br>
+                <strong>登録日時:</strong> <%= l(@spot.created_at, format: :long) %><br>
+                <strong>ユーザー:</strong> <%= @spot.user.name %>
+                <strong>住所:</strong> <%= @spot.address %>
+                </p>
+                <% if @spot.user == current_user %>
+                <!--= link_to '削除', spot_path(@spot), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"}, class: "bg-red-500 hover:bg-light-salmon font-bold py-2 px-4 rounded shadow" %>-->
+                <% end %>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div id="map" style="height: 400px; width: 100%; margin-top: 2rem;"></div>
+
+<script>
+  const lat = <%= @spot.latitude.to_f %>;
+  const lng = <%= @spot.longitude.to_f %>;
+  let map;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: lat, lng: lng },
+      zoom: 12,
+      mapTypeId: "hybrid",
+      mapId: "<%= ENV['MAP_ID'] %>",
+    });
+
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      map: map,
+      position: {
+        lat: lat,
+        lng: lng
+      }
+    });
+
+    const geocoder = new google.maps.Geocoder();
+    const latLng = new google.maps.LatLng(lat, lng);
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap&libraries=marker&v=weekly&loading=async" async defer></script>
+
+<%= link_to "戻る", room_spots_path(@room) %>

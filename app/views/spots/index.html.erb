@@ -1,0 +1,29 @@
+<% if @visited.present? %>
+    <h2>visited一覧</h2>
+    <% @spots.visited.each do |spot| %>
+        <div class="flex">
+            <%= link_to spot.name, room_spot_path(@room, spot) %>
+            <%= spot.address %>
+            <%= l(spot.created_at, format: :short) %>
+            <!--= link_to spot.visit_status, edit_room_spot_path(@room, spot) %>-->
+        </div>
+    <% end %>
+<% else %>
+    <h2>visitedの登録場所はありません</h2>
+<% end %>
+
+<% if @wanna_visit.present? %>
+    <h2>wanna_visit一覧</h2>
+    <% @spots.wanna_visit.each do |spot| %>
+        <div class="flex">
+            <%= link_to spot.name, room_spot_path(@room, spot) %>
+            <%= spot.address %>
+            <%= l(spot.created_at, format: :short) %>
+            <!--= link_to spot.visit_status, edit_room_spot_path(@room, spot) %>-->
+        </div>
+    <% end %>
+<% else %>
+    <h2> wanna_visitの登録場所はありません</h2>
+<% end %>
+
+<%= link_to "新規登録", new_room_spot_path(@room) %>

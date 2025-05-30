@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_28_082559) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_30_093903) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,21 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_28_082559) do
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
+  create_table "spots", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.string "name", null: false
+    t.integer "visit_status", null: false
+    t.string "address", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_spots_on_room_id"
+    t.index ["user_id"], name: "index_spots_on_user_id"
+  end
+
   create_table "state_calendars", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
@@ -132,6 +147,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_28_082559) do
   add_foreign_key "roommate_lists", "rooms"
   add_foreign_key "roommate_lists", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "spots", "rooms"
+  add_foreign_key "spots", "users"
   add_foreign_key "state_calendars", "rooms"
   add_foreign_key "state_calendars", "users"
   add_foreign_key "weather_records", "areas"

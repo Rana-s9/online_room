@@ -8,6 +8,7 @@ class Room < ApplicationRecord
   has_many :roommates, through: :roommate_lists, source: :user
   has_many :invitation_tokens
   has_many :greetings, dependent: :destroy
+  has_many :spots, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 30 }
 end

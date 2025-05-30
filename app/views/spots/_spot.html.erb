@@ -1,0 +1,83 @@
+<script>
+  let map;
+  let marker;
+
+  function initMap() {
+    const addressInput = document.getElementById("address");
+    const placeNameInput = document.getElementById("fav_name");
+    const searchBtn = document.getElementById("btn-search");
+
+    map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 35.681236, lng: 139.767125 }, // 東京駅初期値
+            zoom: 13,
+            mapId: "<%= ENV['MAP_ID'] %>",
+            gestureHandling: "none",
+            disableDefaultUI: true
+          });
+
+    searchBtn.addEventListener("click", async function (e) {
+      e.preventDefault();
+      const query = addressInput.value;
+      if (!query) return;
+
+      // Geocoding API リクエスト
+      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(query)}&key=<%= ENV['GOOGLE_MAPS_API'] %>`;
+      const response = await fetch(geocodeUrl);
+      const data = await response.json();
+
+      if (!data.results || data.results.length === 0) {
+        alert("住所が見つかりませんでした");
+        return;
+      }
+
+      const place = data.results[0];
+      const lat = place.geometry.location.lat;
+      const lng = place.geometry.location.lng;
+      const location = new google.maps.LatLng(lat, lng);
+
+      document.getElementById("latitude").value = lat;
+      document.getElementById("longitude").value = lng;
+      document.getElementById("selected-address").value = place.formatted_address;
+      addressInput.value = place.formatted_address;
+
+      // 中心移動（マップ初期化は行わない）
+      map.setCenter(location);
+
+      // マーカー更新
+      if (marker) marker.setMap(null);
+      marker = new google.maps.marker.AdvancedMarkerElement({
+        map: map,
+        position: location
+      })
+
+      // Hidden 保存
+      setHiddenField("spot[latitude]", "lat", lat);
+      setHiddenField("spot[longitude]", "lng", lng);
+
+      // 場所名抽出
+      const components = place.address_components;
+      const placeComponent = components.find(c =>
+        c.types.includes("premise") || c.types.includes("point_of_interest") || c.types.includes("establishment")
+      );
+
+      if (placeComponent && placeNameInput) {
+        placeNameInput.value = placeComponent.long_name;
+      }
+    });
+  }
+
+  function setHiddenField(name, id, value) {
+    let input = document.getElementById(id);
+    if (!input) {
+      input = document.createElement("input");
+      input.type = "hidden";
+      input.name = name;
+      input.id = id;
+      document.getElementById("address").form.appendChild(input);
+    }
+    input.value = value;
+  }
+</script>
+
+<!-- Google Maps 読み込み -->
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap&libraries=marker&v=weekly&loading=async" async defer></script>
