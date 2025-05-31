@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :state_calendars, only: %i[new create index update edit destroy]
     resources :invitation_tokens, only: %i[create index update]
     resources :greetings, only: %i[new create index edit update destroy]
-    resources :spots, only: %i[index new create show]
+    resources :spots, only: %i[index new create show edit update destroy]
   end
 
   resources :areas, only: %i[create update index]

@@ -1,11 +1,16 @@
 <% if @visited.present? %>
     <h2>visited一覧</h2>
-    <% @spots.visited.each do |spot| %>
+    <% @visited.each do |spot| %>
         <div class="flex">
+          <% if current_user == spot.user %>
+            <%= link_to spot.name, edit_room_spot_path(@room, spot) %>
+          <% else %>
             <%= link_to spot.name, room_spot_path(@room, spot) %>
+          <% end %>
             <%= spot.address %>
             <%= l(spot.created_at, format: :short) %>
-            <!--= link_to spot.visit_status, edit_room_spot_path(@room, spot) %>-->
+            <%= spot.visit_status %>
+            <%= spot.user.name %>
         </div>
     <% end %>
 <% else %>
@@ -14,12 +19,17 @@
 
 <% if @wanna_visit.present? %>
     <h2>wanna_visit一覧</h2>
-    <% @spots.wanna_visit.each do |spot| %>
+    <% @wanna_visit.each do |spot| %>
         <div class="flex">
+          <% if current_user == spot.user %>
+            <%= link_to spot.name, edit_room_spot_path(@room, spot) %>
+          <% else %>
             <%= link_to spot.name, room_spot_path(@room, spot) %>
+          <% end %>
             <%= spot.address %>
             <%= l(spot.created_at, format: :short) %>
-            <!--= link_to spot.visit_status, edit_room_spot_path(@room, spot) %>-->
+            <%= spot.visit_status %>
+            <%= spot.user.name %>
         </div>
     <% end %>
 <% else %>
