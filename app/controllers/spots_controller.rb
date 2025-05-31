@@ -21,12 +21,42 @@ class SpotsController < ApplicationController
     if @spot.save
         redirect_to room_spots_path(@room), notice: "場所を登録しました"
     else
-        redirect_to new_room_greeting_path(@room), alert: "場所の登録に失敗しました"
+        redirect_to new_room_spot_path(@room), alert: "場所の登録に失敗しました"
     end
   end
 
   def show
     @spot = Spot.find(params[:id])
+  end
+
+  def edit
+    @spot = @room.spots.find_by(user: current_user, id: params[:id])
+  end
+
+  def update
+    @room = Room.find(params[:room_id])
+    @spot = @room.spots.find_by(user: current_user, id: params[:id])
+
+    if @spot.update(spot_params)
+      redirect_to room_spots_path(@room), notice: "場所名を更新しました"
+    else
+      @spots = @room.spots.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = "場所名の更新に失敗しました"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @room = Room.find(params[:room_id])
+    @spot = @room.spots.find_by(user: current_user, id: params[:id])
+
+    if @spot.destroy
+      redirect_to room_spots_path(@room), notice: "場所を削除しました"
+    else
+      @spots = @room.spots.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = "場所の削除に失敗しました"
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

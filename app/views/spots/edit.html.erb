@@ -1,0 +1,78 @@
+<%= content_for :spot, @spot.name %>
+
+<div class="container pt-5">
+    <div class="flex justify-center mb-3">
+    <div class="w-full max-w-2xl">
+        <div class="bg-white rounded-lg shadow-md">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-semibold text-green-600"><%= @spot.name %></h3>
+
+                <p class="text-sm text-gray-700">
+                <strong>場所ID:</strong> <%= @spot.id %><br>
+                <strong>ステータス:</strong> <%= @spot.visit_status %><br>
+                <strong>登録日時:</strong> <%= l(@spot.created_at, format: :long) %><br>
+                <strong>ユーザー:</strong> <%= @spot.user.name %>
+                <strong>住所:</strong> <%= @spot.address %>
+                </p>
+                <% if @spot.user == current_user %>
+                  <%= form_with model: [@room, @spot], local: true, id: 'post-form', class: "max-w-md mx-auto p-6 bg-light-gray rounded-2xl shadow-lg" do |f| %>
+                    <% if @spot.errors.any? %>
+                    <div class= "text-bold text-brown">
+                      <ul>
+                        <% @spot.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <% end %>
+                    <%= f.label :visit_status, "種類" %>
+                    <%= f.select :visit_status, Spot.visit_statuses.keys.map { |k| [k.titleize, k] } %>     
+                    <!-- 場所名入力 -->
+                    <div class="mb-4">
+                    <%= f.label :name, "場所の名前 *場所名は自動入力されますが、適宜変更してください", class: "block text-dark-gray text-sm font-bold mb-2" %>
+                    <%= f.text_field :name, id: "name", class: "w-full px-4 py-2 bg-gray/50 text-dark-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+                    </div>
+                    <div class="text-center">
+                        <%= f.submit "更新", class: "bg-light-blue text-dark-gray py-2 px-6 rounded hover:bg-light-blue/80 transition duration-200", data: { turbo: false } %>
+                    </div>
+                    <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, [@room, @spot], data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                  <% end %>
+                <% end %>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div id="map" style="height: 400px; width: 100%; margin-top: 2rem;"></div>
+
+<script>
+  const lat = <%= @spot.latitude.to_f %>;
+  const lng = <%= @spot.longitude.to_f %>;
+  let map;
+
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: lat, lng: lng },
+      zoom: 12,
+      mapTypeId: "hybrid",
+      mapId: "<%= ENV['MAP_ID'] %>",
+    });
+
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      map: map,
+      position: {
+        lat: lat,
+        lng: lng
+      }
+    });
+
+    const geocoder = new google.maps.Geocoder();
+    const latLng = new google.maps.LatLng(lat, lng);
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap&libraries=marker&v=weekly&loading=async" async defer></script>
+
+<%= link_to "戻る", room_spots_path(@room) %>
