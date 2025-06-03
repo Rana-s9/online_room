@@ -1,0 +1,87 @@
+<script>
+  let mixer;
+  const clock = new THREE.Clock();
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  document.body.appendChild(renderer.domElement);
+  scene.background = new THREE.Color('#F8F8F0');
+
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(10, 10, 10).normalize();
+  scene.add(light);
+
+  const ambientLight = new THREE.AmbientLight(0x404040, 1.5);
+  scene.add(ambientLight);
+
+  let dracoLoader = new THREE.DRACOLoader();
+  dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+
+  let loader = new THREE.GLTFLoader();
+  loader.setDRACOLoader(dracoLoader);
+
+  loader.load('/home.glb', function (gltf) {
+  const model = gltf.scene;
+  console.log("モデルが読み込まれました:", model);
+  model.scale.set(1, 1, 1);
+  scene.add(model);
+
+  if (gltf.animations && gltf.animations.length > 0) {
+    mixer = new THREE.AnimationMixer(model);
+
+    gltf.animations.forEach((clip) => {
+      console.log("再生クリップ:", clip.name);
+      clip.tracks.forEach((track) => {
+        console.log("track:", track.name);
+      });
+
+      // アニメーションを再生
+      const action = mixer.clipAction(clip);
+      action.play();
+    });
+
+    model.traverse(function (child) {
+      if (child.isSkinnedMesh) {
+        console.log("SkinnedMeshが見つかりました:", child);
+      }
+    });
+
+    console.log("アニメーションを再生します:", gltf.animations);
+  } else {
+    console.log("アニメーションが含まれていません。");
+  }
+}, undefined, function (error) {
+  console.error("モデルの読み込みに失敗しました:", error);
+});
+
+
+  camera.position.z = 5;
+
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.screenSpacePanning = false;
+  controls.maxPolarAngle = Math.PI / 2;
+
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+
+    const delta = clock.getDelta();
+    if (mixer) mixer.update(delta);
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  });
+</script>
+
