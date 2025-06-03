@@ -1,20 +1,33 @@
-<div class="text-matcha text-2xl font-bold rounded-lg shadow-md p-4">
-  <p>
-    <%= @room.name %> <i class="fa-solid fa-house-user text-light-blue"></i>
-  </p>
-</div>
-<%= render 'weather' %>
-<%= render 'form_board' %>
-<%= render 'board' %>
-<%= link_to "交換日記", room_exchange_diaries_path(@room) %>
-<div class="flex">
+<% content_for :main_class do %>
+
+  <div class="text-matcha text-center text-2xl font-bold rounded-lg shadow-md p-4">
+    <p>
+      <%= @room.name %><i class="fa-solid fa-house-user text-light-blue"></i>
+    </p>
+  </div>
+  <%= render 'weather' %>
+  <%= render 'board' %>
+  <%= link_to 'カレンダー一覧', room_state_calendars_path(@room),
+      class: "btn-invitation inline-block px-2 py-2 bg-blue/75 text-dark-gray rounded hover:bg-blue/30 transition",
+      style: "position:fixed;top:170px;right:10px;z-index:9999;" %>
   <%= render 'calendar' %>
-  <%= link_to 'カレンダー一覧', room_state_calendars_path(@room) %>
-</div>
-<%= link_to "招待コード", room_invitation_tokens_path(@room) %>
-<%= link_to "messages", room_greetings_path(@room) %>
-<%= link_to "場所", room_spots_path(@room) %>
+  <button class="btn-invitation"
+          style="position:fixed;top:70px;left:10px;z-index:9999;">
+    <%= link_to "同居人を招待する", room_invitation_tokens_path(@room), class: "btn-invitation inline-block px-2 py-2 bg-matcha/75 text-dark-gray rounded hover:bg-matcha/30 transition" %>
+  </button>
 
-<%= render 'greeting' %>
-
+  <%= render 'greeting' %>
+  <button class="btn-exchange"
+          style="position:fixed;top:70px;right:10px;z-index:9999;">
+    <%= link_to "交換日記", room_exchange_diaries_path(@room), class: "btn-exchange inline-block px-4 py-2 bg-matcha/75 text-dark-gray rounded hover:bg-matcha/30 transition" %>
+  </button>
+  <button class="btn-exchange"
+          style="position:fixed;top:120px;right:10px;z-index:9999;">
+    <%= link_to "秘密基地", room_spots_path(@room), class: "btn-spot inline-block px-4 py-2 bg-matcha/75 text-dark-gray rounded hover:bg-matcha/30 transition" %>
+  </button>
+  <button class="btn-message"
+          style="position:fixed;top:600px;right:10px;z-index:9999;">
+    <%= link_to "おかえり/ただいまメッセージ", room_greetings_path(@room), class: "btn-message inline-block px-4 py-2 bg-brown/75 text-dark-gray rounded hover:bg-brown/30 transition" %>
+  </button>
+<% end %>
 <%= render 'home' %>

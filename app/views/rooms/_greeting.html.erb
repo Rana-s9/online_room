@@ -1,3 +1,4 @@
+<div class="fixed top-[600px] left-0 z-50 bg-white/50 p-4 rounded-lg shadow-md justify-end">
     <% if @return.present? %>
         <% @greetings.return.each do |greeting| %>
             <% if greeting.user == current_user %>
@@ -23,3 +24,4 @@
     <% else %>
         <h2>ただいま～！！</h2>
     <% end %>
+</div>
