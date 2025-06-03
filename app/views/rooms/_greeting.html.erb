@@ -1,25 +1,25 @@
-    <% if @return.present? %>
-        <% @greetings.return.each do |greeting| %>
-            <% if greeting.user == current_user %>
-                <div>
-                    <p><%= greeting.user.name %></p>
-                    <p><%= greeting.message %></p>
-                </div>
-            <% end %>
+<% if @return.present? %>
+    <% @greetings.return.each do |greeting| %>
+        <% if greeting.user == current_user %>
+            <div>
+                <p><%= greeting.user.name %></p>
+                <p><%= greeting.message %></p>
+            </div>
         <% end %>
-    <% else %>
-        <h2>おかえりなさい</h2>
     <% end %>
+<% else %>
+    <h2>おかえりなさい</h2>
+<% end %>
 
-    <% if @welcome.present? %>
-        <% @greetings.welcome.each do |greeting| %>
-            <% if greeting.user == current_user %>
-                <div>
-                    <p><%= greeting.user.name %></p>
-                    <p><%= greeting.message %></p>
-                </div>
-            <% end %>
+<% if @welcome.present? %>
+    <% @greetings.welcome.each do |greeting| %>
+        <% if greeting.user == current_user %>
+            <div>
+                <p><%= greeting.user.name %></p>
+                <p><%= greeting.message %></p>
+            </div>
         <% end %>
-    <% else %>
-        <h2>ただいま～！！</h2>
     <% end %>
+<% else %>
+    <h2>ただいま～！！</h2>
+<% end %>

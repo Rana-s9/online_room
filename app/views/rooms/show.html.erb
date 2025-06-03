@@ -1,20 +1,28 @@
-<div class="text-matcha text-2xl font-bold rounded-lg shadow-md p-4">
-  <p>
-    <%= @room.name %> <i class="fa-solid fa-house-user text-light-blue"></i>
-  </p>
-</div>
-<%= render 'weather' %>
-<%= render 'form_board' %>
-<%= render 'board' %>
-<%= link_to "交換日記", room_exchange_diaries_path(@room) %>
-<div class="flex">
-  <%= render 'calendar' %>
-  <%= link_to 'カレンダー一覧', room_state_calendars_path(@room) %>
-</div>
-<%= link_to "招待コード", room_invitation_tokens_path(@room) %>
-<%= link_to "messages", room_greetings_path(@room) %>
-<%= link_to "場所", room_spots_path(@room) %>
+<% content_for :main_class do %>
 
-<%= render 'greeting' %>
+  <div class="text-matcha text-2xl font-bold rounded-lg shadow-md p-4">
+    <p>
+      <%= @room.name %> <i class="fa-solid fa-house-user text-light-blue"></i>
+    </p>
+  </div>
+  <%= render 'weather' %>
+  <%= render 'form_board' %>
+  <%= render 'board' %>
+  <div class="flex">
+    <%= render 'calendar' %>
+    <%= link_to 'カレンダー一覧', room_state_calendars_path(@room) %>
+  </div>
+  <%= link_to "招待コード", room_invitation_tokens_path(@room) %>
+  <%= link_to "messages", room_greetings_path(@room) %>
 
+  <%= render 'greeting' %>
+  <button class="btn-exchange"
+          style="position:fixed;top:70px;right:10px;z-index:9999;;">
+    <%= link_to "交換日記", room_exchange_diaries_path(@room), class: "btn-exchange inline-block px-4 py-2 bg-matcha/50 text-dark-gray rounded hover:bg-matcha/30 transition" %>
+  </button>
+  <button class="btn-exchange"
+          style="position:fixed;top:120px;right:10px;z-index:9999;;">
+    <%= link_to "秘密基地", room_spots_path(@room), class: "btn-spot inline-block px-4 py-2 bg-matcha/50 text-dark-gray rounded hover:bg-matcha/30 transition" %>
+  </button>
+<% end %>
 <%= render 'home' %>
