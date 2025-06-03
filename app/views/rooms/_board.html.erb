@@ -1,4 +1,4 @@
-<div class="bg-white shadow p-4 fixed top-[420px] left-4 w-[200px] h-[300px] overflow-y-auto">
+<div class="bg-white shadow p-4 fixed top-[260px] left-4 w-[200px] h-[300px] overflow-y-auto">
   <% if @whiteboards.empty? %>
     <p class="text-dark-gray text-center text-sm">伝言はまだありません</p>
   <% else %>
@@ -11,20 +11,17 @@
                 data-board-target="board"
                 data-action="keydown->board#insertBreak input->board#save"
                 contenteditable="true"
-                class="min-h-[200px] whitespace-pre-wrap focus:outline-none"
+                class="whitespace-pre-wrap focus:outline-none min-h-[40px]"
             >
             <%= h(@whiteboard&.body || "") %>
             </div>
         <% else %>
           <%= board.body %>
         <% end %>
-        <p>
-          住民:
-          <span class="<%= board.user == current_user ? 'text-dark-gray font-bold' : '' %>">
-            <%= board.user.name %>
-          </span>
-        </p>
-        <p>伝言時：<%= board.updated_at.strftime("%m月%d日") %></p>
+        <div class= "flex text-matcha font-bold" >
+          <h1>＜<%= board.user.name %>＞</h1>
+          <%= board.updated_at.strftime("%m月%d日") %>
+        </div>
       </div>
     <% end %>
   <% end %>
