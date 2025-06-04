@@ -3,7 +3,7 @@
   <% @rooms.each do |room| %>
     <div class="text-dark-gray rounded-lg shadow-md p-6">
       <span class="<%= "underline" if room.user == current_user %>">
-        <p>家の名前<i class="fa-solid fa-house-user text-light-blue"></i>:<%= link_to room.name, room_path(room), class: "text-matcha font-bold hover:text-matcha/60" %></p>
+        <p>家の名前<i class="fa-solid fa-house-user text-light-blue"></i>:<%= link_to room.name, room_path(room), data: { turbo: false }, class: "text-matcha font-bold hover:text-matcha/60" %></p>
       </span>
       <% if room.roommates.present? %>
         <p>住民:

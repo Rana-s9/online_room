@@ -1,9 +1,10 @@
+<%= link_to "戻る", room_spots_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
 <%= content_for :spot, @spot.name %>
 
 <div class="container pt-5">
     <div class="flex justify-center mb-3">
     <div class="w-full max-w-2xl">
-        <div class="bg-white rounded-lg shadow-md">
+        <div class="bg-light-gray/50 rounded-lg shadow-md">
         <div class="p-6">
             <div class="flex justify-between items-center mb-4">
             <h3 class="text-2xl font-semibold text-green-600"><%= @spot.name %></h3>
@@ -12,7 +13,7 @@
                 <strong>場所ID:</strong> <%= @spot.id %><br>
                 <strong>ステータス:</strong> <%= @spot.visit_status %><br>
                 <strong>登録日時:</strong> <%= l(@spot.created_at, format: :long) %><br>
-                <strong>ユーザー:</strong> <%= @spot.user.name %>
+                <strong>ユーザー:</strong> <%= @spot.user.name %><br>
                 <strong>住所:</strong> <%= @spot.address %>
                 </p>
                 <% if @spot.user == current_user %>
@@ -74,5 +75,3 @@
   }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap&libraries=marker&v=weekly&loading=async" async defer></script>
-
-<%= link_to "戻る", room_spots_path(@room) %>
