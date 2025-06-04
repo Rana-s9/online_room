@@ -16,7 +16,7 @@
           </div>
       <% end %>
   <% else %>
-      <h2>「行ったことがある場所」の登録はありません</h2>
+      <h2><i class="fa-solid fa-location-pin text-red-500"></i>まだ「行ったことがある場所」の登録はありません</h2>
   <% end %>
 
   <% if @wanna_visit.present? %>
@@ -35,6 +35,6 @@
           </div>
       <% end %>
   <% else %>
-      <h2> 「行きたい場所」の登録はありません</h2>
+      <h2><i class="fa-solid fa-location-pin text-red-500"></i> まだ「行きたい場所」の登録はありません</h2>
   <% end %>
 </div>
