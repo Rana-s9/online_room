@@ -1,39 +1,40 @@
-<% if @visited.present? %>
-    <h2>visited一覧</h2>
-    <% @visited.each do |spot| %>
-        <div class="flex">
-          <% if current_user == spot.user %>
-            <%= link_to spot.name, edit_room_spot_path(@room, spot) %>
-          <% else %>
-            <%= link_to spot.name, room_spot_path(@room, spot) %>
-          <% end %>
-            <%= spot.address %>
-            <%= l(spot.created_at, format: :short) %>
-            <%= spot.visit_status %>
-            <%= spot.user.name %>
-        </div>
-    <% end %>
-<% else %>
-    <h2>visitedの登録場所はありません</h2>
-<% end %>
+<%= link_to "新規登録", new_room_spot_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+<div class="w-full max-w-md mx-auto bg-light-gray/40 p-6 rounded-lg shadow-lg mt-8">
+  <% if @visited.present? %>
+      <h2 class="text-xl text-gray font-bold">行ったことがある場所一覧</h2>
+      <% @visited.each do |spot| %>
+          <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
+            <div class="text-matcha font-bold">
+              <% if current_user == spot.user %>
+                <%= link_to spot.name, edit_room_spot_path(@room, spot) %>
+              <% else %>
+                <%= link_to spot.name, room_spot_path(@room, spot) %>
+              <% end %>
+            </div>
+              <i class="fa-solid fa-location-pin text-red-500"></i><%= spot.address %>
+              <i class="fa-solid fa-user text-blue"></i><%= spot.user.name %>
+          </div>
+      <% end %>
+  <% else %>
+      <h2><i class="fa-solid fa-location-pin text-red-500"></i>まだ「行ったことがある場所」の登録はありません</h2>
+  <% end %>
 
-<% if @wanna_visit.present? %>
-    <h2>wanna_visit一覧</h2>
-    <% @wanna_visit.each do |spot| %>
-        <div class="flex">
-          <% if current_user == spot.user %>
-            <%= link_to spot.name, edit_room_spot_path(@room, spot) %>
-          <% else %>
-            <%= link_to spot.name, room_spot_path(@room, spot) %>
-          <% end %>
-            <%= spot.address %>
-            <%= l(spot.created_at, format: :short) %>
-            <%= spot.visit_status %>
-            <%= spot.user.name %>
-        </div>
-    <% end %>
-<% else %>
-    <h2> wanna_visitの登録場所はありません</h2>
-<% end %>
-
-<%= link_to "新規登録", new_room_spot_path(@room) %>
+  <% if @wanna_visit.present? %>
+      <h2 class="text-xl text-gray font-bold">行きたい場所一覧</h2>
+      <% @wanna_visit.each do |spot| %>
+          <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
+            <div class="text-matcha font-bold">
+              <% if current_user == spot.user %>
+                <%= link_to spot.name, edit_room_spot_path(@room, spot) %>
+              <% else %>
+                <%= link_to spot.name, room_spot_path(@room, spot) %>
+              <% end %>
+            </div>
+              <i class="fa-solid fa-location-pin text-red-500"></i><%= spot.address %>
+              <i class="fa-solid fa-user text-blue"></i><%= spot.user.name %>
+          </div>
+      <% end %>
+  <% else %>
+      <h2><i class="fa-solid fa-location-pin text-red-500"></i> まだ「行きたい場所」の登録はありません</h2>
+  <% end %>
+</div>

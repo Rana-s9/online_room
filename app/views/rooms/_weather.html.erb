@@ -1,7 +1,7 @@
 <% if @roommates.present? %>
   <div class="fixed top-[120px] left-0 z-50 bg-white/90 p-4 rounded-lg shadow-md">
   <% @roommates.each do |user| %>
-    <div class="weather flex space-x-2 text-sm px-2 py-1 border border-gray-300 rounded">
+    <div class="weather flex space-x-2 text-sm px-2 py-1 border border-light-gray rounded">
       <h3><%= user.name %></h3>
       <% if user.area.nil? %>
         <p>お住まいの地域が登録されていません</p>

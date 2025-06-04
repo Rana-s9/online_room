@@ -1,27 +1,28 @@
-    <% if @return.present? %>
-        <h2>ただいまメッセージ一覧</h2>
-        <% @greetings.return.each do |greeting| %>
-          <% if greeting.user == current_user %>
-            <div class="flex">
-                <%= l(greeting.created_at, format: :short) %>
-                <%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>
-            </div>
-          <% end %>
-        <% end %>
-    <% else %>
-        <h2>おかえりメッセージはありません</h2>
-    <% end %>
 
-    <% if @welcome.present? %>
-        <h2>おかえりメッセージ一覧</h2>
-        <% @greetings.welcome.each do |greeting| %>
-            <div class="flex">
-                <%= l(greeting.created_at, format: :short) %>
-                <%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>
-            </div>
+<% if @return.present? %>
+    <h2>ただいまメッセージ一覧</h2>
+    <% @greetings.return.each do |greeting| %>
+        <% if greeting.user == current_user %>
+        <div class="flex">
+            <%= l(greeting.created_at, format: :short) %>
+            <%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>
+        </div>
         <% end %>
-    <% else %>
-        <h2>ただいまメッセージはありません</h2>
     <% end %>
+<% else %>
+    <h2>「おかえりメッセージ」の登録はまだありません</h2>
+<% end %>
 
-    <%= link_to "メッセージ作成", new_room_greeting_path() %>
+<% if @welcome.present? %>
+    <h2>おかえりメッセージ一覧</h2>
+    <% @greetings.welcome.each do |greeting| %>
+        <div class="flex">
+            <%= l(greeting.created_at, format: :short) %>
+            <%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>
+        </div>
+    <% end %>
+<% else %>
+    <h2>「ただいまメッセージ」の登録はまだありません</h2>
+<% end %>
+
+<%= link_to "メッセージ作成", new_room_greeting_path() %>
