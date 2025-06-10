@@ -32,34 +32,53 @@
   model.scale.set(1, 1, 1);
   scene.add(model);
 
-  if (gltf.animations && gltf.animations.length > 0) {
-    mixer = new THREE.AnimationMixer(model);
+  mixer = new THREE.AnimationMixer(model);
+  window.mixer = mixer;
+  window.bookAnimationClips = gltf.animations;
 
-    gltf.animations.forEach((clip) => {
-      console.log("再生クリップ:", clip.name);
-      clip.tracks.forEach((track) => {
-        console.log("track:", track.name);
+  const bookBtn = document.getElementById("open-book");
+if (bookBtn) {
+  bookBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const animationNames = [
+      "BookOpen", "Action.004", "Action.005", "Action.006", "Action.007", "Action.008",
+      "Action.009", "Action.010", "Action.011", "Action.012", "Action.013", "Action.014",
+      "Action.015", "Action.016", "Action.017", "Action.018", "Action.001", "Action.002"
+    ];
+
+    if (window.mixer && window.bookAnimationClips) {
+      let maxDuration = 0;
+
+      animationNames.forEach(name => {
+        const clip = window.bookAnimationClips.find(c => c.name === name);
+        if (clip) {
+          const action = window.mixer.clipAction(clip);
+          action.reset();
+          action.setLoop(THREE.LoopOnce, 1);
+          action.clampWhenFinished = true;
+          action.play();
+
+          // 一番長いdurationを取得
+          if (clip.duration > maxDuration) {
+            maxDuration = clip.duration;
+          }
+        }
       });
 
-      // アニメーションを再生
-      const action = mixer.clipAction(clip);
-      action.play();
-    });
-
-    model.traverse(function (child) {
-      if (child.isSkinnedMesh) {
-        console.log("SkinnedMeshが見つかりました:", child);
-      }
-    });
-
-    console.log("アニメーションを再生します:", gltf.animations);
-  } else {
-    console.log("アニメーションが含まれていません。");
-  }
+      // 全アニメーション終了後に遷移
+      setTimeout(() => {
+        window.location.href = bookBtn.dataset.roomPath;
+      }, maxDuration * 1000);
+    } else {
+      // アニメーションが取得できなければ即遷移
+      window.location.href = bookBtn.dataset.roomPath;
+    }
+  });
+}
 }, undefined, function (error) {
   console.error("モデルの読み込みに失敗しました:", error);
 });
-
 
   camera.position.z = 5;
 
