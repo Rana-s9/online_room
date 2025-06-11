@@ -35,6 +35,7 @@
   mixer = new THREE.AnimationMixer(model);
   window.mixer = mixer;
   window.bookAnimationClips = gltf.animations;
+  window.doorAnimationClips = gltf.animations;
 
   const bookBtn = document.getElementById("open-book");
 if (bookBtn) {
@@ -44,10 +45,11 @@ if (bookBtn) {
     const animationNames = [
       "BookOpen", "Action.004", "Action.005", "Action.006", "Action.007", "Action.008",
       "Action.009", "Action.010", "Action.011", "Action.012", "Action.013", "Action.014",
-      "Action.015", "Action.016", "Action.017", "Action.018", "Action.001", "Action.002"
+      "Action.015", "Action.016", "Action.017", "Action.018", "Action.001", "Action.002",
+      "Action"
     ];
 
-    if (window.mixer && window.bookAnimationClips) {
+    if (window.mixer && window.doorAnimationClips) {
       let maxDuration = 0;
 
       animationNames.forEach(name => {
@@ -73,6 +75,45 @@ if (bookBtn) {
     } else {
       // アニメーションが取得できなければ即遷移
       window.location.href = bookBtn.dataset.roomPath;
+    }
+  });
+}
+
+ const spotBtn = document.getElementById("open-door");
+if (spotBtn) {
+  spotBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const doorNames = [
+      "part_key_window.004Action", "key_window_hook.003Action"
+    ];
+
+    if (window.mixer && window.bookAnimationClips) {
+      let maxDuration = 0;
+
+      doorNames.forEach(name => {
+        const clip = window.doorAnimationClips.find(c => c.name === name);
+        if (clip) {
+          const action = window.mixer.clipAction(clip);
+          action.reset();
+          action.setLoop(THREE.LoopOnce, 1);
+          action.clampWhenFinished = true;
+          action.play();
+
+          // 一番長いdurationを取得
+          if (clip.duration > maxDuration) {
+            maxDuration = clip.duration;
+          }
+        }
+      });
+
+      // 全アニメーション終了後に遷移
+      setTimeout(() => {
+        window.location.href = spotBtn.dataset.roomPath;
+      }, maxDuration * 1000);
+    } else {
+      // アニメーションが取得できなければ即遷移
+      window.location.href = spotBtn.dataset.roomPath;
     }
   });
 }
