@@ -6,7 +6,7 @@
       <% if user.area.nil? %>
         <p>お住まいの地域が登録されていません</p>
       <% else %>
-        <p><%= user.area.city %></p>
+        <p><i class="fa-solid fa-location-pin text-red-500"></i> <%= user.area.city %></p>
 
         <% weather_record = user.area.weather_record %>
 
@@ -32,7 +32,7 @@
   <% if current_user.area.nil? %>
     <p>お住まいの地域が登録されていません</p>
   <% else %>
-    <p><%= current_user.area.city %></p>
+    <p><i class="fa-solid fa-location-pin text-red-500"></i> <%= current_user.area.city %></p>
 
     <% weather_record = current_user.area.weather_record %>
 
