@@ -1,5 +1,5 @@
-<div class="fixed top-[120px] left-0 z-50 bg-white/90 p-4 rounded-lg shadow-md">
 <% if @roommates.present? %>
+  <div class="fixed top-[120px] left-0 z-50 bg-white/90 p-4 rounded-lg shadow-md">
   <% @roommates.each do |user| %>
     <div class="weather flex space-x-2 text-sm px-2 py-1 border border-light-gray rounded">
       <h3><%= user.name %></h3>
@@ -25,8 +25,10 @@
       <% end %>
     </div>
   <% end %>
+  </div>
 <% else %>
-  <div class="weather flex space-x-2 text-sm px-2 py-1 border border-light-gray rounded">
+  <div class="fixed top-[120px] left-0 z-50 bg-white/90 p-4 rounded-lg shadow-md">
+    <div class="weather flex space-x-2 text-sm px-2 py-1 border border-light-gray rounded">
     <h3><%= current_user.name %></h3>
 
     <% if current_user.area.nil? %>
@@ -39,7 +41,7 @@
       <% if weather_record.nil? %>
         <%= button_to "天気を取得する", weather_records_path(area_id: current_user.area.id, room_id: @room.id), method: :post, data: { turbo: false } %>
       <% else %>
-        <%= button_to "天気を更新する", weather_record_path(weather_record, area_id: current_user.area.id, room_id: @room.id), method: :patch, data: { turbo: false } %>
+        <%= button_to "天気を更新する", weather_record_path(weather_record, area_id: current_user.area.id, room_id: @room.id), method: :patch, data: { turbo: false }, class: "text-blue underline font-bold" %>
         <p>天気: <%= weather_record.description %></p>
         <p>気温：<%= weather_record.temperature %>℃</p>
         <% if weather_record.created_at == weather_record.updated_at %>
@@ -49,6 +51,6 @@
         <% end %>
       <% end %>
     <% end %>
+    </div>
   </div>
-</div>
 <% end %>

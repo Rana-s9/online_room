@@ -6,6 +6,7 @@ class GreetingsController < ApplicationController
     @greetings = @room.greetings.includes(:user).order(created_at: :desc)
     @welcome = @greetings.welcome
     @return = @greetings.return
+    @random_welcome = @welcome.sample if @welcome.present?
   end
 
   def new
