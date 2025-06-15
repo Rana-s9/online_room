@@ -10,7 +10,18 @@
             <p class= "bg-blue/50 p-4 rounded-lg shadow-md">おかえりなさい！</p>
         <% end %>
       <% else %>
+        <% if @welcome.present? %>
+            <% @greetings.welcome.each do |greeting| %>
+                <% if greeting.user == current_user %>
+                    <div>
+                        <p><%= greeting.user.name %></p>
+                        <p class= "bg-blue/50 p-4 rounded-lg shadow-md"><%= greeting.message %></p>
+                    </div>
+                <% end %>
+            <% end %>
+        <% else %>
         <h2 class= "bg-blue/50 p-4 rounded-lg shadow-md">おかえりなさい</h2>
+        <% end %>
       <% end %>
     </div>
     
@@ -25,7 +36,7 @@
                 <% end %>
             <% end %>
         <% else %>
-            <h2>ただいま～！！</h2>
+            <h2 class= "bg-matcha/50 p-4 rounded-lg shadow-md">ただいま～！！</h2>
         <% end %>
     </div>
   </div>
