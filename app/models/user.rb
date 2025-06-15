@@ -33,5 +33,4 @@ class User < ApplicationRecord
   def roommates_except_self
     grouped_shared_users.values.flatten.uniq.reject { |user| user == self }
   end
-
 end
