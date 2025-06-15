@@ -29,4 +29,9 @@ class User < ApplicationRecord
         hash[room.id] = all_users
       end
   end
+  # 自分を除く、同じ部屋に属するユーザー全員
+  def roommates_except_self
+    grouped_shared_users.values.flatten.uniq.reject { |user| user == self }
+  end
+
 end
