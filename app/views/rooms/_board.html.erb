@@ -11,6 +11,7 @@
                 data-board-target="board"
                 data-action="keydown->board#insertBreak input->board#save"
                 contenteditable="true"
+                data-placeholder="ここに入力してください"
                 class="whitespace-pre-wrap focus:outline-none min-h-[40px]"
             >
             <%= h(board.body || "") %>
@@ -20,7 +21,7 @@
         <% end %>
         <div class= "flex text-matcha font-bold" >
           <h1>＜<%= board.user.name %>＞</h1>
-          <%= board.updated_at.strftime("%m月%d日") %>
+          <%= board.updated_at.strftime('%y/%m/%d %H:%M') %>
         </div>
       </div>
     <% end %>

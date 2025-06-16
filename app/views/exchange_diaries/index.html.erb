@@ -1,3 +1,9 @@
+<div class="flex text-matcha text-xl font-bold rounded-lg shadow-md p-4">
+  <% @roommates.each do |roommate| %>
+    <%= roommate.name %>
+  <% end %>
+  <h1>の交換日記<i class="fa-solid fa-book"></i></h1>
+</div>
 <div class="container mx-auto px-4">
   <div class="max-w-xl mx-auto">
     <% @exchange_diaries.each do |diary| %>
@@ -7,16 +13,16 @@
       <%= render 'form' %>
     <% end %>
 
-    <!-- 新規追加ボタン -->
     <div class="text-center mt-4">
       <%= button_to '<i class="fa-solid fa-plus text-gray/50"></i>'.html_safe, room_exchange_diaries_path(@room), id: "show-form-button", method: :post, class: "text-3xl" %>
     </div>
 
-    <!-- 新規日記フォーム -->
     <div id="diary-form" class="hidden mt-4">
       <%= render 'form' %>
     </div>
   </div>
-  <%= paginate @exchange_diaries %>
+  <div class="text-center text-md font-bold text-matcha">
+    <%= paginate @exchange_diaries %>
+  </div>
 </div>
-<%= link_to "#{@room.name}に戻る", room_path(@room) %>
+<%= link_to "#{@room.name}🏠に戻る", room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition" %>

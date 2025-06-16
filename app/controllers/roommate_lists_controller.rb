@@ -7,17 +7,26 @@ class RoommateListsController < ApplicationController
         redirect_to root_path, alert: "招待リンクが存在しません"
         return
     end
+
     if token.expires_at < Time.current
         redirect_to root_path, alert: "招待リンクの有効期限が切れています"
         return
     end
-    if token.used_at.present?  # または token.used == true ならそれに合わせて
+
+    if token.used_at.present?
         redirect_to root_path, alert: "この招待リンクはすでに使用されています"
         return
     end
+
+    if RoommateList.exists?(user_id: current_user.id, room_id: token.room_id)
+      redirect_to root_path, alert: "すでにこのルームに参加しています"
+      return
+    end
+
     unless RoommateList.exists?(user_id: current_user.id, room_id: token.room_id)
         RoommateList.create!(user_id: current_user.id, room_id: token.room_id)
     end
+
     unless RoommateList.exists?(user_id: token.user_id, room_id: token.room_id)
         RoommateList.create!(user_id: token.user_id, room_id: token.room_id)
     end
