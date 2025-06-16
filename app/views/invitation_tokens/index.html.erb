@@ -1,32 +1,65 @@
-<h2>招待トークン一覧</h2>
+<div class="container bg-light-gray/50">
+  <div class="text-center">
+  <% if @valid_tokens.present? %>
+    <% @valid_tokens.each do |token| %>
+        <div class="flex justify-center items-center my-2 space-x-4">
+          <!-- 招待リンクを表示 -->
+          <div id="post_<%= token.id %>" class="inline-block">
+            <%= link_to "招待リンク", join_roommate_lists_url(token: token.token), target: "_blank", class: "text-blue-600 underline" %>
+            <h1>有効期限：<%= l(token.expires_at, format: :short) %></h1>
+            <h1>トークン番号:No.<%= token.id %></h1>
+          </div>
 
-<%= form_with url: room_invitation_tokens_path(@room), method: :post, local: true, data: { turbo: false } do |f| %>
-  <%= f.submit "トークンを発行する", class: "btn btn-primary" %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>トークン</th>
-      <th>有効期限</th>
-      <th>使用済み？</th>
-      <th>発行日</th>
-      <th>使用日</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invitation_tokens.each do |token| %>
-      <tr>
-        <td><%= token.token %></td>
-        <td>
-          <%= link_to "招待リンク", join_roommate_lists_url(token: token.token), target: "_blank" %>
-        </td>
-        <td><%= l(token.expires_at, format: :short) %></td>
-        <td><%= token.used_at.present? ? "はい" : "いいえ" %></td>
-        <td><%= l(token.created_at, format: :short) %></td>
-        <td><%= token.used_at ? l(token.used_at, format: :short) : "-" %></td>
-      </tr>
+          <!-- コピー用ボタン -->
+          <div class="float-right ml-2">
+            <button
+              class="copy-button btn btn-outline-secondary btn-sm"
+              data-url="<%= join_roommate_lists_url(token: token.token) %>"
+            >
+              <i class="far fa-copy mr-1"></i>
+              <span class="copy-text">コピー</span>
+            </button>
+          </div>
+        </div>
     <% end %>
-  </tbody>
-</table>
+  <% else %>
+        <h1>使用可能なトークンは現在ありません。新しくトークンを発行してください。</h1>
+  <% end %>
+
+    <!-- トークン発行フォーム -->
+    <%= form_with url: room_invitation_tokens_path(@room), method: :post, local: true, data: { turbo: false } do |f| %>
+      <%= f.submit "トークンを発行する", class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+    <% end %>
+  </div>
+</div>
+
+<h2>招待トークン一覧</h2>
+<div class="container bg-light-gray/50">
+  <div class="flex justify-center items-center my-2 space-x-4">
+    <table>
+      <thead>
+        <tr>
+          <th>トークン番号</th>
+          <th>有効期限</th>
+          <th>使用済み？</th>
+          <th>発行日</th>
+          <th>使用日</th>
+          <th>期限</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @invitation_tokens.each do |token| %>
+          <tr>
+            <td>No.<%= token.id %></td>
+            <td><%= l(token.expires_at, format: :short) %></td>
+            <td><%= token.used_at.present? ? "使用済" : "未使用" %></td>
+            <td><%= l(token.created_at, format: :short) %></td>
+            <td><%= token.used_at ? l(token.used_at, format: :short) : "-" %></td>
+            <td><%= token.expires_at < Time.current ? "期限切れ" : "期限内" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <%= link_to "#{@room.name}に戻る", room_path(@room) %>

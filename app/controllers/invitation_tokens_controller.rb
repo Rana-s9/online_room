@@ -5,10 +5,12 @@ class InvitationTokensController < ApplicationController
   def index
     @room = Room.find(params[:room_id])
     if @room.user_id == current_user.id
-        @invitation_tokens = @room.invitation_tokens.order(created_at: :desc)
+        @invitation_tokens = @room.invitation_tokens.distinct.order(created_at: :desc)
     else
-        redirect_to root_path, alert: "自分の部屋のトークンしか表示できません"
+        redirect_to root_path, alert: "自分が作成した部屋のトークンしか表示できません"
+        return
     end
+    @valid_tokens = @invitation_tokens.select { |token| token.used_at.nil? && token.expires_at > Time.current }
   end
 
   def create
