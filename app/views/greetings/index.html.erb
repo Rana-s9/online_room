@@ -1,29 +1,32 @@
-
-<% if @return.present? %>
-    <h2>ただいまメッセージ一覧</h2>
-    <% @greetings.return.each do |greeting| %>
-        <% if greeting.user == current_user %>
-        <div class="flex">
-            <%= l(greeting.created_at, format: :short) %>
-            <%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>
-        </div>
+<h1 class="text-dark-gray font-bold"><%= current_user.name %>さんの "<%= @room.name %>" 用のメッセージ管理画面</h1>
+<%= link_to "新規メッセージ作成", new_room_greeting_path(), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray" %>
+<div class="w-full max-w-md mx-auto bg-light-gray/40 p-6 rounded-lg shadow-lg mt-4">
+    <% if @return.present? %>
+        <h2 class="text-matcha font-bold">ただいまメッセージ一覧</h2>
+        <% @greetings.return.each do |greeting| %>
+            <% if greeting.user == current_user %>
+            <div class="flex text-dark-gray">
+                <%= l(greeting.created_at, format: :short) %>
+                <h1>「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
+            </div>
+            <% end %>
         <% end %>
+    <% else %>
+        <h2 class="text-gray">※「ただいまメッセージ」の登録はまだありません</h2>
     <% end %>
-<% else %>
-    <h2>「おかえりメッセージ」の登録はまだありません</h2>
-<% end %>
+</div>
 
-<% if @welcome.present? %>
-    <h2>おかえりメッセージ一覧</h2>
-    <% @greetings.welcome.each do |greeting| %>
-        <div class="flex">
-            <%= l(greeting.created_at, format: :short) %>
-            <%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>
-        </div>
+<div class="w-full max-w-md mx-auto bg-light-gray/40 p-6 rounded-lg shadow-lg mt-4">
+    <% if @welcome.present? %>
+        <h2 class="text-matcha font-bold">おかえりメッセージ一覧</h2>
+        <% @greetings.welcome.each do |greeting| %>
+            <div class="flex text-dark-gray">
+                <%= l(greeting.created_at, format: :short) %>
+                <h1>「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
+            </div>
+        <% end %>
+    <% else %>
+        <h2 class="text-gray">※「おかえりメッセージ」の登録はまだありません</h2>
     <% end %>
-<% else %>
-    <h2>「ただいまメッセージ」の登録はまだありません</h2>
-<% end %>
-
-<%= link_to "メッセージ作成", new_room_greeting_path() %>
-<%= link_to "#{@room.name}に戻る", room_path(@room) %>
+</div>
+<%= link_to "#{@room.name}🏠に戻る", room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition" %>

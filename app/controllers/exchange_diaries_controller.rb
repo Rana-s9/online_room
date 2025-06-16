@@ -9,6 +9,7 @@ class ExchangeDiariesController < ApplicationController
     @exchange_diary = current_user.exchange_diaries.new
     @diary_count = @exchange_diaries.count
     @diary_order = @room.exchange_diaries.order(:created_at).pluck(:id)
+    @roommates = current_user.grouped_shared_users[@room.id] || []
 
     respond_to do |format|
       format.html

@@ -1,3 +1,6 @@
+<h1 class="text-dark-gray font-bold">"<%= @room.name %>" のカレンダー</h1>
+<%= link_to "+ 本日 #{ Time.current.strftime("%Y年%m月%d日") }の心身登録", new_room_state_calendar_path(@room), class: "bg-gray p-4 rounded shadow mb-4 mt-2 hover:bg-blue/75 transition text-beige" %>
+<h1 class="text-dark-gray">※<%= current_user.name %>さんのカレンダーの日付をクリック➡ 心身状況の登録・更新・削除ができます。
 <% @calendar_users.each do |user| %>
   <% user_is_current = user == current_user %>
   <% user_calendars = @calendars_by_user[user.id] || [] %>
@@ -33,10 +36,6 @@
     <% end %>
   </div>
 <% end %>
-
-
-
-<%= link_to "+ 心身の登録", new_room_state_calendar_path(@room) %>
-<div class="text-brown flex space-x-2">
-    <%= link_to "部屋に戻る", room_path(@room),data: { turbo: false }, method: :delete %>
+<div class="flex justify-center">
+  <%= link_to "#{@room.name}🏠に戻る", room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition" %>
 </div>

@@ -1,11 +1,24 @@
-<%= form_with model: [@room, Greeting.new], local: true do |f| %>
-  <%= f.label :message, "メッセージ" %>
-  <%= f.text_field :message %>
+<div class="mb-6">
+  <div class="text-dark-gray">
+    <h1>*登録された「おかえりメッセージ」➡ 招待後、相手ユーザーのログイン後画面に
+  ランダムで表示されます。</h1>
+    <h1>*登録された「ただいまメッセージ」➡ 自身のログイン後画面に
+  ランダムで表示されます。</h1>
+  </div>
+    <%= form_with model: [@room, Greeting.new], local: true, class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-2" do |f| %>
 
-  <%= f.label :greeting_type, "種類" %>
-  <%= f.select :greeting_type, Greeting.greeting_types.keys.map { |k| [k.titleize, k] } %>
+      <%= f.label :greeting_type, "ステータス", class: "text-dark-gray" %>
+      <%= f.select :greeting_type,
+          [["おかえりメッセージ", "welcome"], ["ただいまメッセージ", "return"]],
+          { prompt: "ただいま/おかえりを選択" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
 
-  <%= f.submit "保存", style: "padding: 10px 20px; background-color: #ccc;" %>
-<% end %>
+      <%= f.label :message, "メッセージ", class: "text-dark-gray" %>
+      <%= f.text_field :message, placeholder: "メッセージを入力", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+      <div class="text-center">
+        <%= f.submit "保存", class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to "戻る", room_greetings_path(@room) %>
+<%= link_to "メッセージ一覧", room_greetings_path(@room), class: "bg-light-gray/75 py-2 px-6 rounded shadow mb-4 hover:bg-light-gray/50 transition text-dark-gray" %>

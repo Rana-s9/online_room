@@ -1,5 +1,5 @@
 <div class="field">
-    <%= f.label :mental_state, "心の状態" %><br>
+    <%= f.label :mental_state, "心の状態", class: "text-dark-gray" %><br>
     <%= f.select :mental_state, 
         [
         ["🥳 : とても元気", "🥳"],
@@ -8,11 +8,11 @@
         ["😭 : 激しい落ち込み・涙が出る", "😭"],
         ["😣 : SOS / 相談に乗ってほしい", "😣"]
         ], 
-        prompt: "一番近い状態を選ぶ" %>
+        { prompt: "一番近い状態を選ぶ" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
 </div>
 
 <div class="field">
-    <%= f.label :physical_state, "体の状態" %><br>
+    <%= f.label :physical_state, "体の状態", class: "text-dark-gray" %><br>
     <%= f.select :physical_state, 
         [
         ["💃 : エネルギッシュ", "💃"],
@@ -21,5 +21,5 @@
         ["🛌 : とても辛くて動けない", "🛌"],
         ["🤒 : SOS / 声をかけてほしい", "🤒"]
         ], 
-        prompt: "一番近い状態を選ぶ" %>
+        { prompt: "一番近い状態を選ぶ" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
 </div>

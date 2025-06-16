@@ -3,19 +3,7 @@ require "uri"
 require "json"
 class AreasController < ApplicationController
   before_action :set_area, only: [ :update ]
-
-  def index
-    api_key = ENV["WEATHER_API"]
-    city = "madagascar"
-    url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=ja")
-
-    response = Net::HTTP.get_response(url)
-    weather_data = JSON.parse(response.body)
-
-    Rails.logger.debug(weather_data)
-
-    @weather_data = weather_data
-  end
+  before_action :authenticate_user!
 
   def create
     @area = current_user.build_area(area_params)
@@ -23,7 +11,7 @@ class AreasController < ApplicationController
     if save_area_weather!(@area)
       redirect_to rooms_path, notice: "地域を登録しました"
     else
-      redirect_to areas_path, alert: "天気情報を取得できない都市名です。都市名をご確認ください。"
+      redirect_to rooms_path, alert: "天気情報を取得できない都市名です。都市名をご確認ください。"
     end
   end
 
@@ -32,7 +20,7 @@ class AreasController < ApplicationController
     if save_area_weather!(@area)
       redirect_to rooms_path, notice: "お住まいの地域を更新しました"
     else
-      redirect_to root_path, alert: "地域の変更に失敗しました"
+      redirect_to rooms_path, alert: "地域の変更に失敗しました"
     end
   end
 
