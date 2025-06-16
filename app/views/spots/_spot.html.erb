@@ -6,6 +6,7 @@
     const addressInput = document.getElementById("address");
     const placeNameInput = document.getElementById("fav_name");
     const searchBtn = document.getElementById("btn-search");
+    const nameInput = document.getElementById("name");
 
     map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 35.681236, lng: 139.767125 }, // 東京駅初期値
@@ -17,11 +18,22 @@
 
     searchBtn.addEventListener("click", async function (e) {
       e.preventDefault();
-      const query = addressInput.value;
-      if (!query) return;
+
+      const typedAddress = addressInput.value.trim();
+
+      // 最後の単語を取り出す（全角・半角スペース両対応）
+      const lastWord = typedAddress.split(/[\s　]+/).pop();
+
+      // name が空欄なら、lastWord をセット
+      if (nameInput.value.trim() === "") {
+        nameInput.value = lastWord;
+      }
+
+      // 入力が空なら中断
+      if (!typedAddress) return;
 
       // Geocoding API リクエスト
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(query)}&key=<%= ENV['GOOGLE_MAPS_API'] %>`;
+      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(typedAddress)}&key=<%= ENV['GOOGLE_MAPS_API'] %>`;
       const response = await fetch(geocodeUrl);
       const data = await response.json();
 

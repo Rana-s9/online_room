@@ -15,7 +15,7 @@
         class: "bg-dark-gray/75 text-white py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
         <div class="mb-4">
         <%= f.label :name, "場所の名前 *場所名は自動入力されますが、適宜変更してください", class: "block text-dark-gray text-sm font-bold mb-2" %>
-        <%= f.text_field :name, id: "name", class: "w-full px-4 py-2 bg-light-gray/75 text-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+        <%= f.text_field :name, id: "name", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
         </div>
 
         <div class="mb-4">
@@ -23,7 +23,7 @@
             <%= f.label :address, "住所または場所名 *(例)東京都 スカイツリー", class: "block text-dark-gray text-sm font-bold mb-2" %>
             <button id="btn-search" class= "bg-blue/75 hover:bg-blue/30 text-dark-gray font-bold py-2 px-6 rounded-xl transition duration-200", data: { turbo: false } %>➡検索</button>
           </div>
-        <%= f.text_field :address, id: "address", class: "w-full px-4 py-2 bg-light-gray/75 text-dark-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+        <%= f.text_field :address, placeholder: "場所名を入力", id: "address", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
         </div>
         <div class="text-right">
         <%= link_to 'リセット', new_room_spot_path(@room), method: :get, class: "text-matcha" %>
