@@ -3,7 +3,10 @@
 </div>
 
 <script>
-  let mixer;
+document.addEventListener("turbo:load", () => {
+  if (window._threeInitialized) return;
+  window._threeInitialized = true;
+  var mixer;
   const clock = new THREE.Clock();
 
   const scene = new THREE.Scene();
@@ -61,19 +64,16 @@ if (bookBtn) {
           action.clampWhenFinished = true;
           action.play();
 
-          // 一番長いdurationを取得
           if (clip.duration > maxDuration) {
             maxDuration = clip.duration;
           }
         }
       });
 
-      // 全アニメーション終了後に遷移
       setTimeout(() => {
         window.location.href = bookBtn.dataset.roomPath;
       }, maxDuration * 1000);
     } else {
-      // アニメーションが取得できなければ即遷移
       window.location.href = bookBtn.dataset.roomPath;
     }
   });
@@ -100,19 +100,16 @@ if (spotBtn) {
           action.clampWhenFinished = true;
           action.play();
 
-          // 一番長いdurationを取得
           if (clip.duration > maxDuration) {
             maxDuration = clip.duration;
           }
         }
       });
 
-      // 全アニメーション終了後に遷移
       setTimeout(() => {
         window.location.href = spotBtn.dataset.roomPath;
       }, maxDuration * 1000);
     } else {
-      // アニメーションが取得できなければ即遷移
       window.location.href = spotBtn.dataset.roomPath;
     }
   });
@@ -147,5 +144,6 @@ if (spotBtn) {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
   });
+});
 </script>
 
