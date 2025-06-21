@@ -42,7 +42,6 @@ class RoomsController < ApplicationController
     @greetings = @room.greetings.includes(:user).order(created_at: :desc)
     @welcome = @greetings.welcome
     @return = @greetings.return
-    @roommates_except_self = current_user.roommates_except_self(@room)
 
     if params[:from_home_button]
       flash[:just_signed_in] = true
