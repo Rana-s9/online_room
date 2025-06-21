@@ -20,10 +20,12 @@
     <% if @welcome.present? %>
         <h2 class="text-matcha font-bold">おかえりメッセージ一覧</h2>
         <% @greetings.welcome.each do |greeting| %>
+          <% if greeting.user == current_user %>
             <div class="flex text-dark-gray">
                 <%= l(greeting.created_at, format: :short) %>
                 <h1>「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
             </div>
+          <% end %>
         <% end %>
     <% else %>
         <h2 class="text-gray">※「おかえりメッセージ」の登録はまだありません</h2>

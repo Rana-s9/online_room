@@ -7,6 +7,7 @@ class GreetingsController < ApplicationController
     @welcome = @greetings.welcome
     @return = @greetings.return
     @random_welcome = @welcome.sample if @welcome.present?
+    @roommates_except_self = current_user.roommates_except_self(@room)
   end
 
   def new
