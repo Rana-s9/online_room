@@ -54,7 +54,7 @@ class StateCalendarsController < ApplicationController
     else
       @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
       flash.now[:alert] = "心身コンディションの更新に失敗しました"
-      render :edit, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
