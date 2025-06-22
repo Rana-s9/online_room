@@ -11,20 +11,25 @@ class StateCalendarsController < ApplicationController
 
   def new
   @room = Room.find(params[:room_id])
-  # date指定で既存の記録があれば取得する例
   @state_calendar = current_user.state_calendars.find_by(room: @room, date: params[:date]) || current_user.state_calendars.new(room: @room, date: params[:date] || Date.current)
   end
 
   def create
-    @room = Room.find(params[:room_id])
-    @state_calendar = current_user.state_calendars.new(state_calendar_params)
-    @state_calendar.room = @room
-    @state_calendar.user = current_user
+  @room = Room.find(params[:room_id])
+  existing_calendar = current_user.state_calendars.find_by(date: state_calendar_params[:date], room_id: @room.id)
 
-    if @state_calendar.save
-      redirect_to room_state_calendars_path(@room), notice: "心身コンディションを保存しました"
+    if existing_calendar
+      flash[:alert] = "この日付の記録はすでに存在します。カレンダーから選択、更新してください。"
+      redirect_to room_state_calendars_path(@room)
     else
-      render :new, status: :unprocessable_entity
+      @state_calendar = current_user.state_calendars.new(state_calendar_params)
+      @state_calendar.room = @room
+
+      if @state_calendar.save
+        redirect_to room_state_calendars_path(@room), notice: "心身コンディションを保存しました"
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
