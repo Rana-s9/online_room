@@ -2,7 +2,6 @@ class SpotsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room
   def index
-    @room = Room.find(params[:room_id])
     @spots = @room.spots.includes(:user).order(created_at: :desc)
     @visited = @spots.visited
     @wanna_visit = @spots.wanna_visit

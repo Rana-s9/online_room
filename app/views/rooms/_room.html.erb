@@ -32,7 +32,7 @@
         <% end %>
       <% end %>
         <div class= "text-right">
-          <%= link_to "この家に帰宅する", room_path(room, from_home_button: true), class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+          <%= link_to "この家に帰宅する", room_path(room, from_home_button: true), class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition", data: { turbo: false } %>
         </div>
     </div>
   <% end %>

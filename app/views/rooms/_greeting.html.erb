@@ -1,53 +1,25 @@
 <% if flash[:just_signed_in] %>
   <div id="login-greeting">
-    <div class="fixed top-[630px] left-0 z-50 justify-end">
-      <% if @roommates_except_self.present? %>
-        <% if @random_welcome.present? %>
-            <p><%= @random_welcome.user.name %></p>
-            <p class= "bg-blue/50 p-4 rounded-lg shadow-md"><%= @random_return.message %></p>
-        <% else %>
-            <%= @roommates_except_self.sample.name %>
-            <p class= "bg-blue/50 p-4 rounded-lg shadow-md">おかえりなさい！</p>
-        <% end %>
-      <% else %>
-        <% if @welcome.present? %>
-            <% @greetings.welcome.each do |greeting| %>
-                <% if greeting.user != current_user %>
-                    <div>
-                        <p><%= greeting.user.name %></p>
-                        <p class= "bg-blue/50 p-4 rounded-lg shadow-md"><%= greeting.message %></p>
-                    </div>
-                <% end %>
-            <% end %>
-        <% else %>
-          <h2 class= "bg-blue/50 p-4 rounded-lg shadow-md">おかえりなさい</h2>
-        <% end %>
-      <% end %>
-    </div>
-    
-    <div class="fixed top-[560px] left-0 z-50 justify-end">
-        <% if @return.present? %>
-            <% @greetings.return.each do |greeting| %>
-                <% if greeting.user == current_user %>
-                    <div>
-                        <p><%= greeting.user.name %></p>
-                        <p class= "bg-matcha/50 p-4 rounded-lg shadow-md"><%= greeting.message %></p>
-                    </div>
-                <% end %>
-            <% end %>
-        <% else %>
-            <h2 class= "bg-matcha/50 p-4 rounded-lg shadow-md">ただいま～！！</h2>
-        <% end %>
-    </div>
+  <div class="fixed top-[630px] left-0 z-50 justify-end">
+    <p><%= @welcome_display[:user].name %></p>
+    <p class="bg-blue/50 p-4 rounded-lg shadow-md"><%= @welcome_display[:message] %></p>
   </div>
-    <script>
-    setTimeout(() => {
-      const box = document.getElementById('login-greeting');
-      if (box) {
-        box.style.transition = 'opacity 1s ease';
-        box.style.opacity = 0;
-        setTimeout(() => box.remove(), 1000);
-      }
-    }, 30000);
-  </script>
+
+  <div class="fixed top-[560px] left-0 z-50 justify-end">
+    <p><%= @return_display[:user].name %></p>
+    <p class="bg-matcha/50 p-4 rounded-lg shadow-md"><%= @return_display[:message] %></p>
+  </div>
+</div>
+
+<script>
+  setTimeout(() => {
+    const box = document.getElementById('login-greeting');
+    if (box) {
+      box.style.transition = 'opacity 1s ease';
+      box.style.opacity = 0;
+      setTimeout(() => box.remove(), 1000);
+    }
+  }, 30000);
+</script>
+
 <% end %>
