@@ -12,6 +12,7 @@ class GreetingsController < ApplicationController
 
   def new
     @room = Room.find(params[:room_id])
+    @greeting = @room.greetings.new
   end
 
   def create
@@ -22,7 +23,7 @@ class GreetingsController < ApplicationController
     if @greeting.save
         redirect_to room_greetings_path(@room), notice: "メッセージを登録しました"
     else
-        redirect_to new_room_greeting_path(@room), alert: "メッセージの登録に失敗しました"
+        render :new, status: :unprocessable_entity
     end
   end
 

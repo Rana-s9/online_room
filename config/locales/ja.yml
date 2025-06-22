@@ -1,4 +1,30 @@
 ja:
+  activerecord:
+    attributes:
+      exchange_diary:
+        body: 内容
+      spot:
+        address: 住所
+        name: 場所名
+        visit_status: ステータス
+      state_calendar:
+        mental_state: 心の状態
+        physical_state: 体の状態
+      greeting:
+        greeting_type: ステータス
+        message: メッセージ
+  errors:
+    messages:
+      blank: "を入力してください"
+    attributes:
+      visit_status:
+        blank: "を選択してください"
+      mental_state:
+        blank: "を選択してください"
+      physical_state:
+        blank: "を選択してください"
+      greeting_type:
+        blank: "を選択してください"
   views:
     pagination:
       first: "&laquo; 最初"

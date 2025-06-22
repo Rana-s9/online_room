@@ -4,12 +4,17 @@ class Spot < ApplicationRecord
 
   enum visit_status: { visited: 0, wanna_visit: 1 }
 
-  validates :name, presence: true
   validates :visit_status, presence: true
+  validates :name, presence: true
   validates :address, presence: true
-  validates :latitude, presence: true
-  validates :longitude, presence: true
+  validate :position_place
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
+  def position_place
+    if latitude.blank? || longitude.blank?
+      errors.add(:base, "座標取得のため、もう一度お試しください")
+    end
+  end
 end

@@ -31,7 +31,7 @@ class ExchangeDiariesController < ApplicationController
         respond_to do |format|
           format.html do
             flash.now[:alert] = "日記の保存に失敗しました"
-            @exchange_diaries = @room.exchange_diaries.order(created_at: :desc)
+            @exchange_diaries = @room.exchange_diaries.order(created_at: :desc).page(params[:page])
             render :index, status: :unprocessable_entity
           end
           format.json { render json: @exchange_diary.errors.full_messages, status: :unprocessable_entity }

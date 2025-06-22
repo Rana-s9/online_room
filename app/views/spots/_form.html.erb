@@ -1,5 +1,5 @@
 <div class="mb-6">
-    <%= form_with model: [@room, Spot.new], method: :post, local: true, id: 'post-form', class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg" do |f| %>
+    <%= form_with model: [@room, @spot], method: :post, local: true, id: 'post-form', class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg" do |f| %>
         <% if @spot.errors.any? %>
           <div class= "text-bold text-brown">
               <% @spot.errors.full_messages.each do |message| %>
@@ -8,19 +8,19 @@
             </ul>
           </div>
         <% end %>  
-        <%= f.label :visit_status, "ステータス" %>
+        <%= f.label :visit_status, "⓵ステータス" %>
         <%= f.select :visit_status,
         [["行ったことがある", "visited"], ["行きたい", "wanna_visit"]],
         { prompt: "⓵ステータスを選ぶ" },
         class: "bg-dark-gray/75 text-white py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
         <div class="mb-4">
-        <%= f.label :name, "場所の名前 *場所名は自動入力されますが、適宜変更してください", class: "block text-dark-gray text-sm font-bold mb-2" %>
+        <%= f.label :name, "場所の名前 *場所名は自動入力されますが、適宜変更してください", class: "block text-dark-gray text-sm font-bold mb-2 underline" %>
         <%= f.text_field :name, id: "name", placeholder: "自動入力", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
         </div>
 
         <div class="mb-4">
           <div class="flex justify-between items-center">
-            <%= f.label :address, "住所または場所名 *(例)東京都 スカイツリー", class: "block text-dark-gray text-sm font-bold mb-2" %>
+            <%= f.label :address, "⓶住所または場所名 *(例)東京都 スカイツリー", class: "block text-dark-gray text-sm font-bold mb-2" %>
             <button id="btn-search" class= "bg-blue/75 hover:bg-blue/30 text-dark-gray font-bold py-2 px-6 rounded-xl transition duration-200", data: { turbo: false } %>➡検索</button>
           </div>
         <%= f.text_field :address, placeholder: "⓶場所名を入力", id: "address", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>

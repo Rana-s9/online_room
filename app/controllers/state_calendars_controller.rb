@@ -6,6 +6,7 @@ class StateCalendarsController < ApplicationController
     @state_calendars = @room.state_calendars.includes(:user).order(created_at: :desc)
     @calendar_users = current_user.grouped_shared_users[@room.id] || []
     @calendars_by_user = @state_calendars.group_by(&:user_id)
+    @today_state = current_user.state_calendars.find_by(room: @room, date: Date.current)
   end
 
   def new

@@ -1,17 +1,23 @@
 <div class="flex text-matcha text-xl font-bold rounded-lg shadow-md p-4">
-  <% @roommates.each do |roommate| %>
-    <%= roommate.name %>
+  <% if @roommates.present? %>
+    <% @roommates.each do |roommate| %>
+      <%= roommate.name %>
+    <% end %>
+    <h1>の交換日記<i class="fa-solid fa-book"></i></h1>
+  <% else %>
+    <%= current_user.name %>
+    <h1>の交換日記<i class="fa-solid fa-book"></i></h1>
   <% end %>
-  <h1>の交換日記<i class="fa-solid fa-book"></i></h1>
 </div>
 <div class="container mx-auto px-4">
   <div class="max-w-xl mx-auto">
+  <% if @exchange_diaries.present? %>
     <% @exchange_diaries.each do |diary| %>
       <%= render partial: 'exchange_diary', locals: { diary: diary } %>
     <% end %>
-    <% if @diary_count <= 1 %>
-      <%= render 'form' %>
-    <% end %>
+  <% else %>
+    <%= render 'form' %>
+  <% end %>
 
     <div class="text-center mt-4">
       <%= button_to '<i class="fa-solid fa-plus text-gray/50"></i>'.html_safe, room_exchange_diaries_path(@room), id: "show-form-button", method: :post, class: "text-3xl" %>

@@ -1,5 +1,7 @@
 <h1 class="text-dark-gray font-bold">"<%= @room.name %>" のカレンダー</h1>
-<%= link_to "+ 本日 #{ Time.current.strftime("%Y年%m月%d日") }の心身登録", new_room_state_calendar_path(@room), class: "bg-gray p-4 rounded shadow mb-4 mt-2 hover:bg-blue/75 transition text-beige" %>
+<% unless @today_state.present? %>
+  <%= link_to "+ 本日 #{ Time.current.strftime("%Y年%m月%d日") }の心身登録", new_room_state_calendar_path(@room), class: "bg-gray p-4 rounded shadow mb-4 mt-2 hover:bg-blue/75 transition text-beige" %>
+<% end %>
 <h1 class="text-dark-gray">※<%= current_user.name %>さんのカレンダーの日付をクリック➡ 心身状況の登録・更新・削除ができます。
 <% @calendar_users.each do |user| %>
   <% user_is_current = user == current_user %>
@@ -27,11 +29,12 @@
         <% end %>
 
         <% states_on_day.each do |state| %>
-          <div class="flex space-x-2 mb-1">
-            <span class="px-1 py-1 rounded bg-yellow"><%= state.mental_state %></span>
-            <span class="px-1 py-1 rounded bg-light-blue/30"><%= state.physical_state %></span>
+          <div class="text-xs leading-tight text-center">
+            <span class="inline-block px-0.5 py-0.5 rounded bg-yellow"><%= state.mental_state %></span>
+            <span class="inline-block px-0.5 py-0.5 rounded bg-light-blue/30"><%= state.physical_state %></span>
           </div>
         <% end %>
+
       <% end %>
     <% end %>
   </div>
