@@ -4,7 +4,7 @@
   <% if @state_calendar.errors.any? %>
     <div class= "text-bold text-brown">
         <% @state_calendar.errors.full_messages.each do |message| %>
-          <ul>
+          <ul class="list-disc pl-5">
             <li><%= message %></li>
           </ul>
         <% end %>

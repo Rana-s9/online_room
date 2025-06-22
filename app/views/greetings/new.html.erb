@@ -9,7 +9,7 @@
       <% if @greeting.errors.any? %>
         <div class= "text-bold text-brown">
             <% @greeting.errors.full_messages.each do |message| %>
-              <ul>
+              <ul class="list-disc pl-5">
                 <li><%= message %></li>
               </ul>
             <% end %>

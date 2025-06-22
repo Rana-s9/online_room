@@ -1,11 +1,11 @@
 <%= form_with model: @exchange_diary, url: room_exchange_diaries_path(@room), local: true, data: { turbo: false } do |f| %>
   <% if @exchange_diary.errors.any? %>
     <div class= "text-bold text-brown">
+      <ul class="list-disc">
         <% @exchange_diary.errors.full_messages.each do |message| %>
-          <ul>
             <li><%= message %></li>
-          </ul>
         <% end %>
+      </ul>
     </div>
   <% end %>
   <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
