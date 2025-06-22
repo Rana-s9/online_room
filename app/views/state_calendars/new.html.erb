@@ -3,11 +3,11 @@
 <%= form_with model: [@room, @state_calendar], local: true, class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-2" do |f| %>
   <% if @state_calendar.errors.any? %>
     <div class= "text-bold text-brown">
+      <ul class="list-disc pl-5">
         <% @state_calendar.errors.full_messages.each do |message| %>
-          <ul class="list-disc pl-5">
-            <li><%= message %></li>
-          </ul>
+          <li><%= message %></li>
         <% end %>
+      </ul>
     </div>
   <% end %>  
   <%= f.date_field :date, value: @state_calendar.date || Date.current, class: "text-dark-gray bg-matcha/30" %>

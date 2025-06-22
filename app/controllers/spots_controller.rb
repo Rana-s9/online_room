@@ -42,7 +42,7 @@ class SpotsController < ApplicationController
     else
       @spots = @room.spots.includes(:user).order(created_at: :desc)
       flash.now[:alert] = "場所名の更新に失敗しました"
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 

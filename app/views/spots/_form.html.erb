@@ -2,11 +2,12 @@
     <%= form_with model: [@room, @spot], method: :post, local: true, id: 'post-form', class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg" do |f| %>
         <% if @spot.errors.any? %>
           <div class= "text-bold text-brown">
+            <ul class="list-disc pl-5">
               <% @spot.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
               <% end %>
             </ul>
-          </div>
+        </div>
         <% end %>  
         <%= f.label :visit_status, "⓵ステータス" %>
         <%= f.select :visit_status,

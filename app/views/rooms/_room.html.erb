@@ -13,13 +13,14 @@
             </span>
           <% end %>
         </p>
-        <p>入居日：
-          <% if room.user == current_user %>
-            <%= room.created_at.strftime("%y年%m月%d日") %>
-          <% else %>
-            <% invitation = @invitation_map[room.id] %>
-            <%= invitation ? invitation.created_at.strftime("%y年%m月%d日") : "不明" %>
-          <% end %>
+        <% if room.user == current_user %>
+          <p>作成日：
+          <%= room.created_at.strftime("%y年%m月%d日") %>
+        <% else %>
+          <p>入居日：
+          <% invitation = @invitation_map[room.id] %>
+          <%= invitation ? invitation.created_at.strftime("%y年%m月%d日") : "不明" %>
+        <% end %>
         </p>
       <% else %>
         <% if room.user == current_user %>
