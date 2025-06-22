@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
 
   def create
     if current_user.owned_rooms.count >= 5
-      flash[:alert] = "1人あたり5部屋まで登録できます。"
+      flash[:alert] = "1人あたり5部屋まで作成できます。"
       redirect_to rooms_path and return
     end
 
@@ -21,7 +21,8 @@ class RoomsController < ApplicationController
         format.html { redirect_to @room, notice: "部屋を作成しました" }
       else
         invited_and_own_room
-        format.html { render :index, alert: "部屋を作成できませんでした", status: :unprocessable_entity }
+        flash.now[:alert] = "部屋を作成できませんでした"
+        format.html { render :index, status: :unprocessable_entity }
       end
     end
   end

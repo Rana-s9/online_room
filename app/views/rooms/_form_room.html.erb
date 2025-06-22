@@ -1,11 +1,11 @@
 <%= form_with model: @room, url: rooms_path, remote: true do |f| %>
   <% if @room.errors.any? %>
     <div class= "text-bold text-brown">
-        <% @room.errors.full_messages.each do |message| %>
-          <ul class="list-disc pl-5">
+        <ul class="list-disc pl-5">
+          <% @room.errors.full_messages.each do |message| %>
             <li><%= message %></li>
-          </ul>
-        <% end %>
+          <% end %>
+        </ul>
     </div>
   <% end %> 
   <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
