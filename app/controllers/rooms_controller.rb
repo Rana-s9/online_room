@@ -28,7 +28,6 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @room } # JSONが来たらJSONで返す
@@ -44,9 +43,45 @@ class RoomsController < ApplicationController
     @welcome = @greetings.welcome
     @return = @greetings.return
 
-    if params[:from_home_button]
-      flash[:just_signed_in] = true
-    end
+    @my_welcome = @welcome.where(user: current_user)
+    @others_welcome = @welcome.where.not(user: current_user)
+
+    @my_return = @return.where(user: current_user)
+
+    @roommates_except_self = current_user.roommates_except_self(@room)
+
+    # おかえりメッセージ表示用
+    @welcome_display =
+      if @roommates_except_self.any?
+        if @others_welcome.any?
+          message = @others_welcome.sample
+          { message: message.message, user: message.user }
+        else
+          user = @roommates_except_self.sample
+          { message: "おかえりなさい！", user: user }
+        end
+      else
+        if @my_welcome.any?
+          message = @my_welcome.sample
+          { message: message.message, user: message.user }
+        else
+          { message: "おかえりなさい！", user: current_user }
+        end
+      end
+
+
+    # ただいまメッセージ表示用（自分のだけ）
+    @return_display =
+      if @my_return.any?
+        message = @my_return.sample
+        { message: message.message, user: message.user }
+      else
+        { message: "ただいま！", user: current_user }
+      end
+
+      if params[:from_home_button]
+        flash[:just_signed_in] = true
+      end
   end
 
   private

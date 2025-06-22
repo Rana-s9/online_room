@@ -4,9 +4,8 @@ class GreetingsController < ApplicationController
   def index
     @room = Room.find(params[:room_id])
     @greetings = @room.greetings.includes(:user).order(created_at: :desc)
-    @welcome = @greetings.welcome
-    @return = @greetings.return
-    @random_welcome = @welcome.sample if @welcome.present?
+    @welcome = @greetings.welcome.where(user: current_user)
+    @return = @greetings.return.where(user: current_user)
     @roommates_except_self = current_user.roommates_except_self(@room)
   end
 
