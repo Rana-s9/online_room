@@ -8,23 +8,33 @@ ja:
         name: 場所名
         visit_status: ステータス
       state_calendar:
+        date: この日付の記録
         mental_state: 心の状態
         physical_state: 体の状態
       greeting:
         greeting_type: ステータス
         message: メッセージ
+
+    errors:
+      models:
+        state_calendar:
+          attributes:
+            date:
+              taken: "はすでに存在します。カレンダーから該当日付を選び、更新できます。"
+            mental_state:
+              blank: "を選択してください"
+            physical_state:
+              blank: "を選択してください"
+
   errors:
     messages:
       blank: "を入力してください"
     attributes:
       visit_status:
         blank: "を選択してください"
-      mental_state:
-        blank: "を選択してください"
-      physical_state:
-        blank: "を選択してください"
       greeting_type:
         blank: "を選択してください"
+
   views:
     pagination:
       first: "&laquo; 最初"
