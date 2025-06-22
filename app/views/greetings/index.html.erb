@@ -7,7 +7,7 @@
             <% if greeting.user == current_user %>
             <div class="flex text-dark-gray">
                 <%= l(greeting.created_at, format: :short) %>
-                <h1>「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
+                <h1 class = "text-matcha">「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
             </div>
             <% end %>
         <% end %>
@@ -23,7 +23,7 @@
           <% if greeting.user == current_user %>
             <div class="flex text-dark-gray">
                 <%= l(greeting.created_at, format: :short) %>
-                <h1>「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
+                <h1 class = "text-matcha">「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
             </div>
           <% end %>
         <% end %>
