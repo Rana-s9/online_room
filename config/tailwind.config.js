@@ -15,12 +15,13 @@ module.exports = {
         'bright-blue' : '#7F9BB3',
         'gray-blue': '#8FA6B8',
         'beige': '#F8F8F0',
+        'dark-beige': '#E2D9C8',
         'brown': '#A1866F',
         'dark-gray': '#404040',
         'light-gray': '#D9D9D9',
         'gray': '#757575',
         'yellow': '#FFFACD',
-        'matcha': '#6B8C42',
+        'matcha': '#005060',
         'cocoa-brown': '#A1866F'
       },
       fontFamily: {
