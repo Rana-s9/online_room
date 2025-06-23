@@ -9,13 +9,10 @@ export default class extends Controller {
   static targets = ["board"];
 
   connect() {
-    console.log("Board controller connected");
     this.timeout = null;
   }
 
   save() {
-    console.log("input received");
-    console.log("whiteboardIdValue:", this.whiteboardIdValue);
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       const body = this.boardTarget.innerHTML;
@@ -42,7 +39,7 @@ export default class extends Controller {
         })
         .then((data) => {
           if (data && data.id) {
-            this.whiteboardIdValue = data.id; // 初回作成後にIDを保持しupdateへ切り替え
+            this.whiteboardIdValue = data.id;
           }
         })
         .catch((error) => {

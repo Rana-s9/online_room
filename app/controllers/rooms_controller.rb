@@ -29,8 +29,8 @@ class RoomsController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @room } # JSONが来たらJSONで返す
+      format.html
+      format.json { render json: @room }
     end
     @whiteboards = @room.whiteboards.includes(:user).order(created_at: :desc)
     @whiteboard = @room.whiteboards.find_or_create_by(user: current_user)
@@ -50,7 +50,6 @@ class RoomsController < ApplicationController
 
     @roommates_except_self = current_user.roommates_except_self(@room)
 
-    # おかえりメッセージ表示用
     @welcome_display =
       if @roommates_except_self.any?
         if @others_welcome.any?
@@ -69,8 +68,6 @@ class RoomsController < ApplicationController
         end
       end
 
-
-    # ただいまメッセージ表示用（自分のだけ）
     @return_display =
       if @my_return.any?
         message = @my_return.sample
@@ -80,7 +77,7 @@ class RoomsController < ApplicationController
       end
 
       if params[:from_home_button]
-        flash[:just_signed_in] = true
+        flash[:notice] = "帰宅しました"
       end
   end
 
