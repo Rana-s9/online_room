@@ -22,7 +22,6 @@
     loader.setDRACOLoader(dracoLoader);
     loader.load("/home.glb", function(gltf) {
       const model = gltf.scene;
-      console.log("\u30E2\u30C7\u30EB\u304C\u8AAD\u307F\u8FBC\u307E\u308C\u307E\u3057\u305F:", model);
       model.scale.set(1, 1, 1);
       scene.add(model);
       mixer = new THREE.AnimationMixer(model);
@@ -109,7 +108,6 @@
         });
       }
     }, void 0, function(error) {
-      console.error("\u30E2\u30C7\u30EB\u306E\u8AAD\u307F\u8FBC\u307F\u306B\u5931\u6557\u3057\u307E\u3057\u305F:", error);
     });
     camera.position.z = 5;
     const controls = new THREE.OrbitControls(camera, renderer.domElement);

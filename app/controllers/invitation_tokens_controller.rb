@@ -31,7 +31,6 @@ class InvitationTokensController < ApplicationController
   def update
     @room = Room.find(params[:room_id])
     token = InvitationToken.find(params[:id])
-    # すでに使われていれば何もしない
     if token.used_at.present?
         redirect_to invitation_tokens_path, alert: "このトークンはすでに使用されています"
         return
@@ -42,13 +41,11 @@ class InvitationTokensController < ApplicationController
         return
     end
 
-    # トークンの有効期限チェック（必要なら）
     if token.expires_at.present? && token.expires_at < Time.current
         redirect_to invitation_tokens_path, alert: "このトークンは期限切れです"
         return
     end
 
-    # トークン使用記録
     token.update!(
         used_at: Time.current,
         invited_user: current_user.id

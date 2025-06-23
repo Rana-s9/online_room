@@ -8545,12 +8545,9 @@ var board_controller_default = class extends Controller {
   };
   static targets = ["board"];
   connect() {
-    console.log("Board controller connected");
     this.timeout = null;
   }
   save() {
-    console.log("input received");
-    console.log("whiteboardIdValue:", this.whiteboardIdValue);
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       const body = this.boardTarget.innerHTML;
@@ -8588,13 +8585,9 @@ var diary_controller_default = class extends Controller {
   };
   static targets = ["diary"];
   connect() {
-    console.log("Diary controller connected");
-    console.log("\u521D\u671F diaryIdValue:", this.diaryIdValue);
     this.timeout = null;
   }
   save() {
-    console.log("input received");
-    console.log("diaryIdValue:", this.diaryIdValue);
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       const body = this.diaryTarget.innerHTML;

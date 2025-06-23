@@ -26,7 +26,6 @@ document.addEventListener("turbo:load", () => {
 
   loader.load('/home.glb', function (gltf) {
   const model = gltf.scene;
-  console.log("モデルが読み込まれました:", model);
   model.scale.set(1, 1, 1);
   scene.add(model);
 
@@ -110,7 +109,6 @@ if (spotBtn) {
   });
 }
 }, undefined, function (error) {
-  console.error("モデルの読み込みに失敗しました:", error);
 });
 
   camera.position.z = 5;

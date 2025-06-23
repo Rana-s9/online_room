@@ -24,7 +24,6 @@ loader.setDRACOLoader(dracoLoader);
 
 loader.load('/door.glb', function (gltf) {
 const model = gltf.scene;
-console.log("モデルが読み込まれました:", model);
 model.scale.set(0.8, 0.8, 0.8);
 
 const box = new THREE.Box3().setFromObject(model);
@@ -57,25 +56,21 @@ if (window.mixer && window.doorAnimationClips) {
         action.clampWhenFinished = true;
         action.play();
 
-        // 一番長いdurationを取得
         if (clip.duration > maxDuration) {
         maxDuration = clip.duration;
         }
     }
     });
 
-    // 全アニメーション終了後に遷移
     setTimeout(() => {
-    doorBtn.closest("form").submit(); // ←ここでform送信
+    doorBtn.closest("form").submit();
     }, maxDuration * 1000);
 } else {
-    // アニメーションがない場合はそのまま送信
     doorBtn.closest("form").submit();
 }
 });
 }
 }, undefined, function (error) {
-console.error("モデルの読み込みに失敗しました:", error);
 });
 
 camera.position.set(10, -5, 0);

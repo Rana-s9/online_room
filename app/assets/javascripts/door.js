@@ -20,7 +20,6 @@
   loader.setDRACOLoader(dracoLoader);
   loader.load("/door.glb", function(gltf) {
     const model = gltf.scene;
-    console.log("\u30E2\u30C7\u30EB\u304C\u8AAD\u307F\u8FBC\u307E\u308C\u307E\u3057\u305F:", model);
     model.scale.set(0.8, 0.8, 0.8);
     const box = new THREE.Box3().setFromObject(model);
     const center = box.getCenter(new THREE.Vector3());
@@ -59,7 +58,6 @@
       });
     }
   }, void 0, function(error) {
-    console.error("\u30E2\u30C7\u30EB\u306E\u8AAD\u307F\u8FBC\u307F\u306B\u5931\u6557\u3057\u307E\u3057\u305F:", error);
   });
   camera.position.set(10, -5, 0);
   camera.lookAt(0, 2, 0);
