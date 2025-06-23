@@ -79,7 +79,6 @@ class RoomsController < ApplicationController
       if params[:from_home_button]
         flash[:notice] = "帰宅しました"
       end
-
   end
 
   private
