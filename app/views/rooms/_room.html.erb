@@ -31,8 +31,11 @@
           <h1 class="text-brown font-bold">ひとり暮らし</h1>
         <% end %>
       <% end %>
-        <div class= "text-right">
-          <%= link_to "この家に帰宅する", room_path(room, from_home_button: true), class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition", data: { turbo: false } %>
+        <div class= "text-center">
+          <%= link_to "この家に帰宅する", room_path(room, from_home_button: 'true'),
+            id: "blue-door-#{room.id}",
+            class: "door-button bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition"
+            %>
         </div>
     </div>
   <% end %>

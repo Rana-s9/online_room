@@ -28,12 +28,11 @@
     mixer = new THREE.AnimationMixer(model);
     window.mixer = mixer;
     window.doorAnimationClips = gltf.animations;
-    const doorBtn = document.getElementById("blue-door");
-    if (doorBtn) {
+    const doorButtons = document.querySelectorAll(".door-button");
+    doorButtons.forEach((doorBtn) => {
       doorBtn.addEventListener("click", (e) => {
-        const animationNames = [
-          "CubeAction.001"
-        ];
+        e.preventDefault();
+        const animationNames = ["CubeAction.001"];
         if (window.mixer && window.doorAnimationClips) {
           let maxDuration = 0;
           animationNames.forEach((name) => {
@@ -44,20 +43,17 @@
               action.setLoop(THREE.LoopOnce, 1);
               action.clampWhenFinished = true;
               action.play();
-              if (clip.duration > maxDuration) {
-                maxDuration = clip.duration;
-              }
+              maxDuration = Math.max(maxDuration, clip.duration);
             }
           });
           setTimeout(() => {
-            doorBtn.closest("form").submit();
+            window.location.href = doorBtn.href;
           }, maxDuration * 1e3);
         } else {
-          doorBtn.closest("form").submit();
+          window.location.href = doorBtn.href;
         }
       });
-    }
-  }, void 0, function(error) {
+    });
   });
   camera.position.set(10, -5, 0);
   camera.lookAt(0, 2, 0);

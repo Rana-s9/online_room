@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4 ">
+<div class="container fixed top-[80px] left-1/2 transform -translate-x-1/2 z-50 mx-auto px-4 ">
   <% if @rooms.empty? %>
     <p class="text-gray text-center text-lg">登録部屋はまだありません</p>
     <div class="max-w-xl mx-auto">
@@ -8,7 +8,7 @@
     <%= render 'room' %>
   <% end %>
   <div class="text-center mt-4">
-    <%= button_to '<i class="fa-solid fa-plus text-gray/50"></i>'.html_safe, rooms_path, id: "room-form-button", method: :post, class: "text-3xl" %>
+    <%= button_to '<i class="fa-solid fa-plus text-dark-beige"></i>'.html_safe, rooms_path, id: "room-form-button", method: :post, class: "text-3xl" %>
   </div>
   <div id="room-form" class="hidden mt-4">
     <%= render 'form_room' %>
@@ -20,3 +20,9 @@
     <%= render 'area' %>
   <% end %>
 </div>
+
+<div class="relative w-full h-[calc(100vh-112px)] overflow-hidden">
+  <canvas id="three-canvas" class="w-full h-full block"></canvas>
+</div>
+
+<%= javascript_include_tag "door" %>
