@@ -77,7 +77,7 @@ class RoomsController < ApplicationController
       end
 
       if params[:from_home_button]
-        flash[:notice] = "帰宅しました"
+        flash[:just_signed_in] = "帰宅しました"
       end
   end
 

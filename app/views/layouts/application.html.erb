@@ -35,7 +35,7 @@
       <%= render 'shared/before_login_header' %>
     <% end %>
     <% flash.each do |key, message| %>
-      <% text_color = key == "notice" ? "text-matcha" : "text-red-500" %>
+      <% text_color = key == "notice" || key == "just_signed_in" ? "text-matcha" : "text-red-500" %>
       <div class="flash <%= key %> <%= text_color %> font-semibold">
         <%= message %>
       </div>
