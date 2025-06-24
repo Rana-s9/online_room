@@ -1,7 +1,7 @@
 <div class="mb-6">
     <%= form_with model: [@room, @spot], method: :post, local: true, id: 'post-form', class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg" do |f| %>
         <% if @spot.errors.any? %>
-          <div class= "text-bold text-brown">
+          <div class= "bg-beige/30 text-matcha/75 font-bold">
             <ul class="list-disc pl-5">
               <% @spot.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -12,19 +12,20 @@
         <%= f.label :visit_status, "⓵ステータス" %>
         <%= f.select :visit_status,
         [["行ったことがある", "visited"], ["行きたい", "wanna_visit"]],
-        { prompt: "⓵ステータスを選ぶ" },
+        { prompt: "ステータスを選ぶ" },
         class: "bg-matcha/75 text-white py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
-        <div class="mb-4">
-        <%= f.label :name, "場所の名前 *場所名は自動入力されますが、適宜変更してください", class: "block text-dark-gray text-sm font-bold mb-2 underline" %>
-        <%= f.text_field :name, id: "name", placeholder: "自動入力", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
-        </div>
 
         <div class="mb-4">
-          <div class="flex justify-between items-center">
-            <%= f.label :address, "⓶住所または場所名 *(例)東京都 スカイツリー", class: "block text-dark-gray text-sm font-bold mb-2" %>
-            <button id="btn-search" class= "bg-matcha/75 hover:bg-blue/75 text-beige font-bold py-2 px-6 rounded-xl transition duration-200", data: { turbo: false } %>⓷検索</button>
+          <div class="items-center mt-2">
+            <%= f.label :address, "⓶住所または場所名 *(例)東京都 スカイツリー", class: "block text-dark-gray mb-2" %>
           </div>
-        <%= f.text_field :address, placeholder: "⓶場所名を入力", id: "address", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+        <%= f.text_field :address, placeholder: "場所名を入力", id: "address", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+        <div class ="text-center" >
+          <button id="btn-search" class= "bg-matcha/75 hover:bg-blue/75 text-beige text-sm font-bold py-2 px-6 rounded-xl transition duration-200", data: { turbo: false } %>⓷検索</button>
+        </div>
+        <div class="mb-4">
+        <%= f.label :name, "場所の名前 *場所名は自動入力されますが、適宜変更してください", class: "block text-dark-gray text-sm font-bold mb-2 mt-2 underline" %>
+        <%= f.text_field :name, id: "name", placeholder: "自動入力", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
         </div>
         <div class="text-right">
         <%= link_to 'リセット', new_room_spot_path(@room), method: :get, class: "text-matcha" %>
@@ -35,7 +36,10 @@
         </div>
 
         <div class="text-center">
-        <%= f.submit "⓸登録", class: "bg-matcha/50 text-beige py-2 px-6 rounded hover:bg-light-gray transition duration-200", data: { turbo: false } %>
+          <%= f.submit "⓸登録", class: "bg-matcha/50 text-beige py-2 px-6 rounded hover:bg-light-gray transition duration-200", data: { turbo: false } %>
+        </div>
+        <div class="text-right">
+          <%= link_to "戻る", room_spots_path(@room) %>
         </div>
 
         <%= f.hidden_field :latitude, id: "latitude" %>

@@ -20,6 +20,7 @@ class SpotsController < ApplicationController
     if @spot.save
         redirect_to room_spots_path(@room), notice: "場所を登録しました"
     else
+        flash.now[:alert] = "場所の登録に失敗しました"
         render :new, status: :unprocessable_entity
     end
   end

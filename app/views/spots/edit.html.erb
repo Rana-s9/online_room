@@ -19,7 +19,7 @@
                 <% if @spot.user == current_user %>
                   <%= form_with model: [@room, @spot], local: true, id: 'post-form', class: "max-w-md mx-auto p-6 bg-light-gray rounded-2xl shadow-lg" do |f| %>
                     <% if @spot.errors.any? %>
-                    <div class= "text-bold text-brown">
+                    <div class= "bg-beige/30 text-matcha/75">
                       <ul>
                         <% @spot.errors.full_messages.each do |message| %>
                             <li><%= message %></li>

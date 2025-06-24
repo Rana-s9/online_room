@@ -8,8 +8,8 @@
           <!-- 招待リンクを表示 -->
           <div id="post_<%= token.id %>" class="inline-block">
             <%= link_to "招待リンク", join_roommate_lists_url(token: token.token), target: "_blank", class: "text-brown" %>
-            <h1 class="text-matcha font-semibold">有効期限：<%= l(token.expires_at, format: :short) %></h1>
-            <h1 class="text-matcha font-semibold">トークン番号:No.<%= token.id %></h1>
+            <h1 class="text-matcha-green font-semibold">有効期限：<%= l(token.expires_at, format: :short) %></h1>
+            <h1 class="text-matcha-green font-semibold">トークン番号:No.<%= token.id %></h1>
           </div>
 
           <!-- コピー用ボタン -->
@@ -65,7 +65,7 @@
               <% if token.used_at.present? %>
                 <span class="text-blue font-semibold">使用済</span>
               <% else %>
-                <span class="text-matcha font-semibold">未使用</span>
+                <span class="text-matcha-green font-semibold">未使用</span>
               <% end %>
             </td>
             <td><%= l(token.created_at, format: :short) %></td>
@@ -74,7 +74,7 @@
               <% if token.expires_at < Time.current %>
                 <span class="text-blue font-semibold">期限✕</span>
               <% else %>
-                <span class="text-matcha font-semibold">期限〇</span>
+                <span class="text-matcha-green font-semibold">期限〇</span>
               <% end %>
             </td>
           </tr>
