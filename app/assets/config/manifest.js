@@ -4,3 +4,4 @@
 //= link door.js
 //= link door2.js
 //= link home.js
+//= link application.js
