@@ -22,6 +22,7 @@ class GreetingsController < ApplicationController
     if @greeting.save
         redirect_to room_greetings_path(@room), notice: "メッセージを登録しました"
     else
+        flash.now[:alert] = "メッセージの登録に失敗しました"
         render :new, status: :unprocessable_entity
     end
   end

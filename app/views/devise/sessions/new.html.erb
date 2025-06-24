@@ -4,12 +4,14 @@
       <h1 class="text-2xl text-matcha font-bold mb-6">ログイン</h1>
       <%= form_with model: resource, url: session_path(resource_name), local: true do |f| %>
         <% if flash[:alert] %>
-          <div id="flash_alert" class="bg-red-100 text-red-800 p-4 rounded">
-            <%= flash[:alert] %>
-          </div>
+          <ul class="list-disc pl-5 space-y-1">
+            <div id="flash_alert" class="bg-yellow/50 text-matcha font-semifold p-4 rounded mb-4">
+              <li><%= flash[:alert] %></li>
+            </div>
+          </ul>
         <% end %>
         <% if flash[:notice] %>
-          <div id="flash_notice" class="bg-green-100 text-matcha p-4 rounded mt-4">
+          <div id="flash_notice" class="bg-green-100/50 text-matcha p-4 rounded mt-4">
             <%= flash[:notice] %>
           </div>
         <% end %>

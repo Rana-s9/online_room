@@ -22,7 +22,9 @@ module.exports = {
         'gray': '#757575',
         'yellow': '#FFFACD',
         'matcha': '#005060',
-        'cocoa-brown': '#A1866F'
+        'cocoa-brown': '#A1866F',
+        'pink-red': '#F37167',
+        'matcha-green': '#6B8C42'
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],

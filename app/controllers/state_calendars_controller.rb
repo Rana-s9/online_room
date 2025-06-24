@@ -28,6 +28,7 @@ class StateCalendarsController < ApplicationController
       if @state_calendar.save
         redirect_to room_state_calendars_path(@room), notice: "心身コンディションを保存しました"
       else
+        flash.now[:alert] = "心身コンディションの保存に失敗しました"
         render :new, status: :unprocessable_entity
       end
     end
