@@ -14,8 +14,40 @@ ja:
       greeting:
         greeting_type: ステータス
         message: メッセージ
+      ja:
+  activerecord:
+    attributes:
+      post:
+        relationship: "間柄"
+        post_type: "tips/質問"
+        situation: "状況"
+        content: "内容"
+        display_name: "表示名"
+        custom_relationship: "自由記述（その他）"
+        custom_situation: "自由記述（その他）"
+        custom_name: "表示名登録"
+        # enum日本語訳
+        relationship_options:
+          partner: "交際相手、パートナー"
+          friend: "友達"
+          family: "家族"
+          other_relationship: "その他"
+        post_type_options:
+          tips: "Tips"
+          question: "質問"
+        situation_options:
+          long_distance: "遠距離"
+          sometimes_meet: "たまに会う"
+          living_together: "同居"
+          other_situation: "その他"
+        display_name_options:
+          username: "ユーザーネーム"
+          anonymous: "匿名"
+          nickname: "表示名登録"
 
     errors:
+      messages:
+        blank: "を入力してください"
       models:
         state_calendar:
           attributes:
@@ -26,14 +58,22 @@ ja:
             physical_state:
               blank: "を選択してください"
 
-  errors:
-    messages:
-      blank: "を入力してください"
-    attributes:
-      visit_status:
-        blank: "を選択してください"
-      greeting_type:
-        blank: "を選択してください"
+        post:
+          attributes:
+            post_type:
+              blank: "を選択してください"
+            relationship:
+              blank: "を選択してください"
+            situation:
+              blank: "を選択してください"
+            content:
+              blank: "を入力してください"
+            custom_relationship:
+              blank: "間柄のその他を選んだ場合は自由記述が必要です"
+            custom_situation:
+              blank: "状況のその他を選んだ場合は自由記述が必要です"
+            custom_name:
+              blank: "表示名登録を選んだ場合は名前を入力してください"
 
   views:
     pagination:
