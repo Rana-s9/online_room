@@ -1,11 +1,14 @@
 <header>
     <nav class="bg-beige border-2 border-matcha text-matcha font-semibold fixed top-0 w-full z-50">
       <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+        <div class="text-2xl">
+          <%= link_to "Online Room", root_path, data: { turbo: false } %>
+        </div>
         <div>
           日本語/English
         </div>
-        <div class="text-xl text-center">
-          <%= link_to "Online Room", root_path, data: { turbo: false } %>
+        <div class="flex">
+          <%= link_to "Tips", posts_path, data: { turbo: false } %>
         </div>
         <div class="flex space-x-4">
           <%= link_to "ログイン(帰宅)", new_user_session_path, data: { turbo: false } %>
