@@ -1,0 +1,54 @@
+<% tips_posts = @posts.select { |post| post.post_type == "tips" } %>
+<% question_posts = @posts.select { |post| post.post_type == "question" } %>
+
+<div class="w-full md:w-1/2 max-w-md bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
+<% if tips_posts.present? %>
+    <h1 class="text-matcha-green text-xl font-bold mb-4">Tips一覧 <i class="fa-solid fa-leaf"></i></h1>
+    <% tips_posts.each do |post| %>
+    <div class="bg-light-gray/75 p-4 rounded shadow mb-4 text-matcha font-semibold">
+        <div class="flex">
+        <h1 class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+            <%= post.relationship == "other_relationship" ? post.custom_relationship : I18n.t("activerecord.attributes.post.relationship_options.#{post.relationship}") %>
+        </h1>
+        <h1 class="text-matcha-green mx-2"> × </h1>
+        <h1 class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+            <%= post.situation == "other_situation" ? post.custom_situation : I18n.t("activerecord.attributes.post.situation_options.#{post.situation}") %>
+        </h1>
+        </div>
+        <p><i class="fa-solid fa-user"></i> <%= post.display_user %></p>
+        <div class="flex items-center gap-2 mt-2">
+        <span class="bg-yellow/75 text-matcha-green text-sm font-bold rounded px-2">Tip</span>
+        <%= link_to post.content, current_user == post.user ? edit_post_path(post) : post_path(post), class: "underline" %>
+        </div>
+    </div>
+    <% end %>
+<% else %>
+    <p>Tipsの投稿はありません<i class="fa-solid fa-leaf"></i></p>
+<% end %>
+</div>
+
+<div class="w-full md:w-1/2 max-w-md bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
+<% if question_posts.present? %>
+    <h1 class="text-matcha text-xl font-bold mb-4">質問一覧 <i class="fa-solid fa-comment"></i></h1>
+    <% question_posts.each do |post| %>
+    <div class="bg-light-gray/75 p-4 rounded shadow mb-4 text-matcha font-semibold">
+        <div class="flex">
+        <h1 class="bg-matcha/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+            <%= post.relationship == "other_relationship" ? post.custom_relationship : I18n.t("activerecord.attributes.post.relationship_options.#{post.relationship}") %>
+        </h1>
+        <h1 class="text-matcha-green mx-2"> × </h1>
+        <h1 class="bg-matcha/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+            <%= post.situation == "other_situation" ? post.custom_situation : I18n.t("activerecord.attributes.post.situation_options.#{post.situation}") %>
+        </h1>
+        </div>
+        <p><i class="fa-solid fa-user"></i> <%= post.display_user %></p>
+        <div class="flex items-center gap-2 mt-2">
+        <span class="bg-yellow/75 text-matcha-green text-sm font-bold rounded px-2">Q.</span>
+        <%= link_to post.content, current_user == post.user ? edit_post_path(post) : post_path(post), class: "underline" %>
+        </div>
+    </div>
+    <% end %>
+<% else %>
+    <p>質問の投稿はありません<i class="fa-solid fa-comment"></i></p>
+<% end %>
+</div>

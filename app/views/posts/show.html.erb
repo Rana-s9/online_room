@@ -1,1 +1,33 @@
-<h1>show</h1>
+<div class="flex justify-between items-center mb-4">
+    <h3 class="text-2xl font-semibold text-green-600"><%= @post.post_type %></h3>
+</div>
+
+<div class="container pt-5">
+  <div class="flex justify-center mb-3">
+    <div class="w-full max-w-2xl">
+      <div class="bg-light-gray/50 rounded-lg shadow-md">
+        <div class="p-6">
+          <div class="flex gap-2 mb-2">
+            <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+              <%= @post.relationship == "other_relationship" ? @post.custom_relationship : I18n.t("activerecord.attributes.post.relationship_options.#{@post.relationship}") %>
+            </span>
+            <span class="text-matcha-green">×</span>
+            <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+              <%= @post.situation == "other_situation" ? @post.custom_situation : I18n.t("activerecord.attributes.post.situation_options.#{@post.situation}") %>
+            </span>
+          </div>
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-semibold text-green-600"><%= @post.content %></h3>
+          </div>
+
+          <p><i class="fa-solid fa-user"></i> <%= @post.display_user %></p>
+          <p class="text-gray-700">
+            <strong>登録日時:</strong> <%= l(@post.created_at, format: :long) %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to "戻る", posts_path, class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
