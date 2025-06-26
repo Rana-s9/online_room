@@ -1,1 +1,107 @@
-<h1>edit</h1>
+<%= link_to "戻る", posts_path, class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray" %>
+<div class="mb-6">
+  <div class="text-dark-gray">
+    <h1>*Tipsや質問を投稿してみよう</h1>
+    <%= form_with model: @post, local: true, class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-2" do |f| %>
+      <% if @post.errors.any? %>
+        <div class= "bg-beige/30 text-matcha/75 font-bold">
+          <ul class="list-disc pl-5">
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.label :relationship, "間柄", class: "text-dark-gray" %>
+      <div class="space-y-2">
+      <%= f.select :relationship,
+          [["交際相手、パートナー", "partner"], ["友達", "friend"], ["家族", "family"], ["その他", "other_relationship"]],
+          { prompt: "間柄を選択" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "relationship-select" %>
+      <div id="custom-relationship-field" style="display: none;" class="mt-2">
+        <%= f.label :custom_relationship, "自由記述（その他）", class: "text-dark-gray" %>
+        <%= f.text_field :custom_relationship, class: "w-full rounded p-2 border border-gray-300" %>
+      </div>
+
+      <%= f.label :post_type, "tips/質問", class: "text-dark-gray" %>
+      <%= f.select :post_type,
+          [["Tips", "tips"], ["質問", "question"]],
+          { prompt: "tips/質問を選択" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
+
+      <%= f.label :situation, "状況", class: "text-dark-gray" %>
+      <%= f.select :situation,
+          [["遠距離", "long_distance"], ["たまに会う", "sometimes_meet"], ["同居", "living_together"], ["その他", "other_situation"]],
+          { prompt: "状況を選択" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "situation-select" %>
+      <div id="custom-situation-field" style="display: none;" class="mt-2">
+        <%= f.label :custom_situation, "自由記述（その他）", class: "text-dark-gray" %>
+        <%= f.text_field :custom_situation, class: "w-full rounded p-2 border border-gray-300" %>
+      </div>
+
+      <%= f.label :content, "内容", class: "text-dark-gray" %>
+      <%= f.text_area :content, placeholder: "内容を入力", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+
+      <%= f.label :display_name, "表示名", class: "text-dark-gray" %>
+      <%= f.select :display_name,
+          [["#{current_user.name}", "username"], ["匿名", "anonymous"], ["表示名登録", "nickname"]],
+          { prompt: "表示名を選択" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "name-select" %>
+      <div id="custom-name-field" style="display: none;" class="mt-2">
+        <%= f.label :custom_name, "自由記述（その他）", class: "text-dark-gray" %>
+        <%= f.text_field :custom_name, class: "w-full rounded p-2 border border-gray-300" %>
+      </div>
+
+      <div class="text-center">
+        <%= f.submit "更新", class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
+      </div>
+      <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, @post, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Relationship
+    const relationshipSelect = document.getElementById("relationship-select");
+    const relationshipField = document.getElementById("custom-relationship-field");
+
+    function toggleRelationshipField() {
+      if (relationshipSelect.value === "other_relationship") {
+        relationshipField.style.display = "block";
+      } else {
+        relationshipField.style.display = "none";
+      }
+    }
+
+    relationshipSelect.addEventListener("change", toggleRelationshipField);
+    toggleRelationshipField();
+
+    // Situation
+    const situationSelect = document.getElementById("situation-select");
+    const situationField = document.getElementById("custom-situation-field");
+
+    function toggleSituationField() {
+      if (situationSelect.value === "other_situation") {
+        situationField.style.display = "block";
+      } else {
+        situationField.style.display = "none";
+      }
+    }
+
+    situationSelect.addEventListener("change", toggleSituationField);
+    toggleSituationField();
+
+    // Display Name
+    const nameSelect = document.getElementById("name-select");
+    const nameField = document.getElementById("custom-name-field");
+
+    function toggleNameField() {
+      if (nameSelect.value === "nickname") {
+        nameField.style.display = "block";
+      } else {
+        nameField.style.display = "none";
+      }
+    }
+
+    nameSelect.addEventListener("change", toggleNameField);
+    toggleNameField();
+  });
+</script>
