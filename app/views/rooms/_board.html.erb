@@ -1,9 +1,9 @@
-<div class="bg-white/65 shadow z-50 p-4 fixed top-[260px] left-4 w-[150px] h-[200px] md:w-[400px] md:h-[300px] overflow-y-auto">
+<div class="bg-white/65 shadow z-50 p-4 fixed top-[260px] left-4 w-[150px] h-[200px] md:w-[350px] md:h-[300px] overflow-y-auto">
   <% if @whiteboards.empty? %>
     <p class="text-dark-gray text-center text-sm">伝言はまだありません</p>
   <% else %>
     <% @whiteboards.each do |board| %>
-      <div class="mb-4 border-b border-gray-200 pb-2 text-sm text-dark-gray">
+      <div class="mb-4 border-b border-gray-200 pb-2 text-sm text-dark-gray md:text-md">
         <% if board.user == current_user %>
             <div
                 data-controller="board"

@@ -1,5 +1,5 @@
 <%= link_to "新規登録", new_room_spot_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
-<div class="w-full max-w-md mx-auto bg-light-gray/40 p-6 rounded-lg shadow-lg mt-8">
+<div class="w-full max-w-md mx-auto bg-light-gray/40 p-6 rounded-lg shadow-lg mt-12">
   <% if @visited.present? %>
       <h2 class="text-xl text-matcha-green font-bold">行ったことがある場所一覧</h2>
       <% @visited.each do |spot| %>
