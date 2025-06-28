@@ -1,4 +1,4 @@
-<h1 class="text-matcha-green text-xl font-bold">"<%= @room.name %>" のカレンダー</h1>
+<h1 class="text-matcha-green text-xl font-bold mt-6">"<%= @room.name %>" のカレンダー</h1>
 <% unless @today_state.present? %>
   <%= link_to "+ 本日 #{ Time.current.strftime("%Y年%m月%d日") }の心身登録", new_room_state_calendar_path(@room), class: "bg-gray p-4 rounded shadow mb-4 mt-2 hover:bg-blue/75 transition text-beige" %>
 <% end %>

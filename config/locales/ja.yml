@@ -14,9 +14,6 @@ ja:
       greeting:
         greeting_type: ステータス
         message: メッセージ
-      ja:
-  activerecord:
-    attributes:
       post:
         relationship: "間柄"
         post_type: "tips/質問"

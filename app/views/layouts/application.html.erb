@@ -40,7 +40,7 @@
         <%= message %>
       </div>
     <% end %>
-    <main class="flex-1 <%= content_for?(:main_class) ? yield(:main_class) : 'container mx-auto flex-1 flex flex-col justify-center items-center' %>">
+    <main class="pt-12 flex-1 <%= content_for?(:main_class) ? yield(:main_class) : 'container mx-auto flex-1 flex flex-col justify-center items-center' %>">
       <%= yield %>
     </main>
     <%= render 'shared/footer' %>
