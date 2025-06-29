@@ -1,33 +1,43 @@
-<div class="flex justify-between items-center mb-4">
-    <h3 class="text-2xl font-semibold text-green-600"><%= @post.post_type %></h3>
-</div>
+<div class="w-full md:w-2/3 max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6 mt-6">
+  <h1 class="text-2xl font-bold text-matcha-green mb-4">
+    <%= @post.post_type == "tips" ? "Tips" : "質問" %> <i class="<%= @post.post_type == 'tips' ? 'fa-solid fa-leaf' : 'fa-solid fa-comment' %>"></i>
+  </h1>
 
-<div class="container pt-5">
-  <div class="flex justify-center mb-3">
-    <div class="w-full max-w-2xl">
-      <div class="bg-light-gray/50 rounded-lg shadow-md">
-        <div class="p-6">
-          <div class="flex gap-2 mb-2">
-            <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-              <%= @post.relationship == "other_relationship" ? @post.custom_relationship : I18n.t("activerecord.attributes.post.relationship_options.#{@post.relationship}") %>
-            </span>
-            <span class="text-matcha-green">×</span>
-            <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-              <%= @post.situation == "other_situation" ? @post.custom_situation : I18n.t("activerecord.attributes.post.situation_options.#{@post.situation}") %>
-            </span>
-          </div>
-          <div class="flex justify-between items-center mb-4">
-            <h3 class="text-2xl font-semibold text-green-600"><%= @post.content %></h3>
-          </div>
-
-          <p><i class="fa-solid fa-user"></i> <%= @post.display_user %></p>
-          <p class="text-gray-700">
-            <strong>登録日時:</strong> <%= l(@post.created_at, format: :long) %>
-          </p>
-        </div>
-      </div>
+  <div class="bg-beige/40 p-4 rounded shadow mb-6 text-matcha font-semibold">
+    <div class="flex mb-2">
+      <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+        <%= @post.relationship == "other_relationship" ? @post.custom_relationship : I18n.t("activerecord.attributes.post.relationship_options.#{@post.relationship}") %>
+      </span>
+      <span class="text-matcha-green mx-2">×</span>
+      <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+        <%= @post.situation == "other_situation" ? @post.custom_situation : I18n.t("activerecord.attributes.post.situation_options.#{@post.situation}") %>
+      </span>
     </div>
+
+    <p><i class="fa-solid fa-user"></i> <%= @post.display_user %></p>
+
+    <div class="flex items-center gap-2 mt-2">
+      <span class="bg-yellow/75 text-matcha-green text-sm font-bold rounded px-2">
+        <%= @post.post_type == "tips" ? "Tip" : "Q." %>
+      </span>
+      <span class="text-2xl font-semibold text-green-600"><%= @post.content %></span>
+    </div>
+
+    <p class="text-gray-700 mt-3">
+      <strong>登録日時:</strong> <%= l(@post.created_at, format: :long) %>
+    </p>
   </div>
 </div>
+<div class="w-full max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
+  <!-- コメント -->
+    <h2 class="text-xl font-bold text-dark-gray mb-4">コメント</h2>
 
+    <% if @post.answers.empty? %>
+      <p class="text-gray-600">コメントはまだありません</p>
+    <% else %>
+      <%= render @answers %>
+    <% end %>
+</div>
+  <%= render 'answers/form', answer: @answer, post: @post %>
 <%= link_to "戻る", posts_path, class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+

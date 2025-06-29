@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_25_081535) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_29_033235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_answers_on_post_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
 
   create_table "areas", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -152,6 +162,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_25_081535) do
     t.index ["user_id"], name: "index_whiteboards_on_user_id"
   end
 
+  add_foreign_key "answers", "posts"
+  add_foreign_key "answers", "users"
   add_foreign_key "areas", "users"
   add_foreign_key "exchange_diaries", "rooms"
   add_foreign_key "exchange_diaries", "users"

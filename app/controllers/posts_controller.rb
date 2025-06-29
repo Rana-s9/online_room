@@ -20,10 +20,14 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @answer = Answer.new
+    @answers = @post.answers.includes(:user).order(created_at: :desc)
   end
 
   def edit
     @post = Post.find_by(user: current_user, id: params[:id])
+    @answer = Answer.new
+    @answers = @post.answers.includes(:user).order(created_at: :desc)
   end
 
   def update

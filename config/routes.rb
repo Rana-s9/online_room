@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
   resources :areas, only: %i[create update index]
   resources :weather_records, only: %i[create update]
-  resources :posts, only: %i[new create index edit show update destroy]
+  resources :posts, only: %i[new create index edit show update destroy] do
+    resources :answers, only: %i[create edit destroy], shallow: true
+  end
   resources :roommate_lists, only: %i[] do
     collection do
       get "join"  # /roommate_lists/join?token=xxx
