@@ -19,7 +19,7 @@
           { prompt: "間柄を選択" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "relationship-select" %>
       <div id="custom-relationship-field" style="display: none;" class="mt-2">
         <%= f.label :custom_relationship, "自由記述（その他）", class: "text-dark-gray" %>
-        <%= f.text_field :custom_relationship, class: "w-full rounded p-2 border border-gray-300" %>
+        <%= f.text_field :custom_relationship,placeholder: "間柄を入力", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
       </div>
 
       <%= f.label :post_type, "tips/質問", class: "text-dark-gray" %>
@@ -33,7 +33,7 @@
           { prompt: "状況を選択" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "situation-select" %>
       <div id="custom-situation-field" style="display: none;" class="mt-2">
         <%= f.label :custom_situation, "自由記述（その他）", class: "text-dark-gray" %>
-        <%= f.text_field :custom_situation, class: "w-full rounded p-2 border border-gray-300" %>
+        <%= f.text_field :custom_situation, placeholder: "状況を入力", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
       </div>
 
       <%= f.label :content, "内容", class: "text-dark-gray" %>
@@ -45,7 +45,7 @@
           { prompt: "表示名を選択" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "name-select" %>
       <div id="custom-name-field" style="display: none;" class="mt-2">
         <%= f.label :custom_name, "自由記述（その他）", class: "text-dark-gray" %>
-        <%= f.text_field :custom_name, class: "w-full rounded p-2 border border-gray-300" %>
+        <%= f.text_field :custom_name,placeholder: "表示名を入力", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
       </div>
 
       <div class="text-center">
@@ -60,7 +60,7 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("turbo:load", function () {
     // Relationship
     const relationshipSelect = document.getElementById("relationship-select");
     const relationshipField = document.getElementById("custom-relationship-field");
@@ -107,3 +107,4 @@
     toggleNameField();
   });
 </script>
+

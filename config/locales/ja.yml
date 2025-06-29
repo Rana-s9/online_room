@@ -41,6 +41,8 @@ ja:
           username: "ユーザーネーム"
           anonymous: "匿名"
           nickname: "表示名登録"
+      answer:
+        body: "内容"
 
     errors:
       messages:

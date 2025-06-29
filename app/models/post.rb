@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
+  has_many :answers, dependent: :destroy
 
   enum relationship: { partner: 0, friend: 1, family: 2, other_relationship: 99 }
   enum post_type: { tips: 0, question: 1 }
