@@ -5,7 +5,6 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  id: 3
   user: one
   relationship: 0
   post_type: 0
@@ -15,7 +14,6 @@ one:
 # column: value
 #
 two:
-  id: 4
   user: two
   relationship: 1
   post_type: 1
