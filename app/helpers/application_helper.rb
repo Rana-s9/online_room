@@ -5,7 +5,7 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: "Online Room",
-      title: "遠くにいる人と、オンラインで日常を一緒に過ごすアプリ",
+      title: "遠くにいる人と、日常を一緒に過ごすアプリ",
       reverse: true,
       charset: "utf-8",
       description: "Online Roomでは、遠くにいる人や会えない人と日々の記録を共有し、同じ部屋に帰宅する体験ができます。",
