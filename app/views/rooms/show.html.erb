@@ -38,4 +38,7 @@
   <%= image_tag '/gif.gif' %>
 <% else %>
   <%= render 'home' %>
+  <div id="loading-screen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:yellow/30;z-index:9999;display:flex;justify-content:center;align-items:center;">
+    <div id="loading-progress" class="text-matcha">Loading...</div>
+  </div>
 <% end %>
