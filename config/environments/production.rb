@@ -98,7 +98,7 @@ Rails.application.configure do
   config.action_controller.asset_host = "https://online-room.onrender.com"
 
   config.public_file_server.headers = {
-    'Cache-Control' => 'public, max-age=31536000'
+    "Cache-Control" => "public, max-age=31536000"
   }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
