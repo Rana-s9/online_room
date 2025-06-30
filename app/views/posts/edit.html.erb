@@ -53,7 +53,10 @@
       </div>
       <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, @post, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
     <% end %>
-    <%= render 'share' %>
+    <div class ="text-center title ">
+        <%= link_to 'share', "https://x.com/share?url=https://online-room.onrender.com/&text=【🏠#{@post.post_type}】～#{@post.content}～を投稿しました！", 
+        title: 'X',class:'fa-brands fa-x-twitter', target: '_blank', rel: "noopener" %>
+    </div>
   </div>
 </div>
 <div class="flex justify-center">
