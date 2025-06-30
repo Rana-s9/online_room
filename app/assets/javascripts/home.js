@@ -45,9 +45,13 @@
         }
         document.getElementById("loading-screen").style.display = "none";
       },
-      (xhr) => {
-        const percent = (xhr.loaded / xhr.total * 100).toFixed(0);
-        document.getElementById("loading-progress").textContent = `Loading: ${percent}%`;
+      function(xhr) {
+        let progressText = "Loading...";
+        if (xhr.total && xhr.total > 0 && isFinite(xhr.total)) {
+          const percent = (xhr.loaded / xhr.total * 100).toFixed(0);
+          progressText = `Loading: ${percent}%`;
+        }
+        document.getElementById("loading-progress").textContent = progressText;
       },
       function(error) {
         console.error("", error);
