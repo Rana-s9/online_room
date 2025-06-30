@@ -1,18 +1,16 @@
-<div class="max-w-lg mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-2">
+<div class="max-w-2xl mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-2">
   <div class="text-center">
   <h1 class="text-dark-gray font-bold">現在有効な招待リンク一覧</h1>
   <% if @valid_tokens.present? %>
     <% @valid_tokens.each do |token| %>
       <div class="bg-beige p-4 rounded shadow mb-4">
         <div class="flex justify-center">
-          <!-- 招待リンクを表示 -->
           <div id="post_<%= token.id %>" class="inline-block">
             <%= link_to "招待リンク", join_roommate_lists_url(token: token.token), target: "_blank", class: "text-brown" %>
             <h1 class="text-matcha-green font-semibold">有効期限：<%= l(token.expires_at, format: :short) %></h1>
             <h1 class="text-matcha-green font-semibold">トークン番号:No.<%= token.id %></h1>
           </div>
 
-          <!-- コピー用ボタン -->
           <div class="float-right ml-2 text-brown">
             <button
               class="copy-button btn btn-outline-secondary btn-sm"
@@ -30,7 +28,6 @@
         新しくトークンを発行してください。</h1>
   <% end %>
 
-    <!-- トークン発行フォーム -->
     <%= form_with url: room_invitation_tokens_path(@room), method: :post, local: true, data: { turbo: false } do |f| %>
       <%= f.submit "+ トークンを発行する", class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
     <% end %>
@@ -38,11 +35,12 @@
       <p>※有効期限は発行後30分です。上記リンクをコピーして共有しましょう。</p>
       <p>※お相手ユーザーがログイン後➡ 上記リンクを開くと部屋に招待されます。</p>
       <p class="underline">※お相手ユーザーが新規登録・ログインしている必要があります。</p>
+      <p class="underline">※スマホで参加に失敗した場合は、リンクを直接URL欄に貼ってください。</p>
     </div>
   </div>
 </div>
 
-<div class="max-w-lg mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-4">
+<div class="max-w-2xl mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-4">
   <h2 class="text-center text-dark-gray font-bold">招待トークン発行履歴</h2>
   <div class="flex justify-center items-center my-2 space-x-4">
     <table>
