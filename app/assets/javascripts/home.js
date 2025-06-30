@@ -50,7 +50,7 @@
         document.getElementById("loading-progress").textContent = `Loading: ${percent}%`;
       },
       function(error) {
-        console.error("GLB\u8AAD\u307F\u8FBC\u307F\u30A8\u30E9\u30FC:", error);
+        console.error("", error);
       }
     );
     camera.position.z = 5;

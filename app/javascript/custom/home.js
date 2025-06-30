@@ -42,7 +42,6 @@ document.addEventListener("turbo:load", () => {
       window.bookAnimationClips = gltf.animations;
       window.doorAnimationClips = gltf.animations;
 
-      // ✅ カメラ処理もこの中に移動（gltf参照が可能）
       if (gltf.cameras && gltf.cameras.length > 0) {
         const cameraName = "1カメ";
         const foundCamera = gltf.cameras.find(cam => cam.name === cameraName);
@@ -61,7 +60,7 @@ document.addEventListener("turbo:load", () => {
       document.getElementById('loading-progress').textContent = `Loading: ${percent}%`;
     },
     function (error) {
-      console.error('GLB読み込みエラー:', error);
+      console.error('', error);
     }
   );
 
