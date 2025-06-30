@@ -53,6 +53,7 @@
       </div>
       <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, @post, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
     <% end %>
+    <%= render 'share' %>
   </div>
 </div>
 <div class="flex justify-center">
