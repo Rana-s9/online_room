@@ -5,11 +5,11 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: "Online Room",
-      title: "遠くにいる人と部屋を共有できるサービス",
+      title: "遠くにいる人と、オンラインで日常を一緒に過ごすアプリ",
       reverse: true,
       charset: "utf-8",
-      description: "Live Fesでは、音楽ライブやフェスの余韻や喪失感を参加者同士で共通し、感想や思い出を語り合うことができます。",
-      keywords: "音楽,ライブ,フェス,余韻,喪失感,共有",
+      description: "Online Roomでは、遠くにいる人や会えない人と日々の記録を共有し、同じ部屋に帰宅する体験ができます。",
+      keywords: "遠距離恋愛,友人,家族,オンライン,交換日記,心身の記録,天気共有",
       canonical: "https://online-room.onrender.com/",
       separator: "|",
       og: {
