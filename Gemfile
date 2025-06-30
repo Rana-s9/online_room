@@ -74,3 +74,5 @@ gem "dotenv-rails"
 
 gem "simple_calendar"
 gem "geocoder"
+
+gem "meta-tags"

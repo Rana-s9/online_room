@@ -6,7 +6,8 @@
     var mixer;
     const clock = new THREE.Clock();
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1e3);
+    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1e3);
+    let customCamera1;
     const canvas = document.getElementById("three-canvas");
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setSize(canvas.clientWidth, canvas.clientHeight);
@@ -28,6 +29,16 @@
       window.mixer = mixer;
       window.bookAnimationClips = gltf.animations;
       window.doorAnimationClips = gltf.animations;
+      if (gltf.cameras && gltf.cameras.length > 0) {
+        const cameraName = "1\u30AB\u30E1";
+        const foundCamera = gltf.cameras.find((cam) => cam.name === cameraName);
+        if (foundCamera) {
+          customCamera1 = foundCamera;
+          customCamera1.up.set(0, 1, 0);
+          customCamera1.rotation.y += Math.PI;
+          customCamera1.position.z += 1;
+        }
+      }
       const bookBtn = document.getElementById("open-book");
       if (bookBtn) {
         bookBtn.addEventListener("click", (e) => {
@@ -53,6 +64,13 @@
             "Action.002",
             "Action"
           ];
+          if (customCamera1) {
+            customCamera1.aspect = camera.aspect;
+            customCamera1.updateProjectionMatrix();
+            controls.object = customCamera1;
+            camera = customCamera1;
+            scene.add(camera);
+          }
           if (window.mixer && window.doorAnimationClips) {
             let maxDuration = 0;
             animationNames.forEach((name) => {
