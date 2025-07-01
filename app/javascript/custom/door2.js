@@ -22,7 +22,7 @@ dracoLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
 let loader = new THREE.GLTFLoader();
 loader.setDRACOLoader(dracoLoader);
 
-loader.load('/door2.glb', function (gltf) {
+loader.load('https://pub-66ad90e703114a8a903b4c24ca19293d.r2.dev/door2.glb', function (gltf) {
 const model = gltf.scene;
 model.scale.set(0.8, 0.8, 0.8);
 
