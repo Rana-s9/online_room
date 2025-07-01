@@ -1,6 +1,4 @@
 document.addEventListener("turbo:load", () => {
-  const isMobile = /iPhone|Android.+Mobile|Windows Phone|iPod/i.test(navigator.userAgent);
-  if (isMobile) return;
   if (window._threeInitialized) return;
   window._threeInitialized = true;
   var mixer;
@@ -8,6 +6,8 @@ document.addEventListener("turbo:load", () => {
 
   const scene = new THREE.Scene();
   let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  let customCamera1;
+
   const canvas   = document.getElementById('three-canvas');
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setSize(canvas.clientWidth, canvas.clientHeight);
@@ -26,7 +26,7 @@ document.addEventListener("turbo:load", () => {
   let loader = new THREE.GLTFLoader();
   loader.setDRACOLoader(dracoLoader);
 
-  loader.load('/home.glb', function (gltf) {
+  loader.load('https://pub-66ad90e703114a8a903b4c24ca19293d.r2.dev/home.glb', function (gltf) {
   const model = gltf.scene;
   model.scale.set(1, 1, 1);
   scene.add(model);
@@ -35,6 +35,17 @@ document.addEventListener("turbo:load", () => {
   window.mixer = mixer;
   window.bookAnimationClips = gltf.animations;
   window.doorAnimationClips = gltf.animations;
+
+  if (gltf.cameras && gltf.cameras.length > 0) {
+  const cameraName = "1カメ";
+  const foundCamera = gltf.cameras.find(cam => cam.name === cameraName);
+    if (foundCamera) {
+      customCamera1 = foundCamera;
+      customCamera1.up.set(0, 1, 0);
+      customCamera1.rotation.y += Math.PI;
+      customCamera1.position.z += 1;
+    }
+  }
 
   const bookBtn = document.getElementById("open-book");
 if (bookBtn) {
@@ -47,6 +58,14 @@ if (bookBtn) {
       "Action.015", "Action.016", "Action.017", "Action.018", "Action.001", "Action.002",
       "Action"
     ];
+
+    if (customCamera1) {
+      customCamera1.aspect = camera.aspect;
+      customCamera1.updateProjectionMatrix();
+      controls.object = customCamera1;
+      camera = customCamera1;
+      scene.add(camera);
+    }
 
     if (window.mixer && window.doorAnimationClips) {
       let maxDuration = 0;
@@ -75,35 +94,14 @@ if (bookBtn) {
   });
 }
 
-  if (gltf.cameras && gltf.cameras.length > 0) {
-    const cameraName = "1カメ";
-    const foundCameraObject = model.getObjectByName(cameraName);
-    const foundCamera = gltf.cameras.find(cam => cam.name === cameraName);
-    if (foundCamera) {
-      customCamera = foundCamera;
-      customCamera.up.set(0, 1, 0);
-      customCamera.rotation.y += Math.PI;
-      customCamera.position.z += 1;
-    }
-  }
-
  const spotBtn = document.getElementById("open-door");
 if (spotBtn) {
   spotBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
     const doorNames = [
-      "part_key_window.004Action", "key_window_hook.003Action",
-      "1カメAction"
+      "part_key_window.004Action", "key_window_hook.003Action"
     ];
-
-    if (customCamera) {
-        customCamera.aspect = camera.aspect;
-        customCamera.updateProjectionMatrix();
-        controls.object = customCamera; // OrbitControlsを更新
-        camera = customCamera;
-        scene.add(camera);
-      }
 
     if (window.mixer && window.bookAnimationClips) {
       let maxDuration = 0;
@@ -161,4 +159,3 @@ if (spotBtn) {
     camera.updateProjectionMatrix();
   });
 });
-
