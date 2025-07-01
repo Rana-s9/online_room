@@ -99,6 +99,7 @@ Rails.application.configure do
 
   config.hosts << "our-onlineroom.com"
   config.hosts << "www.our-onlineroom.com"
+  config.hosts << "online-room.onrender.com"
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
