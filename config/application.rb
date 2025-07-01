@@ -20,6 +20,16 @@ module Myapp
     config.time_zone = "Tokyo"
     config.active_record.default_timezone = :utc  # DB保存はUTCのままでOK
 
+    config.middleware.insert_before(
+      ActionDispatch::Static, Rack::Static,
+      urls: ["/home.glb"], ["/door.glb"], ["/door2.glb"]
+      root: Rails.root.join("public"),
+      header_rules: [
+        [:all, { 'Cache-Control' => 'public, max-age=31536000' }]
+      ]
+    )
+
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
