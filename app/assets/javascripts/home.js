@@ -25,6 +25,10 @@
       const model = gltf.scene;
       model.scale.set(1, 1, 1);
       scene.add(model);
+      const loading = document.getElementById("loading-screen");
+      if (loading) {
+        loading.style.display = "none";
+      }
       mixer = new THREE.AnimationMixer(model);
       window.mixer = mixer;
       window.bookAnimationClips = gltf.animations;
