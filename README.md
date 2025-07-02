@@ -135,4 +135,4 @@ ___
 
 画面遷移図⓶（英語切り替えバージョン）：https://www.figma.com/design/YnKgRziTDMr0ffOpeo5FQZ/Online-Room--English-ver.-?t=1fZk0QVtWA81FmSt-1
 
-ER図：[![Image from Gyazo](https://i.gyazo.com/d6431d7810a4965a158f563cd2a2e91c.jpg)](https://gyazo.com/d6431d7810a4965a158f563cd2a2e91c)
+ER図：[![Image from Gyazo](https://i.gyazo.com/248968585bc082f37cc8eb8c971e7035.jpg)](https://gyazo.com/248968585bc082f37cc8eb8c971e7035)
