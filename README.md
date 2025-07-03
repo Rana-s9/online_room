@@ -6,7 +6,7 @@
 物理的な距離を越えた “つながり” を感じられるバーチャル同居アプリです。
 ___
 # 💡 このサービスを作った理由<br>
-約9,300kmの国際遠距離恋愛も1年以上が経ち、寂しさを乗り越える中で、
+約9,300kmの国際遠距離恋愛も1年半弱が経ち、寂しさを乗り越える中で、
 「どうにかして一緒にいる感覚を共有したい」という思いが日々募りました。<br>
 物理的な距離や時差といった様々な障壁がある中で、ふと気づいたのは、画面の中ではどこにいても自由に一緒にいられるということでした。
 アプリ構想を練る中で、実際に相手の部屋を3Dで再現したところ、本当に一緒の空間を共有している感覚になり
@@ -135,4 +135,4 @@ ___
 
 画面遷移図⓶（英語切り替えバージョン）：https://www.figma.com/design/YnKgRziTDMr0ffOpeo5FQZ/Online-Room--English-ver.-?t=1fZk0QVtWA81FmSt-1
 
-ER図：[![Image from Gyazo](https://i.gyazo.com/96234790125ab915c60efc2269794226.jpg)](https://gyazo.com/96234790125ab915c60efc2269794226)
+ER図：[![Image from Gyazo](https://i.gyazo.com/9ea0365407c4fb8afeba5e5e55da2a20.jpg)](https://gyazo.com/9ea0365407c4fb8afeba5e5e55da2a20)
