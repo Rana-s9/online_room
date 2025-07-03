@@ -10,14 +10,14 @@ module ApplicationHelper
       charset: "utf-8",
       description: "Online Roomでは、遠くにいる人や会えない人と日々の記録を共有し、同じ部屋に帰宅する体験ができます。",
       keywords: "遠距離恋愛,友人,家族,オンライン,交換日記,心身の記録,天気共有",
-      canonical: "https://online-room.onrender.com/",
+      canonical: "https://our-onlineroom.com/",
       separator: "|",
       og: {
         site_name: :site,
         title: :title,
         description: :description,
         type: "website",
-        url: "https://online-room.onrender.com/",
+        url: "https://our-onlineroom.com/",
         image: image_url("ogp.png"),
         local: "ja-JP"
       },
