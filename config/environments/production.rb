@@ -98,9 +98,9 @@ Rails.application.configure do
   config.action_controller.asset_host = Proc.new do |source, request|
     if request
       case request.host
-      when 'our-onlineroom.com'
+      when "our-onlineroom.com"
         "https://our-onlineroom.com"
-      when 'online-room.onrender.com'
+      when "online-room.onrender.com"
         "https://online-room.onrender.com"
       else
         nil
