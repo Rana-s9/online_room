@@ -97,9 +97,16 @@ Rails.application.configure do
 
   config.action_controller.asset_host = Proc.new do |source, request|
     if request
-      "#{request.protocol}#{request.host}"
+      case request.host
+      when "our-onlineroom.com"
+        "https://our-onlineroom.com"
+      when "online-room.onrender.com"
+        "https://online-room.onrender.com"
+      else
+        nil
+      end
     else
-      "https://online-room.onrender.com"
+      "https://our-onlineroom.com"
     end
   end
 
