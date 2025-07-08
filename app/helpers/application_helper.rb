@@ -17,7 +17,7 @@ module ApplicationHelper
         title: :title,
         description: :description,
         type: "website",
-        url: "https://our-onlineroom.com/?t=refresh",
+        url: "https://our-onlineroom.com/",
         image: "https://our-onlineroom.com/images/ogp.png",
         local: "ja-JP"
       },
