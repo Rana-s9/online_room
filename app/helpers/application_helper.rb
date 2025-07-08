@@ -17,14 +17,14 @@ module ApplicationHelper
         title: :title,
         description: :description,
         type: "website",
-        url: "https://our-onlineroom.com/",
-        image: "https://our-onlineroom.com/images/ogp2.png",
+        url: "https://our-onlineroom.com/?t=refresh",
+        image: "https://our-onlineroom.com/images/ogp.png",
         local: "ja-JP"
       },
       twitter: {
         card: "summary_large_image",
         site: "@rana101779s",
-        image: "https://our-onlineroom.com/images/ogp2.png"
+        image: "https://our-onlineroom.com/images/ogp.png"
       }
     }
   end
