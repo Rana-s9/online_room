@@ -95,20 +95,7 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  config.action_controller.asset_host = Proc.new do |source, request|
-    if request
-      case request.host
-      when "our-onlineroom.com"
-        "https://our-onlineroom.com"
-      when "online-room.onrender.com"
-        "https://online-room.onrender.com"
-      else
-        nil
-      end
-    else
-      "https://our-onlineroom.com"
-    end
-  end
+  config.action_controller.asset_host = "https://our-onlineroom.com"
 
   config.hosts << "our-onlineroom.com"
   config.hosts << "www.our-onlineroom.com"
