@@ -18,13 +18,13 @@ module ApplicationHelper
         description: :description,
         type: "website",
         url: "https://our-onlineroom.com/",
-        image: image_url("ogp.png"),
+        image: image_url("ogp2.png"),
         local: "ja-JP"
       },
       twitter: {
         card: "summary_large_image",
         site: "@rana101779s",
-        image: image_url("ogp.png")
+        image: image_url("ogp2.png")
       }
     }
   end
