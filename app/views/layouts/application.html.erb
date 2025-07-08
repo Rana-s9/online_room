@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -38,7 +39,7 @@
     <script src="https://kit.fontawesome.com/3e9d8d532b.js" crossorigin="anonymous"></script>
   </head>
 
-  <body class="flex flex-col min-h-screen bg-beige">
+  <body class="flex flex-col min-h-screen bg-beige font-natural">
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% else %>

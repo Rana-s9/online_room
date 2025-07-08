@@ -28,6 +28,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        eng: ['"Playfair Display"', ...defaultTheme.fontFamily.sans],
+        natural: ['"Noto Serif JP"', '"Yu Mincho"', '"Hiragino Mincho ProN"', 'serif'],
       },
     },
   },
