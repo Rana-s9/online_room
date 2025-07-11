@@ -1,1 +1,90 @@
-<%= image_tag '/room.jpg', class: 'mx-auto max-w-2xl h-auto' %>
+<section class="w-full mx-auto max-w-2xl h-auto min-h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('/room.jpg'); mt-2">
+  <div class="text-white text-center bg-black/30 p-6 rounded">
+    <h1 class="text-2xl mb-4">おかえりなさい</h1>
+    <p class="text-2xl">オンライン同居の世界へ</p>
+    <h1 class="text-2xl animate-bounce mt-6" data-aos="fade-up" >Scroll☟</h1>
+  </div>
+</section>
+
+<section class="min-h-screen w-full flex items-center justify-center bg-white px-4">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <!-- 左：画像 -->
+    <div class="w-full md:w-1/2">
+      <%= image_tag '/registration.png', class: 'w-full h-auto rounded shadow-md' %>
+    </div>
+    <!-- 右：テキスト -->
+    <div class="w-full md:w-1/2 text-center md:text-left">
+      <h1 class="text-4xl font-semibold mb-4">Step 1</h1>
+      <p class="text-lg text-gray-600">
+        まずはアカウントを作成しましょう。<br>
+        ヘッダーのログイン / 新規登録をクリック
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="min-h-screen w-full flex items-center justify-center bg-gray-100">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <div class="w-full md:w-1/2 text-center md:text-right">
+      <h1 class="text-4xl font-semibold mb-4">Step 2</h1>
+      <p class="text-lg text-gray-600">
+        玄関で部屋を作り、入居しましょう。<br>
+        まずはヘッダーの「玄関」をクリック
+      </p>
+    </div>
+    <div class="w-full md:w-1/2">
+      <%= image_tag '/new_room.gif', class: 'w-full h-auto rounded shadow-md' %>
+    </div>
+
+  </div>
+</section>
+
+<section class="min-h-screen w-full flex items-center justify-center bg-white">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <div class="w-full md:w-1/2">
+      <%= image_tag '/area.gif', class: 'w-full h-auto rounded shadow-md' %>
+    </div>
+    <div class="w-full md:w-1/2 text-center md:text-left">
+      <h1 class="text-4xl font-semibold mb-4">Step 3</h1>
+      <p class="text-lg text-gray-600">
+        お住まいの地域を登録しましょう。<br>
+        天気取得できる都市名のみ登録できます
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="min-h-screen w-full flex items-center justify-center bg-gray-100">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <div class="w-full md:w-1/2 text-center md:text-right">
+      <h1 class="text-4xl font-semibold mb-4">Step 4</h1>
+      <p class="text-lg text-gray-600">
+        部屋に帰宅し、相手を招待しましょう。<br>
+        まずはヘッダーの「玄関」をクリック
+      </p>
+      <ul class="text-center">
+        <li>1. 「同居人を招待」をクリック</li>
+        <li>2. リンクを「コピー」</li>
+        <li>3. お相手に送信</li>
+      </ul>
+    </div>
+    <div class="w-full md:w-1/2">
+      <%= image_tag '/invitation.gif', class: 'w-full h-auto rounded shadow-md' %>
+    </div>
+  </div>
+</section>
+
+<section class="min-h-screen w-full flex items-center justify-center bg-white">
+  <div class="text-center px-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Step 5</h2>
+    <p class="text-base text-gray-600">部屋で日常を過ごそう。<br>できる６つのこと</p>
+    <ul class="mt-2 text-left">
+        <li>1. 天気情報の共有</li>
+        <li>2. ホワイトボードの伝言</li>
+        <li>3. おかえり/ただいまメッセージ管理</li>
+        <li>4. 交換日記</li>
+        <li>5. 想い出の場所</li>
+        <li>6. 心身コンディション</li>
+      </ul>
+  </div>
+</section>
