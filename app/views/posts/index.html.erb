@@ -1,8 +1,8 @@
 <div class= "mt-2">
   <h1 class= "text-matcha/75 bg-light-gray/40 p-4 font-semibold rounded-lg shadow-lg text-sm md:text:md">
     <ul class="list-disc pl-5">
-      <li><%= t("activerecord.attributes.post.description")%></li>
-      <li><%= t("activerecord.attributes.post.description2")%></li>
+      <li><%= t("views.post.description")%></li>
+      <li><%= t("views.post.description2")%></li>
     </ul>
   </h1>
   <% if mobile_device? %>
@@ -15,6 +15,6 @@
     </div>
   <% end %>
   <div class="text-center">
-    <%= link_to "新規作成", new_post_path, class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray" %>
+    <%= link_to t("buttons.submit"), new_post_path, class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray" %>
   </div>
 </div>

@@ -9,18 +9,18 @@ class AreasController < ApplicationController
     @area = current_user.build_area(area_params)
 
     if save_area_weather!(@area)
-      redirect_to rooms_path, notice: t('activerecord.attributes.area.register')
+      redirect_to rooms_path, notice: t('views.area.register')
     else
-      redirect_to rooms_path, alert: t('activerecord.attributes.area.failed_register')
+      redirect_to rooms_path, alert: t('views.area.failed_register')
     end
   end
 
   def update
     @area.assign_attributes(area_params)
     if save_area_weather!(@area)
-      redirect_to rooms_path, notice: t('activerecord.attributes.area.update')
+      redirect_to rooms_path, notice: t('views.area.update')
     else
-      redirect_to rooms_path, alert: t('activerecord.attributes.area.failed_update')
+      redirect_to rooms_path, alert: t('views.area.failed_update')
     end
   end
 

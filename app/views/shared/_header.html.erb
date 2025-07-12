@@ -12,7 +12,7 @@
           <%= link_to "Tips", posts_path, data: { turbo: false } %>
         </div>
         <div class="flex space-x-2 underline">
-          <%= link_to t('activerecord.attributes.front_door'), rooms_path,data: { turbo: false } %>
+          <%= link_to t('views.room.front_door'), rooms_path,data: { turbo: false } %>
         </div>
         <div class="flex space-x-2 underline">
           <%= link_to t('devise.sessions.signed_out_button'), destroy_user_session_path, method: :delete ,data: { turbo: false } %>

@@ -1,8 +1,57 @@
 en:
+  buttons:
+    back: "Back"
+    submit: "Add New"
+    save: "Save"
+    update: "Update"
+    get: "Get"
+  views:
+    post:
+      description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
+      description2: "Leave helpful advice in the comments!"
+    diary:
+      count: "Diary #%{number}"
+      name: "Exchange Diary"
+      your_day: "How was your day?"
+      write: "write a diary"
+    room:
+      front_door: "Front door"
+      registration: "Registration Date"
+      roommate: "resident"
+      owner: "Underlined house: registered by you"
+      house_name: "house"
+      living_alone: "Living alone"
+      return: "Enter this house"
+      back_to_room: "Back to %{room_name}🏠"
+    room_show:
+      invitation: "Invite a housemate　"
+      diary: "Exchange Diary　　　"
+      place: "Favorite Places　　　"
+      state: "Mental/Physical state"
+      message: "Greeting Message Settings"
+      cleaning: "Tidy up the room"
+    area:
+        rule: "Enter your area of residence *City or Ward (in English)"
+        example: "(e.g., shibuya)"
+        register: "Your area has been registered."
+        failed_register: "Could not retrieve weather information. Please check the city name."
+        update: "Your area has been updated."
+        failed_update: "Failed to update your area."
+    weather:
+      update: "Weather information has been updated."
+      failed_save: "Failed to save weather information."
+      failed_retrieve: "Could not retrieve weather information."
+    pagination:
+      first: "&laquo; first"
+      last: "last &raquo;"
+      previous: "&lsaquo; previous"
+      next: "next &rsaquo;"
+      truncate: "&hellip;"
+
   activerecord:
     attributes:
       exchange_diary:
-        body: "content"
+        body: "content-"
       spot:
         address: "address"
         name: "name"
@@ -15,19 +64,16 @@ en:
         greeting_type: "greeting type"
         message: "message"
       post:
-        description: "How do you connect with someone on a different rhythm? ーShare your tips or questions!"
-        description2: "Leave helpful advice in the comments!"
         tips: "Tips"
         questions: "Questions"
-        relationship: "relationship"
-        post_type: "tips/questions"
-        situation: "situation"
-        content: "content"
-        display_name: "display name"
-        custom_relationship: "other"
-        custom_situation: "other"
+        relationship: "relationship-"
+        post_type: "tips/questions-"
+        situation: "situation-"
+        content: "content-"
+        display_name: "display name-"
+        custom_relationship: "other-"
+        custom_situation: "other-"
         custom_name: "enter display name"
-        # enum語訳
         relationship_options:
           partner: "partner"
           friend: "friend"
@@ -44,44 +90,13 @@ en:
         display_name_options:
           username: "username"
           anonymous: "anonymous user"
-          nickname: "nickname"
-      area:
-        rule: "Enter your area of residence *City or Ward (in English)"
-        update_button: "Update"
-        example: "(e.g., shibuya)"
-        register: "Your area has been registered."
-        failed_register: "Could not retrieve weather information. Please check the city name."
-        update: "Your area has been updated."
-        failed_update: "Failed to update your area."
-      weather:
-        update: "Weather information has been updated."
-        failed_save: "Failed to save weather information."
-        failed_retrieve: "Could not retrieve weather information."
-        update_button: "Update"
-        get_button: "Get"
-      room:
-        move_in: "Move-in Date"
-        registration: "Registration Date"
-        roommate: "resident"
-        owner: "Underlined house: registered by you"
-        house_name: "house"
-        living_alone: "Living alone"
-        return: "Enter this house"
-      room_show:
-        invitation: "Invite a housemate　"
-        diary: "Exchange Diary　　　"
-        place: "Favorite Places　　　"
-        state: "Mental/Physical state"
-        message: "Greeting Message Settings"
-        cleaning: "Tidy up the room"
-
+          nickname: "display name"
       answer:
         body: "content"
-      front_door: "Front door"
 
     errors:
       messages:
-        blank: "please enter"
+        blank: "please enter your content"
       models:
         state_calendar:
           attributes:
@@ -91,101 +106,6 @@ en:
               blank: "please select"
             physical_state:
               blank: "please select"
-
-        en:
-  activerecord:
-    attributes:
-      exchange_diary:
-        body: "content"
-      spot:
-        address: "address"
-        name: "name"
-        visit_status: "visit status"
-      state_calendar:
-        date: "status on this date"
-        mental_state: "mental state"
-        physical_state: "physical state"
-      greeting:
-        greeting_type: "greeting type"
-        message: "message"
-      post:
-        description: "How do you connect with someone on a different rhythm? ーShare your tips or questions!"
-        description2: "Leave helpful advice in the comments!"
-        tips: "Tips"
-        questions: "Questions"
-        relationship: "relationship"
-        post_type: "tips/questions"
-        situation: "situation"
-        content: "content"
-        display_name: "display name"
-        custom_relationship: "other"
-        custom_situation: "other"
-        custom_name: "enter display name"
-        # enum語訳
-        relationship_options:
-          partner: "partner"
-          friend: "friend"
-          family: "family"
-          other_relationship: "other"
-        post_type_options:
-          tips: "Tips"
-          question: "Questions"
-        situation_options:
-          long_distance: "long distance"
-          sometimes_meet: "sometimes meet"
-          living_together: "living together"
-          other_situation: "other"
-        display_name_options:
-          username: "username"
-          anonymous: "anonymous user"
-          nickname: "nickname"
-      area:
-        rule: "Enter your area of residence *City or Ward (in English)"
-        update_button: "Update"
-        example: "(e.g., shibuya)"
-        register: "Your area has been registered."
-        failed_register: "Could not retrieve weather information. Please check the city name."
-        update: "Your area has been updated."
-        failed_update: "Failed to update your area."
-      weather:
-        update: "Weather information has been updated."
-        failed_save: "Failed to save weather information."
-        failed_retrieve: "Could not retrieve weather information."
-        update_button: "Update"
-        get_button: "Get"
-      room:
-        move_in: "Move-in Date"
-        registration: "Registration Date"
-        roommate: "resident"
-        owner: "Underlined house: registered by you"
-        house_name: "house"
-        living_alone: "Living alone"
-        return: "Enter this house"
-      room_show:
-        invitation: "Invite a housemate　"
-        diary: "Exchange Diary　　　"
-        place: "Favorite Places　　　"
-        state: "Mental/Physical state"
-        message: "Greeting Message Settings"
-        cleaning: "Tidy up the room"
-
-      answer:
-        body: "content"
-      front_door: "Front door"
-
-    errors:
-      messages:
-        blank: "please enter"
-      models:
-        state_calendar:
-          attributes:
-            date:
-              taken: "already exists. Select the date from the calendar to update."
-            mental_state:
-              blank: "please select"
-            physical_state:
-              blank: "please select"
-
         post:
           attributes:
             post_type:
@@ -195,17 +115,10 @@ en:
             situation:
               blank: "Please select a situation."
             content:
-              blank: "Please enter your message."
+              blank: "Please enter your content."
             custom_relationship:
               blank: "Please describe the relationship if you selected 'other'."
             custom_situation:
               blank: "Please describe the situation if you selected 'other'."
             custom_name:
-              blank: "Please enter a name if you selected 'nickname'."
-  views:
-    pagination:
-      first: "&laquo; first"
-      last: "last &raquo;"
-      previous: "&lsaquo; previous"
-      next: "next &rsaquo;"
-      truncate: "&hellip;"
+              blank: "Please enter a name if you selected 'display name'."

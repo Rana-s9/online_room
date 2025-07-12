@@ -52,12 +52,12 @@ class WeatherRecordsController < ApplicationController
 
       if weather_record.save
         room = Room.find(params[:room_id])
-        redirect_to room_path(room), notice: t('activerecord.attributes.weather.update')
+        redirect_to room_path(room), notice: t('views.weather.update')
       else
-        redirect_to areas_path, alert: t('activerecord.attributes.weather.failed_save')
+        redirect_to areas_path, alert: t('views.weather.failed_save')
       end
     else
-      redirect_to root_path, alert: t('activerecord.attributes.weather.failed_retrieve')
+      redirect_to root_path, alert: t('views.weather.failed_retrieve')
     end
   end
 

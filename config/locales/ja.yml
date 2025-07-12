@@ -1,22 +1,71 @@
 ja:
+  buttons:
+    back: "戻る"
+    submit: "新規作成"
+    save: "保存"
+    update: "更新"
+    get: "取得"
+
+  views:
+    post:
+      description: "生活リズムが違う人とのコミュニケーション、どうしてる？Tips(コツ)や質問をシェアしよう！"
+      description2: "質問にはコメントでアドバイスを送ろう"
+    diary:
+      count: "%{number}日記目"
+      name: "の交換日記"
+      your_day: "今日の出来事は？"
+      write: "日記を書く"
+    room:
+      front_door: "玄関"
+      move_in: "入居日"
+      registration: "登録日"
+      roommate: "住民"
+      owner: "下線付きの家：あなたが登録した家"
+      house_name: "家の名前"
+      living_alone: "ひとり暮らし"
+      return: "この家に帰宅"
+      back_to_room: "%{room_name}🏠に戻る"
+    room_show:
+      invitation: "同居人を招待　　　"
+      diary: "交換日記　　　　　"
+      place: "想い出スポット　　"
+      state: "心身コンディション"
+      message: "おかえり/ただいまメッセージ管理"
+      cleaning: "部屋片づけ中"
+    area:
+        rule: "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)"
+        example: "(例: shibuya)"
+        register: "地域を登録しました"
+        failed_register: "天気情報を取得できない都市名です。都市名をご確認ください"
+        update: "お住まいの地域を更新しました"
+        failed_update: "地域の変更に失敗しました"
+    weather:
+      update: "天気情報を更新しました"
+      failed_save: "天気情報の保存に失敗しました"
+      failed_retrieve: "天気情報を取得できませんでした"
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+
   activerecord:
     attributes:
       exchange_diary:
-        body: 内容
+        body: "内容"
       spot:
-        address: 住所
-        name: 場所名
-        visit_status: ステータス
+        address: "住所"
+        name: "場所名"
+        visit_status: "ステータス"
       state_calendar:
-        date: この日付の記録
-        mental_state: 心の状態
-        physical_state: 体の状態
+        date: "この日付の記録"
+        mental_state: "心の状態"
+        physical_state: "体の状態"
       greeting:
-        greeting_type: ステータス
-        message: メッセージ
+        greeting_type: "ステータス"
+        message: "メッセージ"
       post:
-        description: "生活リズムが違う人とのコミュニケーション、どうしてる？Tips(コツ)や質問をシェアしよう！"
-        description2: "質問にはコメントでアドバイスを送ろう"
         relationship: "間柄"
         tips: "Tips一覧"
         questions: "質問一覧"
@@ -27,7 +76,6 @@ ja:
         custom_relationship: "自由記述（その他）"
         custom_situation: "自由記述（その他）"
         custom_name: "表示名登録"
-        # enum日本語訳
         relationship_options:
           partner: "交際相手、パートナー"
           friend: "友達"
@@ -45,39 +93,8 @@ ja:
           username: "ユーザーネーム"
           anonymous: "匿名"
           nickname: "表示名登録"
-      area:
-        rule: "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)"
-        update_button: "変更"
-        example: "(例: shibuya)"
-        register: "地域を登録しました"
-        failed_register: "天気情報を取得できない都市名です。都市名をご確認ください"
-        update: "お住まいの地域を更新しました"
-        failed_update: "地域の変更に失敗しました"
-      weather:
-        update: "天気情報を更新しました"
-        failed_save: "天気情報の保存に失敗しました"
-        failed_retrieve: "天気情報を取得できませんでした"
-        update_button: "更新"
-        get_button: "取得"
-      room:
-        move_in: "入居日"
-        registration: "登録日"
-        roommate: "住民"
-        owner: "下線付きの家：あなたが登録した家"
-        house_name: "家の名前"
-        living_alone: "ひとり暮らし"
-        return: "この家に帰宅"
-      room_show:
-        invitation: "同居人を招待　　　"
-        diary: "交換日記　　　　　"
-        place: "想い出スポット　　"
-        state: "心身コンディション"
-        message: "おかえり/ただいまメッセージ管理"
-        cleaning: "部屋片づけ中"
-
       answer:
         body: "内容"
-      front_door: "玄関"
 
     errors:
       messages:
@@ -91,7 +108,6 @@ ja:
               blank: "を選択してください"
             physical_state:
               blank: "を選択してください"
-
         post:
           attributes:
             post_type:
@@ -108,11 +124,3 @@ ja:
               blank: "状況のその他を選んだ場合は自由記述が必要です"
             custom_name:
               blank: "表示名登録を選んだ場合は名前を入力してください"
-
-  views:
-    pagination:
-      first: "&laquo; 最初"
-      last: "最後 &raquo;"
-      previous: "&lsaquo; 前"
-      next: "次 &rsaquo;"
-      truncate: "&hellip;"

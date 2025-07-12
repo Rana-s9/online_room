@@ -1,7 +1,7 @@
 <div class="gap-6">
   <div class="bg-light-gray/75 p-4 my-4 rounded shadow text-dark-gray">
-    <p class="mt-2 text-gray"><%= @diary_order.index(diary.id) + 1 %>日記目</p>
-    <div class="text-sm"><%= diary.created_at.strftime("%y年%m月%d日") %></div>
+    <p class="mt-2 text-gray"><%= t("views.diary.count", number: @diary_order.index(diary.id) + 1) %></p>
+    <div class="text-sm"><%= diary.created_at.strftime("%y/%m/%d") %></div>
     <% if diary.user == current_user %>
       <div
         data-controller="diary"
