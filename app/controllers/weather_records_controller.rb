@@ -1,6 +1,7 @@
 require "net/http"
 require "uri"
 require "json"
+
 class WeatherRecordsController < ApplicationController
   before_action :authenticate_user!
 
@@ -18,17 +19,17 @@ class WeatherRecordsController < ApplicationController
 
   private
 
-  def fetch_weather_from_api(city)
+  def fetch_weather_from_api(city, lang = 'ja')
     api_key = ENV["WEATHER_API"]
-    url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=ja")
+    url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=#{lang}")
     response = Net::HTTP.get_response(url)
     if response.is_a?(Net::HTTPSuccess)
-        data = JSON.parse(response.body)
-        Rails.logger.debug "API description: #{data['weather'][0]['description']}"
-        data
+      data = JSON.parse(response.body)
+      Rails.logger.debug "API (#{lang}) description: #{data['weather'][0]['description']}"
+      data
     else
-        Rails.logger.error "API request failed: #{response.code} #{response.message}"
-        nil
+      Rails.logger.error "API request failed: #{response.code} #{response.message}"
+      nil
     end
   rescue => e
     Rails.logger.error "Weather API error: #{e.message}"
@@ -36,30 +37,31 @@ class WeatherRecordsController < ApplicationController
   end
 
   def save_weather_record(area, weather_record)
-    api_data = fetch_weather_from_api(area.city)
-    Rails.logger.debug "取得した天気データ: #{api_data}"
+    ja_data = fetch_weather_from_api(area.city, 'ja')
+    en_data = fetch_weather_from_api(area.city, 'en')
 
-    if api_data
-        weather_record.assign_attributes(
-        temperature: api_data["main"]["temp"],
-        humidity: api_data["main"]["humidity"],
-        description: api_data["weather"][0]["description"],
-        temp_min: api_data["main"]["temp_min"],
-        temp_max: api_data["main"]["temp_max"]
-        )
+    if ja_data.present? && en_data.present?
+      weather_record.assign_attributes(
+        temperature: ja_data["main"]["temp"],
+        humidity: ja_data["main"]["humidity"],
+        description: ja_data["weather"][0]["description"],
+        description_en: en_data["weather"][0]["description"],
+        temp_min: ja_data["main"]["temp_min"],
+        temp_max: ja_data["main"]["temp_max"]
+      )
 
-        if weather_record.save
+      if weather_record.save
         room = Room.find(params[:room_id])
-        redirect_to room_path(room), notice: "天気情報を更新しました"
-        else
-        redirect_to areas_path, alert: "天気情報の保存に失敗しました"
-        end
+        redirect_to room_path(room), notice: t('activerecord.attributes.weather.update')
+      else
+        redirect_to areas_path, alert: t('activerecord.attributes.weather.failed_save')
+      end
     else
-        redirect_to root_path, alert: "天気情報を取得できませんでした。"
+      redirect_to root_path, alert: t('activerecord.attributes.weather.failed_retrieve')
     end
   end
 
   def weather_record_params
-    params.require(:weather_record).permit(:temperature, :humidity, :description, :temp_min, :temp_max)
+    params.require(:weather_record).permit(:temperature, :humidity, :description, :description_en, :temp_min, :temp_max)
   end
 end

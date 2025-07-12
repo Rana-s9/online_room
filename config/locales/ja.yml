@@ -15,7 +15,11 @@ ja:
         greeting_type: ステータス
         message: メッセージ
       post:
+        description: "生活リズムが違う人とのコミュニケーション、どうしてる？Tips(コツ)や質問をシェアしよう！"
+        description2: "質問にはコメントでアドバイスを送ろう"
         relationship: "間柄"
+        tips: "Tips一覧"
+        questions: "質問一覧"
         post_type: "tips/質問"
         situation: "状況"
         content: "内容"
@@ -41,8 +45,39 @@ ja:
           username: "ユーザーネーム"
           anonymous: "匿名"
           nickname: "表示名登録"
+      area:
+        rule: "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)"
+        update_button: "変更"
+        example: "(例: shibuya)"
+        register: "地域を登録しました"
+        failed_register: "天気情報を取得できない都市名です。都市名をご確認ください"
+        update: "お住まいの地域を更新しました"
+        failed_update: "地域の変更に失敗しました"
+      weather:
+        update: "天気情報を更新しました"
+        failed_save: "天気情報の保存に失敗しました"
+        failed_retrieve: "天気情報を取得できませんでした"
+        update_button: "更新"
+        get_button: "取得"
+      room:
+        move_in: "入居日"
+        registration: "登録日"
+        roommate: "住民"
+        owner: "下線付きの家：あなたが登録した家"
+        house_name: "家の名前"
+        living_alone: "ひとり暮らし"
+        return: "この家に帰宅"
+      room_show:
+        invitation: "同居人を招待　　　"
+        diary: "交換日記　　　　　"
+        place: "想い出スポット　　"
+        state: "心身コンディション"
+        message: "おかえり/ただいまメッセージ管理"
+        cleaning: "部屋片づけ中"
+
       answer:
         body: "内容"
+      front_door: "玄関"
 
     errors:
       messages:

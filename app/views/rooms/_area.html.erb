@@ -1,12 +1,11 @@
 <%= form_with model: @area, local: true do |f| %>
   <div class="bg-light-gray/75 p-4 rounded shadow mb-4 max-w-md mx-auto">
     <div>
-        <%= f.label :city, "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)" %>
-        <%= f.text_field :city, placeholder: "(例：shibuya)", class: "bg-light-gray w-full p-2 border rounded text-matcha font-bold" %>
+        <%= f.label :city, t('activerecord.attributes.area.rule') %>
+        <%= f.text_field :city, placeholder:  t('activerecord.attributes.area.example'), class: "bg-light-gray w-full p-2 border rounded text-matcha font-bold" %>
     </div>
     <div class="flex justify-center">
-        <%= f.submit "変更", class: "class: bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+        <%= f.submit t('activerecord.attributes.area.update_button'), class: "class: bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
     </div>
   </div>
 <% end %>
-

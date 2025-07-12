@@ -5,16 +5,17 @@
           <%= link_to "Online Room", root_path, data: { turbo: false } %>
         </div>
         <div class= "underline">
-          JA/EN(実装中)
+          <%= link_to('JA', :locale => 'ja') %>/
+          <%= link_to('EN', :locale => 'en') %>
         </div>
         <div class="flex underline">
           <%= link_to "Tips", posts_path, data: { turbo: false } %>
         </div>
         <div class="flex space-x-2 underline">
-          <%= link_to "玄関", rooms_path,data: { turbo: false } %>
+          <%= link_to t('activerecord.attributes.front_door'), rooms_path,data: { turbo: false } %>
         </div>
         <div class="flex space-x-2 underline">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete ,data: { turbo: false } %>
+          <%= link_to t('devise.sessions.signed_out_button'), destroy_user_session_path, method: :delete ,data: { turbo: false } %>
         </div>
       </div>
     </nav>

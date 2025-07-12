@@ -1,31 +1,211 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      exchange_diary:
+        body: "content"
+      spot:
+        address: "address"
+        name: "name"
+        visit_status: "visit status"
+      state_calendar:
+        date: "status on this date"
+        mental_state: "mental state"
+        physical_state: "physical state"
+      greeting:
+        greeting_type: "greeting type"
+        message: "message"
+      post:
+        description: "How do you connect with someone on a different rhythm? ーShare your tips or questions!"
+        description2: "Leave helpful advice in the comments!"
+        tips: "Tips"
+        questions: "Questions"
+        relationship: "relationship"
+        post_type: "tips/questions"
+        situation: "situation"
+        content: "content"
+        display_name: "display name"
+        custom_relationship: "other"
+        custom_situation: "other"
+        custom_name: "enter display name"
+        # enum語訳
+        relationship_options:
+          partner: "partner"
+          friend: "friend"
+          family: "family"
+          other_relationship: "other"
+        post_type_options:
+          tips: "Tips"
+          question: "Questions"
+        situation_options:
+          long_distance: "long distance"
+          sometimes_meet: "sometimes meet"
+          living_together: "living together"
+          other_situation: "other"
+        display_name_options:
+          username: "username"
+          anonymous: "anonymous user"
+          nickname: "nickname"
+      area:
+        rule: "Enter your area of residence *City or Ward (in English)"
+        update_button: "Update"
+        example: "(e.g., shibuya)"
+        register: "Your area has been registered."
+        failed_register: "Could not retrieve weather information. Please check the city name."
+        update: "Your area has been updated."
+        failed_update: "Failed to update your area."
+      weather:
+        update: "Weather information has been updated."
+        failed_save: "Failed to save weather information."
+        failed_retrieve: "Could not retrieve weather information."
+        update_button: "Update"
+        get_button: "Get"
+      room:
+        move_in: "Move-in Date"
+        registration: "Registration Date"
+        roommate: "resident"
+        owner: "Underlined house: registered by you"
+        house_name: "house"
+        living_alone: "Living alone"
+        return: "Enter this house"
+      room_show:
+        invitation: "Invite a housemate　"
+        diary: "Exchange Diary　　　"
+        place: "Favorite Places　　　"
+        state: "Mental/Physical state"
+        message: "Greeting Message Settings"
+        cleaning: "Tidy up the room"
+
+      answer:
+        body: "content"
+      front_door: "Front door"
+
+    errors:
+      messages:
+        blank: "please enter"
+      models:
+        state_calendar:
+          attributes:
+            date:
+              taken: "already exists. Select the date from the calendar to update."
+            mental_state:
+              blank: "please select"
+            physical_state:
+              blank: "please select"
+
+        en:
+  activerecord:
+    attributes:
+      exchange_diary:
+        body: "content"
+      spot:
+        address: "address"
+        name: "name"
+        visit_status: "visit status"
+      state_calendar:
+        date: "status on this date"
+        mental_state: "mental state"
+        physical_state: "physical state"
+      greeting:
+        greeting_type: "greeting type"
+        message: "message"
+      post:
+        description: "How do you connect with someone on a different rhythm? ーShare your tips or questions!"
+        description2: "Leave helpful advice in the comments!"
+        tips: "Tips"
+        questions: "Questions"
+        relationship: "relationship"
+        post_type: "tips/questions"
+        situation: "situation"
+        content: "content"
+        display_name: "display name"
+        custom_relationship: "other"
+        custom_situation: "other"
+        custom_name: "enter display name"
+        # enum語訳
+        relationship_options:
+          partner: "partner"
+          friend: "friend"
+          family: "family"
+          other_relationship: "other"
+        post_type_options:
+          tips: "Tips"
+          question: "Questions"
+        situation_options:
+          long_distance: "long distance"
+          sometimes_meet: "sometimes meet"
+          living_together: "living together"
+          other_situation: "other"
+        display_name_options:
+          username: "username"
+          anonymous: "anonymous user"
+          nickname: "nickname"
+      area:
+        rule: "Enter your area of residence *City or Ward (in English)"
+        update_button: "Update"
+        example: "(e.g., shibuya)"
+        register: "Your area has been registered."
+        failed_register: "Could not retrieve weather information. Please check the city name."
+        update: "Your area has been updated."
+        failed_update: "Failed to update your area."
+      weather:
+        update: "Weather information has been updated."
+        failed_save: "Failed to save weather information."
+        failed_retrieve: "Could not retrieve weather information."
+        update_button: "Update"
+        get_button: "Get"
+      room:
+        move_in: "Move-in Date"
+        registration: "Registration Date"
+        roommate: "resident"
+        owner: "Underlined house: registered by you"
+        house_name: "house"
+        living_alone: "Living alone"
+        return: "Enter this house"
+      room_show:
+        invitation: "Invite a housemate　"
+        diary: "Exchange Diary　　　"
+        place: "Favorite Places　　　"
+        state: "Mental/Physical state"
+        message: "Greeting Message Settings"
+        cleaning: "Tidy up the room"
+
+      answer:
+        body: "content"
+      front_door: "Front door"
+
+    errors:
+      messages:
+        blank: "please enter"
+      models:
+        state_calendar:
+          attributes:
+            date:
+              taken: "already exists. Select the date from the calendar to update."
+            mental_state:
+              blank: "please select"
+            physical_state:
+              blank: "please select"
+
+        post:
+          attributes:
+            post_type:
+              blank: "Please choose a post type."
+            relationship:
+              blank: "Please select your relationship."
+            situation:
+              blank: "Please select a situation."
+            content:
+              blank: "Please enter your message."
+            custom_relationship:
+              blank: "Please describe the relationship if you selected 'other'."
+            custom_situation:
+              blank: "Please describe the situation if you selected 'other'."
+            custom_name:
+              blank: "Please enter a name if you selected 'nickname'."
+  views:
+    pagination:
+      first: "&laquo; first"
+      last: "last &raquo;"
+      previous: "&lsaquo; previous"
+      next: "next &rsaquo;"
+      truncate: "&hellip;"

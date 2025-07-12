@@ -91,6 +91,7 @@ ja:
       updated_not_active: パスワードが正しく変更されました
     registrations:
       destroyed: アカウントを削除しましたまたのご利用をお待ちしております
+      sign_up: 新規登録
       edit:
         are_you_sure: 本当によろしいですか？
         cancel_my_account: アカウント削除
@@ -113,8 +114,10 @@ ja:
       already_signed_out: 既にログアウト済みです
       new:
         sign_in: ログイン
+        sign_in_button: ログインして帰宅
       signed_in: ログインしました
       signed_out: ログアウトしました
+      signed_out_button: ログアウト
     shared:
       links:
         back: 戻る

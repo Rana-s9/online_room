@@ -1,7 +1,7 @@
 <div class="container fixed top-[80px] left-1/2 transform -translate-x-1/2 z-50 p-4">
   <div class="flex justify-center">
     <div class="w-full max-w-lg">
-      <h1 class="text-2xl text-matcha font-bold mb-6">ログイン</h1>
+      <h1 class="text-2xl text-matcha font-bold mb-6"><%= t('devise.sessions.new.sign_in') %></h1>
       <%= form_with model: resource, url: session_path(resource_name), local: true do |f| %>
         <% if flash[:alert] %>
           <ul class="list-disc pl-5 space-y-1">
@@ -24,10 +24,10 @@
           <%= f.label :password, class: "block text-sm font-medium text-matcha" %>
           <%= f.password_field :password, class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha" %>
         </div>
-        <%= f.submit 'ログインして帰宅', class: "w-full mb-6 bg-matcha/75 hover:bg-blue/75 text-white font-bold py-2 px-4 rounded-md shadow-md transition",
+        <%= f.submit t('devise.sessions.new.sign_in_button'), class: "w-full mb-6 bg-matcha/75 hover:bg-blue/75 text-white font-bold py-2 px-4 rounded-md shadow-md transition",
         id: "blue-door" %>
         <% end %>
-        <%= link_to '新規登録はこちら', new_user_registration_path, class: "text-matcha" %>
+        <%= link_to t('devise.registrations.sign_up'), new_user_registration_path, class: "text-matcha" %>
     </div>
   </div>
 </div>
