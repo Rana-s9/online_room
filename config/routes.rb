@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :rooms, only: %i[index show create] do
       resources :exchange_diaries, only: %i[index create update destroy]
       resources :whiteboards, only: %i[create update]
-      resources :state_calendars, only: %i[new create index update edit destroy]
+      resources :state_calendars, only: %i[new create index show update edit destroy]
       resources :invitation_tokens, only: %i[create index update]
       resources :greetings, only: %i[new create index edit update destroy]
       resources :spots, only: %i[index new create show edit update destroy]

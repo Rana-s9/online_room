@@ -34,6 +34,11 @@ class StateCalendarsController < ApplicationController
     end
   end
 
+  def show
+    @room = Room.find(params[:room_id])
+    @state_calendar = @room.state_calendars.find(params[:id])
+  end
+
   def edit
     @room = Room.find(params[:room_id])
     @state_calendar = @room.state_calendars.find_by(user: current_user, id: params[:id])

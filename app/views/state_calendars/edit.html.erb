@@ -1,10 +1,10 @@
-<%= link_to "カレンダーへもどる", room_state_calendars_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+<%= link_to t("views.state_calendar.button"), room_state_calendars_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
 
 <%= form_with model: [@room, @state_calendar], local: true, class: "bg-light-gray/75 p-4 rounded shadow mb-4" do |f| %>
   <%= f.date_field :date, value: @state_calendar.date || Date.current, class: "text-dark-gray bg-matcha/30" %>
     <%= render 'form', f: f %>
         <div class="text-center">
-            <%= f.submit "更新", class:"bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
-            <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_state_calendar_path(@room, @state_calendar), method: :delete, data: {confirm: "本当に記録を消しますか？" } %>
+            <%= f.submit t("buttons.update"), class:"bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
+            <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_state_calendar_path(@room, @state_calendar), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
         </div>
 <% end %>

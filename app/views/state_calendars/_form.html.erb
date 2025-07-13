@@ -1,25 +1,25 @@
 <div class="field">
-    <%= f.label :mental_state, "心の状態", class: "text-dark-gray" %><br>
+    <%= f.label :mental_state, t("views.state_calendar.mental_state"), class: "text-dark-gray" %><br>
     <%= f.select :mental_state, 
         [
-        ["🥳 : とても元気", "🥳"],
-        ["😊 : 元気", "😊"],
-        ["😐 : 少しもやっとしている", "😐"],
-        ["😭 : 激しい落ち込み・涙が出る", "😭"],
-        ["😣 : SOS / 相談に乗ってほしい", "😣"]
+        [t("views.state_calendar.amazing"), "🥳"],
+        [t("views.state_calendar.good"), "😊"],
+        [t("views.state_calendar.bit_off"), "😐"],
+        [t("views.state_calendar.down"), "😭"],
+        [t("views.state_calendar.mental_sos"), "😣"]
         ], 
-        { prompt: "一番近い状態を選ぶ" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
+        { prompt: t("views.state_calendar.select") }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
 </div>
 
 <div class="field">
-    <%= f.label :physical_state, "体の状態", class: "text-dark-gray" %><br>
+    <%= f.label :physical_state, t("views.state_calendar.physical_state"), class: "text-dark-gray" %><br>
     <%= f.select :physical_state, 
         [
-        ["💃 : エネルギッシュ", "💃"],
-        ["🚶‍♀️ : 元気", "🚶‍♀️"],
-        ["🧍‍♀️ : 少しだるい", "🧍‍♀️"],
-        ["🛌 : とても辛くて動けない", "🛌"],
-        ["🤒 : SOS / 声をかけてほしい", "🤒"]
+        [t("views.state_calendar.energetic"), "💃"],
+        [t("views.state_calendar.fine"), "🚶‍♀️"],
+        [t("views.state_calendar.sluggish"), "🧍‍♀️"],
+        [t("views.state_calendar.awful"), "🛌"],
+        [t("views.state_calendar.physical_sos"), "🤒"]
         ], 
-        { prompt: "一番近い状態を選ぶ" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
+        { prompt: t("views.state_calendar.select") }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
 </div>
