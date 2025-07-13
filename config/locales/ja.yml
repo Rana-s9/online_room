@@ -8,6 +8,7 @@ ja:
     register: "登録"
     save_new: "登録"
   flash:
+    alert: "本当に削除しますか？"
     diary:
       save: "日記を保存しました"
       failed_save: "日記の保存に失敗しました"

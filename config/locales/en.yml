@@ -8,6 +8,7 @@ en:
     register: "Register"
     save_new: "Save"
   flash:
+    alert: "Are you sure you'd like to delete this?"
     diary:
       save: "The diary has been saved successfully."
       failed_save: "Failed to save the diary."
@@ -89,6 +90,7 @@ en:
       calendar_user: "%{name}'s calendar"
       note1: "・By clicking on a date in %{name}’s calendar, you can add, update, or delete your physical and mental condition records."
       note2: "・Each calendar is separate for each room, so even the same user’s records are kept individually."
+
     area:
         rule: "Enter your area of residence *City or Ward (in English)"
         example: "(e.g., shibuya)"

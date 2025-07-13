@@ -5,6 +5,6 @@
     <%= render 'form', f: f %>
         <div class="text-center">
             <%= f.submit t("buttons.update"), class:"bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
-            <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_state_calendar_path(@room, @state_calendar), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+            <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_state_calendar_path(@room, @state_calendar), data: { turbo_method: :delete, turbo_confirm: t("flash.alert")} %>
         </div>
 <% end %>

@@ -40,7 +40,7 @@
                     <div class="text-center">
                         <%= f.submit "更新", class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/20 transition duration-200", data: { turbo: false } %>
                     </div>
-                    <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, [@room, @spot], data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                    <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, [@room, @spot], data: { turbo_method: :delete, turbo_confirm: t("flash.alert")} %>
                   <% end %>
                 <% end %>
             </div>

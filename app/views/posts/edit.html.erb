@@ -51,7 +51,7 @@
       <div class="text-center">
         <%= f.submit "更新", class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
       </div>
-      <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, @post, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+      <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, @post, data: { turbo_method: :delete, turbo_confirm: t("flash.alert")} %>
     <% end %>
     <div class ="text-center title ">
         <%= link_to 'share', "https://x.com/share?url=https://our-onlineroom.com/&text=【🏠#{@post.post_type}】～#{@post.content}～を投稿しました！", 
