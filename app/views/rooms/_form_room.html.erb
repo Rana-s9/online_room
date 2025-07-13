@@ -9,10 +9,10 @@
     </div>
   <% end %> 
   <div class="bg-light-gray/75 p-4 rounded shadow mb-4 max-w-md mx-auto">
-    <%= f.label :name, "家の名前", class: "text-sm text-dark-gray" %>
-    <%= f.text_field :name, placeholder: "新しい家の名前を追加してください", class: "bg-light-gray w-full p-2 border rounded text-gray" %>
+    <%= f.label :name, t("views.room.house_name"), class: "text-sm text-dark-gray" %>
+    <%= f.text_field :name, placeholder: t("views.room.new"), class: "bg-light-gray w-full p-2 border rounded text-gray" %>
     <div class="flex justify-center">
-      <%= f.submit "登録", class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+      <%= f.submit t("buttons.register"), class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
     </div>
   </div>
 <% end %>

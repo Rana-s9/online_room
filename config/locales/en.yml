@@ -1,10 +1,32 @@
 en:
   buttons:
     back: "Back"
-    submit: "Add New"
+    new: "Add New"
     save: "Save"
     update: "Update"
     get: "Get"
+    register: "Register"
+    save_new: "Save"
+  flash:
+    diary:
+      save: "The diary has been saved successfully."
+      failed_save: "Failed to save the diary."
+      update: "The update was completed successfully."
+      delete: "The diary has been deleted."
+      failed_delete: "Failed to delete the diary."
+    room: "The room could not be found."
+    area:
+      register: "Your area has been registered."
+      failed_register: "Could not retrieve weather information. Please check the city name."
+      update: "Your area has been updated."
+      failed_update: "Failed to update your area."
+    spot:
+      save: "We saved the place for you."
+      failed_save: "something went wrong while saving."
+      update: "Name updated successfully!"
+      failed_update: "Sorry, we couldn't update the name."
+      delete: "The place has been removed."
+      failed_delete: "we couldn’t delete the place."
   views:
     post:
       description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
@@ -21,8 +43,9 @@ en:
       owner: "Underlined house: registered by you"
       house_name: "house"
       living_alone: "Living alone"
-      return: "Enter this house"
+      return: "Enter"
       back_to_room: "Back to %{room_name}🏠"
+      new: "Give your home a name."
     room_show:
       invitation: "Invite a housemate　"
       diary: "Exchange Diary　　　"
@@ -30,13 +53,25 @@ en:
       state: "Mental/Physical state"
       message: "Greeting Message Settings"
       cleaning: "Tidy up the room"
+    spot:
+      visited_list: "Visited spots"
+      visit_list: "Spots to Visit"
+      none_visited: "No visited spots added yet."
+      none_visit: "No wishlist spots added yet."
+      address_name: "Address or Place Name (e.g., Eiffel Tower, Paris)"
+      enter: "Enter a place name"
+      search: "Search"
+      note: "(The name will be auto-filled, but feel free to edit it.)"
+      auto: "Auto-Fill"
+      reset: "Reset"
+      select: "Select"
+      visited: "Visited"
+      visit: "To Visit"
+      flow: "⓵Select Status→⓶Enter Address→⓷Search→⓸Save"
+      need_login: "You need to be logged in to save a place."
     area:
         rule: "Enter your area of residence *City or Ward (in English)"
         example: "(e.g., shibuya)"
-        register: "Your area has been registered."
-        failed_register: "Could not retrieve weather information. Please check the city name."
-        update: "Your area has been updated."
-        failed_update: "Failed to update your area."
     weather:
       update: "Weather information has been updated."
       failed_save: "Failed to save weather information."
@@ -53,9 +88,9 @@ en:
       exchange_diary:
         body: "content-"
       spot:
-        address: "address"
-        name: "name"
-        visit_status: "visit status"
+        address: "Address-"
+        name: "Place Name-"
+        visit_status: "Visit status-"
       state_calendar:
         date: "status on this date"
         mental_state: "mental state"
@@ -122,3 +157,7 @@ en:
               blank: "Please describe the situation if you selected 'other'."
             custom_name:
               blank: "Please enter a name if you selected 'display name'."
+        spot:
+          attributes:
+            base:
+              position_blank: "Coordinates could not be retrieved. Please try again."

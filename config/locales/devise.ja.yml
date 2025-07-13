@@ -113,11 +113,11 @@ ja:
     sessions:
       already_signed_out: 既にログアウト済みです
       new:
-        sign_in: ログイン
+        sign_in: 帰宅(ログイン)
         sign_in_button: ログインして帰宅
       signed_in: ログインしました
       signed_out: ログアウトしました
-      signed_out_button: ログアウト
+      signed_out_button: 外出(ログアウト)
     shared:
       links:
         back: 戻る

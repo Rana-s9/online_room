@@ -24,13 +24,13 @@ class ExchangeDiariesController < ApplicationController
 
       if @exchange_diary.save
         respond_to do |format|
-          format.html { redirect_to room_exchange_diaries_path(@room), notice: "日記を保存しました" }
+          format.html { redirect_to room_exchange_diaries_path(@room), notice: t("flash.diary.save") }
           format.json { render json: { id: @exchange_diary.id }, status: :created }
         end
       else
         respond_to do |format|
           format.html do
-            flash.now[:alert] = "日記の保存に失敗しました"
+            flash.now[:alert] = t("flash.diary.failed_save")
             @exchange_diaries = @room.exchange_diaries.order(created_at: :desc).page(params[:page])
             @diary_count = @exchange_diaries.count
             @diary_order = @room.exchange_diaries.order(:created_at).pluck(:id)
@@ -45,7 +45,7 @@ class ExchangeDiariesController < ApplicationController
   respond_to :html, :json
   def update
     if @exchange_diary.update(exchange_diary_params)
-      render json: { message: "更新成功" }, status: :ok
+      render json: { message: t("flash.diary.update") }, status: :ok
     else
       render json: { errors: @exchange_diary.errors.full_messages }, status: :unprocessable_entity
     end
@@ -56,10 +56,10 @@ class ExchangeDiariesController < ApplicationController
     @exchange_diary = @room.exchange_diaries.find_by(user: current_user, id: params[:id])
 
     if @exchange_diary.destroy
-      redirect_to room_exchange_diaries_path(@room), notice: "日記を消しました"
+      redirect_to room_exchange_diaries_path(@room), notice: t("flash.diary.delete")
     else
       @exchange_diaries = @room.exchange_diaries.includes(:user).order(created_at: :desc)
-      flash.now[:alert] = "日記の削除に失敗しました"
+      flash.now[:alert] = t("flash.diary.failed_delete")
       render :index, status: :unprocessable_entity
     end
   end
@@ -69,7 +69,7 @@ class ExchangeDiariesController < ApplicationController
   def set_room
     @room = Room.find_by(id: params[:room_id])
     unless @room && (@room.user_id == current_user.id || RoommateList.exists?(user_id: current_user.id, room_id: @room.id))
-      redirect_to root_path, alert: "部屋が見つかりませんでした。"
+      redirect_to root_path, alert: t("flash.room.failed_find")
     end
   end
 

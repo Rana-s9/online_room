@@ -1,11 +1,33 @@
 ja:
   buttons:
     back: "戻る"
-    submit: "新規作成"
+    new: "新規作成"
     save: "保存"
     update: "更新"
     get: "取得"
-
+    register: "登録"
+    save_new: "登録"
+  flash:
+    diary:
+      save: "日記を保存しました"
+      failed_save: "日記の保存に失敗しました"
+      update: "更新成功"
+      delete: "日記を削除しました"
+      failed_delete: "日記の削除に失敗しました"
+    room:
+      failed_find: "部屋が見つかりませんでした"
+    area:
+      register: "地域を登録しました"
+      failed_register: "天気情報を取得できない都市名です。都市名をご確認ください"
+      update: "お住まいの地域を更新しました"
+      failed_update: "地域の変更に失敗しました"
+    spot:
+      save: "場所を登録しました"
+      failed_save: "場所の登録に失敗しました"
+      update: "場所名を更新しました"
+      failed_update: "場所名の更新に失敗しました"
+      delete: "登録場所を削除しました"
+      failed_delete: "登録場所の削除に失敗しました"
   views:
     post:
       description: "生活リズムが違う人とのコミュニケーション、どうしてる？Tips(コツ)や質問をシェアしよう！"
@@ -25,6 +47,7 @@ ja:
       living_alone: "ひとり暮らし"
       return: "この家に帰宅"
       back_to_room: "%{room_name}🏠に戻る"
+      new: "新しい家の名前を追加してください"
     room_show:
       invitation: "同居人を招待　　　"
       diary: "交換日記　　　　　"
@@ -32,13 +55,25 @@ ja:
       state: "心身コンディション"
       message: "おかえり/ただいまメッセージ管理"
       cleaning: "部屋片づけ中"
+    spot:
+      visited_list: "行ったことがある場所一覧"
+      visit_list: "行きたい場所一覧"
+      none_visited: "まだ「行ったことがある場所」の登録はありません"
+      none_visit: "まだ「行きたい場所」の登録はありません"
+      address_name: "住所または場所名 *(例)東京都 スカイツリー"
+      enter: "場所名を入力"
+      search: "検索"
+      note: " *場所名は自動入力されますが、適宜変更してください"
+      auto: "自動入力"
+      reset: "リセット"
+      select: "ステータスを選ぶ"
+      visited: "行ったことがある"
+      visit: "行きたい"
+      flow: "⓵ステータス→⓶住所を入力→⓷検索→⓸登録"
+      need_login: "場所を登録するには、ログインが必要です"
     area:
         rule: "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)"
         example: "(例: shibuya)"
-        register: "地域を登録しました"
-        failed_register: "天気情報を取得できない都市名です。都市名をご確認ください"
-        update: "お住まいの地域を更新しました"
-        failed_update: "地域の変更に失敗しました"
     weather:
       update: "天気情報を更新しました"
       failed_save: "天気情報の保存に失敗しました"
@@ -124,3 +159,8 @@ ja:
               blank: "状況のその他を選んだ場合は自由記述が必要です"
             custom_name:
               blank: "表示名登録を選んだ場合は名前を入力してください"
+        spot:
+          attributes:
+            base:
+              position_blank: "座標取得のため、もう一度お試しください"
+

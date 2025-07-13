@@ -77,7 +77,7 @@ class StateCalendarsController < ApplicationController
   def set_room
     @room = Room.find_by(id: params[:room_id])
     unless @room && (@room.user_id == current_user.id || RoommateList.exists?(user_id: current_user.id, room_id: @room.id))
-      redirect_to root_path, alert: "部屋が見つかりませんでした。"
+      redirect_to root_path, alert: t("flash.room.failed_find")
     end
   end
 
