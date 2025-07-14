@@ -154,6 +154,12 @@ ja:
       state: "心身コンディション"
       message: "おかえり/ただいまメッセージ管理"
       cleaning: "部屋片づけ中"
+    roommate:
+      no_invite_link: "招待リンクが存在しません"
+      invite_expired: "招待リンクの有効期限が切れています"
+      invite_used: "この招待リンクはすでに使用されています"
+      already_joined: "すでにこのルームに参加しています"
+      joined: "ルームに参加しました"
     spot:
       visited_list: "行ったことがある場所一覧"
       visit_list: "行きたい場所一覧"

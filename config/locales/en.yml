@@ -153,6 +153,12 @@ en:
       state: "Mental/Physical state"
       message: "Greeting Message Settings"
       cleaning: "Tidy up the room"
+    roommate:
+      no_invite_link: "Invitation link not found."
+      invite_expired: "The invitation link has expired."
+      invite_used: "This link has already been used."
+      already_joined: "You’re already part of this room."
+      joined: "You’ve joined the room."
     spot:
       visited_list: "Visited spots"
       visit_list: "Spots to Visit"
