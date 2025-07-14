@@ -109,6 +109,7 @@ en:
       enter_situation: "Enter the situation"
       enter_content: "Enter the content"
       enter_name: "Enter your display name"
+      no_post: "No posts yet."
       relationship_options:
           partner: "partner"
           friend: "friend"
