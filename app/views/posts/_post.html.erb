@@ -15,7 +15,7 @@
             <%= post.situation == "other_situation" ? post.custom_situation : t("activerecord.attributes.post.situation_options.#{post.situation}") %>
         </h1>
         </div>
-        <p><i class="fa-solid fa-user"></i> <%= post.display_user %></p>
+        <p><i class="fa-solid fa-user"></i> <%= post.display_name == "anonymous" ? t("views.post.display_name_options.anonymous") : post.display_user %></p>
         <div class="flex items-center gap-2 mt-2">
         <span class="bg-yellow/75 text-matcha-green text-sm font-bold rounded px-2">Tip</span>
         <%= link_to post.content, current_user == post.user ? edit_post_path(post) : post_path(post), class: "underline" %>
@@ -23,7 +23,7 @@
     </div>
     <% end %>
 <% else %>
-    <p>Tipsの投稿はありません<i class="fa-solid fa-leaf"></i></p>
+    <p><%= t("views.post.no_post") %><i class="fa-solid fa-leaf"></i></p>
 <% end %>
 </div>
 
@@ -41,7 +41,7 @@
             <%= post.situation == "other_situation" ? post.custom_situation : t("views.post.situation_options.#{post.situation}") %>
         </h1>
         </div>
-        <p><i class="fa-solid fa-user"></i> <%= post.display_user %></p>
+        <p><i class="fa-solid fa-user"></i> <%= post.display_name == "anonymous" ? t("views.post.display_name_options.anonymous") : post.display_user %></p>
         <div class="flex items-center gap-2 mt-2">
         <span class="bg-yellow/75 text-matcha-green text-sm font-bold rounded px-2">Q.</span>
         <%= link_to post.content, current_user == post.user ? edit_post_path(post) : post_path(post), class: "underline" %>
@@ -49,6 +49,6 @@
     </div>
     <% end %>
 <% else %>
-    <p>質問の投稿はありません<i class="fa-solid fa-comment"></i></p>
+    <p><%= t("views.post.no_post") %><i class="fa-solid fa-comment"></i></p>
 <% end %>
 </div>
