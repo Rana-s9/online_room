@@ -16,6 +16,14 @@ en:
       delete: "The diary has been deleted."
       failed_delete: "Failed to delete the diary."
     room: "The room could not be found."
+    rooms:
+      none_access: "Looks like you don’t have access to this room."
+      return: "I'm home!"
+      welcome: "Nice to see you back!"
+      back_home: "You’ve just arrived home."
+      5rooms: "Each user can create up to 5 rooms."
+      new: "Room created successfully!"
+      failed_create: "Something went wrong — the room couldn’t be created."
     area:
       register: "Your area has been registered."
       failed_register: "Could not retrieve weather information. Please check the city name."
@@ -28,6 +36,31 @@ en:
       failed_update: "Sorry, we couldn't update the name."
       delete: "The place has been removed."
       failed_delete: "we couldn’t delete the place."
+    state_calendar:
+      exist: "A record for this date already exists. Please select and update it from the calendar."
+      save: "Your condition has been saved."
+      failed_save: "We couldn't save your condition. Please try again."
+      unauthorize: "Sorry, you don't have permission to view this."
+      update: "Your condition has been updated."
+      failed_update: "We couldn't update your condition. Please try again."
+      delete: "Your condition has been deleted."
+      failed_delete: "We couldn't delete your condition. Please try again."
+    greeting:
+      save: "Your message has been saved."
+      failed_save: "We couldn’t save your message."
+      update: "Your message has been updated."
+      failed_update: "We couldn’t update your message."
+      delete: "Your message has been deleted."
+      failed_delete: "We couldn’t delete your message."
+    invitation:
+      view: "You can only view tokens for rooms you’ve created."
+      generated: "A new token has been generated."
+      failed_generate: "We couldn’t create the token."
+      already_used: "This token has already been used."
+      cannot_use: "The room creator can’t use this token."
+      expired: "This token has expired."
+      used: "The token has been used."
+
   views:
     post:
       description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
@@ -90,10 +123,45 @@ en:
       calendar_user: "%{name}'s calendar"
       note1: "・By clicking on a date in %{name}’s calendar, you can add, update, or delete your physical and mental condition records."
       note2: "・Each calendar is separate for each room, so even the same user’s records are kept individually."
+    greeting:
+      greeting_setting: "Message settings for  %{user} in  \"%{room}\""
+      none_return: "* 'I'm home' message has been set yet."
+      none_welcome: "* 'Welcome back' message has been set yet."
+      note1: "*Registered 'Welcome Home' messages ➡ These are randomly shown on your partner’s screen after they log in, once they've been invited."
+      note2: "*Registered 'I'm Home' messages ➡ These are randomly shown on your own screen after you log in."
+      status: "Status"
+      message: "Message"
+      enter: "Enter your message"
+      back: "Back to Saved Messages"
+      select: "Pick a message type"
+      return_message: "I'm Home"
+      welcome_message: "Welcome Home"
+    invitation:
+      link_list: "Active Invitation Links"
+      no_link: "No available tokens at the moment."
+      new_token: "Please generate a new token."
+      add: "+ Generate Token"
+      note1: "*Valid for 30 minutes. Copy and share the link above.*"
+      note2: "*After your partner logs in, opening the link will invite them to your room.*"
+      note3: "*Your partner must be registered and logged in.*"
+      note4: "*If it doesn't work on a smartphone, try pasting the link directly into the browser.*"
+      history: "Invitation Token History"
+      id: "ID"
+      expiration: "Expires In"
+      status: "Status"
+      date_issued: "Issued On"
+      date_used: "Used On"
+      expiry: "Expiration"
+      used: "Used"
+      unused: "Unused"
+      link: "Invitation Link"
+      copy: "Copy"
+      copied: "Copied!"
+      token_id: "Token ID"
 
     area:
-        rule: "Enter your area of residence *City or Ward (in English)"
-        example: "(e.g., shibuya)"
+      rule: "Enter your area of residence *City or Ward (in English)"
+      example: "(e.g., shibuya)"
     weather:
       update: "Weather information has been updated."
       failed_save: "Failed to save weather information."
@@ -115,8 +183,8 @@ en:
         visit_status: "Visit status-"
       state_calendar:
         date: "status on this date"
-        mental_state: "mental state"
-        physical_state: "physical state"
+        mental_state: "mental state-"
+        physical_state: "physical state-"
       greeting:
         greeting_type: "greeting type"
         message: "message"
@@ -160,9 +228,9 @@ en:
             date:
               taken: "already exists. Select the date from the calendar to update."
             mental_state:
-              blank: "please select"
+              blank: "please select mental state"
             physical_state:
-              blank: "please select"
+              blank: "please select physical state"
         post:
           attributes:
             post_type:

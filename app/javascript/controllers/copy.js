@@ -4,16 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
       const url = button.getAttribute('data-url');
       if (!url) return;
 
+      const copiedText = button.dataset.copiedText;
+      const originalText = button.dataset.copyText;
+
       navigator.clipboard.writeText(url)
         .then(() => {
-          const originalText = button.querySelector('.copy-text');
-          originalText.textContent = 'コピーしました';
+          const textElement = button.querySelector('.copy-text');
+          if (!textElement) return;
+          
+          textElement.textContent = copiedText;
+
           setTimeout(() => {
-            originalText.textContent = 'コピー';
+            textElement.textContent = originalText;
           }, 2000);
         })
         .catch(error => {
-          console.error('コピー失敗:', error);
+          console.error('Failed to copy:', error);
         });
     });
   });

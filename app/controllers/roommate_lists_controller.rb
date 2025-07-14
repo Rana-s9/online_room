@@ -44,7 +44,7 @@ class RoommateListsController < ApplicationController
 
   def authorize_room_access!
     unless @room.user_id == current_user.id || RoommateList.exists?(user_id: current_user.id, room_id: @room.id)
-      redirect_to root_path, alert: "この部屋にアクセスできません"
+      redirect_to root_path, alert: t("flash.rooms.none_access")
     end
   end
 end
