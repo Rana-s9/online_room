@@ -77,6 +77,27 @@ en:
         failed_delete: "We couldn't delete your comment."
 
   views:
+    top:
+      welcome: "Welcome back🏠"
+      create_account: "Start by creating an account."
+      login_instruction: "Click 'Login' or 'Sign up' in the header."
+      make_room: "Create your room and move in."
+      entrance_click: "Click 'Entrance' in the header first."
+      register_location: "Register your location."
+      location_note: "Only cities with weather data can be registered."
+      invite_partner: "Return to your room and invite your partner."
+      entrance_click_again: "Click 'Entrance' in the header first."
+      invite_click: "Click 'Invite Partner'."
+      copy_link: "Copy the link."
+      send_to_partner: "Send it to your partner."
+      daily_life: "Spend everyday life together in your room."
+      six_features: "Here are six things you can do:"
+      weather_share: "Share weather updates."
+      whiteboard: "Leave messages on the whiteboard."
+      greeting_message: "Manage 'Welcome home' / 'I'm home' messages."
+      diary: "Write an exchange diary."
+      favorite_place: "Save special places."
+      condition_check: "Check physical and mental condition."
     post:
       description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
       description2: "Leave helpful advice in the comments!"
