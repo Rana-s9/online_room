@@ -14,7 +14,7 @@ class Spot < ApplicationRecord
 
   def position_place
     if latitude.blank? || longitude.blank?
-      errors.add(:base, I18n.t('activerecord.errors.models.spot.attributes.base.position_blank'))
+      errors.add(:base, I18n.t("activerecord.errors.models.spot.attributes.base.position_blank"))
     end
   end
 end

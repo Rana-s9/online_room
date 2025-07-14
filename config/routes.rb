@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get "rooms/index"
   get "exchange_diaries/index"
 
-  scope '(:locale)', locale: /en|ja/ do
+  scope "(:locale)", locale: /en|ja/ do
     devise_for :users, controllers: {
     sessions: "users/sessions",
     registrations: "users/registrations"

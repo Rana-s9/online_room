@@ -19,7 +19,7 @@ class WeatherRecordsController < ApplicationController
 
   private
 
-  def fetch_weather_from_api(city, lang = 'ja')
+  def fetch_weather_from_api(city, lang = "ja")
     api_key = ENV["WEATHER_API"]
     url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=#{lang}")
     response = Net::HTTP.get_response(url)
@@ -37,8 +37,8 @@ class WeatherRecordsController < ApplicationController
   end
 
   def save_weather_record(area, weather_record)
-    ja_data = fetch_weather_from_api(area.city, 'ja')
-    en_data = fetch_weather_from_api(area.city, 'en')
+    ja_data = fetch_weather_from_api(area.city, "ja")
+    en_data = fetch_weather_from_api(area.city, "en")
 
     if ja_data.present? && en_data.present?
       weather_record.assign_attributes(
@@ -52,12 +52,12 @@ class WeatherRecordsController < ApplicationController
 
       if weather_record.save
         room = Room.find(params[:room_id])
-        redirect_to room_path(room), notice: t('views.weather.update')
+        redirect_to room_path(room), notice: t("views.weather.update")
       else
-        redirect_to areas_path, alert: t('views.weather.failed_save')
+        redirect_to areas_path, alert: t("views.weather.failed_save")
       end
     else
-      redirect_to root_path, alert: t('views.weather.failed_retrieve')
+      redirect_to root_path, alert: t("views.weather.failed_retrieve")
     end
   end
 
