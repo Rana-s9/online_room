@@ -8,11 +8,11 @@
     <div class="bg-light-gray/75 p-4 rounded shadow mb-4 text-matcha font-semibold">
         <div class="flex">
         <h1 class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-            <%= post.relationship == "other_relationship" ? post.custom_relationship : t("activerecord.attributes.post.relationship_options.#{post.relationship}") %>
+            <%= post.relationship == "other_relationship" ? post.custom_relationship : t("views.post.relationship_options.#{post.relationship}") %>
         </h1>
         <h1 class="text-matcha-green mx-2"> × </h1>
         <h1 class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-            <%= post.situation == "other_situation" ? post.custom_situation : t("activerecord.attributes.post.situation_options.#{post.situation}") %>
+            <%= post.situation == "other_situation" ? post.custom_situation : t("views.post.situation_options.#{post.situation}") %>
         </h1>
         </div>
         <p><i class="fa-solid fa-user"></i> <%= post.display_name == "anonymous" ? t("views.post.display_name_options.anonymous") : post.display_user %></p>
