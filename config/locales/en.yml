@@ -194,8 +194,8 @@ en:
       today_state: "+ Add %{date} today's state"
       calendar_name: "-%{name}-calendars"
       calendar_user: "%{name}'s calendar"
-      note1: "・By clicking on a date in %{name}’s calendar, you can add, update, or delete your physical and mental condition records."
-      note2: "・Each calendar is separate for each room, so even the same user’s records are kept individually."
+      note1: "* By clicking on a date in %{name}’s calendar, you can add, update, or delete your physical and mental condition records."
+      note2: "* Each calendar is separate for each room, so even the same user’s records are kept individually."
     greeting:
       greeting_setting: "Message settings for  %{user} in  \"%{room}\""
       none_return: "* 'I'm home' message has been set yet."
@@ -303,7 +303,19 @@ en:
               blank: "- Please describe the situation if you selected 'other'."
             custom_name:
               blank: "- Please enter a name if you selected 'display name'."
+        greeting:
+          attributes:
+            greeting_type:
+              blank: "- Please choose a greeting type."
+            message:
+              blank: "- Please enter your message."
         spot:
           attributes:
+            visit_status:
+              blank: "- Please choose a visit status."
+            name:
+              blank: "- Please enter a spot name."
+            address:
+              blank: "- Please enter address."
             base:
               position_blank: "Coordinates could not be retrieved. Please try again."

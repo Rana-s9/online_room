@@ -60,7 +60,7 @@
               "text-gray-700 font-bold"
             end
           %>
-          <p class="<%= color_class %>"><%= I18n.locale == :ja ? weather_record.description_ja : weather_record.description_en %></p>
+          <p class="<%= color_class %>"><%= I18n.locale == :ja ? weather_record.description : weather_record.description_en %></p>
           <p class="<%= color_class %>"><%= weather_record.temperature %>℃</p>
           <% if weather_record.created_at == weather_record.updated_at %>
             <p><i class="fa-solid fa-clock text-matcha-green/75"></i> <%= weather_record.created_at.strftime('%m/%d %H:%M') %></p>
