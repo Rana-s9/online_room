@@ -7,6 +7,7 @@ ja:
     get: "取得"
     register: "登録"
     save_new: "登録"
+    add: "追加"
   flash:
     alert: "本当に削除しますか？"
     diary:
@@ -61,10 +62,54 @@ ja:
       cannot_use: "部屋の作成者はトークンを使用できません"
       expired: "このトークンは期限切れです"
       used: "トークンを使用しました"
+    post:
+      create: "投稿が作成されました"
+      failed_create: "投稿の作成に失敗しました"
+      update: "投稿を更新しました"
+      failed_update: "投稿の更新に失敗しました"
+      delete: "投稿を削除しました"
+      failed_delete: "投稿の削除に失敗しました"
+      comment:
+        new: "コメントが作成されました"
+        failed_create: "コメントの作成に失敗しました"
+        update: "コメントが更新されました"
+        failed_update: "コメントの更新に失敗しました"
+        delete: "コメントが削除されました"
+        failed_delete: "コメントの削除に失敗しました"
   views:
     post:
       description: "生活リズムが違う人とのコミュニケーション、どうしてる？Tips(コツ)や質問をシェアしよう！"
       description2: "質問にはコメントでアドバイスを送ろう"
+      note: "*Tipsや質問を投稿してみよう"
+      select_type: "tips/質問を選択"
+      select_situation: "状況を選択"
+      select_relationship: "間柄を選択"
+      select_name: "表示名を選択"
+      enter_situation: "状況を入力"
+      enter_content: "内容を入力"
+      enter_name: "表示名を入力"
+      relationship_options:
+        partner: "交際相手、パートナー"
+        friend: "友達"
+        family: "家族"
+        other_relationship: "その他"
+      post_type_options:
+        tips: "Tips"
+        question: "質問"
+      situation_options:
+        long_distance: "遠距離"
+        sometimes_meet: "たまに会う"
+        living_together: "同居"
+        other_situation: "その他"
+      display_name_options:
+        username: "ユーザーネーム"
+        anonymous: "匿名"
+        nickname: "表示名登録"
+      comment:
+        nothing: "コメントはまだありません"
+        title: "コメント"
+        add: "コメントを追加"
+        enter: "コメントやアドバイスを書いてみよう"
     diary:
       count: "%{number}日記目"
       name: "の交換日記"
@@ -200,23 +245,6 @@ ja:
         custom_relationship: "自由記述（その他）"
         custom_situation: "自由記述（その他）"
         custom_name: "表示名登録"
-        relationship_options:
-          partner: "交際相手、パートナー"
-          friend: "友達"
-          family: "家族"
-          other_relationship: "その他"
-        post_type_options:
-          tips: "Tips"
-          question: "質問"
-        situation_options:
-          long_distance: "遠距離"
-          sometimes_meet: "たまに会う"
-          living_together: "同居"
-          other_situation: "その他"
-        display_name_options:
-          username: "ユーザーネーム"
-          anonymous: "匿名"
-          nickname: "表示名登録"
       answer:
         body: "内容"
 

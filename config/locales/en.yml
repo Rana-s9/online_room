@@ -7,6 +7,7 @@ en:
     get: "Get"
     register: "Register"
     save_new: "Save"
+    add: "Add"
   flash:
     alert: "Are you sure you'd like to delete this?"
     diary:
@@ -60,11 +61,55 @@ en:
       cannot_use: "The room creator can’t use this token."
       expired: "This token has expired."
       used: "The token has been used."
+    post:
+      create: "Your post has been created."
+      failed_create: "We couldn't create your post."
+      update: "Your post has been updated."
+      failed_update: "We couldn't update your post."
+      delete: "Your post has been deleted."
+      failed_delete: "We couldn't delete your post."
+      comment:
+        new: "Your comment has been posted."
+        failed_create: "We couldn't post your comment."
+        update: "Your comment has been updated."
+        failed_update: "We couldn't update your comment."
+        delete: "Your comment has been deleted."
+        failed_delete: "We couldn't delete your comment."
 
   views:
     post:
       description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
       description2: "Leave helpful advice in the comments!"
+      note: "*Got a tip or a question? Share it with everyone!"
+      select_type: "Choose a tip or question"
+      select_situation: "Choose a situation"
+      select_relationship: "Choose your relationship"
+      select_name: "Choose your display name"
+      enter_situation: "Enter the situation"
+      enter_content: "Enter the content"
+      enter_name: "Enter your display name"
+      relationship_options:
+          partner: "partner"
+          friend: "friend"
+          family: "family"
+          other_relationship: "other"
+      post_type_options:
+        tips: "Tips"
+        question: "Questions"
+      situation_options:
+        long_distance: "long distance"
+        sometimes_meet: "sometimes meet"
+        living_together: "living together"
+        other_situation: "other"
+      display_name_options:
+        username: "username"
+        anonymous: "anonymous user"
+        nickname: "set display name"
+      comment:
+        nothing: "No comments yet"
+        title: "Comments"
+        add: "Add Comments"
+        enter: "Feel free to leave a comment or some advice!"
     diary:
       count: "Diary #%{number}"
       name: "Exchange Diary"
@@ -176,77 +221,60 @@ en:
   activerecord:
     attributes:
       exchange_diary:
-        body: "content-"
+        body: "content"
       spot:
-        address: "Address-"
-        name: "Place Name-"
-        visit_status: "Visit status-"
+        address: "Address"
+        name: "Place Name"
+        visit_status: "Visit status"
       state_calendar:
         date: "status on this date"
-        mental_state: "mental state-"
-        physical_state: "physical state-"
+        mental_state: "mental state"
+        physical_state: "physical state"
       greeting:
         greeting_type: "greeting type"
         message: "message"
       post:
         tips: "Tips"
         questions: "Questions"
-        relationship: "relationship-"
-        post_type: "tips/questions-"
-        situation: "situation-"
-        content: "content-"
-        display_name: "display name-"
-        custom_relationship: "other-"
-        custom_situation: "other-"
+        relationship: "relationship"
+        post_type: "tips/questions"
+        situation: "situation"
+        content: "content"
+        display_name: "display name"
+        custom_relationship: "other"
+        custom_situation: "other"
         custom_name: "enter display name"
-        relationship_options:
-          partner: "partner"
-          friend: "friend"
-          family: "family"
-          other_relationship: "other"
-        post_type_options:
-          tips: "Tips"
-          question: "Questions"
-        situation_options:
-          long_distance: "long distance"
-          sometimes_meet: "sometimes meet"
-          living_together: "living together"
-          other_situation: "other"
-        display_name_options:
-          username: "username"
-          anonymous: "anonymous user"
-          nickname: "display name"
       answer:
         body: "content"
 
     errors:
       messages:
-        blank: "please enter your content"
+        blank: "- please enter your content"
       models:
         state_calendar:
           attributes:
             date:
-              taken: "already exists. Select the date from the calendar to update."
+              taken: "- already exists. Select the date from the calendar to update."
             mental_state:
-              blank: "please select mental state"
+              blank: "- please select mental state"
             physical_state:
-              blank: "please select physical state"
+              blank: "- please select physical state"
         post:
           attributes:
             post_type:
-              blank: "Please choose a post type."
+              blank: "- Please choose a post type."
             relationship:
-              blank: "Please select your relationship."
+              blank: "- Please select your relationship."
             situation:
-              blank: "Please select a situation."
+              blank: "- Please select a situation."
             content:
-              blank: "Please enter your content."
+              blank: "- Please enter your content."
             custom_relationship:
-              blank: "Please describe the relationship if you selected 'other'."
+              blank: "- Please describe the relationship if you selected 'other'."
             custom_situation:
-              blank: "Please describe the situation if you selected 'other'."
+              blank: "- Please describe the situation if you selected 'other'."
             custom_name:
-              blank: "Please enter a name if you selected 'display name'."
+              blank: "- Please enter a name if you selected 'display name'."
         spot:
           attributes:
             base:

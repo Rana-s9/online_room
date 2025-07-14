@@ -11,9 +11,9 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path, notice: "投稿が作成されました"
+      redirect_to posts_path, notice: t("flash.post.create")
     else
-      flash.now[alert] = "投稿の作成に失敗しました"
+      flash.now[alert] = t("flash.post.failed_create")
       render :new, status: :unprocessable_entity
     end
   end
@@ -33,9 +33,9 @@ class PostsController < ApplicationController
   def update
     @post = Post.find_by(user: current_user, id: params[:id])
     if @post.update(post_params)
-      redirect_to posts_path, notice: "投稿を更新しました"
+      redirect_to posts_path, notice: t("flash.post.update")
     else
-      flash.now[alert] = "投稿の更新に失敗しました"
+      flash.now[alert] = t("flash.post.failed_update")
       render :edit, status: :unprocessable_entity
     end
   end
@@ -43,9 +43,9 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find_by(user: current_user, id: params[:id])
     if @post.destroy
-      redirect_to posts_path, notice: "投稿を削除しました"
+      redirect_to posts_path, notice: t("flash.post.delete")
     else
-      flash.now[alert] = "投稿の削除に失敗しました"
+      flash.now[alert] = t("flash.post.failed_delete")
       render :edit, status: :unprocessable_entity
     end
   end
