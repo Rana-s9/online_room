@@ -8635,14 +8635,17 @@ document.addEventListener("DOMContentLoaded", () => {
     button.addEventListener("click", () => {
       const url = button.getAttribute("data-url");
       if (!url) return;
+      const copiedText = button.dataset.copiedText;
+      const originalText = button.dataset.copyText;
       navigator.clipboard.writeText(url).then(() => {
-        const originalText = button.querySelector(".copy-text");
-        originalText.textContent = "\u30B3\u30D4\u30FC\u3057\u307E\u3057\u305F";
+        const textElement = button.querySelector(".copy-text");
+        if (!textElement) return;
+        textElement.textContent = copiedText;
         setTimeout(() => {
-          originalText.textContent = "\u30B3\u30D4\u30FC";
+          textElement.textContent = originalText;
         }, 2e3);
       }).catch((error2) => {
-        console.error("\u30B3\u30D4\u30FC\u5931\u6557:", error2);
+        console.error("Failed to copy:", error2);
       });
     });
   });

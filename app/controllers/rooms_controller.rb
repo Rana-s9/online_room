@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
 
   def create
     if current_user.owned_rooms.count >= 5
-      flash[:alert] = "1人あたり5部屋まで作成できます。"
+      flash[:alert] = t("flash.rooms.5rooms")
       redirect_to rooms_path and return
     end
 
@@ -18,10 +18,10 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: "部屋を作成しました" }
+        format.html { redirect_to @room, notice: t("flash.rooms.new") }
       else
         invited_and_own_room
-        flash.now[:alert] = "部屋を作成できませんでした"
+        flash.now[:alert] = t("flash.rooms.failed_create")
         format.html { render :index, status: :unprocessable_entity }
       end
     end
@@ -57,14 +57,14 @@ class RoomsController < ApplicationController
           { message: message.message, user: message.user }
         else
           user = @roommates_except_self.sample
-          { message: "おかえりなさい！", user: user }
+          { message: t("flash.rooms.welcome"), user: user }
         end
       else
         if @my_welcome.any?
           message = @my_welcome.sample
           { message: message.message, user: message.user }
         else
-          { message: "おかえりなさい！", user: current_user }
+          { message: t("flash.rooms.welcome"), user: current_user }
         end
       end
 
@@ -73,11 +73,11 @@ class RoomsController < ApplicationController
         message = @my_return.sample
         { message: message.message, user: message.user }
       else
-        { message: "ただいま！", user: current_user }
+        { message: t("flash.rooms.return"), user: current_user }
       end
 
       if params[:from_home_button]
-        flash[:just_signed_in] = "帰宅しました"
+        flash[:just_signed_in] = t("flash.rooms.back_home")
       end
   end
 
@@ -100,7 +100,7 @@ class RoomsController < ApplicationController
 
   def authorize_room_access!
     unless @room.user_id == current_user.id || RoommateList.exists?(user_id: current_user.id, room_id: @room.id)
-      redirect_to root_path, alert: "この部屋にアクセスできません"
+      redirect_to root_path, alert: t("flash.rooms.none_access")
     end
   end
 

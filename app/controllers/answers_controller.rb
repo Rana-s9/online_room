@@ -5,9 +5,9 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.build(answer_params)
     @post = @answer.post
     if @answer.save
-      redirect_to post_path(@post), notice: "コメントが作成されました"
+      redirect_to post_path(@post), notice: t("flash.post.comment.new")
     else
-      flash.now[alert] = "コメントの作成に失敗しました"
+      flash.now[alert] = t("flash.post.comment.failed_create")
       @answers = @post.answers.includes(:user)
       render "posts/show", status: :unprocessable_entity
     end
@@ -17,9 +17,9 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.find(params[:id])
     @post = @answer.post
     if @answer.update
-      redirect_to post_path(@post), notice: "コメントが更新されました"
+      redirect_to post_path(@post), notice: t("flash.post.comment.update")
     else
-      flash.now[alert] = "コメントの更新に失敗しました"
+      flash.now[alert] = t("flash.post.comment.failed_update")
       @answers = @post.answers.includes(:user)
       render "posts/show", status: :unprocessable_entity
     end
@@ -29,9 +29,9 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.find(params[:id])
     @post = @answer.post
     if @answer.destroy
-      redirect_to post_path(@post), notice: "コメントが削除されました"
+      redirect_to post_path(@post), notice: t("flash.post.comment.delete")
     else
-      flash.now[alert] = "コメントの削除に失敗しました"
+      flash.now[alert] = t("flash.post.comment.failed_delete")
       @answers = @post.answers.includes(:user)
       render "posts/show", status: :unprocessable_entity
     end

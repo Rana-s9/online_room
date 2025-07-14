@@ -1,12 +1,12 @@
 <div class="flex text-beige text-xl font-bold rounded-lg shadow-md p-4 bg-[url('/room.jpg')] bg-cover bg-center mt-6">
   <% if @roommates.present? %>
     <% @roommates.each do |roommate| %>
-      <%= roommate.name %>
+      <%= roommate.name %> 
     <% end %>
-    <h1>の交換日記<i class="fa-solid fa-book"></i></h1>
+    <h1><i class="fa-solid fa-book"></i> <%= t("views.diary.name") %></h1>
   <% else %>
-    <%= current_user.name %>
-    <h1>の交換日記<i class="fa-solid fa-book"></i></h1>
+    <%= current_user.name %> 
+    <h1><i class="fa-solid fa-book"></i> <%= t("views.diary.name") %></h1>
   <% end %>
 </div>
 <div class="container mx-auto px-4">
@@ -31,4 +31,4 @@
     <%= paginate @exchange_diaries %>
   </div>
 </div>
-<%= link_to "#{@room.name}🏠に戻る", room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
+<%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>

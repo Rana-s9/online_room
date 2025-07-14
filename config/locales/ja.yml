@@ -1,21 +1,270 @@
 ja:
+  buttons:
+    back: "戻る"
+    new: "新規作成"
+    save: "保存"
+    update: "更新"
+    get: "取得"
+    register: "登録"
+    save_new: "登録"
+    add: "追加"
+  flash:
+    alert: "本当に削除しますか？"
+    diary:
+      save: "日記を保存しました"
+      failed_save: "日記の保存に失敗しました"
+      update: "更新成功"
+      delete: "日記を削除しました"
+      failed_delete: "日記の削除に失敗しました"
+    room:
+      failed_find: "部屋が見つかりませんでした"
+    rooms:
+      none_access: "この部屋にアクセスできません"
+      return: "ただいま！"
+      welcome: "おかえりなさい！"
+      back_home: "帰宅しました"
+      5rooms: "1人あたり5部屋まで作成できます"
+      new: "部屋を作成しました"
+      failed_create: "部屋を作成できませんでした"
+    area:
+      register: "地域を登録しました"
+      failed_register: "天気情報を取得できない都市名です。都市名をご確認ください"
+      update: "お住まいの地域を更新しました"
+      failed_update: "地域の変更に失敗しました"
+    spot:
+      save: "場所を登録しました"
+      failed_save: "場所の登録に失敗しました"
+      update: "場所名を更新しました"
+      failed_update: "場所名の更新に失敗しました"
+      delete: "登録場所を削除しました"
+      failed_delete: "登録場所の削除に失敗しました"
+    state_calendar:
+      exist: "この日付の記録はすでに存在します。カレンダーから選択、更新してください"
+      save: "心身コンディションを保存しました"
+      failed_save: "心身コンディションの保存に失敗しました"
+      unauthorize: "不正なアクセスです"
+      update: "心身コンディションを更新しました"
+      failed_update: "心身コンディションの更新に失敗しました"
+      delete: "心身コンディションを削除しました"
+      failed_delete: "心身コンディションの削除に失敗しました"
+    greeting:
+      save: "メッセージを登録しました"
+      failed_save: "メッセージの登録に失敗しました"
+      update: "メッセージを更新しました"
+      failed_update: "メッセージの更新に失敗しました"
+      delete: "メッセージを削除しました"
+      failed_delete: "メッセージの削除に失敗しました"
+    invitation:
+      view: "自分が作成した部屋のトークンしか表示できません"
+      generated: "トークンを発行しました"
+      failed_generate: "トークンの発行に失敗しました"
+      already_used: "このトークンはすでに使用されています"
+      cannot_use: "部屋の作成者はトークンを使用できません"
+      expired: "このトークンは期限切れです"
+      used: "トークンを使用しました"
+    post:
+      create: "投稿が作成されました"
+      failed_create: "投稿の作成に失敗しました"
+      update: "投稿を更新しました"
+      failed_update: "投稿の更新に失敗しました"
+      delete: "投稿を削除しました"
+      failed_delete: "投稿の削除に失敗しました"
+      comment:
+        new: "コメントが作成されました"
+        failed_create: "コメントの作成に失敗しました"
+        update: "コメントが更新されました"
+        failed_update: "コメントの更新に失敗しました"
+        delete: "コメントが削除されました"
+        failed_delete: "コメントの削除に失敗しました"
+  views:
+    top:
+      welcome: "おかえりなさい🍵"
+      create_account: "まずはアカウントを作成しましょう。"
+      login_instruction: "ヘッダーのログイン / 新規登録をクリック"
+      make_room: "玄関で部屋を作り、入居しましょう。"
+      entrance_click: "まずはヘッダーの「玄関」をクリック"
+      register_location: "お住まいの地域を登録しましょう。"
+      location_note: "天気取得できる都市名のみ登録できます"
+      invite_partner: "部屋に帰宅し、相手を招待しましょう。"
+      entrance_click_again: "まずはヘッダーの「玄関」をクリック"
+      invite_click: "「同居人を招待」をクリック"
+      copy_link: "リンクを「コピー」"
+      send_to_partner: "お相手に送信"
+      daily_life: "部屋で日常を過ごそう。"
+      six_features: "できる６つのこと"
+      weather_share: "天気情報の共有"
+      whiteboard: "ホワイトボードの伝言"
+      greeting_message: "おかえり/ただいまメッセージ管理"
+      diary: "交換日記"
+      favorite_place: "想い出の場所"
+      condition_check: "心身コンディション"
+    post:
+      description: "生活リズムが違う人とのコミュニケーション、どうしてる？Tips(コツ)や質問をシェアしよう！"
+      description2: "質問にはコメントでアドバイスを送ろう"
+      note: "*Tipsや質問を投稿してみよう"
+      select_type: "tips/質問を選択"
+      select_situation: "状況を選択"
+      select_relationship: "間柄を選択"
+      select_name: "表示名を選択"
+      enter_situation: "状況を入力"
+      enter_content: "内容を入力"
+      enter_name: "表示名を入力"
+      relationship_options:
+        partner: "交際相手、パートナー"
+        friend: "友達"
+        family: "家族"
+        other_relationship: "その他"
+      post_type_options:
+        tips: "Tips"
+        question: "質問"
+      situation_options:
+        long_distance: "遠距離"
+        sometimes_meet: "たまに会う"
+        living_together: "同居"
+        other_situation: "その他"
+      display_name_options:
+        username: "ユーザーネーム"
+        anonymous: "匿名"
+        nickname: "表示名登録"
+      comment:
+        nothing: "コメントはまだありません"
+        title: "コメント"
+        add: "コメントを追加"
+        enter: "コメントやアドバイスを書いてみよう"
+    diary:
+      count: "%{number}日記目"
+      name: "の交換日記"
+      your_day: "今日の出来事は？"
+      write: "日記を書く"
+    room:
+      front_door: "玄関"
+      move_in: "入居日"
+      registration: "登録日"
+      roommate: "住民"
+      owner: "下線付きの家：あなたが登録した家"
+      house_name: "家の名前"
+      living_alone: "ひとり暮らし"
+      return: "帰宅"
+      back_to_room: "%{room_name}🏠に戻る"
+      new: "新しい家の名前を追加してください"
+    room_show:
+      invitation: "同居人を招待　　　"
+      diary: "交換日記　　　　　"
+      place: "想い出スポット　　"
+      state: "心身コンディション"
+      message: "おかえり/ただいまメッセージ管理"
+      cleaning: "部屋片づけ中"
+    roommate:
+      no_invite_link: "招待リンクが存在しません"
+      invite_expired: "招待リンクの有効期限が切れています"
+      invite_used: "この招待リンクはすでに使用されています"
+      already_joined: "すでにこのルームに参加しています"
+      joined: "ルームに参加しました"
+    spot:
+      visited_list: "行ったことがある場所一覧"
+      visit_list: "行きたい場所一覧"
+      none_visited: "まだ「行ったことがある場所」の登録はありません"
+      none_visit: "まだ「行きたい場所」の登録はありません"
+      address_name: "住所または場所名 *(例)東京都 スカイツリー"
+      enter: "場所名を入力"
+      search: "検索"
+      note: " *場所名は自動入力されますが、適宜変更してください"
+      auto: "自動入力"
+      reset: "リセット"
+      select: "ステータスを選ぶ"
+      visited: "行ったことがある"
+      visit: "行きたい"
+      flow: "⓵ステータス→⓶住所を入力→⓷検索→⓸登録"
+      need_login: "場所を登録するには、ログインが必要です"
+    state_calendar:
+      button: "カレンダーへ戻る"
+      mental_state: "心の状態"
+      select: "一番近い状態を選ぶ"
+      amazing: "🥳 : とても元気"
+      good: "😊 : 元気"
+      bit_off: "😐 : 少しもやっとしている"
+      down: "😭 : 激しい落ち込み・涙が出る"
+      mental_sos: "😣 : SOS / 相談に乗ってほしい"
+      physical_state: "体の状態"
+      energetic: "💃 : エネルギッシュ"
+      fine: "🚶‍♀️ : 元気"
+      sluggish: "🧍‍♀️ : 少しだるい"
+      awful: "🛌 : とても辛くて動けない"
+      physical_sos: "🤒 : SOS / 声をかけてほしい"
+      today_state: "+ 本日 %{date} の心身登録"
+      calendar_name: "-%{name}-のカレンダー"
+      calendar_user: "%{name} さんのカレンダー"
+      note1: "※%{name}さんのカレンダーの日付をクリック➡ 心身状況の登録・更新・削除ができます"
+      note2: "※カレンダーは部屋ごとに分かれており、同ユーザーでも記録は別々です"
+    greeting:
+      greeting_setting: "%{user} さんの \"%{room}\" 用のメッセージ管理画面"
+      none_return: "※「ただいまメッセージ」の登録はまだありません"
+      none_welcome: "※「おかえりメッセージ」の登録はまだありません"
+      note1: "*登録された「おかえりメッセージ」➡ 招待後、相手ユーザーのログイン後画面に ランダムで表示されます。"
+      note2: "*登録された「ただいまメッセージ」➡ 自身のログイン後画面に ランダムで表示されます。"
+      status: "ステータス"
+      message: "メッセージ"
+      enter: "メッセージを入力"
+      back: "メッセージ一覧"
+      select: "ただいま/おかえり を選択"
+      return_message: "ただいまメッセージ"
+      welcome_message: "おかえりメッセージ"
+    invitation:
+      link_list: "現在有効な招待リンク一覧"
+      no_link: "使用可能なトークンは現在ありません。"
+      new_token: "新しくトークンを発行してください。"
+      add: "+ トークンを発行する"
+      note1: "※有効期限は発行後30分です。上記リンクをコピーして共有しましょう。"
+      note2: "※お相手ユーザーがログイン後➡ 上記リンクを開くと部屋に招待されます。"
+      note3: "※お相手ユーザーが新規登録・ログインしている必要があります。"
+      note4: "※スマホで参加に失敗した場合は、リンクを直接URL欄に貼ってください。"
+      history: "招待トークン発行履歴"
+      id: "番号"
+      expiration: "有効期限"
+      status: "使用状況"
+      date_issued: "発行日"
+      date_used: "使用日"
+      expiry: "期限"
+      used: "使用済み"
+      unused: "未使用"
+      link: "招待リンク"
+      copy: "コピー"
+      copied: "コピーしました！"
+      token_id: "トークン番号"
+
+    area:
+        rule: "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)"
+        example: "(例: shibuya)"
+    weather:
+      update: "天気情報を更新しました"
+      failed_save: "天気情報の保存に失敗しました"
+      failed_retrieve: "天気情報を取得できませんでした"
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+
   activerecord:
     attributes:
       exchange_diary:
-        body: 内容
+        body: "内容"
       spot:
-        address: 住所
-        name: 場所名
-        visit_status: ステータス
+        address: "住所"
+        name: "場所名"
+        visit_status: "ステータス"
       state_calendar:
-        date: この日付の記録
-        mental_state: 心の状態
-        physical_state: 体の状態
+        date: "この日付の記録"
+        mental_state: "心の状態"
+        physical_state: "体の状態"
       greeting:
-        greeting_type: ステータス
-        message: メッセージ
+        greeting_type: "ステータス"
+        message: "メッセージ"
       post:
         relationship: "間柄"
+        tips: "Tips一覧"
+        questions: "質問一覧"
         post_type: "tips/質問"
         situation: "状況"
         content: "内容"
@@ -23,24 +272,6 @@ ja:
         custom_relationship: "自由記述（その他）"
         custom_situation: "自由記述（その他）"
         custom_name: "表示名登録"
-        # enum日本語訳
-        relationship_options:
-          partner: "交際相手、パートナー"
-          friend: "友達"
-          family: "家族"
-          other_relationship: "その他"
-        post_type_options:
-          tips: "Tips"
-          question: "質問"
-        situation_options:
-          long_distance: "遠距離"
-          sometimes_meet: "たまに会う"
-          living_together: "同居"
-          other_situation: "その他"
-        display_name_options:
-          username: "ユーザーネーム"
-          anonymous: "匿名"
-          nickname: "表示名登録"
       answer:
         body: "内容"
 
@@ -56,7 +287,6 @@ ja:
               blank: "を選択してください"
             physical_state:
               blank: "を選択してください"
-
         post:
           attributes:
             post_type:
@@ -73,11 +303,8 @@ ja:
               blank: "状況のその他を選んだ場合は自由記述が必要です"
             custom_name:
               blank: "表示名登録を選んだ場合は名前を入力してください"
+        spot:
+          attributes:
+            base:
+              position_blank: "座標取得のため、もう一度お試しください"
 
-  views:
-    pagination:
-      first: "&laquo; 最初"
-      last: "最後 &raquo;"
-      previous: "&lsaquo; 前"
-      next: "次 &rsaquo;"
-      truncate: "&hellip;"

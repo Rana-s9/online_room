@@ -11,7 +11,7 @@ class InvitationTokensControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get room_invitation_tokens_url(@room)
+    get room_invitation_tokens_url(@room, locale: :ja)
     assert_response :success
   end
 end

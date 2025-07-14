@@ -1,7 +1,7 @@
-<%= link_to "新規登録", new_room_spot_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+<%= link_to t("buttons.new"), new_room_spot_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
 <div class="w-full max-w-md mx-auto bg-light-gray/40 p-6 rounded-lg shadow-lg mt-12">
   <% if @visited.present? %>
-      <h2 class="text-xl text-matcha-green font-bold">行ったことがある場所一覧</h2>
+      <h2 class="text-xl text-matcha-green font-bold"><%= t("views.spot.visited_list") %></h2>
       <% @visited.each do |spot| %>
           <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
             <div class="text-matcha font-bold">
@@ -16,11 +16,11 @@
           </div>
       <% end %>
   <% else %>
-      <h2><i class="fa-solid fa-location-pin text-red-500"></i>まだ「行ったことがある場所」の登録はありません</h2>
+      <h2><i class="fa-solid fa-location-pin text-red-500"></i><%= t("views.spot.none_visited") %></h2>
   <% end %>
 
   <% if @wanna_visit.present? %>
-      <h2 class="text-xl text-matcha-green font-bold">行きたい場所一覧</h2>
+      <h2 class="text-xl text-matcha-green font-bold"><%= t("views.spot.visit_list") %></h2>
       <% @wanna_visit.each do |spot| %>
           <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
             <div class="text-matcha font-bold">
@@ -35,7 +35,7 @@
           </div>
       <% end %>
   <% else %>
-      <h2><i class="fa-solid fa-location-pin text-red-500"></i> まだ「行きたい場所」の登録はありません</h2>
+      <h2><i class="fa-solid fa-location-pin text-red-500"></i> <%= t("views.spot.none_visit") %></h2>
   <% end %>
 </div>
-<%= link_to "#{@room.name}🏠に戻る", room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
+<%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>

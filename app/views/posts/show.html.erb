@@ -6,11 +6,11 @@
   <div class="bg-beige/40 p-4 rounded shadow mb-6 text-matcha font-semibold">
     <div class="flex mb-2">
       <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-        <%= @post.relationship == "other_relationship" ? @post.custom_relationship : I18n.t("activerecord.attributes.post.relationship_options.#{@post.relationship}") %>
+        <%= @post.relationship == "other_relationship" ? @post.custom_relationship : t("activerecord.attributes.post.relationship_options.#{@post.relationship}") %>
       </span>
       <span class="text-matcha-green mx-2">×</span>
       <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-        <%= @post.situation == "other_situation" ? @post.custom_situation : I18n.t("activerecord.attributes.post.situation_options.#{@post.situation}") %>
+        <%= @post.situation == "other_situation" ? @post.custom_situation : t("activerecord.attributes.post.situation_options.#{@post.situation}") %>
       </span>
     </div>
 
@@ -24,7 +24,7 @@
     </div>
 
     <p class="text-gray-700 mt-3">
-      <strong>登録日時:</strong> <%= l(@post.created_at, format: :long) %>
+      <%= l(@post.created_at, format: :long) %>
     </p>
     <div class ="text-center title ">
         <%= link_to 'share', "https://x.com/share?url=https://our-onlineroom.com/&text=【🏠#{@post.post_type}】～#{@post.content}～を投稿しました！", 
@@ -34,14 +34,14 @@
 </div>
 <div class="w-full max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
   <!-- コメント -->
-    <h2 class="text-xl font-bold text-dark-gray mb-4">コメント</h2>
+    <h2 class="text-xl font-bold text-dark-gray mb-4"><%= t("views.post.comment.title") %></h2>
 
     <% if @post.answers.empty? %>
-      <p class="text-gray-600">コメントはまだありません</p>
+      <p class="text-gray-600"><%= t("views.post.comment.nothing") %></p>
     <% else %>
       <%= render @answers %>
     <% end %>
 </div>
   <%= render 'answers/form', answer: @answer, post: @post %>
-<%= link_to "戻る", posts_path, class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+<%= link_to t("buttons.back"), posts_path, class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
 

@@ -1,7 +1,7 @@
 <div class="container fixed top-[80px] left-1/2 transform -translate-x-1/2 z-50 p-4">
   <div class="flex justify-center">
     <div class="w-full max-w-lg">
-      <h1 class="text-2xl text-matcha font-bold mb-6">新規登録</h1> 
+      <h1 class="text-2xl text-matcha font-bold mb-6"><%= t('devise.registrations.sign_up') %></h1> 
       <%= form_with model: resource, url: registration_path(resource_name), local: true do |f| %>
         <%= render "devise/registrations/shared/error_messages", resource: resource %>
         <div>
@@ -20,10 +20,10 @@
           <%= f.label :password_confirmation, class: "block text-sm font-medium text-matcha" %>
           <%= f.password_field :password_confirmation, class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha" %>
         </div>
-        <%= f.submit '新規登録', class: "w-full mb-6 bg-matcha/75 hover:bg-blue/75 text-white font-bold py-2 px-4 rounded-md shadow-md transition",
+        <%= f.submit t('devise.registrations.sign_up'), class: "w-full mb-6 bg-matcha/75 hover:bg-blue/75 text-white font-bold py-2 px-4 rounded-md shadow-md transition",
         id: "blue-door" %>
       <% end %>
-      <%= link_to 'ログインはこちら', new_user_session_path, class: "text-matcha" %>
+      <%= link_to t('devise.sessions.new.sign_in'), new_user_session_path, class: "text-matcha" %>
     </div>
   </div>
 </div>

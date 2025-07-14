@@ -1,23 +1,20 @@
 <section class="w-full mx-auto max-w-2xl h-auto min-h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('/room.jpg'); mt-2">
   <div class="text-white text-center bg-black/30 p-6 rounded">
-    <h1 class="text-2xl mb-4">おかえりなさい</h1>
-    <p class="text-2xl">オンライン同居の世界へ</p>
+    <h1 class="text-2xl mb-4"><%= t("views.top.welcome") %></h1>
     <h1 class="text-2xl animate-bounce mt-6" data-aos="fade-up" >Scroll☟</h1>
   </div>
 </section>
 
 <section class="min-h-screen w-full flex items-center justify-center bg-white px-4">
   <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
-    <!-- 左：画像 -->
     <div class="w-full md:w-1/2">
       <%= image_tag '/registration.png', class: 'w-full h-auto rounded shadow-md' %>
     </div>
-    <!-- 右：テキスト -->
     <div class="w-full md:w-1/2 text-center md:text-left">
       <h1 class="text-4xl font-semibold mb-4">Step 1</h1>
       <p class="text-lg text-gray-600">
-        まずはアカウントを作成しましょう。<br>
-        ヘッダーのログイン / 新規登録をクリック
+        <%= t("views.top.create_account") %><br>
+        <%= t("views.top.login_instruction") %>
       </p>
     </div>
   </div>
@@ -28,8 +25,8 @@
     <div class="w-full md:w-1/2 text-center md:text-right">
       <h1 class="text-4xl font-semibold mb-4">Step 2</h1>
       <p class="text-lg text-gray-600">
-        玄関で部屋を作り、入居しましょう。<br>
-        まずはヘッダーの「玄関」をクリック
+        <%= t("views.top.make_room") %><br>
+        <%= t("views.top.entrance_click") %>
       </p>
     </div>
     <div class="w-full md:w-1/2">
@@ -47,8 +44,8 @@
     <div class="w-full md:w-1/2 text-center md:text-left">
       <h1 class="text-4xl font-semibold mb-4">Step 3</h1>
       <p class="text-lg text-gray-600">
-        お住まいの地域を登録しましょう。<br>
-        天気取得できる都市名のみ登録できます
+        <%= t("views.top.register_location") %><br>
+        <%= t("views.top.location_note") %>
       </p>
     </div>
   </div>
@@ -59,14 +56,12 @@
     <div class="w-full md:w-1/2 text-center md:text-right">
       <h1 class="text-4xl font-semibold mb-4">Step 4</h1>
       <p class="text-lg text-gray-600">
-        部屋に帰宅し、相手を招待しましょう。<br>
-        まずはヘッダーの「玄関」をクリック
+        <%= t("views.top.invite_partner") %><br>
+        <%= t("views.top.entrance_click_again") %>
       </p>
-      <ul class="text-center">
-        <li>1. 「同居人を招待」をクリック</li>
-        <li>2. リンクを「コピー」</li>
-        <li>3. お相手に送信</li>
-      </ul>
+      <p>1. <%= t("views.top.invite_click") %></p>
+      <p>2. <%= t("views.top.copy_link") %></p>
+      <p>3. <%= t("views.top.send_to_partner") %></p>
     </div>
     <div class="w-full md:w-1/2">
       <%= image_tag '/invitation.gif', class: 'w-full h-auto rounded shadow-md' %>
@@ -77,14 +72,14 @@
 <section class="min-h-screen w-full flex items-center justify-center bg-white">
   <div class="text-center px-6" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-4">Step 5</h2>
-    <p class="text-base text-gray-600">部屋で日常を過ごそう。<br>できる６つのこと</p>
+    <p class="text-base text-gray-600"><%= t("views.top.daily_life") %><br><%= t("views.top.six_features") %></p>
     <ul class="mt-2 text-left">
-        <li>1. 天気情報の共有</li>
-        <li>2. ホワイトボードの伝言</li>
-        <li>3. おかえり/ただいまメッセージ管理</li>
-        <li>4. 交換日記</li>
-        <li>5. 想い出の場所</li>
-        <li>6. 心身コンディション</li>
+        <li>1. <%= t("views.top.weather_share") %></li>
+        <li>2. <%= t("views.top.whiteboard") %></li>
+        <li>3. <%= t("views.top.greeting_message") %></li>
+        <li>4. <%= t("views.top.diary") %></li>
+        <li>5. <%= t("views.top.favorite_place") %></li>
+        <li>6. <%= t("views.top.condition_check") %></li>
       </ul>
   </div>
 </section>

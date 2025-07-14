@@ -10,7 +10,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get posts_url
+    get posts_url(locale: :ja)
     assert_response :success
   end
 end

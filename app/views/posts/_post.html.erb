@@ -3,16 +3,16 @@
 
 <div class="w-full md:w-1/2 max-w-md bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
 <% if tips_posts.present? %>
-    <h1 class="text-matcha-green text-xl font-bold mb-4">Tips一覧 <i class="fa-solid fa-leaf"></i></h1>
+    <h1 class="text-matcha-green text-xl font-bold mb-4"><%= t('activerecord.attributes.post.tips') %><i class="fa-solid fa-leaf"></i></h1>
     <% tips_posts.each do |post| %>
     <div class="bg-light-gray/75 p-4 rounded shadow mb-4 text-matcha font-semibold">
         <div class="flex">
         <h1 class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-            <%= post.relationship == "other_relationship" ? post.custom_relationship : I18n.t("activerecord.attributes.post.relationship_options.#{post.relationship}") %>
+            <%= post.relationship == "other_relationship" ? post.custom_relationship : t("activerecord.attributes.post.relationship_options.#{post.relationship}") %>
         </h1>
         <h1 class="text-matcha-green mx-2"> × </h1>
         <h1 class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-            <%= post.situation == "other_situation" ? post.custom_situation : I18n.t("activerecord.attributes.post.situation_options.#{post.situation}") %>
+            <%= post.situation == "other_situation" ? post.custom_situation : t("activerecord.attributes.post.situation_options.#{post.situation}") %>
         </h1>
         </div>
         <p><i class="fa-solid fa-user"></i> <%= post.display_user %></p>
@@ -29,16 +29,16 @@
 
 <div class="w-full md:w-1/2 max-w-md bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
 <% if question_posts.present? %>
-    <h1 class="text-matcha text-xl font-bold mb-4">質問一覧 <i class="fa-solid fa-comment"></i></h1>
+    <h1 class="text-matcha text-xl font-bold mb-4"><%= t('activerecord.attributes.post.questions') %><i class="fa-solid fa-comment"></i></h1>
     <% question_posts.each do |post| %>
     <div class="bg-light-gray/75 p-4 rounded shadow mb-4 text-matcha font-semibold">
         <div class="flex">
         <h1 class="bg-matcha/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-            <%= post.relationship == "other_relationship" ? post.custom_relationship : I18n.t("activerecord.attributes.post.relationship_options.#{post.relationship}") %>
+            <%= post.relationship == "other_relationship" ? post.custom_relationship : t("views.post.relationship_options.#{post.relationship}") %>
         </h1>
         <h1 class="text-matcha-green mx-2"> × </h1>
         <h1 class="bg-matcha/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-            <%= post.situation == "other_situation" ? post.custom_situation : I18n.t("activerecord.attributes.post.situation_options.#{post.situation}") %>
+            <%= post.situation == "other_situation" ? post.custom_situation : t("views.post.situation_options.#{post.situation}") %>
         </h1>
         </div>
         <p><i class="fa-solid fa-user"></i> <%= post.display_user %></p>

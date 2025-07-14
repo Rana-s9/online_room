@@ -1,15 +1,15 @@
-<h1 class="text-matcha-green text-xl font-bold mt-6">"<%= @room.name %>" のカレンダー</h1>
+<h1 class="text-matcha-green text-xl font-bold mt-6"><%= t("views.state_calendar.calendar_name", name: @room.name) %></h1>
 <% unless @today_state.present? %>
-  <%= link_to "+ 本日 #{ Time.current.strftime("%Y年%m月%d日") }の心身登録", new_room_state_calendar_path(@room), class: "bg-gray p-4 rounded shadow mb-4 mt-2 hover:bg-blue/75 transition text-beige" %>
+  <%= link_to t("views.state_calendar.today_state", date: Time.current.strftime("%Y/%m/%d")), new_room_state_calendar_path(@room), class: "bg-gray p-4 rounded shadow mb-4 mt-2 hover:bg-blue/75 transition text-beige" %>
 <% end %>
-<h1 class="text-dark-gray">※<%= current_user.name %>さんのカレンダーの日付をクリック➡ 心身状況の登録・更新・削除ができます。</h1>
-<h1 class="text-dark-gray">※カレンダーは部屋ごとに分かれており、同ユーザーでも記録は別々です。</h1>
+<h1 class="text-dark-gray"><%= t("views.state_calendar.note1",name: current_user.name ) %></h1>
+<h1 class="text-dark-gray"><%= t("views.state_calendar.note2" ) %></h1>
 <% @calendar_users.each do |user| %>
   <% user_is_current = user == current_user %>
   <% user_calendars = @calendars_by_user[user.id] || [] %>
   <div class="user-calendar mb-8 p-4 border rounded <%= user_is_current ? 'border-bright-blue' : 'border-gray' %>">
     <h3 class="font-semibold mb-2 <%= user_is_current ? 'text-bright-blue' : 'text-gray' %>">
-      <i class="fa-solid fa-user"></i> <%= user.name %> さんのカレンダー
+      <i class="fa-solid fa-user"></i><%= t("views.state_calendar.calendar_user", name:user.name) %>
     </h3>
     <% if user_calendars.empty? && user_is_current %>
       <%= month_calendar(events: [], attribute: :calendar_date) do |date, _| %>
@@ -26,7 +26,12 @@
             <%= link_to date.day, new_room_state_calendar_path(@room, date: date), class: "block w-full h-full text-center" %>
           <% end %>
         <% else %>
-          <span class="block w-full h-full text-center"><%= date.day %></span>
+          <% if states_on_day.present? %>
+            <% state_calendar = states_on_day.first %>
+            <%= link_to date.day, room_state_calendar_path(@room, state_calendar), class: "block w-full h-full text-center text-gray-600 underline" %>
+          <% else %>
+            <span class="block w-full h-full text-center text-gray-400"><%= date.day %></span>
+          <% end %>
         <% end %>
 
         <% states_on_day.each do |state| %>
@@ -41,5 +46,5 @@
   </div>
 <% end %>
 <div class="flex justify-center">
-  <%= link_to "#{@room.name}🏠に戻る", room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
+  <%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
 </div>

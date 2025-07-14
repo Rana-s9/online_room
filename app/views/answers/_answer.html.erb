@@ -4,7 +4,7 @@
 <% if current_user&.own?(answer) %>
     <ul class="flex justify-end space-x-2">
         <li>
-        <%= link_to answer_path(answer), class: "delete-answer-link", data: { turbo_method: :delete, turbo_confirm: "削除しますか?" } do %>
+        <%= link_to answer_path(answer), class: "delete-answer-link", data: { turbo_method: :delete, turbo_confirm: t("flash.alert") } do %>
             <i class="fa-solid fa-trash text-lg text-blue"></i>
         <% end %>
         </li>

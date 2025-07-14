@@ -1,31 +1,308 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  buttons:
+    back: "Back"
+    new: "Add New"
+    save: "Save"
+    update: "Update"
+    get: "Get"
+    register: "Register"
+    save_new: "Save"
+    add: "Add"
+  flash:
+    alert: "Are you sure you'd like to delete this?"
+    diary:
+      save: "The diary has been saved successfully."
+      failed_save: "Failed to save the diary."
+      update: "The update was completed successfully."
+      delete: "The diary has been deleted."
+      failed_delete: "Failed to delete the diary."
+    room: "The room could not be found."
+    rooms:
+      none_access: "Looks like you don’t have access to this room."
+      return: "I'm home!"
+      welcome: "Nice to see you back!"
+      back_home: "You’ve just arrived home."
+      5rooms: "Each user can create up to 5 rooms."
+      new: "Room created successfully!"
+      failed_create: "Something went wrong — the room couldn’t be created."
+    area:
+      register: "Your area has been registered."
+      failed_register: "Could not retrieve weather information. Please check the city name."
+      update: "Your area has been updated."
+      failed_update: "Failed to update your area."
+    spot:
+      save: "We saved the place for you."
+      failed_save: "something went wrong while saving."
+      update: "Name updated successfully!"
+      failed_update: "Sorry, we couldn't update the name."
+      delete: "The place has been removed."
+      failed_delete: "we couldn’t delete the place."
+    state_calendar:
+      exist: "A record for this date already exists. Please select and update it from the calendar."
+      save: "Your condition has been saved."
+      failed_save: "We couldn't save your condition. Please try again."
+      unauthorize: "Sorry, you don't have permission to view this."
+      update: "Your condition has been updated."
+      failed_update: "We couldn't update your condition. Please try again."
+      delete: "Your condition has been deleted."
+      failed_delete: "We couldn't delete your condition. Please try again."
+    greeting:
+      save: "Your message has been saved."
+      failed_save: "We couldn’t save your message."
+      update: "Your message has been updated."
+      failed_update: "We couldn’t update your message."
+      delete: "Your message has been deleted."
+      failed_delete: "We couldn’t delete your message."
+    invitation:
+      view: "You can only view tokens for rooms you’ve created."
+      generated: "A new token has been generated."
+      failed_generate: "We couldn’t create the token."
+      already_used: "This token has already been used."
+      cannot_use: "The room creator can’t use this token."
+      expired: "This token has expired."
+      used: "The token has been used."
+    post:
+      create: "Your post has been created."
+      failed_create: "We couldn't create your post."
+      update: "Your post has been updated."
+      failed_update: "We couldn't update your post."
+      delete: "Your post has been deleted."
+      failed_delete: "We couldn't delete your post."
+      comment:
+        new: "Your comment has been posted."
+        failed_create: "We couldn't post your comment."
+        update: "Your comment has been updated."
+        failed_update: "We couldn't update your comment."
+        delete: "Your comment has been deleted."
+        failed_delete: "We couldn't delete your comment."
+
+  views:
+    top:
+      welcome: "Welcome back🏠"
+      create_account: "Start by creating an account."
+      login_instruction: "Click 'Login' or 'Sign up' in the header."
+      make_room: "Create your room and move in."
+      entrance_click: "Click 'Entrance' in the header first."
+      register_location: "Register your location."
+      location_note: "Only cities with weather data can be registered."
+      invite_partner: "Return to your room and invite your partner."
+      entrance_click_again: "Click 'Entrance' in the header first."
+      invite_click: "Click 'Invite Partner'."
+      copy_link: "Copy the link."
+      send_to_partner: "Send it to your partner."
+      daily_life: "Spend everyday life together in your room."
+      six_features: "Here are six things you can do:"
+      weather_share: "Share weather updates."
+      whiteboard: "Leave messages on the whiteboard."
+      greeting_message: "Manage 'Welcome home' / 'I'm home' messages."
+      diary: "Write an exchange diary."
+      favorite_place: "Save special places."
+      condition_check: "Check physical and mental condition."
+    post:
+      description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
+      description2: "Leave helpful advice in the comments!"
+      note: "*Got a tip or a question? Share it with everyone!"
+      select_type: "Choose a tip or question"
+      select_situation: "Choose a situation"
+      select_relationship: "Choose your relationship"
+      select_name: "Choose your display name"
+      enter_situation: "Enter the situation"
+      enter_content: "Enter the content"
+      enter_name: "Enter your display name"
+      relationship_options:
+          partner: "partner"
+          friend: "friend"
+          family: "family"
+          other_relationship: "other"
+      post_type_options:
+        tips: "Tips"
+        question: "Questions"
+      situation_options:
+        long_distance: "long distance"
+        sometimes_meet: "sometimes meet"
+        living_together: "living together"
+        other_situation: "other"
+      display_name_options:
+        username: "username"
+        anonymous: "anonymous user"
+        nickname: "set display name"
+      comment:
+        nothing: "No comments yet"
+        title: "Comments"
+        add: "Add Comments"
+        enter: "Feel free to leave a comment or some advice!"
+    diary:
+      count: "Diary #%{number}"
+      name: "Exchange Diary"
+      your_day: "How was your day?"
+      write: "write a diary"
+    room:
+      front_door: "Front door"
+      registration: "Registration Date"
+      roommate: "resident"
+      owner: "Underlined house: registered by you"
+      house_name: "house"
+      living_alone: "Living alone"
+      return: "Enter"
+      back_to_room: "Back to %{room_name}🏠"
+      new: "Give your home a name."
+    room_show:
+      invitation: "Invite a housemate　"
+      diary: "Exchange Diary　　　"
+      place: "Favorite Places　　　"
+      state: "Mental/Physical state"
+      message: "Greeting Message Settings"
+      cleaning: "Tidy up the room"
+    roommate:
+      no_invite_link: "Invitation link not found."
+      invite_expired: "The invitation link has expired."
+      invite_used: "This link has already been used."
+      already_joined: "You’re already part of this room."
+      joined: "You’ve joined the room."
+    spot:
+      visited_list: "Visited spots"
+      visit_list: "Spots to Visit"
+      none_visited: "No visited spots added yet."
+      none_visit: "No wishlist spots added yet."
+      address_name: "Address or Place Name (e.g., Eiffel Tower, Paris)"
+      enter: "Enter a place name"
+      search: "Search"
+      note: "(The name will be auto-filled, but feel free to edit it.)"
+      auto: "Auto-Fill"
+      reset: "Reset"
+      select: "Select"
+      visited: "Visited"
+      visit: "To Visit"
+      flow: "⓵Select Status→⓶Enter Address→⓷Search→⓸Save"
+      need_login: "You need to be logged in to save a place."
+    state_calendar:
+      button: "Back to Calendars"
+      mental_state: "mental state"
+      select: "Choose what feels closest"
+      amazing: "🥳 : Feeling amazing"
+      good: "😊 : Feeling good"
+      bit_off: "😐 : Feeling a bit off"
+      down: "😭 : Feeling really down / Can’t cope today"
+      mental_sos: "😣 : SOS - I need someone to talk to"
+      physical_state: "physical state"
+      energetic: "💃 : Full of energy"
+      fine: "🚶‍♀️ : Feeling fine"
+      sluggish: "🧍‍♀️ : Feeling a bit sluggish"
+      awful: "🛌 : Feeling awful – stuck in bed"
+      physical_sos: "🤒 : SOS – Please check in on me"
+      today_state: "+ Add %{date} today's state"
+      calendar_name: "-%{name}-calendars"
+      calendar_user: "%{name}'s calendar"
+      note1: "・By clicking on a date in %{name}’s calendar, you can add, update, or delete your physical and mental condition records."
+      note2: "・Each calendar is separate for each room, so even the same user’s records are kept individually."
+    greeting:
+      greeting_setting: "Message settings for  %{user} in  \"%{room}\""
+      none_return: "* 'I'm home' message has been set yet."
+      none_welcome: "* 'Welcome back' message has been set yet."
+      note1: "*Registered 'Welcome Home' messages ➡ These are randomly shown on your partner’s screen after they log in, once they've been invited."
+      note2: "*Registered 'I'm Home' messages ➡ These are randomly shown on your own screen after you log in."
+      status: "Status"
+      message: "Message"
+      enter: "Enter your message"
+      back: "Back to Saved Messages"
+      select: "Pick a message type"
+      return_message: "I'm Home"
+      welcome_message: "Welcome Home"
+    invitation:
+      link_list: "Active Invitation Links"
+      no_link: "No available tokens at the moment."
+      new_token: "Please generate a new token."
+      add: "+ Generate Token"
+      note1: "*Valid for 30 minutes. Copy and share the link above.*"
+      note2: "*After your partner logs in, opening the link will invite them to your room.*"
+      note3: "*Your partner must be registered and logged in.*"
+      note4: "*If it doesn't work on a smartphone, try pasting the link directly into the browser.*"
+      history: "Invitation Token History"
+      id: "ID"
+      expiration: "Expires In"
+      status: "Status"
+      date_issued: "Issued On"
+      date_used: "Used On"
+      expiry: "Expiration"
+      used: "Used"
+      unused: "Unused"
+      link: "Invitation Link"
+      copy: "Copy"
+      copied: "Copied!"
+      token_id: "Token ID"
+
+    area:
+      rule: "Enter your area of residence *City or Ward (in English)"
+      example: "(e.g., shibuya)"
+    weather:
+      update: "Weather information has been updated."
+      failed_save: "Failed to save weather information."
+      failed_retrieve: "Could not retrieve weather information."
+    pagination:
+      first: "&laquo; first"
+      last: "last &raquo;"
+      previous: "&lsaquo; previous"
+      next: "next &rsaquo;"
+      truncate: "&hellip;"
+
+  activerecord:
+    attributes:
+      exchange_diary:
+        body: "content"
+      spot:
+        address: "Address"
+        name: "Place Name"
+        visit_status: "Visit status"
+      state_calendar:
+        date: "status on this date"
+        mental_state: "mental state"
+        physical_state: "physical state"
+      greeting:
+        greeting_type: "greeting type"
+        message: "message"
+      post:
+        tips: "Tips"
+        questions: "Questions"
+        relationship: "relationship"
+        post_type: "tips/questions"
+        situation: "situation"
+        content: "content"
+        display_name: "display name"
+        custom_relationship: "other"
+        custom_situation: "other"
+        custom_name: "enter display name"
+      answer:
+        body: "content"
+
+    errors:
+      messages:
+        blank: "- please enter your content"
+      models:
+        state_calendar:
+          attributes:
+            date:
+              taken: "- already exists. Select the date from the calendar to update."
+            mental_state:
+              blank: "- please select mental state"
+            physical_state:
+              blank: "- please select physical state"
+        post:
+          attributes:
+            post_type:
+              blank: "- Please choose a post type."
+            relationship:
+              blank: "- Please select your relationship."
+            situation:
+              blank: "- Please select a situation."
+            content:
+              blank: "- Please enter your content."
+            custom_relationship:
+              blank: "- Please describe the relationship if you selected 'other'."
+            custom_situation:
+              blank: "- Please describe the situation if you selected 'other'."
+            custom_name:
+              blank: "- Please enter a name if you selected 'display name'."
+        spot:
+          attributes:
+            base:
+              position_blank: "Coordinates could not be retrieved. Please try again."
