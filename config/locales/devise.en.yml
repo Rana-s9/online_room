@@ -54,6 +54,16 @@ en:
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
       signed_out_button: "Go out(logout)"
+    shared:
+      links:
+        back: Back
+        didn_t_receive_confirmation_instructions: Didn't receive confirmation email?
+        didn_t_receive_unlock_instructions: Didn't receive unlock instructions?
+        forgot_your_password: Forgot your password?
+        sign_in: Sign In
+        sign_in_with_provider: Sign in with %{provider}
+        sign_up: Sign Up
+        minimum_password_length: "(at least %{count} characters)"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
