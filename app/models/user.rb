@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   validates :name, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
 
   has_many :owned_rooms, class_name: "Room", foreign_key: "user_id", dependent: :destroy
   has_many :exchange_diaries, dependent: :destroy
@@ -16,7 +18,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   def own?(object)
     id == object&.user_id
@@ -34,5 +37,17 @@ class User < ApplicationRecord
   # 自分を除く、同じ部屋に属するユーザー全員
   def roommates_except_self(room)
     (room.users + [ room.user ]).uniq.reject { |user| user == self }
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.name = auth.info.name
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
+
+  def self.create_unique_string
+    SecureRandom.uuid
   end
 end

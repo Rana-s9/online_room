@@ -319,3 +319,7 @@ en:
               blank: "- Please enter address."
             base:
               position_blank: "Coordinates could not be retrieved. Please try again."
+        exchange_diary:
+          attributes:
+            body:
+              blank: "- Please write your diary"

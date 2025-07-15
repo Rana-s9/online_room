@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    { locale: I18n.locale }
+    if request.path =~ %r{\A/users/auth/}
+      {}
+    else
+      { locale: I18n.locale }
+    end
   end
 end

@@ -14,6 +14,10 @@
         <div class="flex space-x-4 underline">
           <%= link_to t('devise.sessions.new.sign_in'), new_user_session_path, data: { turbo: false } %>
           <%= link_to t('devise.registrations.sign_up'), new_user_registration_path, data: { turbo: false } %>
+          <%= button_to user_google_oauth2_omniauth_authorize_path(locale: nil), class: 'btn',data: { turbo: false } do %>
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="google logo">
+            <span>Login with Google</span>
+          <% end %>
         </div>
       </div>
     </nav>
