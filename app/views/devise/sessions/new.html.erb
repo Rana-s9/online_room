@@ -27,7 +27,8 @@
         <%= f.submit t('devise.sessions.new.sign_in_button'), class: "w-full mb-6 bg-matcha/75 hover:bg-blue/75 text-white font-bold py-2 px-4 rounded-md shadow-md transition",
         id: "blue-door" %>
         <% end %>
-        <%= link_to t('devise.registrations.sign_up'), new_user_registration_path, class: "text-matcha" %>
+        <%= link_to t('devise.registrations.sign_up'), new_user_registration_path, class: "text-matcha" %><br>
+        <%= link_to t('devise.shared.links.forgot_your_password'), new_user_password_path, class: "text-matcha" %>
     </div>
   </div>
 </div>
