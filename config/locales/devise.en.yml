@@ -31,11 +31,20 @@ en:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
     passwords:
-      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
-      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
-      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
-      updated: "Your password has been changed successfully. You are now signed in."
-      updated_not_active: "Your password has been changed successfully."
+      edit:
+        change_my_password: Change My Password
+        change_your_password: Change Your Password
+        confirm_new_password: Confirm New Password
+        new_password: New Password
+      new:
+        forgot_your_password: Forgot your password?
+        send_me_reset_password_instructions: Send me reset password instructions
+      no_token: You cannot access this page. Please check the URL if you accessed it from a password reset email link.
+      send_instructions: You will receive an email with password reset instructions shortly.
+      send_paranoid_instructions: If your email address is registered, you will receive password reset instructions shortly.
+      updated: Your password has been changed successfully.
+      updated_not_active: Your password has been changed successfully.
+      google_login: Login with Google
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
