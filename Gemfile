@@ -76,3 +76,6 @@ gem "simple_calendar"
 gem "geocoder"
 
 gem "meta-tags"
+
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
