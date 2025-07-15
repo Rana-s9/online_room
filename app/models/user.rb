@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   validates :name, presence: true
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
 
   has_many :owned_rooms, class_name: "Room", foreign_key: "user_id", dependent: :destroy

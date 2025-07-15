@@ -137,9 +137,9 @@ ja:
   errors:
     attributes:
       name:
-        taken: "この名前はすでに使われています"
+        taken: "はすでに使われています"
       email:
-        taken: "このメールアドレスはすでに使われています"
+        taken: "はすでに使われています"
     messages:
       already_confirmed: は既に登録済みですログインしてください
       confirmation_period_expired: の期限が切れました%{period} までに確認する必要があります 新しくリクエストしてください
