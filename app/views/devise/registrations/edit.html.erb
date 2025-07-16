@@ -1,43 +1,81 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container mt-6">
+  <div class="flex justify-center">
+    <div class="w-full max-w-lg">
+      <h1 class="text-2xl text-matcha font-bold mb-6">
+        <%= t('devise.registrations.edit.title', resource: resource_name.to_s.humanize) %>
+      </h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devises/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <% if flash[:alert] %>
+          <div id="flash_alert" class="bg-yellow/50 text-matcha font-semibold p-4 rounded mb-4">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+        <% if flash[:notice] %>
+          <div id="flash_notice" class="bg-green-100/50 text-matcha p-4 rounded mb-4">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+
+        <div>
+          <%= f.label :name, class: "block text-sm font-medium text-matcha" %>
+          <%= f.text_field :name, autocomplete: "name", class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha" %>
+        </div>
+
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-matcha" %>
+          <%= f.email_field :email, autocomplete: "email", class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha" %>
+        </div>
+
+        <div class="text-sm text-red-500">
+          <%= t("devise.registrations.edit.leave_blank_if_you_dont_want_to_change_it") %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div class="text-sm text-gray-600 mb-4">
+            <%= t('devise.registrations.edit.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %>
+          </div>
+        <% end %>
+
+        <div>
+          <%= f.label :password, class: "block text-sm font-medium text-matcha" %>
+          <%= f.password_field :password,
+            autocomplete: "new-password",
+            placeholder: t('devise.shared.minimum_password_length', count: @minimum_password_length),
+            class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha"
+          %>
+        </div>
+
+        <div>
+          <%= f.label :password_confirmation, class: "block text-sm font-medium text-matcha" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha" %>
+        </div>
+        
+        <div class="text-sm text-red-500">
+          <%= t('devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes') %>
+        </div>
+
+        <div>
+          <%= f.label :current_password, class: "block text-sm font-medium text-matcha" %>
+          <%= f.password_field :current_password, autocomplete: "current-password", placeholder: t('devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes'), class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha" %>
+        </div>
+
+        <%= f.submit t('buttons.update'), class: "w-full mb-6 bg-matcha/75 hover:bg-blue/75 text-white font-bold py-2 px-4 rounded-md shadow-md transition" %>
+      <% end %>
+
+      <%= link_to t('devise.shared.links.forgot_your_password'), new_user_password_path, class: "text-matcha underline font-semifold" %>
+
+      <div class="text-md text-matcha font-semibold mt-4 mb-2 underline">
+        <%= button_to t('devise.registrations.edit.cancel_my_account'),
+                      registration_path(resource_name),
+                      data: { turbo_confirm: t('flash.alert') },
+                      method: :delete
+        %>
+      </div>
+
+      <%= link_to t("buttons.back"), :back, class: "text-matcha underline text-sm" %>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>

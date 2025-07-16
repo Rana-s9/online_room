@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "users/show"
   get "rooms/index"
   get "exchange_diaries/index"
 
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
     }
+
+    resource :user, only: %i[show]
     get "top/index"
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
     resources :rooms, only: %i[index show create] do

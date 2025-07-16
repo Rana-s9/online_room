@@ -231,6 +231,9 @@ en:
       copy: "Copy"
       copied: "Copied!"
       token_id: "Token ID"
+    user:
+      profile: "%{name}'s profile"
+      edit: "Edit Name/Email/Password"
 
     area:
       rule: "Enter your area of residence *City or Ward (in English)"
