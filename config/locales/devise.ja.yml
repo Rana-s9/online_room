@@ -9,7 +9,7 @@ ja:
         current_password: 現在のパスワード
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
-        name: 名前 # 多分必要なのここだけ、名前カラムは追加してるから
+        name: 名前
         email: メールアドレス
         encrypted_password: 暗号化パスワード
         failed_attempts: 失敗したログイン試行回数
@@ -91,17 +91,16 @@ ja:
       updated_not_active: パスワードが正しく変更されました
       google_login: Googleログイン はこちら
     registrations:
-      destroyed: アカウントを削除しましたまたのご利用をお待ちしております
+      destroyed: アカウントを削除しました。またの帰宅をお待ちしております🍵
       sign_up: 新規登録
       edit:
-        are_you_sure: 本当によろしいですか？
-        cancel_my_account: アカウント削除
-        currently_waiting_confirmation_for_email: "%{email} の確認待ち"
-        leave_blank_if_you_don_t_want_to_change_it: 空欄のままなら変更しません
-        title: "%{resource}編集"
-        unhappy: 気に入りません
-        update: 更新
-        we_need_your_current_password_to_confirm_your_changes: 変更を反映するには現在のパスワードを入力してください
+        cancel_my_account: "アカウントを削除する"
+        currently_waiting_confirmation_for_email: "以下のメールアドレスの確認をお待ちしています：%{email}"
+        leave_blank_if_you_dont_want_to_change_it: "*パスワードを変更しない場合、以下をそのまま空欄にしてください"
+        title: "%{resource}の編集"
+        unhappy: "何か問題がありましたか？"
+        update: "更新する"
+        we_need_your_current_password_to_confirm_your_changes: "*パスワード変更には現在のパスワード入力が必要です"
       new:
         sign_up: アカウント登録
       signed_up: アカウント登録が完了しました
@@ -128,7 +127,7 @@ ja:
         sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
         sign_up: アカウント登録
-      minimum_password_length: "(%{count}字以上）"
+      minimum_password_length: "(%{count}文字以上）"
     unlocks:
       new:
         resend_unlock_instructions: アカウントのロック解除方法を再送する

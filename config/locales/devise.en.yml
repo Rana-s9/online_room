@@ -48,6 +48,14 @@ en:
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
+      edit:
+        cancel_my_account: "Cancel my account"
+        currently_waiting_confirmation_for_email: "Currently waiting confirmation for: %{email}"
+        leave_blank_if_you_dont_want_to_change_it: "Leave this blank unless you want to change your password"
+        title: "Edit %{resource}"
+        unhappy: "Unhappy?"
+        update: "Update"
+        we_need_your_current_password_to_confirm_your_changes: "Enter your current password only if you're changing your password"
       sign_up: "Sign up"
       signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
@@ -72,7 +80,7 @@ en:
         sign_in: Sign In
         sign_in_with_provider: Sign in with %{provider}
         sign_up: Sign Up
-        minimum_password_length: "(at least %{count} characters)"
+      minimum_password_length: "(at least %{count} characters)"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."

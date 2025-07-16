@@ -17,6 +17,9 @@
         <div class="flex space-x-2 underline">
           <%= link_to t('devise.sessions.signed_out_button'), destroy_user_session_path, method: :delete ,data: { turbo: false } %>
         </div>
+        <div class="flex underline">
+          <%= link_to "#{current_user.name} さん", user_path, class: "btn" %>
+        </div>
       </div>
     </nav>
   </header>
