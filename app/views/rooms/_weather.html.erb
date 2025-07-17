@@ -3,6 +3,7 @@
   <% @roommates.each do |user| %>
     <div class="weather flex text-sm md:text-lg md:space-x-2 border border-light-gray rounded">
       <h3><%= user.name %></h3>
+      <%= render "status", user: current_user %>
       <% if user.area.nil? %>
         <p>玄関で地域を登録してね</p>
       <% else %>
@@ -41,7 +42,7 @@
   <div class="fixed top-[80px] md:top-[75px] left-0 z-50 bg-white/75 rounded-lg shadow-md">
     <div class="weather flex space-x-2 text-sm md:text-lg px-2 py-1 border border-light-gray rounded">
     <h3><%= current_user.name %></h3>
-
+    <%= render "status", user: current_user %>
     <% if current_user.area.nil? %>
       <p>玄関で地域を登録してね</p>
     <% else %>
