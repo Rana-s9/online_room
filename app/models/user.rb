@@ -24,6 +24,15 @@ class User < ApplicationRecord
     id == object&.user_id
   end
 
+  def online?
+    return false unless last_seen_at
+    last_seen_at > 5.minutes.ago
+  end
+
+  def offline?
+    !online?
+  end
+
   # 同じ部屋に所属するユーザー全員
   def grouped_shared_users
     Room.where(id: owned_rooms.pluck(:id) + rooms.pluck(:id))

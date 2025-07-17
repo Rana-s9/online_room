@@ -234,6 +234,10 @@ ja:
     user:
       profile: "%{name}さんのプロフィール"
       edit: "名前/メールアドレス/パスワード編集"
+      status:
+        online: "帰宅中"
+        offline: "外出中"
+        went_out_ago: "%{time}前に外出"
 
     area:
         rule: "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)"
