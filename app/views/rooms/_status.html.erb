@@ -1,0 +1,4 @@
+<div class="flex items-center">
+  <span class="inline-block w-2 h-2 rounded-full mr-1 <%= user.online? ? 'bg-green-500' : 'bg-gray' %>"></span>
+  <span class="text-xs text-gray-600"><%= last_seen_text(user) %></span>
+</div>

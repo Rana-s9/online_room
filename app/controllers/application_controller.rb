@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # allow_browser versions: :modern
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :update_last_seen, if: :user_signed_in?
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
@@ -17,6 +18,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def update_last_seen
+    current_user.update_column(:last_seen_at, Time.current)
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :name ])
