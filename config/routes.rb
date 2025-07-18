@@ -17,7 +17,9 @@ Rails.application.routes.draw do
     get "top/index"
     # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
     resources :rooms, only: %i[index show create] do
-      resources :exchange_diaries, only: %i[index create update destroy]
+      resources :exchange_diaries, only: %i[index create update destroy] do
+        resource :read, only: %i[create destroy]
+      end
       resources :whiteboards, only: %i[create update]
       resources :state_calendars, only: %i[new create index show update edit destroy]
       resources :invitation_tokens, only: %i[create index update]

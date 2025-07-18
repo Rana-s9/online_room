@@ -16,6 +16,9 @@ en:
       update: "The update was completed successfully."
       delete: "The diary has been deleted."
       failed_delete: "Failed to delete the diary."
+    read:
+      success: "Marked as read."
+      self_read: "You can't mark your own diary as read."
     room: "The room could not be found."
     rooms:
       none_access: "Looks like you don’t have access to this room."
@@ -137,6 +140,9 @@ en:
       name: "Exchange Diary"
       your_day: "How was your day?"
       write: "write a diary"
+    read:
+      did: "read"
+      did_not: "unread"
     room:
       front_door: "Front door"
       registration: "Registration Date"
