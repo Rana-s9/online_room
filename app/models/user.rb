@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :spots, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many :reads, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -31,6 +32,14 @@ class User < ApplicationRecord
 
   def offline?
     !online?
+  end
+
+  def read(exchange_diary)
+    read_exchange_diaries << exchange_diary
+  end
+
+  def unread(exchange_diary)
+    read_exchange_diaries.destroy(exchange_diary)
   end
 
   # 同じ部屋に所属するユーザー全員

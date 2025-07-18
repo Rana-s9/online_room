@@ -16,6 +16,10 @@ ja:
       update: "更新成功"
       delete: "日記を削除しました"
       failed_delete: "日記の削除に失敗しました"
+    read:
+      success: "読みました"
+      self_read: "自分の日記です"
+
     room:
       failed_find: "部屋が見つかりませんでした"
     rooms:
@@ -136,6 +140,9 @@ ja:
       name: "の交換日記"
       your_day: "今日の出来事は？"
       write: "日記を書く"
+    read:
+      did: "読みました"
+      did_not: "未読"
     room:
       front_door: "玄関"
       move_in: "入居日"

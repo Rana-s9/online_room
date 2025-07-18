@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_17_050400) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_17_132842) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_050400) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "reads", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "exchange_diary_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exchange_diary_id"], name: "index_reads_on_exchange_diary_id"
+    t.index ["user_id", "exchange_diary_id"], name: "index_reads_on_user_id_and_exchange_diary_id", unique: true
+    t.index ["user_id"], name: "index_reads_on_user_id"
   end
 
   create_table "roommate_lists", force: :cascade do |t|
@@ -177,6 +187,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_050400) do
   add_foreign_key "invitation_tokens", "rooms"
   add_foreign_key "invitation_tokens", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "reads", "exchange_diaries"
+  add_foreign_key "reads", "users"
   add_foreign_key "roommate_lists", "rooms"
   add_foreign_key "roommate_lists", "users"
   add_foreign_key "rooms", "users"
