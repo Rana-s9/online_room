@@ -1,5 +1,5 @@
 <div class="bg-beige/40 p-6 rounded-lg shadow-lg mb-6">
-    <h3 class="text-sm font-semibold text-matcha"><i class="fa-regular fa-user"></i><%= answer.user.name %></h3>
+    <h3 class="text-sm font-semibold text-matcha"><i class="fa-regular fa-user"></i><%= answer.user == answer.post.user ? "投稿主" : answer.user.name %></h3>
     <p class="text-gray-700"><%= simple_format(answer.body) %></p>
 <% if current_user&.own?(answer) %>
     <ul class="flex justify-end space-x-2">
