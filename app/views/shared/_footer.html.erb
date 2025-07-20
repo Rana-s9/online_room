@@ -2,9 +2,9 @@
     <div class="max-w-screen-lg mx-auto">
       <div class="flex justify-between items-center p-2 md:p-4">
         <div class="flex space-x-4">
-            <span>お問い合わせ(実装中)</span>
-            <span>利用規約(実装中)</span>
-            <span>プライバシーポリシー(実装中)</span>
+            <%= link_to 'お問い合わせ', contact_path %>
+            <%= link_to '利用規約', terms_path %>
+            <%= link_to 'プライバシーポリシー', privacy_path %>
         </div>
         <div class="flex flex-col justify-end text-gray">
             <i class="fa-brands fa-x-twitter"></i>
