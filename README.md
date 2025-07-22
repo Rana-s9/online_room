@@ -113,23 +113,21 @@ ___
 11. Tips投稿後、 Xで共有機能
 ___
 ## 本リリースまでに作っていたいもの
-1. 心身状況、交換日記を記録すると相手にLINEプッシュ通知
-2. Googleログイン
-3. ログインステータス表示
-4. 名前変更ができるプロフィールページ
-5. 日本語、英語の切り替え
-6. 自分と相手のタイムゾーン表示
-7. 予定カレンダー共有機能
-8. 自分たちの予定作成機能
+1. Googleログイン
+2. ログインステータス表示
+3. 名前変更ができるプロフィールページ
+4. 日本語、英語の切り替え
+5. 自分と相手のタイムゾーン表示
+6. 予定カレンダー共有機能
+7. 自分たちの予定作成機能
 ___
 
 # 機能の実装方針予定 <br>
 ## - 外部APIを使用している機能
 1.  天気取得➡OpenWeatherMap、geocoder APIで緯度経度取得
-2.  **(未)** LINEプッシュ通知➡LINE Messaging API SDK for Ruby使用予定
-3.  行ったことのある思い出の場所、行きたい場所を登録➡geocoder API,Google Maps API
-4.  **(未)** タイムゾーンの表示➡timezoneDB API
-5.  **(未)**　予定共有機能➡Google Calendar API
+2.  行ったことのある思い出の場所、行きたい場所を登録➡geocoder API,Google Maps API
+3.  **(未)** タイムゾーンの表示➡timezoneDB API
+4.  **(未)**　予定共有機能➡Google Calendar API
 ___
 画面遷移図⓵（日本語切り替えバージョン）：https://www.figma.com/design/Ob45fBnHDNmSaJCAmWNx7a/Online-Room-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-?t=1fZk0QVtWA81FmSt-1
 
