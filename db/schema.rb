@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_17_132842) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_24_043843) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,28 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_132842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_areas_on_user_id", unique: true
+  end
+
+  create_table "calendars", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "schedule_type", default: 0, null: false
+    t.integer "visibility", default: 0, null: false
+    t.string "google_calendar_id"
+    t.string "google_event_id"
+    t.datetime "last_synced_at"
+    t.string "sync_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "source", default: 0, null: false
+    t.integer "category"
+    t.index ["google_event_id"], name: "index_calendars_on_google_event_id", unique: true
+    t.index ["room_id"], name: "index_calendars_on_room_id"
+    t.index ["user_id"], name: "index_calendars_on_user_id"
   end
 
   create_table "exchange_diaries", force: :cascade do |t|
@@ -180,6 +202,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_132842) do
   add_foreign_key "answers", "posts"
   add_foreign_key "answers", "users"
   add_foreign_key "areas", "users"
+  add_foreign_key "calendars", "rooms"
+  add_foreign_key "calendars", "users"
   add_foreign_key "exchange_diaries", "rooms"
   add_foreign_key "exchange_diaries", "users"
   add_foreign_key "greetings", "rooms"

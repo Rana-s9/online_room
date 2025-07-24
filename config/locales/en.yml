@@ -80,6 +80,10 @@ en:
         failed_delete: "We couldn't delete your comment."
 
   views:
+    simple_calendar:
+      previous: "previous"
+      today: "today"
+      next: "next"
     top:
       welcome: "Welcome back🏠"
       create_account: "Start by creating an account."
@@ -158,6 +162,7 @@ en:
       diary: "Exchange Diary　　　"
       place: "Favorite Places　　　"
       state: "Mental/Physical state"
+      calendar: "Calendar　　　　"
       message: "Greeting Message Settings"
       cleaning: "Tidy up the room"
     roommate:

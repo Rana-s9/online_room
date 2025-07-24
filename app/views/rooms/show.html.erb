@@ -7,7 +7,7 @@
 <%= render 'weather' %>
 <%= render 'board' %>
 <%= link_to t('views.room_show.state'), room_state_calendars_path(@room),
-    class: "btn-calendar fixed top-[400px] md:top-[250px] right-0 z-50 inline-block px-2 py-2 bg-blue/75 text-beige text-md md:text-xl rounded hover:bg-matcha/30 transition",
+    class: "btn-state-calendar fixed top-[400px] md:top-[250px] right-0 z-50 inline-block px-2 py-2 bg-blue/75 text-beige text-md md:text-xl rounded hover:bg-matcha/30 transition",
     data: { turbo: false }
 %>
 <!--%= render 'calendar' %>-->
@@ -31,6 +31,11 @@
 %>
 <%= link_to t('views.room_show.message'), room_greetings_path(@room),
     class: "btn-message fixed top-[480px] md:top-[600px] right-0 z-50 inline-block px-2 py-2 bg-matcha-green/65 text-beige text-md md:text-xl rounded hover:bg-matcha/30 transition",
+    data: { turbo: false }
+%>
+
+<%= link_to t('views.room_show.calendar'), room_calendars_path(@room),
+    class: "btn-calendar fixed top-[450px] md:top-[300px] right-0 z-50 inline-block px-2 py-2 bg-blue/75 text-beige text-md md:text-xl rounded hover:bg-matcha/30 transition",
     data: { turbo: false }
 %>
 
