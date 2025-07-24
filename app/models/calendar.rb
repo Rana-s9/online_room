@@ -6,6 +6,7 @@ class Calendar < ApplicationRecord
 
   validates :start_time, presence: true
   validates :end_time, presence: true
+  validate :time_rule
 
   enum schedule_type: { all_day: 0, timed: 1 }
   enum source: { manual: 0, google: 1 }
@@ -45,6 +46,14 @@ class Calendar < ApplicationRecord
 
     if end_time.present?
       self.end_time = end_time.end_of_day
+    end
+  end
+
+  def time_rule
+    return if start_time.blank? || end_time.blank?
+
+    if start_time > end_time
+      errors.add(:start_time, "は終了日時より前でなければなりません")
     end
   end
 end
