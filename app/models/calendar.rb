@@ -31,6 +31,10 @@ class Calendar < ApplicationRecord
     end
   end
 
+  def calendar_date
+    start_time.to_date
+  end
+
   def all_day?
     schedule_type == "all_day"
   end

@@ -3,6 +3,10 @@ class CalendarsController < ApplicationController
   before_action :set_room
 
   def index
+    @room = Room.find(params[:room_id])
+    @calendars = @room.calendars.includes(:user).order(created_at: :desc)
+    @calendar_users = current_user.grouped_shared_users[@room.id] || []
+    @today_state = current_user.state_calendars.find_by(room: @room, date: Date.current)
   end
 
   def new

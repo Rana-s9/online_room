@@ -9,6 +9,7 @@ class Room < ApplicationRecord
   has_many :invitation_tokens
   has_many :greetings, dependent: :destroy
   has_many :spots, dependent: :destroy
+  has_many :calendars, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 30 }
 end

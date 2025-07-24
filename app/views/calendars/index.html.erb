@@ -1,4 +1,33 @@
-<h1>どうも</h1>
+<h1 class="text-matcha-green text-xl font-bold mt-6"><%= @room.name %>のカレンダー</h1>
+
+<% unless @today_state.present? %>
+  <h2>今日の予定を表示</h2>
+<% end %>
+
+<%= month_calendar(events: @calendars, attribute: :calendar_date) do |date, plans_on_day| %>
+  <% if current_user %>
+    <% if plans_on_day.present? %>
+      <% state_calendar = plans_on_day.find { |s| s.user_id == current_user.id } %>
+      <% if state_calendar %>
+        <%= link_to date.day, edit_room_state_calendar_path(@room, state_calendar, date: date), class: "block w-full h-full text-center" %>
+      <% else %>
+        <%= link_to date.day, new_room_state_calendar_path(@room, date: date), class: "block w-full h-full text-center" %>
+      <% end %>
+    <% else %>
+      <%= link_to date.day, new_room_state_calendar_path(@room, date: date), class: "block w-full h-full text-center" %>
+    <% end %>
+  <% else %>
+    <span><%= date.day %></span>
+  <% end %>
+
+  <% plans_on_day.each do |state| %>
+    <div class="text-xs leading-tight text-center">
+      <span class="inline-block px-0.5 py-0.5 rounded bg-yellow"><%= state.name %></span>
+      <span class="text-gray-600 text-[10px] block"><%= state.user.name %></span>
+    </div>
+  <% end %>
+<% end %>
 
 <%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
-<%= link_to t("buttons.new"), new_room_calendar_path(), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray", data: { turbo: false } %>
+
+<%= link_to t("buttons.new"), new_room_calendar_path(@room), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray", data: { turbo: false } %>
