@@ -1,0 +1,4 @@
+<h1>どうも</h1>
+
+<%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
+<%= link_to t("buttons.new"), new_room_calendar_path(), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray", data: { turbo: false } %>

@@ -10,12 +10,12 @@ class CreateCalendars < ActiveRecord::Migration[7.2]
       t.integer :all_day, null: false, default: 0
       t.integer :calendar_type, null: false, default: 0
       t.integer :visibility, null: false, default: 0
-      
+
       t.string :google_calendar_id
       t.string :google_event_id
       t.datetime :last_synced_at
       t.string :sync_token
-      
+
       t.timestamps null: false
 
       t.index :google_event_id, unique: true

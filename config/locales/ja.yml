@@ -81,6 +81,10 @@ ja:
         delete: "コメントが削除されました"
         failed_delete: "コメントの削除に失敗しました"
   views:
+    simple_calendar:
+      previous: "先月"
+      today: "今月"
+      next: "来月"
     top:
       welcome: "おかえりなさい🍵"
       create_account: "まずはアカウントを作成しましょう。"
@@ -159,6 +163,7 @@ ja:
       diary: "交換日記　　　　　"
       place: "想い出スポット　　"
       state: "心身コンディション"
+      calendar: "カレンダー　　　　"
       message: "おかえり/ただいまメッセージ管理"
       cleaning: "部屋片づけ中"
     roommate:

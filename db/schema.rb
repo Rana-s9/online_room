@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_20_141533) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_24_043843) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,8 +39,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_20_141533) do
     t.text "description"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "all_day", default: 0, null: false
-    t.integer "calendar_type", default: 0, null: false
+    t.integer "schedule_type", default: 0, null: false
     t.integer "visibility", default: 0, null: false
     t.string "google_calendar_id"
     t.string "google_event_id"
@@ -48,6 +47,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_20_141533) do
     t.string "sync_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "source", default: 0, null: false
+    t.integer "category"
     t.index ["google_event_id"], name: "index_calendars_on_google_event_id", unique: true
     t.index ["room_id"], name: "index_calendars_on_room_id"
     t.index ["user_id"], name: "index_calendars_on_user_id"
