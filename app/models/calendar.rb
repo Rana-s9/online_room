@@ -13,6 +13,11 @@ class Calendar < ApplicationRecord
   enum visibility: { personal: 0, share_only: 1, together: 2 }
   enum category: { relax: 0, work_study: 1, event: 2 }
 
+  validates :schedule_type, presence: true
+  validates :visibility, presence: true
+  validates :category, presence: true
+  validates :name, presence: true
+
   def display_start_time
     if schedule_type == "all_day"
       start_time.strftime("%Y-%m-%d")
