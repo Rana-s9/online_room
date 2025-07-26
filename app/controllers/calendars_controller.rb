@@ -17,6 +17,11 @@ class CalendarsController < ApplicationController
     end
   end
 
+  def show
+    @room = Room.find(params[:room_id])
+    @calendar = @room.calendars.includes(:user).find(params[:id])
+  end
+
   def new
     @room = Room.find(params[:room_id])
     @calendar = current_user.calendars.find_by(room: @room, start_time: params[:start_time]) || current_user.calendars.new(room: @room, start_time: params[:start_time] || Date.current)
@@ -35,9 +40,47 @@ class CalendarsController < ApplicationController
   end
 
   def edit
+    @room = Room.find(params[:room_id])
+    @calendars = @room.calendars.find(params[:id])
+    @calendar_date = params[:date].present? ? Date.parse(params[:date]) : Date.today
+
+    @calendars = @room.calendars
+                    .where(user: current_user)
+                    .where(start_time: @calendar_date.beginning_of_day..@calendar_date.end_of_day)
+  end
+
+  def update
+    @room = Room.find(params[:room_id])
+    @calendar = @room.calendars.find_by(user: current_user, id: params[:id])
+
+    unless @calendar&.user == current_user
+      redirect_to room_calendars_path(@room), alert: t("flash.state_calendar.unauthorize")
+    end
+
+    if @calendar.update(calendar_params)
+      redirect_to room_calendars_path(@room), notice: t("flash.state_calendar.update")
+    else
+      @calendars = @room.calendars.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = t("flash.state_calendar.failed_update")
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @room = Room.find(params[:room_id])
+    @calendar = @room.calendars.find_by(user: current_user, id: params[:id])
+
+    unless @calendar&.user == current_user
+      redirect_to room_calendars_path(@room), alert: t("flash.state_calendar.unauthorize")
+    end
+
+    if @calendar.destroy
+      redirect_to room_calendars_path(@room), notice: t("flash.state_calendar.update")
+    else
+      @calendars = @room.calendars.includes(:user).order(created_at: :desc)
+      flash.now[:alert] = t("flash.state_calendar.failed_update")
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

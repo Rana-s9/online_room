@@ -1,3 +1,5 @@
+<%= link_to t("views.state_calendar.button"), room_calendars_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+
 <%= form_with model: [@room, @calendar], local: true, class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-2" do |f| %>
   <% if @calendar.errors.any? %>
     <div class="error-messages bg-red-100 text-red-700 p-4 mb-4 rounded">
@@ -9,97 +11,7 @@
       </ul>
     </div>
   <% end %>
-  <div class="schedule-type-selection">
-    <%= f.radio_button :schedule_type, "timed", id: "schedule_type_timed", checked: true %>
-    <%= f.label :schedule_type_timed, "時間指定" %>
-
-    <%= f.radio_button :schedule_type, "all_day", id: "schedule_type_all_day" %>
-    <%= f.label :schedule_type_all_day, "終日" %>
-  </div>
-
-  <!-- 終日 -->
-  <div id="all-day-fields" style="display: none;">
-    <div class="form-group">
-      <%= f.label :start_time, '開始日' %>
-      <%= f.date_field :start_time, class: 'form-control', value: (params[:date] || f.object.start_time || Date.today).to_date.strftime("%Y-%m-%d") %>
-    </div>
-    <div class="form-group">
-      <%= f.label :end_time, '終了日' %>
-      <%= f.date_field :end_time, class: 'form-control', value: (params[:date] || f.object.end_time || Date.today).to_date.strftime("%Y-%m-%d") %>
-    </div>
-  </div>
-
-  <!-- 時間指定　-->
-  <div id="timed-fields">
-    <div class="form-group">
-      <%= f.label :start_time, '開始日時' %>
-      <%= f.datetime_local_field :start_time, class: 'form-control', value: Time.current.strftime("%Y-%m-%dT%H:%M") %>
-    </div>
-    <div class="form-group">
-      <%= f.label :end_time, '終了日時' %>
-      <%= f.datetime_local_field :end_time, class: 'form-control', value: (Time.current + 30.minutes).strftime("%Y-%m-%dT%H:%M") %>
-    </div>
-  </div>
-
-  <div>
-    <%= f.label :name, "件名" %>
-    <%= f.text_field :name, placeholder: t("views.greeting.enter"), class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
-
-    <%= f.label :source, "calendar_type", class: "text-dark-gray" %>
-    <%= f.select :source,
-      [["グーグル", "google"], ["マニュアル", "manual"]],
-      { prompt: "選んでください" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
-    %>
-
-    <%= f.label :description, "note", class: "text-dark-gray" %>
-    <%= f.text_field :description, placeholder: "note", class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
-
-    <%= f.label :category, "category", class: "text-dark-gray" %>
-    <%= f.select :category,
-      [["用事・その他", "event"], ["仕事・勉強", "work_study"],["リラックス", "relax"]],
-      { prompt: "選んでください" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
-    %>
-
-    <%= f.label :visibility, "閲覧権限", class: "text-dark-gray" %>
-    <%= f.select :visibility,
-      [["自分だけ", "personal"], ["共有のみ", "share_only"],["一緒の予定", "together"]],
-      { prompt: "選んでください" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
-    %>
-  </div>
-  <div class="text-center">
-    <%= f.submit t("buttons.save"), class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
-  </div>
+  <%= render partial: "form", locals: { f: f } %>
 <% end %>
 
-<%= link_to t("buttons.back"), room_calendars_path(@room), class: "bg-light-gray/75 py-2 px-6 rounded shadow mb-4 hover:bg-light-gray/50 transition text-dark-gray" %>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const timedRadio = document.querySelector('#schedule_type_timed');
-    const allDayRadio = document.querySelector('#schedule_type_all_day');
-
-    const timedFields = document.getElementById('timed-fields');
-    const allDayFields = document.getElementById('all-day-fields');
-
-    function toggleFields() {
-      const isAllDay = allDayRadio.checked;
-
-      timedFields.style.display = isAllDay ? 'none' : 'block';
-      allDayFields.style.display = isAllDay ? 'block' : 'none';
-
-      // 各 input を有効・無効化
-      allDayFields.querySelectorAll('input').forEach(input => {
-        input.disabled = !isAllDay;
-      });
-      timedFields.querySelectorAll('input').forEach(input => {
-        input.disabled = isAllDay;
-      });
-    }
-
-    timedRadio.addEventListener('change', toggleFields);
-    allDayRadio.addEventListener('change', toggleFields);
-
-    toggleFields(); // 初期化
-  });
-</script>
-
+<%= link_to t("buttons.back"), room_calendars_path(@room), class: "bg-light-gray/75 py-2 px-6 rounded shadow mb-4 hover:bg-light-gray/50 transition text-dark-gray mt-4" %>

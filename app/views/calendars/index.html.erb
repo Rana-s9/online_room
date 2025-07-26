@@ -28,17 +28,30 @@
     <span><%= date.day %></span>
   <% end %>
 
-  <% plans_on_day.each do |state| %>
+  <% plans_on_day.each do |plan| %>
+    <% next unless plan.start_time.to_date == date %>
+    <% css_class = case plan.category
+      when "relax" then "bg-yellow"
+      when "work_study" then "bg-pink-red/75"
+      else "bg-matcha-green/50"
+    end %>
+
+    <% duration_days = (plan.end_time.to_date - plan.start_time.to_date).to_i + 1 %>
+
     <div class="text-xs leading-tight text-center">
-      <% if state.category == "relax" %>
-        <span class="inline-block px-0.5 py-0.5 rounded bg-yellow"><%= state.name %></span>
-      <% elsif state.category == "work_study"  %>
-        <span class="inline-block px-0.5 py-0.5 rounded bg-pink-red/75"><%= state.name %></span>
-      <% else %>
-        <span class="inline-block px-0.5 py-0.5 rounded bg-matcha-green/50"><%= state.name %></span>
+      <% if plan.start_time.to_date != plan.end_time.to_date %>
+        <div class="text-[10px] text-gray-500">
+          <%= l(plan.start_time.to_date, format: :short) %>〜<%= l(plan.end_time.to_date, format: :short) %>（<%= "#{duration_days}日" %>）
+        </div>
       <% end %>
-        
-      <span class="text-gray-600 text-[10px] block"><%= state.user.name %></span>
+      <% if plan.user == current_user %>
+        <span class="inline-block px-0.5 py-0.5 rounded <%= css_class %>"><%= plan.name %></span>
+      <% else %>
+        <%= link_to room_calendar_path(@room, plan), class: "inline-block px-0.5 py-0.5 rounded #{css_class}" do %>
+          <%= plan.name %>
+        <% end %>
+      <% end %>
+      <span class="text-gray-600 text-[10px] block"><%= plan.user.name %></span>
     </div>
   <% end %>
 <% end %>

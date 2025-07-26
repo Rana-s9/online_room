@@ -1,0 +1,22 @@
+<%= link_to t("views.state_calendar.button"), room_calendars_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+
+<% @calendars.each do |calendar| %>
+
+    <%= form_with model: [@room, calendar], local: true, class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-4" do |f| %>
+        <% if calendar.errors.any? %>
+            <div class="error-messages bg-red-100 text-red-700 p-4 mb-4 rounded">
+            <h2>入力エラーがあります：</h2>
+            <ul>
+                <% calendar.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+            </div>
+        <% end %>
+        
+        <%= render partial: "form", locals: { f: f } %>
+        <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, room_calendar_path(@room, calendar), data: { turbo_method: :delete, turbo_confirm: t("flash.alert")} %>
+    <% end %>
+<% end %>
+
+<%= link_to t("buttons.back"), room_calendars_path(@room), class: "bg-light-gray/75 py-2 px-6 rounded shadow mb-4 hover:bg-light-gray/50 transition text-dark-gray mt-4" %>
