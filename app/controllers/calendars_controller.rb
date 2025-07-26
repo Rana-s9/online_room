@@ -10,16 +10,29 @@ class CalendarsController < ApplicationController
 
     shared_calendars = @room.calendars.includes(:user).where(visibility: [ :share_only, :together ]).order(created_at: :desc)
 
-    if params[:category].present? && Calendar.categories.key?(params[:category])
-      @calendars = shared_calendars.where(category: Calendar.categories[params[:category]])
+    personal_calendars = @room.calendars.includes(:user)
+                                    .where(visibility: :personal, user: current_user)
+                                    .order(created_at: :desc)
+
+    if params[:visibility] == "personal"
+      @calendars = personal_calendars
     else
-      @calendars = shared_calendars
+      if params[:category].present? && Calendar.categories.key?(params[:category])
+        category_value = Calendar.categories[params[:category]]
+        @calendars = shared_calendars.where(category: category_value)
+      else
+        @calendars = shared_calendars
+      end
     end
   end
 
   def show
     @room = Room.find(params[:room_id])
     @calendar = @room.calendars.includes(:user).find(params[:id])
+
+    if @calendar.visibility == "personal" && @calendar.user != current_user
+      redirect_to root_path, alert: "この予定を見る権限がありません。"
+    end
   end
 
   def new

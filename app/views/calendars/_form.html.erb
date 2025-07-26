@@ -50,7 +50,7 @@
 
   <%= f.label :visibility, "閲覧権限", class: "text-dark-gray" %>
   <%= f.select :visibility,
-    [["自分だけ", "personal"], ["共有のみ", "share_only"],["一緒の予定", "together"]],
+    [["🔒非公開", "personal"], ["共有のみ", "share_only"],["一緒の予定", "together"]],
     { prompt: "選んでください" }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
   %>
 </div>
