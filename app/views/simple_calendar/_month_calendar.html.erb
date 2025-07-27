@@ -24,7 +24,7 @@
       <% date_range.each_slice(7) do |week| %>
         <tr>
           <% week.each do |day| %>
-            <%= content_tag :td, class: "#{calendar.td_classes_for(day)} border p-2 align-top hover:bg-light-blue/50 transition duration-200 ease-in-out #{'bg-blue text-dark-gray font-semibold' if day == Date.current}" do %>
+            <%= content_tag :td, class: "#{calendar.td_classes_for(day)} border p-2 align-top hover:bg-light-blue/50 transition duration-200 ease-in-out #{'bg-blue/75 text-dark-gray font-semibold' if day == Date.current}" do %>
               <% events = calendar.sorted_events_for(day) %>
               <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
             <% end %>
