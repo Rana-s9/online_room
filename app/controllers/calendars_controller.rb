@@ -96,6 +96,49 @@ class CalendarsController < ApplicationController
     end
   end
 
+  def import
+    @room = Room.find(params[:room_id])
+    service = CalendarService.new(current_user)
+    saved_token = current_user.sync_token
+    response = service.fetch_events(sync_token: saved_token)
+
+    events = response.items
+    next_sync_token = response.next_sync_token
+    google_calendar_id = service.calendar_id
+
+  ActiveRecord::Base.transaction do
+    events.each do |event|
+      start_time = event.start.date_time || Time.zone.parse(event.start.date.to_s)
+      end_time = event.end.date_time || Time.zone.parse(event.end.date.to_s) - 1.second
+      schedule_type = event.start.date_time.nil? ? :all_day : :timed
+
+      calendar = current_user.calendars.find_or_initialize_by(google_event_id: event.id, room: @room)
+      calendar.assign_attributes(
+        name: event.summary || "No Title",
+        description: event.description,
+        start_time: start_time,
+        end_time: end_time,
+        schedule_type: schedule_type,
+        source: :google,
+        visibility: :personal,
+        category: :event,
+        room: @room,
+        google_calendar_id: google_calendar_id,
+        google_event_id: event.id,
+        last_synced_at: Time.current
+      )
+      calendar.save!
+    end
+    current_user.update!(sync_token: response.next_sync_token)
+  end
+    redirect_to room_calendars_path(@room), notice: "Googleカレンダーから予定を取り込みました。"
+  rescue => e
+    logger.error "Import failed: #{e.message}"
+    flash.now[:alert] = "取り込みに失敗しました: #{e.message}"
+    render :index, status: :unprocessable_entity
+  end
+
+
   private
 
   def set_room
