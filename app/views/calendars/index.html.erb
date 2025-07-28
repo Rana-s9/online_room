@@ -4,6 +4,8 @@
   <h2>今日の予定を表示</h2>
 <% end %>
 
+<%= button_to "Googleカレンダーから取り込む", import_room_calendars_path(@room), method: :post, class: "btn btn-primary" %>
+
 <div class="mb-4">
   <strong>カテゴリフィルター：</strong>
   <%= link_to 'すべて', room_calendars_path(@room), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category].blank? && params[:visibility].blank? }" %>

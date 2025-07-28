@@ -25,7 +25,11 @@ Rails.application.routes.draw do
       resources :invitation_tokens, only: %i[create index update]
       resources :greetings, only: %i[new create index edit update destroy]
       resources :spots, only: %i[index new create show edit update destroy]
-      resources :calendars, only: %i[index new create show edit update destroy]
+      resources :calendars, only: %i[index new create show edit update destroy] do
+        collection do
+          post :import
+        end
+      end
     end
 
     resources :areas, only: %i[create update index]
