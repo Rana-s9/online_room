@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :spots, only: %i[index new create show edit update destroy]
       resources :calendars, only: %i[index new create show edit update destroy] do
         collection do
+          get :import
           post :import
         end
       end

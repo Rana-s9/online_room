@@ -31,7 +31,7 @@ class CalendarsController < ApplicationController
     @calendar = @room.calendars.includes(:user).find(params[:id])
 
     if @calendar.visibility == "personal" && @calendar.user != current_user
-      redirect_to root_path, alert: "この予定を見る権限がありません。"
+      redirect_to root_path, alert: t("flash.calendar.unauthorize")
     end
   end
 
@@ -45,9 +45,9 @@ class CalendarsController < ApplicationController
     @calendar.room = @room
 
     if @calendar.save
-      redirect_to room_calendars_path(@room), notice: "予定を作成しました"
+      redirect_to room_calendars_path(@room), notice: t("flash.calendar.save")
     else
-      flash.now[:alert] = t("flash.state_calendar.failed_save")
+      flash.now[:alert] = t("flash.calendar.failed_save")
       render :new, status: :unprocessable_entity
     end
   end
@@ -67,14 +67,14 @@ class CalendarsController < ApplicationController
     @calendar = @room.calendars.find_by(user: current_user, id: params[:id])
 
     unless @calendar&.user == current_user
-      redirect_to room_calendars_path(@room), alert: t("flash.state_calendar.unauthorize")
+      redirect_to room_calendars_path(@room), alert: t("flash.calendar.unauthorize_update")
     end
 
     if @calendar.update(calendar_params)
-      redirect_to room_calendars_path(@room), notice: t("flash.state_calendar.update")
+      redirect_to room_calendars_path(@room), notice: t("flash.calendar.update")
     else
       @calendars = @room.calendars.includes(:user).order(created_at: :desc)
-      flash.now[:alert] = t("flash.state_calendar.failed_update")
+      flash.now[:alert] = t("flash.calendar.failed_update")
       render :new, status: :unprocessable_entity
     end
   end
@@ -84,14 +84,14 @@ class CalendarsController < ApplicationController
     @calendar = @room.calendars.find_by(user: current_user, id: params[:id])
 
     unless @calendar&.user == current_user
-      redirect_to room_calendars_path(@room), alert: t("flash.state_calendar.unauthorize")
+      redirect_to room_calendars_path(@room), alert: t("flash.calendar.unauthorize_destroy")
     end
 
     if @calendar.destroy
-      redirect_to room_calendars_path(@room), notice: t("flash.state_calendar.update")
+      redirect_to room_calendars_path(@room), notice: t("flash.calendar.destroy")
     else
       @calendars = @room.calendars.includes(:user).order(created_at: :desc)
-      flash.now[:alert] = t("flash.state_calendar.failed_update")
+      flash.now[:alert] = t("flash.calendar.failed_destroy")
       render :new, status: :unprocessable_entity
     end
   end
@@ -131,10 +131,10 @@ class CalendarsController < ApplicationController
     end
     current_user.update!(sync_token: response.next_sync_token)
   end
-    redirect_to room_calendars_path(@room), notice: "Googleカレンダーから予定を取り込みました。"
+    redirect_to room_calendars_path(@room), notice: t("flash.state_calendar.input")
   rescue => e
     logger.error "Import failed: #{e.message}"
-    flash.now[:alert] = "取り込みに失敗しました: #{e.message}"
+    flash.now[:alert] = t("flash.state_calendar.failed_input")
     render :index, status: :unprocessable_entity
   end
 

@@ -80,6 +80,20 @@ ja:
         failed_update: "コメントの更新に失敗しました"
         delete: "コメントが削除されました"
         failed_delete: "コメントの削除に失敗しました"
+    calendar:
+      unauthorize_update: "この予定を更新する権限がありません"
+      update: "予定を更新しました"
+      failed_update: "予定の更新に失敗しました"
+      unauthorize: "この予定を見る権限がありません"
+      save: "予定を保存しました"
+      failed_save: "予定の保存に失敗しました"
+      destroy: "予定を削除しました"
+      failed_destroy: "予定の削除に失敗しました"
+      unauthorize_destroy: "この予定を削除する権限がありません"
+      input: "Googleカレンダーから予定を取り込みました"
+      failed_input: "Googleカレンダーの予定の読み込みに失敗しました"
+      start_time_rule: "は終了日時より前でなければいけません"
+
   views:
     simple_calendar:
       previous: "先月"
@@ -250,6 +264,27 @@ ja:
         online: "帰宅中"
         offline: "外出中"
         went_out_ago: "%{time}前に外出"
+    calendar:
+      calendar_name: "%{name}のカレンダー"
+      google_calendar: "Google Calendarから取得"
+      category_filter: "絞り込み"
+      all: "すべて"
+      relax: "リラックス"
+      work_study: "仕事・勉強"
+      event: "用事・その他"
+      private: "🔒個人予定管理"
+      add_time: "時間指定"
+      all_day: "終日"
+      manual: "手動入力"
+      google: "Google Calendar連携"
+      select: "選択してください"
+      personal: "🔒非公開"
+      only_share: "共有"
+      together: "一緒の予定"
+      start_date: "開始日"
+      end_date: "終了日"
+      enter: "予定を入力"
+      add_note: "メモを書く✏"
 
     area:
         rule: "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)"
@@ -293,6 +328,15 @@ ja:
         custom_name: "表示名登録"
       answer:
         body: "内容"
+      calendar:
+        description: "メモ📝"
+        name: "予定"
+        start_time: "開始日時"
+        end_time: "終了"
+        visibility: "閲覧権限"
+        category: "カテゴリー"
+        source: "入力タイプ"
+        schedule_type: "日時"
 
     errors:
       messages:
@@ -326,4 +370,11 @@ ja:
           attributes:
             base:
               position_blank: "座標取得のため、もう一度お試しください"
+        calendar:
+          attributes:
+            category:
+              blank: "を選択してください"
+            visibility:
+              blank: "を選択してください"
+
 

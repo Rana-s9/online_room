@@ -78,6 +78,19 @@ en:
         failed_update: "We couldn't update your comment."
         delete: "Your comment has been deleted."
         failed_delete: "We couldn't delete your comment."
+    calendar:
+      unauthorize_update: "You can’t update this event."
+      update: "Event has been updated."
+      failed_update: "Could not update the event."
+      unauthorize: "Looks like you don’t have access to view this event."
+      save: "Your event has been saved."
+      failed_save: "Couldn’t save the event."
+      destroy: "Event deleted."
+      failed_destroy: "Couldn’t delete the event."
+      unauthorize_destroy: "You can’t delete this event."
+      input: "We’ve pulled your events from Google Calendar."
+      failed_input: "Something went wrong while importing events."
+      start_time_rule: "- The start time must be before the end time."
 
   views:
     simple_calendar:
@@ -249,6 +262,27 @@ en:
         online: "At Home"
         offline: "Away"
         went_out_ago: "Went out %{time} ago"
+    calendar:
+      calendar_name: "%{name}'s Calendar"
+      google_calendar: "Import from Google Calendar"
+      category_filter: "Filter by Category"
+      all: "All"
+      relax: "Relaxation"
+      work_study: "Work/Study"
+      event: "Event/Others"
+      private: "🔒Private Schedule"
+      add_time: "Add Time"
+      all_day: "All Day"
+      manual: "Manual Entry"
+      google: "Google Calendar Integration"
+      select: "Please select"
+      personal: "🔒Private"
+      only_share: "Shared Only"
+      together: "Shared with Partner"
+      start_date: "Start Date"
+      end_date: "End Date"
+      enter: "Enter your plan"
+      add_note: "Add a note"
 
     area:
       rule: "Enter your area of residence *City or Ward (in English)"
@@ -292,6 +326,15 @@ en:
         custom_name: "enter display name"
       answer:
         body: "content"
+      calendar:
+        description: "Note📝"
+        name: "Plan"
+        start_time: "start time"
+        end_time: "end time"
+        visibility: "visibility"
+        category: "category"
+        source: "Input method"
+        schedule_type: "time"
 
     errors:
       messages:
@@ -341,3 +384,9 @@ en:
           attributes:
             body:
               blank: "- Please write your diary"
+        calendar:
+          attributes:
+            category:
+              blank: "- Please select a category."
+            visibility:
+              blank: "- Please select a visibility option"

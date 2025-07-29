@@ -1,19 +1,19 @@
-<h1 class="text-matcha-green text-xl font-bold mt-6"><%= @room.name %>のカレンダー</h1>
+<h1 class="text-matcha-green text-xl font-bold mt-6"><%= t('views.calendar.calendar_name', name: @room.name) %></h1>
 
 <% unless @today_state.present? %>
   <h2>今日の予定を表示</h2>
 <% end %>
 
-<%= button_to "Googleカレンダーから取り込む", import_room_calendars_path(@room), method: :post, class: "btn btn-primary" %>
+<%= button_to t('views.calendar.google_calendar'), import_room_calendars_path(@room), method: :post, class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray btn btn-primary", data: { turbo: false } %>
 
 <div class="mb-4">
-  <strong>カテゴリフィルター：</strong>
-  <%= link_to 'すべて', room_calendars_path(@room), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category].blank? && params[:visibility].blank? }" %>
-  <%= link_to '/リラックス', room_calendars_path(@room, category: 'relax'), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'relax'}" %>
-  <%= link_to '/仕事・勉強', room_calendars_path(@room, category: 'work_study'), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'work_study'}" %>
-  <%= link_to '/イベント', room_calendars_path(@room, category: 'event'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'event'}" %>
+  <strong><%= t('views.calendar.category_filter') %>：</strong>
+  <%= link_to t('views.calendar.all'), room_calendars_path(@room), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category].blank? && params[:visibility].blank? }" %>
+  <%= link_to t('views.calendar.relax'), room_calendars_path(@room, category: 'relax'), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'relax'}" %>
+  <%= link_to t('views.calendar.work_study'), room_calendars_path(@room, category: 'work_study'), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'work_study'}" %>
+  <%= link_to t('views.calendar.event'), room_calendars_path(@room, category: 'event'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'event'}" %>
   <% if current_user.calendars.exists?(visibility: 'personal') %>
-    <%= link_to '/🔒個人予定管理', room_calendars_path(@room, visibility: 'personal'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:visibility] == 'personal'}" %>
+    <%= link_to t('views.calendar.private'), room_calendars_path(@room, visibility: 'personal'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:visibility] == 'personal'}" %>
   <% end %>
 </div>
 
