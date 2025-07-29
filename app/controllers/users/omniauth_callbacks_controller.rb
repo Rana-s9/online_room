@@ -10,7 +10,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     @user.update(
       google_token: auth.credentials.token,
-      google_refresh_token: auth.credentials.refresh_token.presence || @user.google_refresh_token, # refresh_tokenは再ログインで渡ってこないこともある
+      google_refresh_token: auth.credentials.refresh_token || @user.google_refresh_token,
       token_expires_at: Time.at(auth.credentials.expires_at)
     )
     if @user.persisted?

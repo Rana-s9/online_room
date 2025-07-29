@@ -62,7 +62,7 @@ class Calendar < ApplicationRecord
     return if start_time.blank? || end_time.blank?
 
     if start_time > end_time
-      errors.add(:start_time, "は終了日時より前でなければなりません")
+      errors.add(:start_time, I18n.t("flash.calendar.start_time_rule"))
     end
   end
 end
