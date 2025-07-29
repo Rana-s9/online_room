@@ -131,10 +131,10 @@ class CalendarsController < ApplicationController
     end
     current_user.update!(sync_token: response.next_sync_token)
   end
-    redirect_to room_calendars_path(@room), notice: t("flash.state_calendar.input")
+    redirect_to room_calendars_path(@room), notice: t("flash.calendar.input")
   rescue => e
     logger.error "Import failed: #{e.message}"
-    flash.now[:alert] = t("flash.state_calendar.failed_input")
+    flash.now[:alert] = t("flash.calendar.failed_input")
     render :index, status: :unprocessable_entity
   end
 
