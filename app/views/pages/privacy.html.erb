@@ -1,83 +1,100 @@
-<div class="text-center text-2xl font-bold underline mt-4">プライバシーポリシー</div>
+<div class="text-center text-2xl font-bold underline mt-4"><%= t("views.footer.privacy_policy") %></div>
 <div class="flex justify-center mt-8">
   <div class="text-left max-w-2xl w-full">
-    <div class="font-bold">お客様から取得する情報</div>
+    <div class="font-bold"><%= t("views.privacy_policy.retrieve_info.one") %></div>
     <div class="pl-5">
       <p>
-        当社は、お客様から以下の情報を取得します。
+        <%= t("views.privacy_policy.retrieve_info.two") %>
       </p>
       <ul class="list-disc pl-5 mt-2">
-        <li>氏名(ニックネームやペンネームも含む)</li>
-        <li>メールアドレス</li>
-        <li>外部サービスでお客様が利用するID、その他外部サービスのプライバシー設定によりお客様が連携先に開示を認めた情報</li>
-        <li>OSが生成するID、端末の種類、端末識別子等のお客様が利用するOSや端末に関する情報</li>
-        <li>当社ウェブサイトの滞在時間、入力履歴、購買履歴等の当社ウェブサイトにおけるお客様の行動履歴</li>
+        <li><%= t("views.privacy_policy.retrieve_info.three") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.four") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.five") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.six") %><br>
+<%= t("views.privacy_policy.retrieve_info.seven") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.eight") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.nine") %></li>
       </ul>
     </div>
 
-    <div class="font-bold mt-4">お客様の情報を利用する目的</div>
-    <div class="pl-5">
-      <p>
-      当社は、お客様から取得した情報を、以下の目的のために利用します。
-      </p>
-      <ul class="list-disc pl-5 mt-2">
-        <li>当社サービスに関する登録の受付、お客様の本人確認、認証のため</li>
-        <li>お客様の当社サービスの利用履歴を管理するため</li>
-        <li>利用料金の決済のため</li>
-        <li>当社サービスにおけるお客様の行動履歴を分析し、当社サービスの維持改善に役立てるため</li>
-        <li>当社のサービスに関するご案内をするため</li>
-        <li>お客様からのお問い合わせに対応するため</li>
-        <li>当社の規約や法令に違反する行為に対応するため</li>
-        <li>当社サービスの変更、提供中止、終了、契約解除をご連絡するため</li>
-        <li>当社規約の変更等を通知するため</li>
-        <li>以上の他、当社サービスの提供、維持、保護及び改善のため</li>
-      </ul>
-    </div>
+      <div class="font-bold mt-4"><%= t("views.privacy_policy.purpose.one") %></div>
+      <div class="pl-5">
+        <p>
+          <%= t("views.privacy_policy.purpose.two") %>
+        </p>
+        <ul class="list-disc pl-5 mt-2">
+          <li><%= t("views.privacy_policy.purpose.three") %></li>
+          <li><%= t("views.privacy_policy.purpose.four") %></li>
+          <li><%= t("views.privacy_policy.purpose.five") %></li>
+          <li><%= t("views.privacy_policy.purpose.six") %><br>
+<%= t("views.privacy_policy.purpose.seven") %></li>
+          <li><%= t("views.privacy_policy.purpose.eight") %></li>
+          <li><%= t("views.privacy_policy.purpose.nine") %></li>
+          <li><%= t("views.privacy_policy.purpose.ten") %></li>
+          <li><%= t("views.privacy_policy.purpose.eleven") %></li>
+          <li><%= t("views.privacy_policy.purpose.twelve") %></li>
+          <li><%= t("views.privacy_policy.purpose.thirteen") %></li>
+        </ul>
+      </div>
 
-    <div class="font-bold mt-4">安全管理のために講じた措置</div>
+      <div class="font-bold mt-4"><%= t("views.privacy_policy.google_connect.one") %></div>
+      <div class="pl-5">
+        <p>
+          <%= t("views.privacy_policy.google_connect.two") %>
+        </p>
+        <ul class="list-disc pl-5 mt-2">
+          <li><%= t("views.privacy_policy.google_connect.three") %></li>
+          <li><%= t("views.privacy_policy.google_connect.four") %></li>
+          <li><%= t("views.privacy_policy.google_connect.five") %></li>
+          <li><%= t("views.privacy_policy.google_connect.six") %><br>
+<%= t("views.privacy_policy.google_connect.seven") %></li>
+          <li><%= t("views.privacy_policy.google_connect.eight") %></li>
+          <li><%= t("views.privacy_policy.google_connect.disconnect_notice", link: link_to(t("views.privacy_policy.google_connect.account_settings"), "https://myaccount.google.com/permissions", class: "text-matcha underline")).html_safe %></li>
+        </ul>
+      </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.security.one") %></div>
     <div class="pl-5">
       <p>
-      当社が、お客様から取得した情報に関して安全管理のために講じた措置につきましては、末尾記載のお問い合わせ先にご連絡をいただきましたら、法令の定めに従い個別にご回答させていただきます。
+      <%= t("views.privacy_policy.security.two") %>
       </p>  
     </div>
 
-    <div class="font-bold mt-4">第三者提供</div>
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.provision.one") %></div>
     <div class="pl-5">
       <p>
-      当社は、お客様から取得する情報のうち、個人データ（個人情報保護法第１６条第３項）に該当するものついては、あらかじめお客様の同意を得ずに、第三者（日本国外にある者を含みます。）に提供しません。
-      但し、次の場合は除きます。
+      <%= t("views.privacy_policy.provision.two") %>
       </p>
       <ul class="list-disc pl-5 mt-2">
-        <li>個人データの取扱いを外部に委託する場合</li>
-        <li>当社や当社サービスが買収された場合</li>
-        <li>事業パートナーと共同利用する場合（具体的な共同利用がある場合は、その内容を別途公表します。）</li>
-        <li>その他、法律によって合法的に第三者提供が許されている場合</li>
+        <li><%= t("views.privacy_policy.provision.three") %></li>
+        <li><%= t("views.privacy_policy.provision.four") %></li>
+        <li><%= t("views.privacy_policy.provision.five") %></li>
+        <li><%= t("views.privacy_policy.provision.six") %></li>
       </ul>
     </div>
 
-    <div class="font-bold mt-4">アクセス解析ツール</div>
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.access.one") %></div>
     <div class="pl-5">
       <p>
-      当社は、お客様のアクセス解析のために、「Googleアナリティクス」を利用しています。Googleアナリティクスは、トラフィックデータの収集のためにCookieを使用しています。トラフィックデータは匿名で収集されており、個人を特定するものではありません。Cookieを無効にすれば、これらの情報の収集を拒否することができます。詳しくはお使いのブラウザの設定をご確認ください。Googleアナリティクスについて、詳しくは<span class="text-matcha underline"><%= link_to "こちら", "https://marketingplatform.google.com/about/analytics/terms/jp/" %></span>からご確認ください。
+      <%= t("views.privacy_policy.access.analytics", link: link_to(t("views.privacy_policy.access.here"), I18n.locale == :ja ? "https://marketingplatform.google.com/about/analytics/terms/jp/" : "https://marketingplatform.google.com/about/analytics/terms/us/", class: "text-matcha underline")).html_safe %>
       </p>
     </div>
 
-    <div class="font-bold mt-4">プライバシーポリシーの変更</div>
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.policy_change.one") %></div>
     <div class="pl-5">
       <p>
-      当社は、必要に応じて、このプライバシーポリシーの内容を変更します。この場合、変更後のプライバシーポリシーの施行時期と内容を適切な方法により周知または通知します。
+      <%= t("views.privacy_policy.policy_change.two") %>
       </p>
     </div>
 
-    <div class="font-bold mt-4">プライバシーポリシーの変更</div>
+    <div class="font-bold mt-4"><%= t("views.footer.contact") %></div>
     <div class="pl-5">
       <p>
-      お客様の情報の開示、情報の訂正、利用停止、削除をご希望の場合は、<span class="text-matcha underline"><%= link_to 'お問い合わせ', contact_path %></span>よりご連絡ください。
-      この場合、必ず、運転免許証のご提示等当社が指定する方法により、ご本人からのご請求であることの確認をさせていただきます。なお、情報の開示請求については、開示の有無に関わらず、ご申請時に一件あたり1,000円の事務手数料を申し受けます。
+      <%= t("views.privacy_policy.contact.one", link: link_to(t("views.footer.contact"), contact_path, class: "text-matcha underline")).html_safe %>
       </p>
     </div>
     <div class="mt-4">
-    2025年07月19日 制定
+    <%= t("views.privacy_policy.date") %>
     </div>
   </div>
 </div>

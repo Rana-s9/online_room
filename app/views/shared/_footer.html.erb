@@ -2,9 +2,9 @@
     <div class="max-w-screen-lg mx-auto">
       <div class="flex justify-between items-center p-2 md:p-4">
         <div class="flex space-x-4">
-            <%= link_to 'お問い合わせ', contact_path %>
-            <%= link_to '利用規約', terms_path %>
-            <%= link_to 'プライバシーポリシー', privacy_path %>
+            <%= link_to t("views.footer.contact"), contact_path %>
+            <%= link_to t("views.footer.terms_of_service"), terms_path %>
+            <%= link_to t("views.footer.privacy_policy"), privacy_path %>
         </div>
         <div class="flex flex-col justify-end text-gray">
             <i class="fa-brands fa-x-twitter"></i>
