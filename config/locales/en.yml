@@ -283,6 +283,66 @@ en:
       end_date: "End Date"
       enter: "Enter your plan"
       add_note: "Add a note"
+    footer:
+      privacy_policy: "Privacy Policy"
+      terms_of_service: "Terms of Service"
+      contact: "Contact"
+    privacy_policy:
+      retrieve_info:
+        one: "Information We Collect"
+        two: "We collect the following information from you:"
+        three: "Your name (including nicknames or pen names)"
+        four: "Email address"
+        five: "ID used on external services (such as Google accounts), and any information you have agreed to disclose to us based on your privacy settings with those external services"
+        six: "Event details and schedules registered on your Google Calendar"
+        seven: "* We only access this information if you explicitly authorize integration with your Google Calendar. We do not collect, edit, or delete any information without your permission."
+        eight: "Information about your operating system and device, such as OS-generated IDs, device types, and identifiers"
+        nine: "Behavioral history on our website, including time spent, input history, and purchase records"
+      purpose:
+        one: "Purpose of Use of Your Information"
+        two: "We use the collected information for the following purposes:"
+        three: "To register users, perform identity verification, and authentication for our services"
+        four: "To manage user activity and service usage history"
+        five: "To analyze user behavior and improve and maintain our services"
+        six: "To allow users to view, share, record, and manage event information obtained from Google Calendar within our service"
+        seven: "* We only retrieve schedule information in read-only mode and do not make any changes or deletions to the content on Google Calendar. You may create, edit, or delete events within the app, but those changes are not reflected back to Google Calendar."
+        eight: "To send notifications or information regarding our services"
+        nine: "To respond to user inquiries"
+        ten: "To respond to violations of our terms or applicable laws"
+        eleven: "To notify users of service changes, discontinuation, termination, or account cancellation"
+        twelve: "To inform users about updates to our terms or policies"
+        thirteen: "To provide, maintain, protect, and improve our services generally"
+      google_connect:
+        one: "Integration with Google"
+        two: "Our service may use Google Login (OAuth 2.0) and read-only access to Google Calendar. These integrations are performed through APIs provided by Google LLC and are subject to the following policies:"
+        three: "When using Google Login, we may obtain basic profile information such as your name and email address registered with your Google account."
+        four: "We only retrieve calendar events after you grant explicit permission, and use this data solely for displaying, recording, and sharing within our app."
+        five: "We do not create, update, or delete any information on your Google Calendar. Our access is strictly read-only."
+        six: "To allow you to view, share, record, and manage your event information obtained from Google Calendar within our service"
+        seven: "* Retrieved event data is read-only. We do not modify or delete information on Google Calendar. Within the app, you can create, edit, or delete events, but these changes are not reflected on Google Calendar."
+        eight: "By default, retrieved events are displayed as 'private' and are not visible to roommates unless you explicitly change the sharing settings."
+        disconnect_notice: "You can disconnect your Google account at any time from your %{link}. Once disconnected, you will no longer be able to fetch calendar data or log in using Google."
+        account_settings: "Google account settings page"
+      security:
+        one: "Security Measures"
+        two: "If you would like to know more about the security measures we take to protect your personal information, please contact us at the address listed at the end of this policy. We will respond in accordance with applicable laws and regulations."
+      provision:
+        one: "Provision to Third Parties"
+        two: "We do not provide any personal data (as defined under Article 16, Paragraph 3 of the Act on the Protection of Personal Information) to third parties, including those located outside of Japan, without your prior consent, except in the following cases:"
+        three: "When outsourcing the handling of personal data"
+        four: "In the event our business or services are acquired"
+        five: "When shared use with business partners (details will be disclosed separately when applicable)"
+        six: "When otherwise permitted by law"
+      access:
+        one: "Analytics Tools"
+        analytics: "We use Google Analytics to analyze user access to our website. Google Analytics uses cookies to collect traffic data. This data is collected anonymously and does not personally identify users. You can disable cookies in your browser settings to opt out of data collection. For more information, please see %{link}."
+        here: "here"
+      policy_change:
+        one: "Changes to This Privacy Policy"
+        two: "We may update this privacy policy as needed. Any changes will be announced or notified in an appropriate manner along with the effective date and updated content."
+      contact:
+        one: "If you wish to request disclosure, correction, suspension of use, or deletion of your information, please contact us at %{link}. We will confirm that the request is from the individual concerned, such as by requiring a copy of a driver’s license or other specified verification method. Please note that a handling fee of 1,000 JPY will be charged per request, regardless of whether information is disclosed."
+      date: "Established: July 19, 2025"
 
     area:
       rule: "Enter your area of residence *City or Ward (in English)"
