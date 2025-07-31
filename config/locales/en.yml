@@ -92,6 +92,12 @@ en:
       input: "We’ve pulled your events from Google Calendar."
       failed_input: "Something went wrong while importing events."
       start_time_rule: "- The start time must be before the end time."
+    roommate:
+      no_invite_link: "Invitation link not found."
+      invite_expired: "The invitation link has expired."
+      invite_used: "This link has already been used."
+      already_joined: "You’re already part of this room."
+      joined: "You’ve joined the room."
 
   views:
     simple_calendar:
@@ -179,12 +185,6 @@ en:
       calendar: "Calendar　　　　"
       message: "Greeting Message Settings"
       cleaning: "Tidy up the room"
-    roommate:
-      no_invite_link: "Invitation link not found."
-      invite_expired: "The invitation link has expired."
-      invite_used: "This link has already been used."
-      already_joined: "You’re already part of this room."
-      joined: "You’ve joined the room."
     spot:
       visited_list: "Visited spots"
       visit_list: "Spots to Visit"
