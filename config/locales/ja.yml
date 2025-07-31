@@ -94,6 +94,12 @@ ja:
       input: "Googleカレンダーから予定を取り込みました"
       failed_input: "Googleカレンダーの予定の読み込みに失敗しました"
       start_time_rule: "は終了日時より前でなければいけません"
+    roommate:
+      no_invite_link: "招待リンクが存在しません"
+      invite_expired: "招待リンクの有効期限が切れています"
+      invite_used: "この招待リンクはすでに使用されています"
+      already_joined: "すでにこのルームに参加しています"
+      joined: "ルームに参加しました"
 
   views:
     simple_calendar:
@@ -181,12 +187,6 @@ ja:
       calendar: "カレンダー　　　　"
       message: "おかえり/ただいまメッセージ管理"
       cleaning: "部屋片づけ中"
-    roommate:
-      no_invite_link: "招待リンクが存在しません"
-      invite_expired: "招待リンクの有効期限が切れています"
-      invite_used: "この招待リンクはすでに使用されています"
-      already_joined: "すでにこのルームに参加しています"
-      joined: "ルームに参加しました"
     spot:
       visited_list: "行ったことがある場所一覧"
       visit_list: "行きたい場所一覧"
