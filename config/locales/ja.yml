@@ -8,6 +8,7 @@ ja:
     register: "登録"
     save_new: "登録"
     add: "追加"
+    add_today: "今日の予定を追加"
   flash:
     alert: "本当に削除しますか？"
     diary:

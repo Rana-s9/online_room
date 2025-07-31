@@ -8,6 +8,7 @@ en:
     register: "Register"
     save_new: "Save"
     add: "Add"
+    add_today: "Add Today's schedule"
   flash:
     alert: "Are you sure you'd like to delete this?"
     diary:
