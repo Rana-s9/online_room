@@ -3,7 +3,7 @@
 <div class="bg-light-gray/75 p-4 rounded shadow mb-4">
 
   <p class="text-dark-gray mb-2">
-    <strong><%= t("views.state_calendar.mental_state") %>:</strong>
+    <strong><%= t("activerecord.attributes.calendar.schedule_type") %>:</strong>
     <% if @calendar.start_time.to_date == @calendar.end_time.to_date %>
       <span class="inline-block px-2 py-1 rounded bg-yellow text-dark-gray">
         終日：<%= @calendar.display_start_time %>
@@ -19,7 +19,7 @@
   </p>
 
   <p class="text-dark-gray mb-2">
-    <strong><%= t("views.state_calendar.physical_state") %>:</strong>
+    <strong><%= t("activerecord.attributes.calendar.name") %>:</strong>
     <span class="inline-block px-2 py-1 rounded bg-light-blue/30 text-dark-gray">
       <%= @calendar.name %>
     </span>
@@ -30,12 +30,14 @@
         <%= @calendar.description %>
     </p>
   <% else %>
-    <h1>メモ📝はありません</h1>
+    <h1><%= t("views.calendar.note") %></h1>
   <% end %>
 
   <div class="text-dark-gray mb-2">
-    <p><%= @calendar.visibility%></p>
-    <p><%= @calendar.category%></p>
+    <ul class="list-disc pl-5 mt-2">
+      <li><%= t("views.calendar.#{@calendar.visibility}")%></li>
+      <li><%= t("views.calendar.#{@calendar.category}")%></li>
+    </ul>
   </div>
 
 </div>
