@@ -108,7 +108,6 @@ class RoomsController < ApplicationController
           flash[:just_signed_in] = t("flash.rooms.back_home")
         end
       end
-
   end
 
   private
@@ -168,9 +167,9 @@ class RoomsController < ApplicationController
 
   if weather_record.changed?
       weather_record.save
-    else
+  else
       weather_record.touch
-    end
+  end
   end
 
   def room_params
