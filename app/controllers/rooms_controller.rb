@@ -82,19 +82,33 @@ class RoomsController < ApplicationController
 
       if params[:from_home_button]
         users = (current_user.grouped_shared_users[@room.id] || [])
+        updated_any = false
+        failed_any = false
+
         users.uniq.each do |user|
           area = user.area
           next unless area
 
           weather_record = area.weather_record
-
           if weather_record.nil? || weather_record.updated_at < 30.minutes.ago
             weather_record ||= WeatherRecord.new(area: area)
-            save_weather_record(area, weather_record)
+            if save_weather_record(area, weather_record)
+              updated_any = true
+            else
+              failed_any = true
+            end
           end
         end
-        flash[:just_signed_in] = t("flash.rooms.back_home")
+
+        if failed_any
+          redirect_to root_path, alert: t("views.weather.failed_save") and return
+        elsif updated_any
+          redirect_to room_path(@room), notice: t("views.weather.update") and return
+        else
+          flash[:just_signed_in] = t("flash.rooms.back_home")
+        end
       end
+
   end
 
   private
@@ -138,27 +152,24 @@ class RoomsController < ApplicationController
   end
 
   def save_weather_record(area, weather_record)
-    ja_data = fetch_weather_from_api(area.city, "ja")
-    en_data = fetch_weather_from_api(area.city, "en")
+  ja_data = fetch_weather_from_api(area.city, "ja")
+  en_data = fetch_weather_from_api(area.city, "en")
 
-    if ja_data.present? && en_data.present?
-      weather_record.assign_attributes(
-        temperature: ja_data["main"]["temp"],
-        humidity: ja_data["main"]["humidity"],
-        description: ja_data["weather"][0]["description"],
-        description_en: en_data["weather"][0]["description"],
-        temp_min: ja_data["main"]["temp_min"],
-        temp_max: ja_data["main"]["temp_max"]
-      )
+  return false unless ja_data.present? && en_data.present?
 
-      if weather_record.save
-        room = Room.find(params[:id])
-        redirect_to room_path(room), notice: t("views.weather.update")
-      else
-        redirect_to areas_path, alert: t("views.weather.failed_save")
-      end
+  weather_record.assign_attributes(
+    temperature: ja_data["main"]["temp"],
+    humidity: ja_data["main"]["humidity"],
+    description: ja_data["weather"][0]["description"],
+    description_en: en_data["weather"][0]["description"],
+    temp_min: ja_data["main"]["temp_min"],
+    temp_max: ja_data["main"]["temp_max"]
+  )
+
+  if weather_record.changed?
+      weather_record.save
     else
-      redirect_to root_path, alert: t("views.weather.failed_retrieve")
+      weather_record.touch
     end
   end
 
