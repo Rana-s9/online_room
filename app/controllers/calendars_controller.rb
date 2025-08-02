@@ -37,7 +37,9 @@ class CalendarsController < ApplicationController
 
   def new
     @room = Room.find(params[:room_id])
-    @calendar = current_user.calendars.find_by(room: @room, start_time: params[:start_time]) || current_user.calendars.new(room: @room, start_time: params[:start_time] || Date.current)
+    start_time = (params[:date].presence && Date.parse(params[:date])) || Date.current
+    @calendar = current_user.calendars.find_by(room: @room, start_time: start_time) ||
+            current_user.calendars.new(room: @room, start_time: start_time)
   end
 
   def create

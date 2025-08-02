@@ -10,17 +10,13 @@
 <div id="all-day-fields" style="display: none;">
   <div class="form-group">
     <%= f.label :start_time, t('activerecord.attributes.calendar.start_date') %>
-    <%= f.date_field :start_time, value: (
-        f.object.start_time ||
-        (params[:date].present? ? Date.parse(params[:date]) : Date.today)
-      ).to_date.strftime("%Y-%m-%d") %>
+    <%= f.date_field :start_time, value: @calendar.start_time&.to_date || Date.current, class: "text-dark-gray bg-matcha/30" %>
   </div>
   <div class="form-group">
     <%= f.label :end_time, t('activerecord.attributes.calendar.end_date') %>
     <%= f.date_field :end_time, value: (
-        f.object.end_time ||
-        (params[:date].present? ? Date.parse(params[:date]) : Date.today)
-      ).to_date.strftime("%Y-%m-%d") %>
+          (f.object.end_time || f.object.start_time || (params[:date].present? ? Date.parse(params[:date]) : Date.today))
+          ).to_date.strftime("%Y-%m-%d"), class: "text-dark-gray bg-matcha/30" %>
   </div>
 </div>
 
@@ -28,14 +24,15 @@
 <div id="timed-fields">
   <div class="form-group">
     <%= f.label :start_time, t('activerecord.attributes.calendar.start_time') %>
-    <%= f.datetime_local_field :start_time, class: 'form-control', value: (
-        f.object.start_time ||
-        (params[:datetime].present? ? Date.parse(params[:datetime]) : Date.today)
-      ).strftime("%Y-%m-%dT%H:%M") %>
+    <%= f.datetime_local_field :start_time, value: @calendar.start_time&.to_date || Date.current, class: "text-dark-gray bg-matcha/30" %>
   </div>
   <div class="form-group">
     <%= f.label :end_time, t('activerecord.attributes.calendar.end_time') %>
-    <%= f.datetime_local_field :end_time, class: 'form-control', value: (f.object.end_time || (Date.parse(params[:datetime]) rescue (Time.current + 30.minutes))).strftime("%Y-%m-%dT%H:%M") %>
+    <%= f.datetime_local_field :end_time, value: (
+          (f.object.end_time ||
+           (f.object.start_time ? f.object.start_time + 30.minutes : nil) ||
+           (params[:datetime].present? ? Date.parse(params[:datetime]) : Time.current + 30.minutes))
+          ).strftime("%Y-%m-%dT%H:%M"), class: "text-dark-gray bg-matcha/30" %>
   </div>
 </div>
 <div>
