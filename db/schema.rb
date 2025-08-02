@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_28_150228) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_02_091316) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_28_150228) do
     t.index ["google_event_id"], name: "index_calendars_on_google_event_id", unique: true
     t.index ["room_id"], name: "index_calendars_on_room_id"
     t.index ["user_id"], name: "index_calendars_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "spot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_comments_on_spot_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "exchange_diaries", force: :cascade do |t|
@@ -207,6 +217,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_28_150228) do
   add_foreign_key "areas", "users"
   add_foreign_key "calendars", "rooms"
   add_foreign_key "calendars", "users"
+  add_foreign_key "comments", "spots"
+  add_foreign_key "comments", "users"
   add_foreign_key "exchange_diaries", "rooms"
   add_foreign_key "exchange_diaries", "users"
   add_foreign_key "greetings", "rooms"
