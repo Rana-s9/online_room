@@ -166,7 +166,7 @@ ja:
       your_day: "今日の出来事は？"
       write: "日記を書く"
     read:
-      did: "読みました"
+      did: "既読"
       did_not: "未読"
     room:
       front_door: "玄関"
@@ -207,6 +207,11 @@ ja:
       address: "住所"
       edit: "場所の名前 *場所名を適宜変更できます"
       date: "行きたい日/行った日を入力(任意)"
+      comment:
+        title: "コメント"
+        nothing: "コメントはまだありません"
+        add: "コメントを追加"
+        enter: "コメントやを書いてみよう"
     state_calendar:
       button: "カレンダーへ戻る"
       mental_state: "心の状態"

@@ -205,6 +205,11 @@ en:
       address: "Address"
       edit: "Place Name *You can change the name as you like."
       date: "Enter the date you visited or want to visit"
+      comment:
+        title: "Comments"
+        nothing: "No comments yet"
+        add: "Add Comments"
+        enter: "Feel free to leave a comment"
     state_calendar:
       button: "Back to Calendars"
       mental_state: "mental state"

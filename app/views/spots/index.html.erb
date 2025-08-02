@@ -16,6 +16,9 @@
               <% if spot.date.present? %>
                 <i class="fa-solid fa-calendar-days text-matcha-green"></i><%= spot.date.strftime("%Y-%m-%d") %>
               <% end %>
+              <% if spot.comments.any? %>
+                <div class="text-xs text-gray-600 mt-2 text-right"><i class="fa-regular fa-comment"></i> コメントあり</div>
+              <% end %>
           </div>
       <% end %>
   <% else %>
@@ -37,6 +40,9 @@
               <i class="fa-solid fa-user text-blue"></i><%= spot.user.name %>
               <% if spot.date.present? %>
                 <i class="fa-solid fa-calendar-days text-matcha-green"></i><%= spot.date.strftime("%Y-%m-%d") %>
+              <% end %>
+              <% if spot.comments.any? %>
+                <div class="text-xs text-gray-600 mt-2 text-right"><i class="fa-regular fa-comment"></i> コメントあり</div>
               <% end %>
           </div>
       <% end %>
