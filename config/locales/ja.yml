@@ -206,6 +206,7 @@ ja:
       registered: "登録日時"
       address: "住所"
       edit: "場所の名前 *場所名を適宜変更できます"
+      date: "行きたい日/行った日を入力(任意)"
     state_calendar:
       button: "カレンダーへ戻る"
       mental_state: "心の状態"

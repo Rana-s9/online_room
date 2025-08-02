@@ -10,10 +10,11 @@
 
                 <p class="text-sm text-gray-700">
                 <strong><%= t("views.spot.registered") %>:</strong> <%= l(@spot.created_at, format: :long) %><br>
+                <strong><%= t("views.spot.address") %>:</strong> <%= @spot.address %><br>
                 <strong><i class="fa-solid fa-user text-blue"></i>:</strong> <%= @spot.user.name %>
-                <strong><%= t("views.spot.address") %>:</strong> <%= @spot.address %>
                 </p>
-                <% if @spot.user == current_user %>
+                <% if @spot.date.present? %>
+                  <i class="fa-solid fa-calendar-days text-matcha-green"></i><%= @spot.date.strftime("%Y-%m-%d") %>
                 <% end %>
             </div>
         </div>
@@ -51,4 +52,4 @@
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap&libraries=marker&v=weekly&loading=async" async defer></script>
 
-<%= link_to t("buttons.back"), room_spots_path(@room) %>
+<%= link_to t("buttons.back"), room_spots_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4"%>
