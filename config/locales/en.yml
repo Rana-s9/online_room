@@ -204,6 +204,7 @@ en:
       registered: "Registered on"
       address: "Address"
       edit: "Place Name *You can change the name as you like."
+      date: "Enter the date you visited or want to visit"
     state_calendar:
       button: "Back to Calendars"
       mental_state: "mental state"

@@ -31,6 +31,12 @@
         <%= f.label :name, t("views.spot.note"), class: "block text-dark-gray text-sm font-bold mb-2 mt-2 underline" %>
         <%= f.text_field :name, id: "name", placeholder: t("views.spot.auto"), class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
         </div>
+
+        <div class="mb-4">
+        <%= f.label :date, t("views.spot.date"), class: "block text-dark-gray text-sm font-bold mb-2 mt-2 underline" %>
+        <%= f.date_field :date, class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+        </div>
+
         <div class="text-right">
         <%= link_to t("views.spot.reset"), new_room_spot_path(@room), method: :get, class: "text-matcha" %>
         </div>
