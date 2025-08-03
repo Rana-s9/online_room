@@ -1,11 +1,11 @@
 <% if flash[:just_signed_in] %>
   <div id="login-greeting">
-  <div class="fixed top-[580px] md:top-[600px] left-0 z-50 justify-end text-beige md:text-black">
+  <div class="fixed top-[580px] md:top-[600px] left-0 z-40 justify-end text-beige md:text-black">
     <p><%= @welcome_display[:user].name %></p>
     <p class="bg-blue/50 p-4 rounded-lg shadow-md"><%= @welcome_display[:message] %></p>
   </div>
 
-  <div class="fixed top-[500px] md:top-[520px] left-0 z-50 justify-end text-beige md:text-black">
+  <div class="fixed top-[500px] md:top-[520px] left-0 z-40 justify-end text-beige md:text-black">
     <p><%= @return_display[:user].name %></p>
     <p class="bg-matcha/50 p-4 rounded-lg shadow-md"><%= @return_display[:message] %></p>
   </div>

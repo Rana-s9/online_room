@@ -297,7 +297,7 @@ ja:
       add_note: "メモを書く✏"
       note: "メモ📝はありません"
     footer:
-      privacy_policy: "プライバシーポリシー"
+      privacy_policy: "プライバシー<br>ポリシー"
       terms_of_service: "利用規約"
       contact: "お問い合わせ"
     privacy_policy:
