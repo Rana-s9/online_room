@@ -20,6 +20,7 @@ ja:
     read:
       success: "読みました"
       self_read: "自分の日記です"
+    leave_room: "部屋を出てもよろしいですか？"
 
     room:
       failed_find: "部屋が見つかりませんでした"
@@ -289,13 +290,15 @@ ja:
       google: "Google Calendar連携"
       select: "選択してください"
       personal: "🔒非公開"
-      only_share: "共有"
+      share_only: "共有"
       together: "一緒の予定"
       start_date: "開始日"
       end_date: "終了日"
       enter: "予定を入力"
       add_note: "メモを書く✏"
       note: "メモ📝はありません"
+      start: "開始"
+      end: "終了"
     footer:
       privacy_policy: "プライバシー<br>ポリシー"
       terms_of_service: "利用規約"

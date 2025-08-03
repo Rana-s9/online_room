@@ -54,6 +54,14 @@ class RoomsController < ApplicationController
 
     @roommates_except_self = current_user.roommates_except_self(@room)
 
+    room_users = current_user.grouped_shared_users[@room.id]
+    @calendar = Calendar
+              .includes(:user)
+              .where(room: @room, visibility: "together", user: room_users)
+              .where("start_time >= ?", Date.today)
+              .order(:start_time)
+              .first
+
     @welcome_display =
       if @roommates_except_self.any?
         if @others_welcome.any?

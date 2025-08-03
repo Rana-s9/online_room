@@ -14,8 +14,15 @@ class CalendarsController < ApplicationController
                                     .where(visibility: :personal, user: current_user)
                                     .order(created_at: :desc)
 
-    if params[:visibility] == "personal"
+    together_calendars = @room.calendars.includes(:user)
+                             .where(visibility: :together)
+                             .order(created_at: :desc)
+
+    case params[:visibility]
+    when "personal"
       @calendars = personal_calendars
+    when "together"
+      @calendars = together_calendars
     else
       if params[:category].present? && Calendar.categories.key?(params[:category])
         category_value = Calendar.categories[params[:category]]
@@ -56,7 +63,7 @@ class CalendarsController < ApplicationController
 
   def edit
     @room = Room.find(params[:room_id])
-    @calendars = @room.calendars.find(params[:id])
+    @calendar = @room.calendars.find(params[:id])
     @calendar_date = params[:date].present? ? Date.parse(params[:date]) : Date.today
 
     @calendars = @room.calendars

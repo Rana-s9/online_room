@@ -56,7 +56,7 @@
 
   <%= f.label :visibility, t('activerecord.attributes.calendar.visibility'), class: "text-dark-gray" %>
   <%= f.select :visibility,
-    [[t('views.calendar.personal'), "personal"], [t('views.calendar.only_share'), "share_only"],[t('views.calendar.together'), "together"]],
+    [[t('views.calendar.personal'), "personal"], [t('views.calendar.share_only'), "share_only"],[t('views.calendar.together'), "together"]],
     { prompt: t('views.calendar.select') }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
   %>
 </div>

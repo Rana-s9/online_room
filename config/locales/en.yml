@@ -20,6 +20,9 @@ en:
     read:
       success: "Marked as read."
       self_read: "You can't mark your own diary as read."
+    leave_room: "Are you sure you want to leave the room?"
+
+
     room: "The room could not be found."
     rooms:
       none_access: "Looks like you don’t have access to this room."
@@ -287,13 +290,15 @@ en:
       google: "Google Calendar Integration"
       select: "Please select"
       personal: "🔒Private"
-      only_share: "Shared Only"
+      share_only: "Shared Only"
       together: "Shared with Partner"
       start_date: "Start Date"
       end_date: "End Date"
       enter: "Enter your plan"
       add_note: "Add a note"
       note: "No notes yet📝."
+      start: "Start"
+      end: "End"
     footer:
       privacy_policy: "Privacy Policy"
       terms_of_service: "Terms of Service"
