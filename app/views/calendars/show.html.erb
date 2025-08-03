@@ -6,14 +6,14 @@
     <strong><%= t("activerecord.attributes.calendar.schedule_type") %>:</strong>
     <% if @calendar.start_time.to_date == @calendar.end_time.to_date %>
       <span class="inline-block px-2 py-1 rounded bg-yellow text-dark-gray">
-        終日：<%= @calendar.display_start_time %>
+        <%= t("views.calendar.all_day") %>：<%= @calendar.display_start_time %>
       </span>
     <% else %>
       <span class="inline-block px-2 py-1 rounded bg-yellow text-dark-gray">
-        開始：<%= @calendar.display_start_time %>
+        <%= t("views.calendar.start") %>：<%= @calendar.display_start_time %>
       </span>
       <span class="inline-block px-2 py-1 rounded bg-yellow text-dark-gray">
-        終了：<%= @calendar.display_end_time %>
+        <%= t("views.calendar.end") %>：<%= @calendar.display_end_time %>
       </span>
     <% end %>
   </p>
