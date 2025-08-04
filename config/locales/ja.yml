@@ -7,8 +7,9 @@ ja:
     get: "取得"
     register: "登録"
     save_new: "登録"
-    add: "追加"
+    add: "+ 追加"
     add_today: "今日の予定を追加"
+    add_room: "+ 部屋を追加"
   flash:
     alert: "本当に削除しますか？"
     diary:
@@ -24,6 +25,7 @@ ja:
 
     room:
       failed_find: "部屋が見つかりませんでした"
+      no_room: "登録部屋はまだありません"
     rooms:
       none_access: "この部屋にアクセスできません"
       return: "ただいま！"
@@ -107,6 +109,9 @@ ja:
       previous: "先月"
       today: "今月"
       next: "来月"
+    message_board:
+      no_message: "伝言はまだありません"
+      board: "伝言板(自動保存)"
     top:
       welcome: "おかえりなさい🍵"
       create_account: "まずはアカウントを作成しましょう。"
@@ -121,13 +126,14 @@ ja:
       copy_link: "リンクを「コピー」"
       send_to_partner: "お相手に送信"
       daily_life: "部屋で日常を過ごそう。"
-      six_features: "できる６つのこと"
+      seven_features: "できる7つのこと"
       weather_share: "天気情報の共有"
       whiteboard: "ホワイトボードの伝言"
-      greeting_message: "おかえり/ただいまメッセージ管理"
+      greeting_message: "おかえり/ただいまメッセージ表示＆管理"
       diary: "交換日記"
-      favorite_place: "想い出の場所"
-      condition_check: "心身コンディション"
+      favorite_place: "想い出の場所の記録・共有"
+      condition_check: "心身コンディションの記録・共有"
+      calendar: "予定の記録・共有"
     post:
       description: "生活リズムが違う人とのコミュニケーション、どうしてる？Tips(コツ)や質問をシェアしよう！"
       description2: "質問にはコメントでアドバイスを送ろう"
@@ -180,6 +186,7 @@ ja:
       return: "帰宅"
       back_to_room: "%{room_name}🏠に戻る"
       new: "新しい家の名前を追加してください"
+      select: "帰宅する部屋"
     room_show:
       invitation: "同居人を招待　　　"
       diary: "交換日記　　　　　"
@@ -511,6 +518,8 @@ ja:
     area:
         rule: "あなたのお住まいの地域 *市or区 (ローマ字＆小文字入力)"
         example: "(例: shibuya)"
+        register: "地域登録"
+        advice: "玄関で地域を登録しよう"
     weather:
       update: "天気情報を更新しました"
       failed_save: "天気情報の保存に失敗しました"

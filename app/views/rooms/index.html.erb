@@ -1,20 +1,17 @@
 <div class="container fixed top-[100px] left-1/2 transform -translate-x-1/2 z-30 mx-auto px-4 ">
   <% if @rooms.empty? %>
-    <p class="text-gray text-center text-lg">登録部屋はまだありません</p>
+    <p class="text-gray text-center text-lg"><%= t("flash.room.no_room") %></p>
     <div class="max-w-xl mx-auto">
         <%= render 'form_room' %>
     </div>
   <% else %>
     <%= render 'room' %>
   <% end %>
-  <div class="text-center mt-4">
-    <%= button_to '<i class="fa-solid fa-plus text-dark-beige"></i>'.html_safe, rooms_path, id: "room-form-button", method: :post, class: "text-3xl" %>
-  </div>
-  <div id="room-form" class="hidden mt-4">
+  <div id="room-form" class="hidden mt-4 absolute top-[0px] left-[272px]">
     <%= render 'form_room' %>
   </div>
   <% if @area.nil? %>
-    <p class="text-dark-gray text-center text-lg">お住まいの地域が登録されていません</p>
+    <p class="text-dark-gray text-center text-lg"><%= t("flash.room.no_area") %></p>
     <%= render 'form_area' %>
   <% else %>
     <%= render 'area' %>

@@ -39,19 +39,19 @@
     data: { turbo: false }
 %>
 
-<% if current_user.calendars.exists?(visibility: 'together') && @calendar.present? %>
-  <div class="absolute bottom-20 md:bottom-20 right-4 z-40 bg-white/80 p-4 rounded-lg shadow-md text-matcha text-xs md:text-xl font-bold text-right max-w-xs">
-    【ルームメイト同士の予定あり】<br>
-    <%= link_to @calendar.name, room_calendars_path(@room), class: "calendar-link" %><br>
-    <% if @calendar.start_time.beginning_of_day == @calendar.start_time && @calendar.end_time.end_of_day == @calendar.end_time %>
-      <%= l(@calendar.start_time.to_date, format: :long) %>
-    <% else %>
-      <%= l(@calendar.start_time, format: :long) %> ～ <%= l(@calendar.end_time, format: :long) %>
-    <% end %>
-  </div>
-<% else %>
-  【ルームメイト同士の予定はまだありません】
-<% end %>
+<div class="absolute bottom-20 md:bottom-28 right-0 z-40 bg-white/80 p-4 rounded-lg shadow-md text-matcha text-xs md:text-lg font-bold text-right max-w-xs">
+  <% if current_user.calendars.exists?(visibility: 'together') && @calendar.present? %>
+      【共通の予定あり】<br>
+      <%= link_to @calendar.name, room_calendars_path(@room), class: "calendar-link" %><br>
+      <% if @calendar.start_time.beginning_of_day == @calendar.start_time && @calendar.end_time.end_of_day == @calendar.end_time %>
+        <%= l(@calendar.start_time.to_date, format: :long) %>
+      <% else %>
+        <%= l(@calendar.start_time, format: :long) %> ～ <%= l(@calendar.end_time, format: :long) %>
+      <% end %>
+  <% else %>
+    【共通の予定はまだありません】
+  <% end %>
+</div>
 
 <% if mobile_device? %>
   <%= image_tag '/gif.gif' %>

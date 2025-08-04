@@ -1,56 +1,111 @@
-<h1><%= t("views.room.owner") %></h1>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-light-gray/75 ">
-  <% @rooms.each do |room| %>
-    <div class="text-dark-gray rounded-lg shadow-md p-6">
-      <span class="<%= "underline" if room.user == current_user %>">
-        <p><%= t("views.room.house_name") %><i class="fa-solid fa-house-user text-light-blue"></i>:<%= link_to room.name, room_path(room), data: { turbo: false }, class: "text-matcha font-bold hover:text-matcha/60" %></p>
-      </span>
-      <% if room.roommates.present? %>
-        <p><%= t("views.room.roommate") %>:
-          <% room.roommates.each do |member| %>
-            <span class="<%= 'text-blue font-bold' if member == current_user %>">
-              <%= member.name %><%= ',' unless member == room.roommates.last %>
-            </span>
-          <% end %>
-        </p>
-        <% if room.user == current_user %>
-          <p><%= t("views.room.registration") %>：
-          <%= room.created_at.strftime("%y/%m/%d") %>
-        <% else %>
-          <p><%= t("views.room.move_in") %>：
-          <% invitation = @invitation_map[room.id] %>
-          <%= invitation ? invitation.created_at.strftime("%y/%m/%d") : "不明" %>
-        <% end %>
-        </p>
-      <% else %>
-        <% if room.user == current_user %>
-          <p><%= t("views.room.roommate") %>：<%= current_user.name %>
-          <p><%= t("views.room.registration") %>：
-            <%= room.created_at.strftime("%y/%m/%d") %>
-          </p>
-          <h1 class="text-brown font-bold"><%= t("views.room.living_alone") %></h1>
-        <% end %>
-      <% end %>
-        <div class= "text-center">
-          <%= link_to t('views.room.return'), room_path(room, from_home_button: 'true'),
-            id: "blue-door-#{room.id}",
-            class: "door-button bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition"
-            %>
-        </div>
+<div class="w-10/12 max-w-xs mx-auto mt-0 bg-white/30 rounded-xl shadow-lg p-4 text-sm md:absolute md:top-[144px] md:left-[272px] md:max-w-md md:w-full md:text-md max-h-[70vh] overflow-y-auto">
+  <div class="flex items-start">
+    <i class="fa-solid fa-house-user text-light-blue text-xl mr-3 md:text-8xl"></i>
+    <div class="text-center mt-1">
+      <%= button_to t("buttons.add_room"), rooms_path, id: "room-form-button", method: :post,
+            class: "bg-light-blue text-dark-gray px-3 py-1.5 mt-2 rounded hover:bg-light-blue/80 transition text-sm md:text-xl" %>
     </div>
-  <% end %>
+  </div>
+
+  <div class="my-3">
+    <label for="room-selector" class="mr-2 font-bold text-sm md:text-lg"><%= t("views.room.select") %>:</label>
+    <select id="room-selector" class="border border-gray-300 rounded px-2 py-1 bg-matcha/30 text-sm md:text-lg">
+      <% @rooms.each do |room| %>
+        <option value="<%= room.id %>"><%= room.name %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div id="room-display" class="max-h-[60vh] overflow-y-auto p-3 rounded-lg shadow-inner text-sm md:text-base">
+    <% @rooms.each do |room| %>
+      <div class="room-card hidden w-full max-w-md mx-auto" data-room-id="<%= room.id %>">
+        <div class="text-dark-gray rounded-lg shadow-md p-4 bg-white/90">
+          <span class="<%= 'underline' if room.user == current_user %>">
+            <p><%= t("views.room.house_name") %>
+              <i class="fa-solid fa-house-user text-light-blue"></i>:
+              <%= link_to room.name, room_path(room), data: { turbo: false },
+                    class: "text-matcha font-bold hover:text-matcha/60" %>
+            </p>
+          </span>
+
+          <% if room.roommates.present? %>
+            <p><%= t("views.room.roommate") %>:
+              <% room.roommates.each do |member| %>
+                <span class="<%= 'text-blue font-bold' if member == current_user %>">
+                  <%= member.name %><%= ',' unless member == room.roommates.last %>
+                </span>
+              <% end %>
+            </p>
+            <% if room.user == current_user %>
+              <p><%= t("views.room.registration") %>：<%= room.created_at.strftime("%y/%m/%d") %></p>
+            <% else %>
+              <p><%= t("views.room.move_in") %>：
+                <% invitation = @invitation_map[room.id] %>
+                <%= invitation ? invitation.created_at.strftime("%y/%m/%d") : "不明" %>
+              </p>
+            <% end %>
+          <% else %>
+            <% if room.user == current_user %>
+              <p><%= t("views.room.roommate") %>：<%= current_user.name %></p>
+              <p><%= t("views.room.registration") %>：<%= room.created_at.strftime("%y/%m/%d") %></p>
+              <h1 class="text-brown font-bold"><%= t("views.room.living_alone") %></h1>
+            <% end %>
+          <% end %>
+
+          <div class="text-right">
+            <%= link_to t('views.room.return'), room_path(room, from_home_button: 'true'),
+                id: "blue-door-#{room.id}",
+                class: "door-button bg-light-blue text-dark-gray px-3 py-1.5 mt-3 rounded hover:bg-light-blue/80 transition text-sm md:text-lg" %>
+          </div>
+        </div>
+        <h1 class="mb-3 text-sm md:text-lg"><%= t("views.room.owner") %></h1>
+      </div>
+    <% end %>
+  </div>
 </div>
+
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("turbo:load", () => {
+    const cards = Array.from(document.querySelectorAll(".room-card"));
+    const select = document.getElementById("room-selector");
+
+    let currentIndex = 0;
+
+    const showCardAt = (index) => {
+      cards.forEach((card, i) => {
+        card.classList.toggle("hidden", i !== index);
+      });
+      if (select) {
+        select.value = cards[index].dataset.roomId;
+      }
+    };
+
+    if (select) {
+      select.addEventListener("change", (e) => {
+        const selectedId = e.target.value;
+        const index = cards.findIndex(card => card.dataset.roomId === selectedId);
+        if (index !== -1) {
+          currentIndex = index;
+          showCardAt(currentIndex);
+        }
+      });
+    }
+
+    if (select && select.value) {
+      const index = cards.findIndex(card => card.dataset.roomId === select.value);
+      currentIndex = index !== -1 ? index : 0;
+    }
+    showCardAt(currentIndex);
+
     const button = document.getElementById("room-form-button");
     const form = document.getElementById("room-form");
 
     if (button && form) {
-        button.addEventListener("click", (e) => {
+      button.addEventListener("click", (e) => {
         e.preventDefault();
         form.classList.remove("hidden");
         button.classList.add("hidden");
-        });
+      });
     }
-    });
+  });
 </script>
