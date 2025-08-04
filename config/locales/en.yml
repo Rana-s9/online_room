@@ -9,6 +9,7 @@ en:
     save_new: "Save"
     add: "Add"
     add_today: "Add Today's schedule"
+    add_room: "+ Add New Room"
   flash:
     alert: "Are you sure you'd like to delete this?"
     diary:
@@ -22,8 +23,10 @@ en:
       self_read: "You can't mark your own diary as read."
     leave_room: "Are you sure you want to leave the room?"
 
-
-    room: "The room could not be found."
+    room:
+      failed_find: "The room could not be found."
+      no_room: "You haven't registered any rooms yet."
+      no_area: "Your location hasn't been registered yet."
     rooms:
       none_access: "Looks like you don’t have access to this room."
       return: "I'm home!"
@@ -107,6 +110,9 @@ en:
       previous: "previous"
       today: "today"
       next: "next"
+    message_board:
+      no_message: "No messages yet"
+      board: "Message Board(auto-save)"
     top:
       welcome: "Welcome back🏠"
       create_account: "Start by creating an account."
@@ -121,13 +127,14 @@ en:
       copy_link: "Copy the link."
       send_to_partner: "Send it to your partner."
       daily_life: "Spend everyday life together in your room."
-      six_features: "Here are six things you can do:"
+      seven_features: "Here are seven things you can do:"
       weather_share: "Share weather updates."
-      whiteboard: "Leave messages on the whiteboard."
-      greeting_message: "Manage 'Welcome home' / 'I'm home' messages."
+      whiteboard: "Leave messages on the Message Board."
+      greeting_message: "Welcome Home / I'm Home Message Display & Management"
       diary: "Write an exchange diary."
-      favorite_place: "Save special places."
-      condition_check: "Check physical and mental condition."
+      favorite_place: "Memory Spot Logging & Sharing"
+      condition_check: "Physical and Mental Condition Logging & Sharing"
+      calendar: "Schedule Logging & Sharing"
     post:
       description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
       description2: "Leave helpful advice in the comments!"
@@ -180,6 +187,7 @@ en:
       return: "Enter"
       back_to_room: "Back to %{room_name}🏠"
       new: "Give your home a name."
+      select: "Select Room"
     room_show:
       invitation: "Invite a housemate　"
       diary: "Exchange Diary　　　"
@@ -511,6 +519,8 @@ en:
     area:
       rule: "Enter your area of residence *City or Ward (in English)"
       example: "(e.g., shibuya)"
+      register: "Set Your Location"
+      advice: "Set your location at the entrance!"
     weather:
       update: "Weather information has been updated."
       failed_save: "Failed to save weather information."

@@ -101,7 +101,6 @@ Rails.application.configure do
   config.hosts << "www.our-onlineroom.com"
   config.hosts << "online-room.onrender.com"
 
-
   config.action_mailer.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true

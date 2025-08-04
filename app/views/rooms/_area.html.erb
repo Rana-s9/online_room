@@ -1,11 +1,18 @@
-<%= form_with model: @area, local: true do |f| %>
-  <div class="bg-light-gray/75 p-4 rounded shadow mb-4 max-w-md mx-auto">
-    <div>
-        <%= f.label :city, t('views.area.rule') %>
-        <%= f.text_field :city, placeholder:  t('views.area.example'), class: "bg-light-gray w-full p-2 border rounded text-matcha font-bold" %>
+<div class="w-10/12 max-w-xs mx-auto mt-4 bg-white/30 rounded-xl shadow-lg p-4 md:absolute md:top-[144px] md:right-[256px] md:max-w-md md:w-full max-h-[70vh] overflow-y-auto">
+  <i class="fa-solid fa-map-location-dot text-light-blue text-xl mr-3 md:text-8xl"></i>
+  <h1 class="text-sm md:text-xl font-bold mb-4"><%= t("views.area.register") %></h1>
+
+  <%= form_with model: @area, local: true do |f| %>
+    <div class="mb-3">
+      <%= f.label :city, t('views.area.rule'), class: "block font-semibold mb-1 text-sm md:text-base" %>
+      <%= f.text_field :city,
+          placeholder: t('views.area.example'),
+          class: "w-full p-2 rounded border bg-light-gray text-matcha text-sm font-bold md:text-lg" %>
     </div>
-    <div class="flex justify-center">
-        <%= f.submit t('buttons.update'), class: "class: bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+
+    <div class="text-center">
+      <%= f.submit t('buttons.update'),
+          class: "bg-light-blue text-dark-gray px-3 py-1.5 mt-2 text-sm md:text-lg rounded hover:bg-light-blue/80 transition" %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
