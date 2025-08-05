@@ -46,6 +46,14 @@ ja:
       failed_update: "場所名の更新に失敗しました"
       delete: "登録場所を削除しました"
       failed_delete: "登録場所の削除に失敗しました"
+      comments_exist: "コメントあり"
+      comment:
+        new: "コメントが作成されました"
+        failed_create: "コメントの作成に失敗しました"
+        update: "コメントが更新されました"
+        failed_update: "コメントの更新に失敗しました"
+        delete: "コメントが削除されました"
+        failed_delete: "コメントの削除に失敗しました"
     state_calendar:
       exist: "この日付の記録はすでに存在します。カレンダーから選択、更新してください"
       save: "心身コンディションを保存しました"
@@ -134,6 +142,10 @@ ja:
       favorite_place: "想い出の場所の記録・共有"
       condition_check: "心身コンディションの記録・共有"
       calendar: "予定の記録・共有"
+      messages:
+        one: "遠く離れても、近くに"
+        two: "「どうにかして一緒にいる感覚を共有したい」そんな想いから生まれました。"
+        three: "オンラインでつながり、支え合える温かい空間をあなたに。"
     post:
       description: "生活リズムが違う人とのコミュニケーション、どうしてる？Tips(コツ)や質問をシェアしよう！"
       description2: "質問にはコメントでアドバイスを送ろう"
@@ -219,7 +231,7 @@ ja:
         title: "コメント"
         nothing: "コメントはまだありません"
         add: "コメントを追加"
-        enter: "コメントやを書いてみよう"
+        enter: "コメントを書いてみよう"
     state_calendar:
       button: "カレンダーへ戻る"
       mental_state: "心の状態"
@@ -568,6 +580,8 @@ ja:
         category: "カテゴリー"
         source: "入力タイプ"
         schedule_type: "日時"
+      comment:
+        body: "内容"
 
     errors:
       messages:

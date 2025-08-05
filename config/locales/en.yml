@@ -19,7 +19,7 @@ en:
       delete: "The diary has been deleted."
       failed_delete: "Failed to delete the diary."
     read:
-      success: "Marked as read."
+      success: "read"
       self_read: "You can't mark your own diary as read."
     leave_room: "Are you sure you want to leave the room?"
 
@@ -47,6 +47,14 @@ en:
       failed_update: "Sorry, we couldn't update the name."
       delete: "The place has been removed."
       failed_delete: "we couldn’t delete the place."
+      comments_exist: "Comments"
+      comment:
+        new: "Your comment has been posted."
+        failed_create: "We couldn't post your comment."
+        update: "Your comment has been updated."
+        failed_update: "We couldn't update your comment."
+        delete: "Your comment has been deleted."
+        failed_delete: "We couldn't delete your comment."
     state_calendar:
       exist: "A record for this date already exists. Please select and update it from the calendar."
       save: "Your condition has been saved."
@@ -135,6 +143,10 @@ en:
       favorite_place: "Memory Spot Logging & Sharing"
       condition_check: "Physical and Mental Condition Logging & Sharing"
       calendar: "Schedule Logging & Sharing"
+      messages:
+        one: "Feeling Close, Even When We're Apart"
+        two: "Created from the wish to share the special feeling of being together, no matter the distance."
+        three: "A gentle online space where you can connect and support each other, from anywhere..."
     post:
       description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
       description2: "Leave helpful advice in the comments!"
@@ -569,6 +581,8 @@ en:
         category: "category"
         source: "Input method"
         schedule_type: "time"
+      comment:
+        body: "Content"
 
     errors:
       messages:

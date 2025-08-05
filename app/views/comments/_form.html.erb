@@ -1,6 +1,6 @@
 <div class="w-full max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
   <div id="comment-form">
-    <%= form_with model: [@room, @spot, @comment] do |f| %>
+    <%= form_with model: [@room, @spot, @comment], local: true do |f| %>
       <% if comment.errors.any? %>
         <div class="bg-beige/30 text-matcha/75 font-bold mb-4">
           <ul class="list-disc pl-5">
