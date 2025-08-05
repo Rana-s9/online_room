@@ -6,7 +6,7 @@ class Room < ApplicationRecord
   has_many :roommate_lists, dependent: :destroy
   has_many :users, through: :roommate_lists
   has_many :roommates, through: :roommate_lists, source: :user
-  has_many :invitation_tokens
+  has_many :invitation_tokens, dependent: :destroy
   has_many :greetings, dependent: :destroy
   has_many :spots, dependent: :destroy
   has_many :calendars, dependent: :destroy

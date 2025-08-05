@@ -63,7 +63,9 @@
     <main class="pt-12 flex-1 <%= content_for?(:main_class) ? yield(:main_class) : 'container mx-auto flex-1 flex flex-col justify-center items-center' %>">
       <%= yield %>
     </main>
-    <%= render 'shared/footer' %>
+    <% unless controller.controller_name == 'rooms' && controller.action_name == 'show' %>
+      <%= render 'shared/footer' %>
+    <% end %>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
       AOS.init();

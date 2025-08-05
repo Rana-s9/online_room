@@ -1,22 +1,23 @@
-<div class="w-10/12 max-w-xs mx-auto mt-0 bg-white/30 rounded-xl shadow-lg p-4 text-sm md:absolute md:top-[144px] md:left-[272px] md:max-w-md md:w-full md:text-md max-h-[70vh] overflow-y-auto">
-  <div class="flex items-start">
-    <i class="fa-solid fa-house-user text-light-blue text-xl mr-3 md:text-8xl"></i>
-    <div class="text-center mt-1">
-      <%= button_to t("buttons.add_room"), rooms_path, id: "room-form-button", method: :post,
-            class: "bg-light-blue text-dark-gray px-3 py-1.5 mt-2 rounded hover:bg-light-blue/80 transition text-sm md:text-xl" %>
-    </div>
+<div class="w-full max-w-md bg-white/30 rounded-xl shadow-lg p-4 max-h-[70vh] z-30 overflow-y-auto">
+  <div class="flex items-center justify-center space-x-3 mb-3">
+    <i class="fa-solid fa-house-user text-light-blue text-3xl lg:text-6xl"></i>
+    <%= button_to t("buttons.add_room"), rooms_path, id: "room-form-button", method: :post,
+          class: "bg-light-blue text-dark-gray px-4 py-2 rounded hover:bg-light-blue/80 transition text-sm md:text-base lg:text-lg" %>
   </div>
 
-  <div class="my-3">
-    <label for="room-selector" class="mr-2 font-bold text-sm md:text-lg"><%= t("views.room.select") %>:</label>
-    <select id="room-selector" class="border border-gray-300 rounded px-2 py-1 bg-matcha/30 text-sm md:text-lg">
+  <div class="my-3 text-center">
+    <label for="room-selector" class="block font-bold mb-2 text-sm md:text-base lg:text-lg">
+      <%= t("views.room.select") %>
+    </label>
+    <select id="room-selector"
+            class="border border-gray-300 rounded px-3 py-2 bg-matcha/30 text-sm md:text-md lg:text-lg w-full">
       <% @rooms.each do |room| %>
         <option value="<%= room.id %>"><%= room.name %></option>
       <% end %>
     </select>
   </div>
 
-  <div id="room-display" class="max-h-[60vh] overflow-y-auto p-3 rounded-lg shadow-inner text-sm md:text-base">
+  <div id="room-display" class="max-h-[60vh] overflow-y-auto rounded-lg shadow-inner text-sm md:text-md lg:text-base">
     <% @rooms.each do |room| %>
       <div class="room-card hidden w-full max-w-md mx-auto" data-room-id="<%= room.id %>">
         <div class="text-dark-gray rounded-lg shadow-md p-4 bg-white/90">
@@ -55,10 +56,10 @@
           <div class="text-right">
             <%= link_to t('views.room.return'), room_path(room, from_home_button: 'true'),
                 id: "blue-door-#{room.id}",
-                class: "door-button bg-light-blue text-dark-gray px-3 py-1.5 mt-3 rounded hover:bg-light-blue/80 transition text-sm md:text-lg" %>
+                class: "door-button bg-light-blue text-dark-gray px-3 py-1.5 mt-3 rounded hover:bg-light-blue/80 transition text-sm md:text-md lg:text-lg" %>
           </div>
         </div>
-        <h1 class="mb-3 text-sm md:text-lg"><%= t("views.room.owner") %></h1>
+        <h1 class="mb-3 text-sm md:text-base lg:text-lg"><%= t("views.room.owner") %></h1>
       </div>
     <% end %>
   </div>
