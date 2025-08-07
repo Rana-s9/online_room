@@ -190,7 +190,7 @@ en:
       did: "read"
       did_not: "unread"
     room:
-      front_door: "Front door"
+      front_door: "Entrance"
       registration: "Registration Date"
       roommate: "resident"
       owner: "Underlined house: registered by you"
@@ -304,6 +304,8 @@ en:
       work_study: "Work/Study"
       event: "Event/Others"
       private: "🔒Private Schedule"
+      private_exists: "【Has schedule】"
+      no_private: "【No schedule】"
       add_time: "Add Time"
       all_day: "All Day"
       manual: "Manual Entry"
@@ -319,8 +321,11 @@ en:
       note: "No notes yet📝."
       start: "Start"
       end: "End"
+      share_calendar: "【Shared schedule】"
+      no_share_calendar: "【No shared schedule yet】"
     footer:
       privacy_policy: "Privacy Policy"
+      privacy_policy_line: "Privacy Policy"
       terms_of_service: "Terms of Service"
       contact: "Contact"
     privacy_policy:
