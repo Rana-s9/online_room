@@ -302,7 +302,9 @@ ja:
       relax: "リラックス"
       work_study: "仕事・勉強"
       event: "用事・その他"
-      private: "🔒個人予定管理"
+      private: "🔒非公開予定管理"
+      private_exists: "【予定あり】"
+      no_private: "【予定なし】"
       add_time: "時間指定"
       all_day: "終日"
       manual: "手動入力"
@@ -318,8 +320,11 @@ ja:
       note: "メモ📝はありません"
       start: "開始"
       end: "終了"
+      share_calendar: "【共通の予定あり】"
+      no_share_calendar: "【共通の予定はまだありません】"
     footer:
       privacy_policy: "プライバシー<br>ポリシー"
+      privacy_policy_line: "プライバシーポリシー"
       terms_of_service: "利用規約"
       contact: "お問い合わせ"
     privacy_policy:

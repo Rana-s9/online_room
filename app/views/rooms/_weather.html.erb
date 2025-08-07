@@ -31,9 +31,9 @@
             <p><i class="fa-solid fa-clock text-matcha-green/75"></i> <%= weather_record.updated_at.strftime('%m/%d %H:%M') %></p>
           <% end %>
           <%= button_to t('buttons.update'), weather_record_path(weather_record, area_id: user.area.id, room_id: @room.id), method: :patch, data: { turbo: false }, class: "text-blue underline font-bold" %>
-          <%= render "status", user: user %>
         <% end %>
       <% end %>
+      <%= render "status", user: user %>
     </div>
   <% end %>
   </div>
@@ -76,9 +76,9 @@
           method: :patch,
           data: { turbo: false },
           class: "text-blue underline font-bold" %>
-          <%= render "status", user: current_user %>
       <% end %>
     <% end %>
+    <%= render "status", user: current_user %>
     </div>
   </div>
 <% end %>
