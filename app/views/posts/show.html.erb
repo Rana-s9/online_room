@@ -6,11 +6,11 @@
   <div class="bg-beige/40 p-4 rounded shadow mb-6 text-matcha font-semibold">
     <div class="flex mb-2">
       <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-        <%= @post.relationship == "other_relationship" ? @post.custom_relationship : t("activerecord.attributes.post.relationship_options.#{@post.relationship}") %>
+        <%= @post.relationship == "other_relationship" ? @post.custom_relationship : t("views.post.relationship_options.#{@post.relationship}") %>
       </span>
       <span class="text-matcha-green mx-2">×</span>
       <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-        <%= @post.situation == "other_situation" ? @post.custom_situation : t("activerecord.attributes.post.situation_options.#{@post.situation}") %>
+        <%= @post.situation == "other_situation" ? @post.custom_situation : t("views.post.situation_options.#{@post.situation}") %>
       </span>
     </div>
 
