@@ -3,7 +3,7 @@
     <div class="pointer-events-auto flex flex-col lg:flex-row justify-center items-start gap-6 max-w-7xl w-full">
       <% if @rooms.empty? %>
         <div class="pointer-events-auto flex flex-col justify-center items-center gap-6 max-w-4xl w-full mx-auto">
-          <div class="text-gray text-center text-lg"><%= t("flash.room.no_room") %></div>
+          <div class="text-gray text-center text-lg animate-bounce"><%= t("flash.room.no_room") %></div>
           <div class="max-w-xl w-full">
             <%= render 'form_room' %>
           </div>

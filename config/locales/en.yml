@@ -25,7 +25,7 @@ en:
 
     room:
       failed_find: "The room could not be found."
-      no_room: "You haven't registered any rooms yet."
+      no_room: "⇩Start by creating a room"
       no_area: "Your location hasn't been registered yet."
     rooms:
       none_access: "Looks like you don’t have access to this room."
