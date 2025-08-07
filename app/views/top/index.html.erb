@@ -75,17 +75,26 @@
 </section>
 
 <section class="px-4 py-12 w-full flex items-center justify-center bg-white">
-  <div class="text-center px-6" data-aos="fade-up">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
     <h2 class="text-3xl font-bold mb-4">Step 5</h2>
     <p class="text-base text-gray-600"><%= t("views.top.daily_life") %><br><%= t("views.top.seven_features") %></p>
     <ul class="mt-2 text-left">
-        <li>1. <%= t("views.top.weather_share") %></li>
-        <li>2. <%= t("views.top.whiteboard") %></li>
-        <li>3. <%= t("views.top.greeting_message") %></li>
-        <li>4. <%= t("views.top.diary") %></li>
-        <li>5. <%= t("views.top.favorite_place") %></li>
-        <li>6. <%= t("views.top.condition_check") %></li>
-        <li>7. <%= t("views.top.calendar") %></li>
-      </ul>
+      <li>1. <i class="fa-solid fa-cloud text-matcha"></i><%= t("views.top.weather_share") %></li>
+      <li>2. <i class="fa-solid fa-message text-matcha"></i><%= t("views.top.whiteboard") %></li>
+      <li>3. <i class="fa-solid fa-comments text-matcha"></i><%= t("views.top.greeting_message") %></li>
+      <li>4. <i class="fa-solid fa-book text-matcha"></i><%= t("views.top.diary") %></li>
+      <li>5. <i class="fa-solid fa-location-pin text-matcha"></i><%= t("views.top.favorite_place") %></li>
+      <li>6. <i class="fa-solid fa-heart-circle-check text-matcha"></i><%= t("views.top.condition_check") %></li>
+      <li>
+        7. <i class="fa-solid fa-calendar-days text-matcha"></i><%= t("views.top.calendar.one") %>
+        <ul class="list-disc pl-5 mt-2">
+          <li><%= t("views.top.calendar.two") %></li>
+          <li><%= t("views.top.calendar.three") %></li>
+          <li><%= t("views.top.calendar.four") %></li>
+          <li><%= t("views.top.calendar.five") %></li>
+        </ul>
+        <div class="text-red-500"><%= t("views.top.calendar.six") %></div>
+      </li>
+    </ul>
   </div>
 </section>
