@@ -2,10 +2,10 @@
   <div class="container mx-auto px-4 py-8">
     <h1 class="text-matcha-green text-xl font-bold mt-6"><%= t('views.calendar.calendar_name', name: @room.name) %></h1>
 
-    <!--%= button_to t('views.calendar.google_calendar'), import_room_calendars_path(@room), method: :post, class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray btn btn-primary", data: { turbo: false } %>-->
+    <%= button_to t('views.calendar.google_calendar'), import_room_calendars_path(@room), method: :post, class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray btn btn-primary", data: { turbo: false } %>
 
-    <div class="mb-4 mt-6 bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/50 transition">
-      <%= link_to t('views.calendar.private'), room_calendars_path(@room, visibility: 'personal'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:visibility] == 'personal'}" %>
+    <div class="inline-block mt-6 mb-4 bg-matcha-green/20 p-2 rounded shadow-lg text-matcha font-bold hover:bg-brown/30 transition">
+      <%= link_to t('views.calendar.private'), room_calendars_path(@room, visibility: 'personal'), class: "#{'text-matcha font-bold rounded bg-beige' if params[:visibility] == 'personal'} whitespace-nowrap px-2" %>
     </div>
 
     <div class="mb-4 mt-6">
@@ -67,9 +67,9 @@
         </div>
       <% end %>
     <% end %>
-  </div>
-  <div class="text-center">
-    <%= link_to t("buttons.add_today"), new_room_calendar_path(@room), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray", data: { turbo: false } %>
-    <%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
+    <div class="text-center mt-8 mb-4">
+      <%= link_to t("buttons.add_today"), new_room_calendar_path(@room), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray", data: { turbo: false } %>
+      <%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
+    </div>
   </div>
 </div>

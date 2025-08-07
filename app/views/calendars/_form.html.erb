@@ -41,7 +41,7 @@
 
   <%= f.label :source, t('activerecord.attributes.calendar.source'), class: "text-dark-gray" %>
   <%= f.select :source,
-    [[t('views.calendar.manual'), "manual"]],
+    [[t('views.calendar.google'), "google"], [t('views.calendar.manual'), "manual"]],
     { prompt: t('views.calendar.select') }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
   %>
 

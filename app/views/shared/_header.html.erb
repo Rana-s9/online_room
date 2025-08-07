@@ -10,12 +10,11 @@
         <%= link_to('EN', locale: 'en', class: "block") %>
       </div>
 
-      <!-- ハンバーガーアイコン（モバイルのみ） -->
       <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">
         ☰
       </button>
 
-      <!-- PC用メニュー（常時表示） -->
+      <!-- PC用メニュー -->
       <div class="hidden md:flex md:flex-row md:items-center md:space-x-4 text-sm md:text-lg">
         <div class="underline">
           <%= link_to "Tips", posts_path, data: { turbo: false }, class: "confirm-on-leave" %>
@@ -34,11 +33,9 @@
 
     <!-- モバイル用スライドメニュー -->
     <div id="side-menu" class="fixed top-0 right-0 h-full w-auto max-w-xs bg-white text-matcha shadow-lg transform translate-x-full transition-transform duration-300 z-60 md:hidden">
-      <!-- 閉じるボタン -->
       <div class="flex justify-end p-4">
         <button id="close-menu" class="text-2xl">✕</button>
       </div>
-      <!-- メニュー項目 -->
       <div class="flex flex-col space-y-4 px-6 text-lg underline">
         <%= link_to "Tips", posts_path, data: { turbo: false }, class: "confirm-on-leave" %>
         <%= link_to t('views.room.front_door'), rooms_path, data: { turbo: false }, class: "confirm-on-leave" %>

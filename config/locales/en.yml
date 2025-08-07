@@ -114,6 +114,7 @@ en:
       joined: "You’ve joined the room."
 
   views:
+    google_login: "Google login is disabled during API review🙇"
     simple_calendar:
       previous: "previous"
       today: "today"
@@ -136,17 +137,24 @@ en:
       send_to_partner: "Send it to your partner."
       daily_life: "Spend everyday life together in your room."
       seven_features: "Here are seven things you can do:"
-      weather_share: "Share weather updates."
-      whiteboard: "Leave messages on the Message Board."
-      greeting_message: "Welcome Home / I'm Home Message Display & Management"
-      diary: "Write an exchange diary."
-      favorite_place: "Memory Spot Logging & Sharing"
+      weather_share: "Share weather updates(retrieves weather data for the registered area)."
+      whiteboard: "Leave messages on the Message Board(messages are auto-saved and shared)."
+      greeting_message: "Welcome Home / I'm Home Message Display & Management (shown when entering the room)"
+      diary: "Write an exchange diary(share daily thoughts and longer messages)."
+      favorite_place: "Memory Spot Logging & Sharing (save location names and data)"
       condition_check: "Physical and Mental Condition Logging & Sharing"
       calendar: "Schedule Logging & Sharing"
       messages:
         one: "Feeling Close, Even When We're Apart"
         two: "Created from the wish to share the special feeling of being together, no matter the distance."
         three: "A gentle online space where you can connect and support each other, from anywhere..."
+      calendar:
+        one: "Schedule Management and Sharing (Sync and share your Google Calendar events)"
+        two: "Only members of the room can view shared schedules."
+        three: "You can also create new events manually."
+        four: "By clicking the Sync button, your calendar events are imported in a private mode, visible only to you within the room members."
+        five: "You can change the status of individual imported events from private to shared to make them visible to other members."
+        six: "*This feature uses the Google Calendar read-only permission (calendar.readonly scope)."
     post:
       description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
       description2: "Leave helpful advice in the comments!"
@@ -297,7 +305,7 @@ en:
         went_out_ago: "Went out %{time} ago"
     calendar:
       calendar_name: "%{name}'s Calendar"
-      google_calendar: "Import from Google Calendar"
+      google_calendar: "Google Calendar sync under review." # Import from Google Calendar
       category_filter: "Filter by Category"
       all: "All"
       relax: "Relaxation"
@@ -331,7 +339,7 @@ en:
     privacy_policy:
       retrieve_info:
         one: "Information We Collect"
-        two: "We collect the following information from you:"
+        two: "This Privacy Policy outlines the types of information collected from users of the service provided by Online Room."
         three: "Your name (including nicknames or pen names)"
         four: "Email address"
         five: "ID used on external services (such as Google accounts), and any information you have agreed to disclose to us based on your privacy settings with those external services"
