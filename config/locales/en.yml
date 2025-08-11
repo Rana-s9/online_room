@@ -372,6 +372,17 @@ en:
         eight: "By default, retrieved events are displayed as 'private' and are not visible to roommates unless you explicitly change the sharing settings."
         disconnect_notice: "You can disconnect your Google account at any time from your %{link}. Once disconnected, you will no longer be able to fetch calendar data or log in using Google."
         account_settings: "Google account settings page"
+      data_share:
+        one: "Google User Data Sharing"
+        two: "We do not share, sell, transfer, or disclose any Google user data obtained through OAuth (including Google Calendar event information and Google account profile data) to any third parties, except as required by law or with your explicit consent."
+      google_protection:
+        one: "Google User Data Protection"
+        two: "All Google user data obtained via OAuth is transmitted over secure HTTPS connections. When stored, it is protected using industry-standard encryption methods. Access to this data is strictly limited to authorized personnel necessary for the operation and maintenance of the service."
+      google_save_period:
+        one: "Google User Data Retention and Deletion"
+        two: "We retain Google user data obtained via OAuth for up to 30 days to ensure continuous service and provide access to recent schedule information."
+        three: "If you disconnect your Google account or request deletion, all associated Google user data will be permanently removed from our servers within 24 hours."
+        four: "You may request deletion at any time by contacting us through the %{link} information provided in this policy."
       security:
         one: "Security Measures"
         two: "If you would like to know more about the security measures we take to protect your personal information, please contact us at the address listed at the end of this policy. We will respond in accordance with applicable laws and regulations."
