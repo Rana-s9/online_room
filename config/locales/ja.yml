@@ -303,7 +303,7 @@ ja:
         went_out_ago: "%{time}前に外出"
     calendar:
       calendar_name: "%{name}のカレンダー"
-      google_calendar: "Googleカレンダー連携：審査中につき一時ご利用を停止しています"
+      google_calendar: "【非公開】でGoogle Calendarから予定を取得"
       category_filter: "絞り込み"
       all: "すべて"
       relax: "リラックス"
