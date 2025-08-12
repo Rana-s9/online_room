@@ -25,7 +25,6 @@
           <%= link_to t('devise.registrations.sign_up'), new_user_registration_path, data: { turbo: false } %>
           <%= button_to user_google_oauth2_omniauth_authorize_path(locale: nil), class: 'btn flex items-center space-x-2', data: { turbo: false } do %>
             <img src="/google_logo.svg" alt="Sign in with Google" width="200" /><br>
-            <span><%= t("views.google_login") %></span>
           <% end %>
         </div>
       </div>
@@ -47,7 +46,6 @@
           <%= link_to t('devise.registrations.sign_up'), new_user_registration_path, data: { turbo: false }, class: "block" %>
           <%= button_to user_google_oauth2_omniauth_authorize_path(locale: nil), class: 'btn flex items-center space-x-2 w-full justify-center', data: { turbo: false } do %>
             <img src="/google_logo.svg" alt="Sign in with Google" width="200" />
-            <span><%= t("views.google_login") %></span>
           <% end %>
         </div>
       </div>

@@ -2,10 +2,16 @@
   <div class="container mx-auto px-4 py-8">
     <h1 class="text-matcha-green text-xl font-bold mt-6"><%= t('views.calendar.calendar_name', name: @room.name) %></h1>
 
-    <%= button_to t('views.calendar.google_calendar'), import_room_calendars_path(@room), method: :post, class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray btn btn-primary", data: { turbo: false } %>
+    <%= button_to import_room_calendars_path(@room),
+          method: :post,
+          class: "flex items-center gap-2 bg-white border border-light-gray rounded-lg shadow-md px-4 py-2 text-dark-gray font-medium hover:bg-light_gray/30 transition",
+          data: { turbo: false } do %>
+      <%= image_tag '/Google_calendar.png', alt: t('views.calendar.google_calendar'), width: 32, height: 32 %>
+      <span><%= t('views.calendar.google_calendar') %></span>
+    <% end %>
 
     <div class="inline-block mt-6 mb-4 bg-matcha-green/20 p-2 rounded shadow-lg text-matcha font-bold hover:bg-brown/30 transition">
-      <%= link_to t('views.calendar.private'), room_calendars_path(@room, visibility: 'personal'), class: "#{'text-matcha font-bold rounded bg-beige' if params[:visibility] == 'personal'} whitespace-nowrap px-2" %>
+      <%= link_to t('views.calendar.private'), room_calendars_path(@room, visibility: 'personal'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:visibility] == 'personal'} whitespace-nowrap px-2" %>
     </div>
 
     <div class="mb-4 mt-6">

@@ -305,7 +305,7 @@ en:
         went_out_ago: "Went out %{time} ago"
     calendar:
       calendar_name: "%{name}'s Calendar"
-      google_calendar: "Google Calendar sync under review." # Import from Google Calendar
+      google_calendar: "Import from Google Calendar【status: Private】"
       category_filter: "Filter by Category"
       all: "All"
       relax: "Relaxation"
