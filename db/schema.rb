@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_02_091316) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_13_072700) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_02_091316) do
     t.datetime "updated_at", null: false
     t.integer "source", default: 0, null: false
     t.integer "category"
-    t.index ["google_event_id"], name: "index_calendars_on_google_event_id", unique: true
+    t.index ["room_id", "google_event_id"], name: "index_calendars_on_room_id_and_google_event_id", unique: true
     t.index ["room_id"], name: "index_calendars_on_room_id"
     t.index ["user_id"], name: "index_calendars_on_user_id"
   end
