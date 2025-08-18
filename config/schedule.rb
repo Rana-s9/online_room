@@ -19,16 +19,14 @@
 
 # Learn more: http://github.com/javan/whenever
 require File.expand_path(File.dirname(__FILE__) + "/environment") # Rails.root(Railsメソッド)を使用するために必要
-rails_env = ENV['RAILS_ENV'] || :development # cronを実行する環境変数(:development, :product, :test)
+rails_env = ENV["RAILS_ENV"] || :development # cronを実行する環境変数(:development, :product, :test)
 set :environment, rails_env # cronを実行する環境変数をセット
 set :output, "#{Rails.root}/log/crontab.log" # cronのログ出力用ファイル
 
-PATH=/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-BUNDLE_GEMFILE=/myapp/Gemfile
-BUNDLE_PATH=/usr/local/bundle
-RAILS_ENV=development
-
-/bin/bash -l -c 'cd /myapp && bundle exec rake google_events:delete_old --silent >> /myapp/log/crontab.log 2>&1'
+env :PATH, "/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+env :BUNDLE_GEMFILE, "/myapp/Gemfile"
+env :BUNDLE_PATH, "/usr/local/bundle"
+env :RAILS_ENV, "development"
 
 every 3.minutes do
   rake "google_events:delete_old"
