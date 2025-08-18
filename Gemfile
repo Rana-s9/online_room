@@ -82,3 +82,5 @@ gem "omniauth-rails_csrf_protection"
 
 gem "google-api-client", "~> 0.53.0"
 gem "google-apis-calendar_v3", "~> 0.5.0"
+
+gem "whenever", require: false
