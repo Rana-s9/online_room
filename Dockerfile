@@ -53,9 +53,6 @@ RUN yarn install --frozen-lockfile
 # Copy application code
 COPY . .
 
-COPY run_google_events.sh /rails/
-RUN chmod 755 /rails/run_google_events.sh && chown rails:rails /rails/run_google_events.sh
-
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
@@ -77,6 +74,10 @@ COPY --from=build /rails /rails
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
+
+COPY --chown=rails:rails run_google_events.sh /rails/
+RUN chmod 755 /rails/run_google_events.sh
+
 USER 1000:1000
 
 # Entrypoint prepares the database.
