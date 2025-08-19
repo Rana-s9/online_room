@@ -53,6 +53,9 @@ RUN yarn install --frozen-lockfile
 # Copy application code
 COPY . .
 
+COPY run_google_events.sh /rails/
+RUN chmod +x /rails/run_google_events.sh
+
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
