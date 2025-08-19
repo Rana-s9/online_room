@@ -10,6 +10,10 @@ namespace :google_events do
 
     puts "削除対象: #{old_events.count} 件"
 
+    old_events.each do |event|
+      puts "Event ID: #{event.id}, last_synced_at: #{event.last_synced_at}"
+    end
+
     deleted_count = 0
 
     # トランザクションで安全に削除
