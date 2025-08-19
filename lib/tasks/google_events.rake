@@ -5,12 +5,10 @@ namespace :google_events do
     old_events = Calendar.where(visibility: :personal, source: :google)
                         .where.not(google_event_id: nil)
                         .where("last_synced_at <= ?", 5.minutes.ago)
+                        .select(:id, :room_id, :google_event_id)
+                        .pluck(:id)
 
     puts "削除対象: #{old_events.count} 件"
-
-    old_events.each do |event|
-      puts "Event ID: #{event.id}, last_synced_at: #{event.last_synced_at}"
-    end
 
     deleted_count = 0
 
