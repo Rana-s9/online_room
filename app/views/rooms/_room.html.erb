@@ -56,7 +56,8 @@
           <div class="text-right">
             <%= link_to t('views.room.return'), room_path(room, from_home_button: 'true'),
                 id: "blue-door-#{room.id}",
-                class: "door-button bg-light-blue text-dark-gray px-3 py-1.5 mt-3 rounded hover:bg-light-blue/80 transition text-sm md:text-md lg:text-lg" %>
+                class: "door-button bg-light-blue text-dark-gray px-3 py-1.5 mt-3 rounded hover:bg-light-blue/80 transition text-sm md:text-md lg:text-lg",
+                data: { turbo: false } %>
           </div>
         </div>
         <h1 class="mb-3 text-sm md:text-base lg:text-lg"><%= t("views.room.owner") %></h1>
