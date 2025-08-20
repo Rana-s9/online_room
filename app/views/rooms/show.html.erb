@@ -1,5 +1,5 @@
 <% content_for :main_class, "relative w-full flex flex-col mt-0" %>
-<div class="fixed top-[25px] md:top-[60px] left-1/2 transform -translate-x-1/2 z-40 p-4">
+<div class="fixed top-[25px] md:top-[60px] left-1/2 transform -translate-x-1/2 z-30 p-4">
   <div class="text-matcha text-center text-md md:text-2xl font-bold rounded-lg shadow-md p-2">
     <%= @room.name %><i class="fa-solid fa-house-user"></i>
   </div>
@@ -10,7 +10,7 @@
 <% if @room.user_id == current_user.id %>
   <div class="group relative">
     <%= link_to room_invitation_tokens_path(@room),
-        class: "fixed top-[200px] md:top-[100px] right-4 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-matcha-green hover:bg-matcha hover:scale-110 transition-transform duration-300",
+        class: "fixed top-[200px] md:top-[100px] right-4 z-30 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-matcha-green hover:bg-matcha hover:scale-110 transition-transform duration-300",
         data: { turbo: false, label: t('views.room_show.invitation') },
         href: room_invitation_tokens_path(@room) do %>
       <i class="fa-solid fa-user-plus text-2xl transition-transform duration-300 group-hover:rotate-[12deg]"></i>
@@ -19,7 +19,7 @@
     <span class="fixed top-[200px] md:top-[100px] right-4 -translate-y-1/2
                 opacity-0 md:opacity-0 md:group-hover:opacity-100
                 bg-beige text-xs md:text-sm rounded px-2 py-1 shadow
-                transition-opacity duration-300 whitespace-nowrap z-50 pointer-events-none">
+                transition-opacity duration-300 whitespace-nowrap z-30 pointer-events-none">
       <%= t('views.room_show.invitation') %>
     </span>
   </div>
@@ -31,7 +31,7 @@
 <%= render 'greeting' %>
 <div class="group relative">
   <%= link_to room_exchange_diaries_path(@room),
-      class: "fixed top-[250px] md:top-[150px] right-4 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
+      class: "fixed top-[250px] md:top-[150px] right-4 z-30 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
       id: "open-book",
       data: { room_path: room_exchange_diaries_path(@room), turbo: false, label: t('views.room_show.diary') },
       href: room_exchange_diaries_path(@room) do %>
@@ -41,14 +41,14 @@
   <span class="fixed top-[250px] md:top-[150px] right-4 -translate-y-1/2
                opacity-0 md:opacity-0 md:group-hover:opacity-100
                bg-beige text-xs md:text-sm rounded px-2 py-1 shadow
-               transition-opacity duration-300 whitespace-nowrap z-50 pointer-events-none">
+               transition-opacity duration-300 whitespace-nowrap z-30 pointer-events-none">
     <%= t('views.room_show.diary') %>
   </span>
 </div>
 
 <div class="group relative">
   <%= link_to room_spots_path(@room),
-      class: "fixed top-[300px] md:top-[200px] right-4 z-40 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
+      class: "fixed top-[300px] md:top-[200px] right-4 z-30 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
       id: "open-door",
       data: { room_path: room_spots_path(@room), turbo: false, label: t('views.room_show.place') },
       href: room_spots_path(@room) do %>
@@ -58,14 +58,14 @@
   <span class="fixed top-[300px] md:top-[200px] right-4 -translate-y-1/2
                opacity-0 md:opacity-0 md:group-hover:opacity-100
                bg-beige text-xs md:text-sm rounded px-2 py-1 shadow
-               transition-opacity duration-300 whitespace-nowrap z-50 pointer-events-none">
+               transition-opacity duration-300 whitespace-nowrap z-30 pointer-events-none">
     <%= t('views.room_show.place') %>
   </span>
 </div>
 
 <div class="group relative">
   <%= link_to room_state_calendars_path(@room),
-      class: "fixed top-[350px] md:top-[250px] right-4 z-40 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
+      class: "fixed top-[350px] md:top-[250px] right-4 z-30 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
       data: { turbo: false, label: t('views.room_show.state') },
       href: room_state_calendars_path(@room) do %>
     <i class="fa-solid fa-briefcase-medical text-2xl transition-transform duration-300 group-hover:rotate-[12deg]"></i>
@@ -74,14 +74,14 @@
   <span class="fixed top-[350px] md:top-[250px] right-4 -translate-y-1/2
                opacity-0 md:opacity-0 md:group-hover:opacity-100
                bg-beige text-xs md:text-sm rounded px-2 py-1 shadow
-               transition-opacity duration-300 whitespace-nowrap z-50 pointer-events-none">
+               transition-opacity duration-300 whitespace-nowrap z-30 pointer-events-none">
     <%= t('views.room_show.state') %>
   </span>
 </div>
 
 <div class="group relative">
   <%= link_to room_calendars_path(@room),
-      class: "fixed top-[400px] md:top-[300px] right-4 z-40 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
+      class: "fixed top-[400px] md:top-[300px] right-4 z-30 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
       data: { turbo: false, label: t('views.room_show.calendar') },
       href: room_calendars_path(@room) do %>
     <i class="fa-solid fa-calendar text-2xl transition-transform duration-300 group-hover:rotate-[12deg]"></i>
@@ -90,14 +90,14 @@
   <span class="fixed top-[400px] md:top-[300px] right-4 -translate-y-1/2
                opacity-0 md:opacity-0 md:group-hover:opacity-100
                bg-beige text-xs md:text-sm rounded px-2 py-1 shadow
-               transition-opacity duration-300 whitespace-nowrap z-50 pointer-events-none">
+               transition-opacity duration-300 whitespace-nowrap z-30 pointer-events-none">
     <%= t('views.room_show.calendar') %>
   </span>
 </div>
 
 <div class="group relative">
   <%= link_to room_greetings_path(@room),
-      class: "fixed top-[450px] md:top-[600px] right-4 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-matcha-green hover:bg-matcha hover:scale-110 transition-transform duration-300",
+      class: "fixed top-[450px] md:top-[600px] right-4 z-30 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-matcha-green hover:bg-matcha hover:scale-110 transition-transform duration-300",
       data: { turbo: false, label: t('views.room_show.message') },
       href: room_greetings_path(@room) do %>
     <i class="fa-solid fa-comment text-2xl transition-transform duration-300 group-hover:rotate-[12deg]"></i>
@@ -106,12 +106,12 @@
   <span class="fixed top-[450px] md:top-[600px] right-4 -translate-y-1/2
                opacity-0 md:opacity-0 md:group-hover:opacity-100
                bg-beige text-xs md:text-sm rounded px-2 py-1 shadow
-               transition-opacity duration-300 whitespace-nowrap z-50 pointer-events-none">
+               transition-opacity duration-300 whitespace-nowrap z-30 pointer-events-none">
     <%= t('views.room_show.message') %>
   </span>
 </div>
 
-<div class="absolute bottom-20 lg:bottom-32 right-0 z-40 bg-white/80 p-4 rounded-lg shadow-md text-matcha text-xs md:text-lg font-bold text-right max-w-xs">
+<div class="absolute bottom-20 lg:bottom-32 right-0 z-30 bg-white/80 p-4 rounded-lg shadow-md text-matcha text-xs md:text-lg font-bold text-right max-w-xs">
   <% if current_user.calendars.exists?(visibility: 'together') && @calendar.present? %>
       <%= t("views.calendar.share_calendar") %> <br>
       <%= link_to @calendar.name, room_calendars_path(@room), class: "calendar-link" %><br>
