@@ -1,6 +1,7 @@
 <div class="container">
   <div class="fixed inset-0 z-30 flex items-center justify-center px-4 pointer-events-none">
-    <div class="pointer-events-auto flex flex-col lg:flex-row justify-center items-start gap-6 max-w-7xl w-full">
+    <div class="pointer-events-auto flex flex-col items-center gap-2 max-w-7xl w-full">
+      
       <% if @rooms.empty? %>
         <div class="pointer-events-auto flex flex-col justify-center items-center gap-6 max-w-4xl w-full mx-auto">
           <div class="text-gray text-center text-lg animate-bounce"><%= t("flash.room.no_room") %></div>
@@ -9,8 +10,11 @@
           </div>
         </div>
       <% else %>
-        <%= render 'room' %>
+        <div class="w-full max-w-md bg-white/20 rounded-xl shadow-sm p-4">
+          <%= render 'room' %>
+        </div>
       <% end %>
+
       <div id="room-form" class="fixed inset-0 z-40 bg-black/30 flex items-center justify-center hidden">
         <div class="bg-white p-6 rounded-xl shadow-xl max-w-md w-11/12 relative">
           <%= link_to "×", rooms_path, class: "absolute top-2 right-4 text-xl" %>
@@ -19,11 +23,16 @@
       </div>
 
       <% if @area.nil? %>
-        <p class="text-dark-gray text-center text-lg"><%= t("flash.room.no_area") %></p>
-        <%= render 'form_area' %>
+        <div class="w-full max-w-md bg-white/20 rounded-xl shadow-sm p-4">
+          <p class="text-dark-gray text-center text-lg"><%= t("flash.room.no_area") %></p>
+          <%= render 'form_area' %>
+        </div>
       <% else %>
-        <%= render 'area' %>
+        <div class="w-full max-w-md bg-white/20 rounded-xl shadow-sm p-4">
+          <%= render 'area' %>
+        </div>
       <% end %>
+
     </div>
   </div>
 </div>
