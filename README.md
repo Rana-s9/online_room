@@ -68,6 +68,10 @@ ___
 - 直近のメンバー共通予定を部屋ページに表示
 - 非公開の自分だけの予定を記録
   - 状況に合わせて「共有」「非公開」「一緒の予定」にステータス変更可
+- Google calendar連携で、「非公開」で予定を取得
+  - Googleの規則に則り、個人情報の安全な取り扱いの為Google calendarから取得した予定かつ
+   「非公開」ステータスの予定の保持期間は30日に制限しました。
+  - ステータスを「共有」「一緒に予定」に変更した予定は残ります。
 
 ## 7. 行きたい場所・行った場所をマップで共有🗺️
 - 思い出や未来の約束を記録できます。
@@ -123,13 +127,14 @@ ___
 4. 日本語、英語の切り替え
 5. 交換日記・既読表示
 6. 入室時、自動でルームメイト全員の天気情報を更新(30分以内に更新がない場合)
-7. 予定カレンダー作成・共有機能
+7. 予定カレンダー作成・共有機能・Google連携（データの保持期間をrender cronjobにて定期的に実行）
 ___
 
 # 機能の実装方針予定 <br>
 ## - 外部APIを使用している機能
 1.  天気取得➡OpenWeatherMap、geocoder APIで緯度経度取得
 2.  行ったことのある思い出の場所、行きたい場所を登録➡geocoder API,Google Maps API
+3.  Google Calendar連携で予定の取得➡Google Calendar API, Google OAuth認証取得（Google Calendar readonly)
 
 ___
 画面遷移図⓵（日本語切り替えバージョン）：https://www.figma.com/design/Ob45fBnHDNmSaJCAmWNx7a/Online-Room-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-?t=1fZk0QVtWA81FmSt-1
