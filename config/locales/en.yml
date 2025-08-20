@@ -331,6 +331,10 @@ en:
       end: "End"
       share_calendar: "【Shared schedule】"
       no_share_calendar: "【No shared schedule yet】"
+      notice_delete: 
+        one: "*Events that are marked as “Private” and imported from Google Calendar will be automatically deleted after 30 days. "
+        two: "(in accordance with Google’s data protection policies)"
+        three: "*Events entered manually or those with different visibility settings will not be deleted."
     footer:
       privacy_policy: "Privacy Policy"
       privacy_policy_line: "Privacy Policy"
@@ -381,8 +385,10 @@ en:
       google_save_period:
         one: "Google User Data Retention and Deletion"
         two: "We retain Google user data obtained via OAuth for up to 30 days to ensure continuous service and provide access to recent schedule information."
-        three: "If you disconnect your Google account or request deletion, all associated Google user data will be permanently removed from our servers within 24 hours."
-        four: "You may request deletion at any time by contacting us through the %{link} information provided in this policy."
+        three: "Events that are set to “Private” and imported from Google Calendar (input type: Google) will be automatically deleted 30 days after they were retrieved."
+        four: "This automatic deletion applies only to events imported from Google. Events entered manually, or events whose visibility has been changed to settings other than “Private,” are not subject to deletion."
+        five: "If you disconnect your Google account or request deletion, all associated Google user data will be permanently removed from our servers within 24 hours."
+        six: "You may request deletion at any time by contacting us through the %{link} information provided in this policy."
       security:
         one: "Security Measures"
         two: "If you would like to know more about the security measures we take to protect your personal information, please contact us at the address listed at the end of this policy. We will respond in accordance with applicable laws and regulations."
