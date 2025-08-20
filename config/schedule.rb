@@ -28,6 +28,6 @@ env :BUNDLE_GEMFILE, "/myapp/Gemfile"
 env :BUNDLE_PATH, "/usr/local/bundle"
 env :RAILS_ENV, "development"
 
-every 1.day, at: '10:30 am' do
+every 1.day, at: "10:30 am" do
   rake "google_events:delete_old"
 end
