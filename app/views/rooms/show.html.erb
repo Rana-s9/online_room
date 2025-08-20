@@ -32,7 +32,8 @@
 <div class="group relative">
   <%= link_to room_exchange_diaries_path(@room),
       class: "fixed top-[250px] md:top-[150px] right-4 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
-      data: { turbo: false, label: t('views.room_show.diary') },
+      id: "open-book",
+      data: { room_path: room_exchange_diaries_path(@room), turbo: false, label: t('views.room_show.diary') },
       href: room_exchange_diaries_path(@room) do %>
     <i class="fa-solid fa-book-open text-2xl transition-transform duration-300 group-hover:rotate-[12deg]"></i>
   <% end %>
@@ -48,7 +49,8 @@
 <div class="group relative">
   <%= link_to room_spots_path(@room),
       class: "fixed top-[300px] md:top-[200px] right-4 z-40 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-beige hover:bg-blue-600 hover:scale-110 transition-transform duration-300",
-      data: { turbo: false, label: t('views.room_show.place') },
+      id: "open-door",
+      data: { room_path: room_spots_path(@room), turbo: false, label: t('views.room_show.place') },
       href: room_spots_path(@room) do %>
     <i class="fa-solid fa-map-pin text-2xl transition-transform duration-300 group-hover:rotate-[12deg]"></i>
   <% end %>
