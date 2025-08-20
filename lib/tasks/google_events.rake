@@ -4,7 +4,7 @@ namespace :google_events do
     # 削除対象を取得
     old_events = Calendar.where(visibility: :personal, source: :google)
                         .where.not(google_event_id: nil)
-                        .where("last_synced_at <= ?", 5.minutes.ago)
+                        .where("last_synced_at <= ?", 30.days.ago)
 
     puts "削除対象: #{old_events.count} 件"
 

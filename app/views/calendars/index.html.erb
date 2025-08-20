@@ -9,6 +9,11 @@
       <%= image_tag '/Google_Calendar.png', alt: t('views.calendar.google_calendar'), width: 32, height: 32 %>
       <span><%= t('views.calendar.google_calendar') %></span>
     <% end %>
+    <div class="text-sm">
+      <%= t("views.calendar.notice_delete.one") %><br>
+      <%= t("views.calendar.notice_delete.two") %><br>
+      <%= t("views.calendar.notice_delete.three") %><br>
+    </div>
 
     <div class="inline-block mt-6 mb-4 bg-matcha-green/20 p-2 rounded shadow-lg text-matcha font-bold hover:bg-brown/30 transition">
       <%= link_to t('views.calendar.private'), room_calendars_path(@room, visibility: 'personal'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:visibility] == 'personal'} whitespace-nowrap px-2" %>
