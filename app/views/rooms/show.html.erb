@@ -97,13 +97,13 @@
 
 <div class="group relative">
   <%= link_to room_greetings_path(@room),
-      class: "fixed top-[450px] md:top-[600px] right-4 z-30 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-matcha-green hover:bg-matcha hover:scale-110 transition-transform duration-300",
+      class: "fixed top-[450px] md:top-[350px] right-4 z-30 flex items-center justify-center w-14 h-14 rounded-full shadow-lg bg-matcha-green hover:bg-matcha hover:scale-110 transition-transform duration-300",
       data: { turbo: false, label: t('views.room_show.message') },
       href: room_greetings_path(@room) do %>
     <i class="fa-solid fa-comment text-2xl transition-transform duration-300 group-hover:rotate-[12deg]"></i>
   <% end %>
 
-  <span class="fixed top-[450px] md:top-[600px] right-4 -translate-y-1/2
+  <span class="fixed top-[450px] md:top-[350px] right-4 -translate-y-1/2
                opacity-0 md:opacity-0 md:group-hover:opacity-100
                bg-beige text-xs md:text-sm rounded px-2 py-1 shadow
                transition-opacity duration-300 whitespace-nowrap z-30 pointer-events-none">
