@@ -18,6 +18,6 @@ namespace :google_events do
     Calendar.transaction do
         deleted_count = Calendar.where(id: old_events).delete_all
     end
-    Rails.logger.info "[CalendarDeleteTask] #{deleted_count} records deleted at #{Time.current}"
+    Rails.logger.info "[CalendarDeleteTask] Candidate: id=#{event.id}, last_synced_at=#{event.last_synced_at} (UTC=#{event.last_synced_at.utc})"
   end
 end
