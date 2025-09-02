@@ -1,6 +1,6 @@
 # Online Room<br>
 ## 🔗サービスURL：https://our-onlineroom.com<br>
-[![Image from Gyazo](https://i.gyazo.com/6e473157b6ba9cd8194076c045b624b4.png)](https://gyazo.com/6e473157b6ba9cd8194076c045b624b4)
+[![Image from Gyazo](https://i.gyazo.com/6e473157b6ba9cd8194076c045b624b4.png)](https://gyazo.com/6e473157b6ba9cd8194076c045b624b4)<br>
 「Online Room」は、遠距離恋愛中のカップルや、時間的・物理的に会えない友人・家族同士が
 オンラインで同居しているような感覚を味わえるアプリです。<br>
 「ただいま」「おかえり」のやりとりから、
