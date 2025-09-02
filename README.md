@@ -105,6 +105,8 @@ ___
 |ファイルサーバー（glbファイル)|Cloudflare R2|
 |アプリケーションサーバー|Render|
 |バージョン管理ツール|GitHub・Git Flow|
+|3Dモデル|Blender|
+
 ___
 画面遷移図⓵（日本語切り替えバージョン）：https://www.figma.com/design/Ob45fBnHDNmSaJCAmWNx7a/Online-Room-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-?t=1fZk0QVtWA81FmSt-1
 
