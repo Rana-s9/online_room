@@ -125,7 +125,7 @@ ___
 ## 使用技術
 |カテゴリ|技術内容|
 |---|---|
-|サーバーサイド|Ruby on Rails 7.0.6・Ruby 3.2.2|
+|サーバーサイド|Ruby on Rails 7.2.2.1・ruby 3.1.4|
 |フロントエンド|Ruby on Rails・JavaScript(ライブラリ:three.js)|
 |CSSフレームワーク|Tailwindcss|
 |Web API|Google Maps API・Geocoder API・Open Weather API・Google Calendar API|
