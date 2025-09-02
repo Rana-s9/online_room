@@ -108,4 +108,5 @@ ___
 
 画面遷移図⓶（英語切り替えバージョン）：https://www.figma.com/design/YnKgRziTDMr0ffOpeo5FQZ/Online-Room--English-ver.-?t=1fZk0QVtWA81FmSt-1
 
-ER図：[![Image from Gyazo](https://i.gyazo.com/035458976725375491d995dbb7ff8656.jpg)](https://gyazo.com/035458976725375491d995dbb7ff8656)
+ER図：![卒制online_room - Copy](https://github.com/user-attachments/assets/a22418f6-ed5b-4bed-a9f7-2b7191b38df6)
+
