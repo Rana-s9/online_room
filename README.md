@@ -95,13 +95,13 @@ ___
 ___
 # 🔧技術構成について
 ## 使用技術
-|---|---|
 |カテゴリ|技術内容|
+|---|---|
 |サーバーサイド|Ruby on Rails 7.0.6・Ruby 3.2.2|
 |フロントエンド|Ruby on Rails・JavaScript|
 |CSSフレームワーク|Tailwindcss|
 |Web API|Google Maps API・Geocoder API・Open Weather API・Google Calendar API|
-|データベースサーバー|SOS/相談に乗ってほしい|
+|データベースサーバー|PostgreSQL|
 |ファイルサーバー（glbファイル)|Cloudflare R2|
 |アプリケーションサーバー|Render|
 |バージョン管理ツール|GitHub・Git Flow|
