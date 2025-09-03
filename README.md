@@ -136,8 +136,7 @@ ___
 |3Dモデル|Blender|
 
 ___
-画面遷移図⓵（日本語切り替えバージョン）：https://www.figma.com/design/Ob45fBnHDNmSaJCAmWNx7a/Online-Room-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3-?t=1fZk0QVtWA81FmSt-1
-
+画面遷移図⓵（日本語切り替えバージョン）：https://www.figma.com/design/tmaoOMaAGZjTnmPJPfmUY9/Online-Room-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3---Copy-?node-id=0-1&t=Y0w5G8k7x1ZUEX0C-1
 画面遷移図⓶（英語切り替えバージョン）：https://www.figma.com/design/YnKgRziTDMr0ffOpeo5FQZ/Online-Room--English-ver.-?t=1fZk0QVtWA81FmSt-1
 
 ER図：![卒制online_room - Copy](https://github.com/user-attachments/assets/9be61fa5-ab24-4837-8d66-ceeb1e5692cd)
