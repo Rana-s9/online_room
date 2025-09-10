@@ -1,3 +1,7 @@
+require "net/http"
+require "uri"
+require "json"
+
 class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_room, only: [ :show ]
@@ -50,6 +54,14 @@ class RoomsController < ApplicationController
 
     @roommates_except_self = current_user.roommates_except_self(@room)
 
+    room_users = current_user.grouped_shared_users[@room.id]
+    @calendar = Calendar
+              .includes(:user)
+              .where(room: @room, visibility: "together", user: room_users)
+              .where("start_time >= ?", Date.today)
+              .order(:start_time)
+              .first
+
     @welcome_display =
       if @roommates_except_self.any?
         if @others_welcome.any?
@@ -77,7 +89,32 @@ class RoomsController < ApplicationController
       end
 
       if params[:from_home_button]
-        flash[:just_signed_in] = t("flash.rooms.back_home")
+        users = (current_user.grouped_shared_users[@room.id] || [])
+        updated_any = false
+        failed_any = false
+
+        users.uniq.each do |user|
+          area = user.area
+          next unless area
+
+          weather_record = area.weather_record
+          if weather_record.nil? || weather_record.updated_at < 30.minutes.ago
+            weather_record ||= WeatherRecord.new(area: area)
+            if save_weather_record(area, weather_record)
+              updated_any = true
+            else
+              failed_any = true
+            end
+          end
+        end
+
+        if failed_any
+          redirect_to root_path, alert: t("views.weather.failed_save") and return
+        elsif updated_any
+          redirect_to room_path(@room), notice: t("views.weather.update") and return
+        else
+          flash[:just_signed_in] = t("flash.rooms.back_home")
+        end
       end
   end
 
@@ -102,6 +139,45 @@ class RoomsController < ApplicationController
     unless @room.user_id == current_user.id || RoommateList.exists?(user_id: current_user.id, room_id: @room.id)
       redirect_to root_path, alert: t("flash.rooms.none_access")
     end
+  end
+
+  def fetch_weather_from_api(city, lang = "ja")
+    api_key = ENV["WEATHER_API"]
+    url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=#{lang}")
+    response = Net::HTTP.get_response(url)
+    if response.is_a?(Net::HTTPSuccess)
+      data = JSON.parse(response.body)
+      Rails.logger.debug "API (#{lang}) description: #{data['weather'][0]['description']}"
+      data
+    else
+      Rails.logger.error "API request failed: #{response.code} #{response.message}"
+      nil
+    end
+  rescue => e
+    Rails.logger.error "Weather API error: #{e.message}"
+    nil
+  end
+
+  def save_weather_record(area, weather_record)
+  ja_data = fetch_weather_from_api(area.city, "ja")
+  en_data = fetch_weather_from_api(area.city, "en")
+
+  return false unless ja_data.present? && en_data.present?
+
+  weather_record.assign_attributes(
+    temperature: ja_data["main"]["temp"],
+    humidity: ja_data["main"]["humidity"],
+    description: ja_data["weather"][0]["description"],
+    description_en: en_data["weather"][0]["description"],
+    temp_min: ja_data["main"]["temp_min"],
+    temp_max: ja_data["main"]["temp_max"]
+  )
+
+  if weather_record.changed?
+      weather_record.save
+  else
+      weather_record.touch
+  end
   end
 
   def room_params

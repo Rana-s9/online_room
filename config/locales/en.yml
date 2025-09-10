@@ -8,6 +8,8 @@ en:
     register: "Register"
     save_new: "Save"
     add: "Add"
+    add_today: "Add Today's schedule"
+    add_room: "+ Add New Room"
   flash:
     alert: "Are you sure you'd like to delete this?"
     diary:
@@ -17,9 +19,14 @@ en:
       delete: "The diary has been deleted."
       failed_delete: "Failed to delete the diary."
     read:
-      success: "Marked as read."
+      success: "read"
       self_read: "You can't mark your own diary as read."
-    room: "The room could not be found."
+    leave_room: "Are you sure you want to leave the room?"
+
+    room:
+      failed_find: "The room could not be found."
+      no_room: "⇩Start by creating a room"
+      no_area: "Your location hasn't been registered yet."
     rooms:
       none_access: "Looks like you don’t have access to this room."
       return: "I'm home!"
@@ -40,6 +47,14 @@ en:
       failed_update: "Sorry, we couldn't update the name."
       delete: "The place has been removed."
       failed_delete: "we couldn’t delete the place."
+      comments_exist: "Comments"
+      comment:
+        new: "Your comment has been posted."
+        failed_create: "We couldn't post your comment."
+        update: "Your comment has been updated."
+        failed_update: "We couldn't update your comment."
+        delete: "Your comment has been deleted."
+        failed_delete: "We couldn't delete your comment."
     state_calendar:
       exist: "A record for this date already exists. Please select and update it from the calendar."
       save: "Your condition has been saved."
@@ -78,8 +93,35 @@ en:
         failed_update: "We couldn't update your comment."
         delete: "Your comment has been deleted."
         failed_delete: "We couldn't delete your comment."
+    calendar:
+      unauthorize_update: "You can’t update this event."
+      update: "Event has been updated."
+      failed_update: "Could not update the event."
+      unauthorize: "Looks like you don’t have access to view this event."
+      save: "Your event has been saved."
+      failed_save: "Couldn’t save the event."
+      destroy: "Event deleted."
+      failed_destroy: "Couldn’t delete the event."
+      unauthorize_destroy: "You can’t delete this event."
+      input: "We’ve pulled your events from Google Calendar."
+      failed_input: "Something went wrong while importing events."
+      start_time_rule: "- The start time must be before the end time."
+    roommate:
+      no_invite_link: "Invitation link not found."
+      invite_expired: "The invitation link has expired."
+      invite_used: "This link has already been used."
+      already_joined: "You’re already part of this room."
+      joined: "You’ve joined the room."
 
   views:
+    google_login: "Google login is disabled during API review🙇"
+    simple_calendar:
+      previous: "previous"
+      today: "today"
+      next: "next"
+    message_board:
+      no_message: "No messages yet"
+      board: "Message Board(auto-save)"
     top:
       welcome: "Welcome back🏠"
       create_account: "Start by creating an account."
@@ -94,13 +136,25 @@ en:
       copy_link: "Copy the link."
       send_to_partner: "Send it to your partner."
       daily_life: "Spend everyday life together in your room."
-      six_features: "Here are six things you can do:"
-      weather_share: "Share weather updates."
-      whiteboard: "Leave messages on the whiteboard."
-      greeting_message: "Manage 'Welcome home' / 'I'm home' messages."
-      diary: "Write an exchange diary."
-      favorite_place: "Save special places."
-      condition_check: "Check physical and mental condition."
+      seven_features: "Here are seven things you can do:"
+      weather_share: "Share weather updates(retrieves weather data for the registered area)."
+      whiteboard: "Leave messages on the Message Board(messages are auto-saved and shared)."
+      greeting_message: "Welcome Home / I'm Home Message Display & Management (shown when entering the room)"
+      diary: "Write an exchange diary(share daily thoughts and longer messages)."
+      favorite_place: "Memory Spot Logging & Sharing (save location names and data)"
+      condition_check: "Physical and Mental Condition Logging & Sharing"
+      calendar: "Schedule Logging & Sharing"
+      messages:
+        one: "Feeling Close, Even When We're Apart"
+        two: "Created from the wish to share the special feeling of being together, no matter the distance."
+        three: "A gentle online space where you can connect and support each other, from anywhere..."
+      calendar:
+        one: "Schedule Management and Sharing (Sync and share your Google Calendar events)"
+        two: "Only members of the room can view shared schedules."
+        three: "You can also create new events manually."
+        four: "By clicking the Sync button, your calendar events are imported in a private mode, visible only to you within the room members."
+        five: "You can change the status of individual imported events from private to shared to make them visible to other members."
+        six: "*This feature uses the Google Calendar read-only permission (calendar.readonly scope)."
     post:
       description: "How do you connect with someone on a different rhythm? -Share your tips or questions!"
       description2: "Leave helpful advice in the comments!"
@@ -144,7 +198,7 @@ en:
       did: "read"
       did_not: "unread"
     room:
-      front_door: "Front door"
+      front_door: "Entrance"
       registration: "Registration Date"
       roommate: "resident"
       owner: "Underlined house: registered by you"
@@ -153,19 +207,15 @@ en:
       return: "Enter"
       back_to_room: "Back to %{room_name}🏠"
       new: "Give your home a name."
+      select: "Select Room"
     room_show:
       invitation: "Invite a housemate　"
       diary: "Exchange Diary　　　"
       place: "Favorite Places　　　"
       state: "Mental/Physical state"
+      calendar: "Calendar　　　　"
       message: "Greeting Message Settings"
       cleaning: "Tidy up the room"
-    roommate:
-      no_invite_link: "Invitation link not found."
-      invite_expired: "The invitation link has expired."
-      invite_used: "This link has already been used."
-      already_joined: "You’re already part of this room."
-      joined: "You’ve joined the room."
     spot:
       visited_list: "Visited spots"
       visit_list: "Spots to Visit"
@@ -182,6 +232,15 @@ en:
       visit: "To Visit"
       flow: "⓵Select Status→⓶Enter Address→⓷Search→⓸Save"
       need_login: "You need to be logged in to save a place."
+      registered: "Registered on"
+      address: "Address"
+      edit: "Place Name *You can change the name as you like."
+      date: "Enter the date you visited or want to visit"
+      comment:
+        title: "Comments"
+        nothing: "No comments yet"
+        add: "Add Comments"
+        enter: "Feel free to leave a comment"
     state_calendar:
       button: "Back to Calendars"
       mental_state: "mental state"
@@ -244,10 +303,266 @@ en:
         online: "At Home"
         offline: "Away"
         went_out_ago: "Went out %{time} ago"
+    calendar:
+      calendar_name: "%{name}'s Calendar"
+      google_calendar: "Import from Google Calendar【status: Private】"
+      category_filter: "Filter by Category"
+      all: "All"
+      relax: "Relaxation"
+      work_study: "Work/Study"
+      event: "Event/Others"
+      private: "🔒Private Schedule"
+      private_exists: "【Has schedule】"
+      no_private: "【No schedule】"
+      add_time: "Add Time"
+      all_day: "All Day"
+      manual: "Manual Entry"
+      google: "Google Calendar Integration"
+      select: "Please select"
+      personal: "🔒Private"
+      share_only: "Shared Only"
+      together: "Shared with Partner"
+      start_date: "Start Date"
+      end_date: "End Date"
+      enter: "Enter your plan"
+      add_note: "Add a note"
+      note: "No notes yet📝."
+      start: "Start"
+      end: "End"
+      share_calendar: "【Shared schedule】"
+      no_share_calendar: "【No shared schedule yet】"
+      notice_delete: 
+        one: "*Events that are marked as “Private” and imported from Google Calendar will be automatically deleted after 30 days. "
+        two: "(in accordance with Google’s data protection policies)"
+        three: "*Events entered manually or those with different visibility settings will not be deleted."
+    footer:
+      privacy_policy: "Privacy Policy"
+      privacy_policy_line: "Privacy Policy"
+      terms_of_service: "Terms of Service"
+      contact: "Contact"
+    privacy_policy:
+      retrieve_info:
+        one: "Information We Collect"
+        two: "This Privacy Policy outlines the types of information collected from users of the service provided by Online Room."
+        three: "Your name (including nicknames or pen names)"
+        four: "Email address"
+        five: "ID used on external services (such as Google accounts), and any information you have agreed to disclose to us based on your privacy settings with those external services"
+        six: "Event details and schedules registered on your Google Calendar"
+        seven: "* We only access this information if you explicitly authorize integration with your Google Calendar. We do not collect, edit, or delete any information without your permission."
+        eight: "Information about your operating system and device, such as OS-generated IDs, device types, and identifiers"
+        nine: "Behavioral history on our website, including time spent, input history, and purchase records"
+      purpose:
+        one: "Purpose of Use of Your Information"
+        two: "We use the collected information for the following purposes:"
+        three: "To register users, perform identity verification, and authentication for our services"
+        four: "To manage user activity and service usage history"
+        five: "To analyze user behavior and improve and maintain our services"
+        six: "To allow users to view, share, record, and manage event information obtained from Google Calendar within our service"
+        seven: "* We only retrieve schedule information in read-only mode and do not make any changes or deletions to the content on Google Calendar. You may create, edit, or delete events within the app, but those changes are not reflected back to Google Calendar."
+        eight: "To send notifications or information regarding our services"
+        nine: "To respond to user inquiries"
+        ten: "To respond to violations of our terms or applicable laws"
+        eleven: "To notify users of service changes, discontinuation, termination, or account cancellation"
+        twelve: "To inform users about updates to our terms or policies"
+        thirteen: "To provide, maintain, protect, and improve our services generally"
+      google_connect:
+        one: "Integration with Google"
+        two: "Our service may use Google Login (OAuth 2.0) and read-only access to Google Calendar. These integrations are performed through APIs provided by Google LLC and are subject to the following policies:"
+        three: "When using Google Login, we may obtain basic profile information such as your name and email address registered with your Google account."
+        four: "We only retrieve calendar events after you grant explicit permission, and use this data solely for displaying, recording, and sharing within our app."
+        five: "We do not create, update, or delete any information on your Google Calendar. Our access is strictly read-only."
+        six: "To allow you to view, share, record, and manage your event information obtained from Google Calendar within our service"
+        seven: "* Retrieved event data is read-only. We do not modify or delete information on Google Calendar. Within the app, you can create, edit, or delete events, but these changes are not reflected on Google Calendar."
+        eight: "By default, retrieved events are displayed as 'private' and are not visible to roommates unless you explicitly change the sharing settings."
+        disconnect_notice: "You can disconnect your Google account at any time from your %{link}. Once disconnected, you will no longer be able to fetch calendar data or log in using Google."
+        account_settings: "Google account settings page"
+      data_share:
+        one: "Google User Data Sharing"
+        two: "We do not share, sell, transfer, or disclose any Google user data obtained through OAuth (including Google Calendar event information and Google account profile data) to any third parties, except as required by law or with your explicit consent."
+      google_protection:
+        one: "Google User Data Protection"
+        two: "All Google user data obtained via OAuth is transmitted over secure HTTPS connections. When stored, it is protected using industry-standard encryption methods. Access to this data is strictly limited to authorized personnel necessary for the operation and maintenance of the service."
+      google_save_period:
+        one: "Google User Data Retention and Deletion"
+        two: "We retain Google user data obtained via OAuth for up to 30 days to ensure continuous service and provide access to recent schedule information."
+        three: "Events that are set to “Private” and imported from Google Calendar (input type: Google) will be automatically deleted 30 days after they were retrieved."
+        four: "This automatic deletion applies only to events imported from Google. Events entered manually, or events whose visibility has been changed to settings other than “Private,” are not subject to deletion."
+        five: "If you disconnect your Google account or request deletion, all associated Google user data will be permanently removed from our servers within 24 hours."
+        six: "You may request deletion at any time by contacting us through the %{link} information provided in this policy."
+      security:
+        one: "Security Measures"
+        two: "If you would like to know more about the security measures we take to protect your personal information, please contact us at the address listed at the end of this policy. We will respond in accordance with applicable laws and regulations."
+      provision:
+        one: "Provision to Third Parties"
+        two: "We do not provide any personal data (as defined under Article 16, Paragraph 3 of the Act on the Protection of Personal Information) to third parties, including those located outside of Japan, without your prior consent, except in the following cases:"
+        three: "When outsourcing the handling of personal data"
+        four: "In the event our business or services are acquired"
+        five: "When shared use with business partners (details will be disclosed separately when applicable)"
+        six: "When otherwise permitted by law"
+      access:
+        one: "Analytics Tools"
+        analytics: "We use Google Analytics to analyze user access to our website. Google Analytics uses cookies to collect traffic data. This data is collected anonymously and does not personally identify users. You can disable cookies in your browser settings to opt out of data collection. For more information, please see %{link}."
+        here: "here"
+      policy_change:
+        one: "Changes to This Privacy Policy"
+        two: "We may update this privacy policy as needed. Any changes will be announced or notified in an appropriate manner along with the effective date and updated content."
+      contact:
+        one: "If you wish to request disclosure, correction, suspension of use, or deletion of your information, please contact us at %{link}. We will confirm that the request is from the individual concerned, such as by requiring a copy of a driver’s license or other specified verification method. Please note that a handling fee of 1,000 JPY will be charged per request, regardless of whether information is disclosed."
+      date: "Established: July 19, 2025"
+
+    terms:
+      consent:
+        one: "These Terms of Use (hereinafter referred to as the 'Terms') define the conditions for using this service (including this website; hereinafter, no distinction is made between the two). These Terms apply to all users of the Service."
+        two: "Agreement to the Terms"
+        three: "By using the Service, users are deemed to have given valid and irrevocable consent to these Terms. Users who do not agree to the Terms may not use the Service."
+      registration:
+        one: "User Registration"
+        two: "Individuals wishing to use the Service may apply for registration in accordance with the procedures specified by the Company, upon agreeing to these Terms. Registration will be completed upon approval by the Company."
+        three: "User registration is required to use the Service. Registration requires entering an email address or linking with a Google account."
+      rejection:
+        one: "Rejection of Registration"
+        two: "The Company may decline a registration application if any of the following circumstances are deemed to apply. The Company is under no obligation to disclose the reasons for such rejection."
+        three: "False information was provided"
+        four: "The applicant has previously violated these Terms"
+        five: "Any other case in which the Company deems registration inappropriate"
+      google:
+        one: "Google Account Integration"
+        two: "The Service allows login and other functionality via Google account integration."
+        three: "If the user grants permission, the Company may access and display event information from the user's Google Calendar."
+        four: "The Service uses Google Calendar in a read-only manner and does not modify or delete calendar entries."
+        disconnect: "Users may disconnect their Google account integration at any time by revoking access permissions from the Google Account’s %{link}."
+        account_settings: "Google Account Settings Page"
+      login_info:
+        one: "Management of Login Information"
+        two: "The Company grants users a non-transferable, non-sublicensable, non-exclusive right to privately use any content (including text, images, video, audio, music, software, programs, and code) provided through the Service within the scope of use. Paid content may only be used after the specified fees have been paid. Any use beyond this scope is strictly prohibited. If the user loses the right to use the Service for any reason, they shall no longer be permitted to use any content provided by the Service."
+      late_fee:
+        one: "Late Payment Penalty"
+        two: "Users who delay the payment of any monetary obligations to the Company shall pay a late fee at an annual rate of 14.6%."
+      post:
+        one: "User Posts"
+        two: "Users represent and warrant that they have the lawful right to transmit the information included in their posts, and that such content does not infringe on any third party’s intellectual property rights, ownership, or other legal rights. Copyright of user posts remains with the user."
+        three: "The Company does not acquire copyrights to user posts. However, to the extent necessary for the provision, maintenance, improvement, or promotion of the Service, the Company may reproduce, adapt, and transmit such posts (including enabling transmission), worldwide, free of charge, and without time limitation. Users agree not to exercise moral rights against the Company or its successors and licensees. Users are responsible for backing up their own posts, and the Company is under no obligation to do so. The following types of content are prohibited:"
+        four: "Content that infringes intellectual property, portrait rights, privacy, honor, or other legal rights of the Company or third parties"
+        five: "Content including personally identifiable information (except where requested or permitted by the Company for registration purposes)"
+        six: "Obscene or indecent expressions"
+        seven: "Content intended for meeting strangers or facilitating indecent acts, regardless of gender"
+        eight: "Content promoting, encouraging, or facilitating suicide or self-harm"
+        nine: "Content related to the sale of drugs or dangerous substances, or promoting their inappropriate use"
+        ten: "Content promoting religious or political activities, groups, or organizations"
+        eleven: "Solicitation for network business schemes"
+        twelve: "Spam or junk mail content"
+        thirteen: "Content potentially harmful to minors"
+        fourteen: "Cruel expressions or content likely to cause discomfort"
+        fifteen: "Content containing malicious software such as computer viruses"
+        sixteen: "Content that causes excessive anxiety to others"
+        seventeen: "Any other content deemed inappropriate by the Company"
+      Prohibitions:
+        one: "Prohibited Conduct"
+        two: "Users must not engage in the following actions while using the Service:"
+        three: "Violating applicable laws, court rulings, or enforceable administrative actions, or encouraging such violations"
+        four: "Criminal activity"
+        five: "Infringing the intellectual property rights of the Company or third parties"
+        six: "Infringing the portrait rights, privacy, or honor of others"
+        seven: "Overloading or interfering with the normal operation of the Company’s servers or networks"
+        eight: "Interfering with the operation of the Service"
+        nine: "Unauthorized access or attempts thereof"
+        ten: "Reverse engineering or decoding the Service's source code"
+        eleven: "Unauthorized access to systems or tampering with Company data"
+        twelve: "Copying, transmitting, transferring, lending, or modifying the Service’s website or software"
+        thirteen: "Transferring or leasing accounts or content for a fee"
+        fourteen: "Commercial use of information obtained through the Service"
+        fifteen: "Unintended profit-seeking activities"
+        sixteen: "Unauthorized advertising, solicitation, or sales activities"
+        seventeen: "Collecting or storing personal information about other users"
+        eighteen: "Using the Service for illegal, improper, or unfair purposes"
+        nineteen: "Causing harm, loss, or discomfort to other users or third parties"
+        twenty: "Impersonating other users"
+        twenty_one: "Using other users’ accounts"
+        twenty_two: "Seeking encounters with strangers"
+        twenty_three: "Providing benefits directly or indirectly to antisocial groups"
+        twenty_four: "Acts contrary to public order and morals"
+        twenty_five: "Using the Service in unsafe situations, such as while walking or driving"
+        twenty_six: "Any other acts deemed inappropriate by the Company"
+      money_trade:
+        one: "Prohibition of Cash Conversion"
+        two: "Any content or virtual currency obtained within the Service must not be exchanged for cash or equivalents, by any means, including:"
+        three: "Sale or purchase"
+        four: "Transfer, lending, or borrowing involving compensation"
+        five: "Other acts judged to be cash conversion by the Company"
+      elimination:
+        one: "Exclusion of Antisocial Forces"
+        two: "Users represent and warrant that they are not, and will not become in the future, any of the following:"
+        three: "A member of an organized crime group or similar organization"
+        four: "Controlled by or affiliated with such groups"
+        five: "Using such groups for personal or third-party gain"
+        six: "Providing funding or support to such groups"
+        seven: "Having officers or individuals involved in such groups"
+        eight: "Users shall not, directly or indirectly, engage in any of the following acts:"
+        nine: "Violent demands"
+        ten: "Unreasonable demands beyond legal responsibility"
+        eleven: "Threatening behavior or use of violence"
+        twelve: "Spreading rumors, using deception, or force to damage the Company's reputation or disrupt business"
+        thirteen: "Any other similar acts"
+      restriction:
+        one: "Restrictions on Use"
+        two: "The Company may, without prior notice, restrict the user’s access to all or part of the Service or terminate their registration if any of the following apply. The Company bears no liability for damages incurred by the user as a result."
+        three: "Violation of these Terms"
+        four: "False registration information"
+        five: "Failure to fulfill payment obligations"
+        six: "No response from the user after a reasonable period"
+        seven: "Prolonged inactivity"
+        eight: "Affiliation or interaction with antisocial groups"
+        nine: "Other reasons deemed inappropriate by the Company"
+      suspension_of_service:
+        one: "Suspension of the Service"
+        two: "The Company may suspend or interrupt all or part of the Service without prior notice to users if any of the following apply. The Company shall not be liable for any loss or damage resulting from such suspension:"
+        three: "System maintenance or updates"
+        four: "Natural disasters, epidemics, or other force majeure events"
+        five: "System failures or accidents"
+        six: "Other reasons the Company deems necessary"
+      cancellation:
+        one: "Account Cancellation"
+        two: "Users may delete their registration and withdraw from the Service according to procedures specified by the Company."
+      not_guarantee:
+        one: "Disclaimer of Warranty"
+        two: "The Company does not guarantee that the Service or its contents are free from bugs or rights violations. The Company makes no warranties regarding safety, reliability, accuracy, completeness, effectiveness, or fitness for a particular purpose."
+      disclaimer:
+        one: "Limitation of Liability"
+        two: "The Company bears no responsibility for any damages incurred by users in connection with the Service. However, if the contract between the user and the Company (including these Terms) qualifies as a consumer contract under the Consumer Contract Act of Japan, this disclaimer shall not apply. Even in such cases, the Company’s liability shall be limited to direct, actual damages caused by the Company’s ordinary negligence (excluding gross negligence), and the maximum compensation shall not exceed the lower of the Service fees paid in the past month or 10,000 JPY."
+      change_services:
+        one: "Changes to the Service"
+        two: "The Company may change or discontinue the Service without prior notice. Users agree that they will lose access to any paid content after termination, and the Company will bear no responsibility for any resulting damages."
+      change_terms:
+        one: "Changes to the Terms"
+        two: "The Company may revise these Terms at any time without prior notice. Changes will take effect when posted on the Company’s website. Continued use of the Service constitutes acceptance of the revised Terms."
+      personal_info:
+        one: "Handling of Personal Information"
+        two: "User information obtained through use of the Service will be handled appropriately in accordance with the Company’s Privacy Policy."
+      notice:
+        one: "Notifications and Communication"
+        two: "Notices and communications between the Company and users will be conducted in accordance with methods prescribed by the Company. Unless users update their contact information, the registered information will be considered valid and any communication sent will be deemed received at the time of dispatch."
+      right:
+        one: "Assignment of Rights and Obligations"
+        two: "Users may not assign or pledge their contractual status or any rights or obligations under these Terms to third parties without the Company’s prior written consent."
+      business_transfer:
+        one: "Business Transfer"
+        two: "If the Company transfers its business related to the Service to another company (including through mergers, corporate splits, or any other business transfer), the user’s contractual position, rights, obligations, and personal data may be transferred to the transferee. Users are deemed to have agreed to such transfers in advance."
+      relation_adoption:
+        one: "Scope of Application"
+        two: "These Terms apply to all aspects of the relationship between the user and the Company regarding the use of the Service. The Company may also establish rules regarding use, which form part of these Terms. In the event of a conflict between the Terms and such rules, the rules shall prevail."
+      possibility:
+        one: "Severability"
+        two: "If any provision of these Terms is deemed invalid or unenforceable, such judgment shall not affect the validity or enforceability of the remaining provisions."
+      jurisdiction:
+        one: "Governing Law and Jurisdiction"
+        two: "These Terms shall be governed by the laws of Japan. Any disputes arising in connection with the Service shall be subject to the exclusive jurisdiction of the district court having jurisdiction over the location of the Company’s head office."
+      date: "Established: July 19, 2025"
 
     area:
       rule: "Enter your area of residence *City or Ward (in English)"
       example: "(e.g., shibuya)"
+      register: "Set Your Location"
+      advice: "Set your location at the entrance!"
     weather:
       update: "Weather information has been updated."
       failed_save: "Failed to save weather information."
@@ -287,6 +602,17 @@ en:
         custom_name: "enter display name"
       answer:
         body: "content"
+      calendar:
+        description: "Note📝"
+        name: "Plan"
+        start_time: "start time"
+        end_time: "end time"
+        visibility: "visibility"
+        category: "category"
+        source: "Input method"
+        schedule_type: "time"
+      comment:
+        body: "Content"
 
     errors:
       messages:
@@ -336,3 +662,9 @@ en:
           attributes:
             body:
               blank: "- Please write your diary"
+        calendar:
+          attributes:
+            category:
+              blank: "- Please select a category."
+            visibility:
+              blank: "- Please select a visibility option"

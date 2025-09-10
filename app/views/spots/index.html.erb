@@ -13,6 +13,12 @@
             </div>
               <i class="fa-solid fa-location-pin text-red-500"></i><%= spot.address %>
               <i class="fa-solid fa-user text-blue"></i><%= spot.user.name %>
+              <% if spot.date.present? %>
+                <i class="fa-solid fa-calendar-days text-matcha-green"></i><%= spot.date.strftime("%Y-%m-%d") %>
+              <% end %>
+              <% if spot.comments.any? %>
+                <div class="text-xs text-gray-600 mt-2 text-right"><i class="fa-regular fa-comment"></i> <%= t("flash.spot.comments_exist") %></div>
+              <% end %>
           </div>
       <% end %>
   <% else %>
@@ -32,6 +38,12 @@
             </div>
               <i class="fa-solid fa-location-pin text-red-500"></i><%= spot.address %>
               <i class="fa-solid fa-user text-blue"></i><%= spot.user.name %>
+              <% if spot.date.present? %>
+                <i class="fa-solid fa-calendar-days text-matcha-green"></i><%= spot.date.strftime("%Y-%m-%d") %>
+              <% end %>
+              <% if spot.comments.any? %>
+                <div class="text-xs text-gray-600 mt-2 text-right"><i class="fa-regular fa-comment"></i> <%= t("flash.spot.comments_exist") %></div>
+              <% end %>
           </div>
       <% end %>
   <% else %>

@@ -38,7 +38,14 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
 
-    <script src="https://kit.fontawesome.com/3e9d8d532b.js" crossorigin="anonymous"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <meta name="leave-room-message" content="<%= t('flash.leave_room') %>">
   </head>
 
   <body class="flex flex-col min-h-screen bg-beige font-natural">
@@ -56,7 +63,9 @@
     <main class="pt-12 flex-1 <%= content_for?(:main_class) ? yield(:main_class) : 'container mx-auto flex-1 flex flex-col justify-center items-center' %>">
       <%= yield %>
     </main>
-    <%= render 'shared/footer' %>
+    <% unless controller.controller_name == 'rooms' && controller.action_name == 'show' %>
+      <%= render 'shared/footer' %>
+    <% end %>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
       AOS.init();

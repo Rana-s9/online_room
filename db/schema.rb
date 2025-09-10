@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_17_132842) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_13_072700) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,6 +30,37 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_132842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_areas_on_user_id", unique: true
+  end
+
+  create_table "calendars", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "schedule_type", default: 0, null: false
+    t.integer "visibility", default: 0, null: false
+    t.string "google_calendar_id"
+    t.string "google_event_id"
+    t.datetime "last_synced_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "source", default: 0, null: false
+    t.integer "category"
+    t.index ["room_id", "google_event_id"], name: "index_calendars_on_room_id_and_google_event_id", unique: true
+    t.index ["room_id"], name: "index_calendars_on_room_id"
+    t.index ["user_id"], name: "index_calendars_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "spot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_comments_on_spot_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "exchange_diaries", force: :cascade do |t|
@@ -149,6 +180,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_132842) do
     t.string "provider"
     t.string "uid"
     t.datetime "last_seen_at"
+    t.string "google_token"
+    t.string "google_refresh_token"
+    t.datetime "token_expires_at"
+    t.string "sync_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
@@ -180,6 +215,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_17_132842) do
   add_foreign_key "answers", "posts"
   add_foreign_key "answers", "users"
   add_foreign_key "areas", "users"
+  add_foreign_key "calendars", "rooms"
+  add_foreign_key "calendars", "users"
+  add_foreign_key "comments", "spots"
+  add_foreign_key "comments", "users"
   add_foreign_key "exchange_diaries", "rooms"
   add_foreign_key "exchange_diaries", "users"
   add_foreign_key "greetings", "rooms"

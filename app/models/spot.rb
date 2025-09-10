@@ -1,6 +1,7 @@
 class Spot < ApplicationRecord
   belongs_to :user
   belongs_to :room
+  has_many :comments, dependent: :destroy
 
   enum visit_status: { visited: 0, wanna_visit: 1 }
 

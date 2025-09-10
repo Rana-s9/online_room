@@ -31,6 +31,10 @@ module.exports = {
         eng: ['"Playfair Display"', ...defaultTheme.fontFamily.sans],
         natural: ['"Noto Serif JP"', '"Yu Mincho"', '"Hiragino Mincho ProN"', 'serif'],
       },
+      screens: {
+        'ipadpro': '1024px',  // iPad Pro向けカスタムブレークポイント
+        'lg': '1280px',       // lg を1280pxにリセット（デフォルトは1024px）
+      },
     },
   },
   plugins: [

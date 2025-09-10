@@ -1,24 +1,73 @@
 <header>
-    <nav class="bg-yellow/30 text-matcha text-sm md:text-lg font-semibold fixed top-0 w-full z-50">
-      <div class="max-w-screen-xl flex items-center justify-between mx-auto p-2 md:p-4">
-        <div class="text-md md:text-2xl">
-          <%= link_to "Online Room", root_path, data: { turbo: false } %>
-        </div>
-        <div class= "underline">
-          <%= link_to('JA', :locale => 'ja') %>/
-          <%= link_to('EN', :locale => 'en') %>
-        </div>
-        <div class="flex underline">
+  <nav class="bg-yellow/30 text-matcha text-sm md:text-lg font-semibold fixed top-0 w-full z-50">
+    <div class="max-w-screen-xl flex items-center justify-between mx-auto p-2 md:p-4">
+      <!-- ロゴ -->
+      <div class="text-md md:text-2xl">
+        <%= link_to "Online Room", root_path, data: { turbo: false } %>
+      </div>
+      <div class="underline">
+        <%= link_to('JA', locale: 'ja', class: "block") %> /
+        <%= link_to('EN', locale: 'en', class: "block") %>
+      </div>
+
+      <!-- ハンバーガーボタン（モバイルのみ） -->
+      <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">
+        ☰
+      </button>
+
+      <!-- PC用メニュー（横並び・常時表示） -->
+      <div class="hidden md:flex md:items-center md:space-x-6">
+        <div class="underline">
           <%= link_to "Tips", posts_path, data: { turbo: false } %>
         </div>
-        <div class="flex space-x-4 underline">
+        <div class="flex space-x-4 underline items-center">
           <%= link_to t('devise.sessions.new.sign_in'), new_user_session_path, data: { turbo: false } %>
           <%= link_to t('devise.registrations.sign_up'), new_user_registration_path, data: { turbo: false } %>
-          <%= button_to user_google_oauth2_omniauth_authorize_path(locale: nil), class: 'btn',data: { turbo: false } do %>
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="google logo">
-            <span>Login with Google</span>
+          <%= button_to user_google_oauth2_omniauth_authorize_path(locale: nil), class: 'btn flex items-center space-x-2', data: { turbo: false } do %>
+            <img src="/google_logo.svg" alt="Sign in with Google" width="200" /><br>
           <% end %>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
+
+    <!-- モバイル用スライドメニュー -->
+    <div id="side-menu" class="fixed top-0 right-0 h-full w-auto max-w-xs bg-white text-matcha shadow-lg transform translate-x-full transition-transform duration-300 z-50 md:hidden">
+      <!-- 閉じるボタン -->
+      <div class="flex justify-end p-4">
+        <button id="close-menu" class="text-2xl">✕</button>
+      </div>
+      <!-- メニュー内容 -->
+      <div class="flex flex-col space-y-6 px-6 text-lg">
+        <div class="underline">
+          <%= link_to "Tips", posts_path, data: { turbo: false }, class: "block" %>
+        </div>
+        <div class="flex flex-col space-y-4 underline">
+          <%= link_to t('devise.sessions.new.sign_in'), new_user_session_path, data: { turbo: false }, class: "block" %>
+          <%= link_to t('devise.registrations.sign_up'), new_user_registration_path, data: { turbo: false }, class: "block" %>
+          <%= button_to user_google_oauth2_omniauth_authorize_path(locale: nil), class: 'btn flex items-center space-x-2 w-full justify-center', data: { turbo: false } do %>
+            <img src="/google_logo.svg" alt="Sign in with Google" width="200" />
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- JS：ハンバーガーメニューの開閉 -->
+  <script>
+    document.addEventListener("turbo:load", () => {
+      const menu = document.getElementById("side-menu");
+      const openBtn = document.getElementById("menu-toggle");
+      const closeBtn = document.getElementById("close-menu");
+
+      openBtn.addEventListener("click", () => {
+        menu.classList.remove("translate-x-full");
+        menu.classList.add("translate-x-0");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        menu.classList.add("translate-x-full");
+        menu.classList.remove("translate-x-0");
+      });
+    });
+  </script>
+</header>

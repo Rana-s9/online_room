@@ -20,7 +20,9 @@
   <% end %>
 
     <div class="text-center mt-4">
-      <%= button_to '<i class="fa-solid fa-plus text-gray/50"></i>'.html_safe, room_exchange_diaries_path(@room), id: "show-form-button", method: :post, class: "text-3xl" %>
+      <%= button_to room_exchange_diaries_path(@room), method: :post, id: "show-form-button" do %>
+        <span class="bg-blue/75 p-2 rounded shadow mb-4 hover:bg-blue-30 transition text-dark-gray"><%= t("buttons.add") %></span>
+      <% end %>
     </div>
 
     <div id="diary-form" class="hidden mt-4">

@@ -1,16 +1,16 @@
 <div class="w-full md:w-2/3 max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6 mt-6">
   <h1 class="text-2xl font-bold text-matcha-green mb-4">
-    <%= @post.post_type == "tips" ? "Tips" : "質問" %> <i class="<%= @post.post_type == 'tips' ? 'fa-solid fa-leaf' : 'fa-solid fa-comment' %>"></i>
+    <%= @post.post_type == "tips" ? "Tips" : t('activerecord.attributes.post.questions') %> <i class="<%= @post.post_type == 'tips' ? 'fa-solid fa-leaf' : 'fa-solid fa-comment' %>"></i>
   </h1>
 
   <div class="bg-beige/40 p-4 rounded shadow mb-6 text-matcha font-semibold">
     <div class="flex mb-2">
       <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-        <%= @post.relationship == "other_relationship" ? @post.custom_relationship : t("activerecord.attributes.post.relationship_options.#{@post.relationship}") %>
+        <%= @post.relationship == "other_relationship" ? @post.custom_relationship : t("views.post.relationship_options.#{@post.relationship}") %>
       </span>
       <span class="text-matcha-green mx-2">×</span>
       <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
-        <%= @post.situation == "other_situation" ? @post.custom_situation : t("activerecord.attributes.post.situation_options.#{@post.situation}") %>
+        <%= @post.situation == "other_situation" ? @post.custom_situation : t("views.post.situation_options.#{@post.situation}") %>
       </span>
     </div>
 
@@ -33,7 +33,6 @@
   </div>
 </div>
 <div class="w-full max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
-  <!-- コメント -->
     <h2 class="text-xl font-bold text-dark-gray mb-4"><%= t("views.post.comment.title") %></h2>
 
     <% if @post.answers.empty? %>

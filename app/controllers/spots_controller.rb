@@ -26,11 +26,17 @@ class SpotsController < ApplicationController
   end
 
   def show
+    @room = Room.find(params[:room_id])
     @spot = Spot.find(params[:id])
+    @comments = @spot.comments.includes(:user).order(created_at: :desc)
+    @comment = Comment.new
   end
 
   def edit
+    @room = Room.find(params[:room_id])
     @spot = @room.spots.find_by(user: current_user, id: params[:id])
+    @comments = @spot.comments.includes(:user)
+    @comment = Comment.new
   end
 
   def update
@@ -69,6 +75,6 @@ class SpotsController < ApplicationController
   end
 
   def spot_params
-    params.require(:spot).permit(:name, :visit_status, :address, :latitude, :longitude, :room_id, :user_id)
+    params.require(:spot).permit(:name, :visit_status, :address, :latitude, :longitude, :room_id, :user_id, :date)
   end
 end
