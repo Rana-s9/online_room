@@ -1,4 +1,3 @@
-<%= link_to "戻る", room_spots_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
 <%= content_for :spot, @spot.name %>
 
 <div class="container pt-5">
@@ -10,17 +9,16 @@
             <h3 class="text-2xl font-semibold text-green-600"><%= @spot.name %></h3>
 
                 <p class="text-sm text-gray-700">
-                <strong>場所ID:</strong> <%= @spot.id %><br>
-                <% status_labels = { "visited" => "行ったことがある", "wanna_visit" => "行きたい" } %>
-                <strong>ステータス:</strong> <%= status_labels[@spot.visit_status] || "不明" %><br>
-                <strong>登録日時:</strong> <%= l(@spot.created_at, format: :long) %><br>
-                <strong>ユーザー:</strong> <%= @spot.user.name %><br>
-                <strong>住所:</strong> <%= @spot.address %>
+                <% status_labels = { "visited" => t("views.spot.visited"), "wanna_visit" => t("views.spot.visit") } %>
+                <strong><%= t("activerecord.attributes.spot.visit_status") %>:</strong> <%= status_labels[@spot.visit_status] || "不明" %><br>
+                <strong><%= t("views.spot.registered") %>:</strong> <%= l(@spot.created_at, format: :long) %><br>
+                <strong><i class="fa-solid fa-user text-blue"></i>:</strong> <%= @spot.user.name %><br>
+                <strong><%= t("views.spot.address") %>:</strong> <%= @spot.address %>
                 </p>
                 <% if @spot.user == current_user %>
                   <%= form_with model: [@room, @spot], local: true, id: 'post-form', class: "max-w-md mx-auto p-6 bg-light-gray rounded-2xl shadow-lg" do |f| %>
                     <% if @spot.errors.any? %>
-                    <div class= "text-bold text-brown">
+                    <div class= "bg-beige/30 text-matcha/75">
                       <ul>
                         <% @spot.errors.full_messages.each do |message| %>
                             <li><%= message %></li>
@@ -28,20 +26,25 @@
                       </ul>
                     </div>
                     <% end %>
-                    <%= f.label :visit_status, "ステータス" %>
+                    <%= f.label :visit_status, t("activerecord.attributes.spot.visit_status") %>
                     <%= f.select :visit_status,
-                    [["行ったことがある", "visited"], ["行きたい", "wanna_visit"]],
-                    { prompt: "ステータスを選ぶ" },
+                    [[t("views.spot.visited"), "visited"], [t("views.spot.visit"), "wanna_visit"]],
+                    { prompt: t("views.spot.select") },
                     class: "bg-dark-gray/75 text-white py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
-                    <!-- 場所名入力 -->
+
                     <div class="mb-4">
-                    <%= f.label :name, "場所の名前 *場所名を適宜変更できます", class: "block text-dark-gray text-sm font-bold mb-2" %>
+                    <%= f.label :name, t("views.spot.edit"), class: "block text-dark-gray text-sm font-bold mb-2" %>
                     <%= f.text_field :name, id: "name", class: "w-full px-4 py-2 bg-gray/50 text-dark-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
                     </div>
-                    <div class="text-center">
-                        <%= f.submit "更新", class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/20 transition duration-200", data: { turbo: false } %>
+
+                    <div class="mb-4">
+                    <%= f.label :date, t("views.spot.date"), class: "block text-dark-gray text-sm font-bold mb-2 mt-2 underline" %>
+                    <%= f.date_field :date, class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
                     </div>
-                    <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, [@room, @spot], data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %>
+                    <div class="text-center">
+                        <%= f.submit t("buttons.update"), class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/20 transition duration-200", data: { turbo: false } %>
+                    </div>
+                    <%= link_to '<i class="fa-solid fa-trash text-lg text-blue"></i>'.html_safe, [@room, @spot], data: { turbo_method: :delete, turbo_confirm: t("flash.alert")} %>
                   <% end %>
                 <% end %>
             </div>
@@ -79,3 +82,17 @@
   }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap&libraries=marker&v=weekly&loading=async" async defer></script>
+
+<div class="w-full max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6 mt-6">
+  <!-- コメント -->
+    <h2 class="text-xl font-bold text-dark-gray mb-4"><%= t("views.spot.comment.title") %></h2>
+
+    <% if @comments.empty? %>
+      <p class="text-gray-600"><%= t("views.spot.comment.nothing") %></p>
+    <% else %>
+      <%= render partial: "comments/comment", collection: @comments, as: :comment %>
+    <% end %>
+</div>
+<%= render 'comments/form', comment: @comment, spot: @spot %>
+
+<%= link_to t("buttons.back"), room_spots_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>

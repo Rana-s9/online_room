@@ -1,0 +1,46 @@
+<div class="w-full md:w-2/3 max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6 mt-6">
+  <h1 class="text-2xl font-bold text-matcha-green mb-4">
+    <%= @post.post_type == "tips" ? "Tips" : t('activerecord.attributes.post.questions') %> <i class="<%= @post.post_type == 'tips' ? 'fa-solid fa-leaf' : 'fa-solid fa-comment' %>"></i>
+  </h1>
+
+  <div class="bg-beige/40 p-4 rounded shadow mb-6 text-matcha font-semibold">
+    <div class="flex mb-2">
+      <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+        <%= @post.relationship == "other_relationship" ? @post.custom_relationship : t("views.post.relationship_options.#{@post.relationship}") %>
+      </span>
+      <span class="text-matcha-green mx-2">×</span>
+      <span class="bg-matcha-green/50 hover:bg-blue/75 text-beige text-sm font-bold px-2 rounded transition duration-200">
+        <%= @post.situation == "other_situation" ? @post.custom_situation : t("views.post.situation_options.#{@post.situation}") %>
+      </span>
+    </div>
+
+    <p><i class="fa-solid fa-user"></i> <%= @post.display_user %></p>
+
+    <div class="flex items-center gap-2 mt-2">
+      <span class="bg-yellow/75 text-matcha-green text-sm font-bold rounded px-2">
+        <%= @post.post_type == "tips" ? "Tip" : "Q." %>
+      </span>
+      <span class="text-2xl font-semibold text-green-600"><%= @post.content %></span>
+    </div>
+
+    <p class="text-gray-700 mt-3">
+      <%= l(@post.created_at, format: :long) %>
+    </p>
+    <div class ="text-center title ">
+        <%= link_to 'share', "https://x.com/share?url=https://our-onlineroom.com/&text=【🏠#{@post.post_type}】～#{@post.content}～を投稿しました！", 
+        title: 'X',class:'fa-brands fa-x-twitter', target: '_blank', rel: "noopener" %>
+    </div>
+  </div>
+</div>
+<div class="w-full max-w-3xl bg-light-gray/40 p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold text-dark-gray mb-4"><%= t("views.post.comment.title") %></h2>
+
+    <% if @post.answers.empty? %>
+      <p class="text-gray-600"><%= t("views.post.comment.nothing") %></p>
+    <% else %>
+      <%= render @answers %>
+    <% end %>
+</div>
+  <%= render 'answers/form', answer: @answer, post: @post %>
+<%= link_to t("buttons.back"), posts_path, class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+

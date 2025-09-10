@@ -1,19 +1,81 @@
 <header>
-    <nav class="border-2 border-brown fixed top-0 w-full z-50">
-      <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
-        <div class= "text-brown">
-          日本語/English
+  <nav class="bg-yellow/30 text-matcha text-sm md:text-lg font-semibold fixed top-0 w-full z-50">
+    <div class="max-w-screen-xl flex items-center justify-between mx-auto p-2 md:p-4">
+      <!-- ロゴ -->
+      <div class="text-md md:text-2xl">
+        <%= link_to "Online Room", root_path, data: { turbo: false } %>
+      </div>
+      <div class="underline">
+        <%= link_to('JA', locale: 'ja', class: "block") %> /
+        <%= link_to('EN', locale: 'en', class: "block") %>
+      </div>
+
+      <button id="menu-toggle" class="md:hidden text-2xl focus:outline-none">
+        ☰
+      </button>
+
+      <!-- PC用メニュー -->
+      <div class="hidden md:flex md:flex-row md:items-center md:space-x-4 text-sm md:text-lg">
+        <div class="underline">
+          <%= link_to "Tips", posts_path, data: { turbo: false }, class: "confirm-on-leave" %>
         </div>
-        <div class="text-xl text-brown text-center">
-          <%= link_to "Online Room", root_path, data: { turbo: false }, method: :delete %>
+        <div class="underline">
+          <%= link_to t('views.room.front_door'), rooms_path, data: { turbo: false }, class: "confirm-on-leave" %>
         </div>
-        <div class="text-brown flex space-x-2">
-          <%= link_to "玄関に行く", rooms_path,data: { turbo: false }, method: :delete %>
+        <div class="underline">
+          <%= link_to t('devise.sessions.signed_out_button'), destroy_user_session_path, method: :delete, data: { turbo: false } %>
         </div>
-        <div class="text-brown flex space-x-4">
-          <%= link_to "ログアウト", destroy_user_session_path,data: { turbo: false }, method: :delete %>
+        <div class="underline">
+          <%= link_to "#{current_user.name} さん", user_path, class: "btn" %>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
+
+    <!-- モバイル用スライドメニュー -->
+    <div id="side-menu" class="fixed top-0 right-0 h-full w-auto max-w-xs bg-white text-matcha shadow-lg transform translate-x-full transition-transform duration-300 z-60 md:hidden">
+      <div class="flex justify-end p-4">
+        <button id="close-menu" class="text-2xl">✕</button>
+      </div>
+      <div class="flex flex-col space-y-4 px-6 text-lg underline">
+        <%= link_to "Tips", posts_path, data: { turbo: false }, class: "confirm-on-leave" %>
+        <%= link_to t('views.room.front_door'), rooms_path, data: { turbo: false }, class: "confirm-on-leave" %>
+        <%= link_to t('devise.sessions.signed_out_button'), destroy_user_session_path, method: :delete, data: { turbo: false } %>
+        <%= link_to "#{current_user.name} さん", user_path %>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    document.addEventListener("turbo:load", function () {
+      const menu = document.getElementById("side-menu");
+      const openBtn = document.getElementById("menu-toggle");
+      const closeBtn = document.getElementById("close-menu");
+      const leaveMessage = document.querySelector("meta[name='leave-room-message']").content;
+
+      openBtn?.addEventListener("click", () => {
+        menu.classList.remove("translate-x-full");
+        menu.classList.add("translate-x-0");
+      });
+
+      closeBtn?.addEventListener("click", () => {
+        menu.classList.add("translate-x-full");
+        menu.classList.remove("translate-x-0");
+      });
+
+      const links = document.querySelectorAll(".confirm-on-leave");
+      links.forEach(link => {
+        link.addEventListener("click", function (event) {
+          const currentPath = window.location.pathname;
+          const showPageRegex = /^(\/[a-z]{2})?\/rooms\/.+$/;
+          if (showPageRegex.test(currentPath)) {
+            const confirmed = confirm(leaveMessage);
+            if (!confirmed) {
+              event.preventDefault();
+            }
+          }
+        });
+      });
+    });
+  </script>
+</header>
 

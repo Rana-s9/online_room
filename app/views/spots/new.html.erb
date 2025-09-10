@@ -1,5 +1,5 @@
 <h1 class="text-gray text-xl text-center mb-5">
-  <i class="fa-solid fa-map-pin text-red-300"></i>場所名を入力したら、必ず検索を押してから登録してください <br>
+  <i class="fa-solid fa-map-pin text-red-500"></i><%= t("views.spot.flow") %> <br>
 </h1>
 <div class="flex">
   <div class="w-full">
@@ -7,9 +7,7 @@
       <%= render 'form' %>
       <%= render 'spot' %>
     <% else %>
-      <h1 class= "text-3xl text-gray"> 場所を登録するには、ログインが必要です<i class="fa-solid fa-tree text-moss-green"></i></h1>
+      <h1 class= "text-3xl text-gray"><%= t("views.spot.need_login") %><i class="fa-solid fa-tree text-moss-green"></i></h1>
     <% end %>
   </div>
 </div>
-
-<%= link_to "戻る", room_spots_path(@room) %>

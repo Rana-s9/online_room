@@ -1,32 +1,34 @@
-<h1 class="text-dark-gray font-bold"><%= current_user.name %>さんの "<%= @room.name %>" 用のメッセージ管理画面</h1>
-<%= link_to "新規メッセージ作成", new_room_greeting_path(), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray" %>
+<h1 class="text-dark-gray font-bold"><%= t("views.greeting.greeting_setting", user: current_user.name, room: @room.name) %></h1>
+<%= link_to t("buttons.new"), new_room_greeting_path(), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray" %>
 <div class="w-full max-w-md mx-auto bg-light-gray/40 p-6 rounded-lg shadow-lg mt-4">
     <% if @return.present? %>
-        <h2 class="text-matcha font-bold">ただいまメッセージ一覧</h2>
+        <h2 class="text-matcha font-bold"><%= t("views.greeting.return_message") %></h2>
         <% @greetings.return.each do |greeting| %>
             <% if greeting.user == current_user %>
             <div class="flex text-dark-gray">
                 <%= l(greeting.created_at, format: :short) %>
-                <h1>「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
+                <h1 class = "text-matcha">「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
             </div>
             <% end %>
         <% end %>
     <% else %>
-        <h2 class="text-gray">※「ただいまメッセージ」の登録はまだありません</h2>
+        <h2 class="text-gray"><%= t("views.greeting.none_return") %></h2>
     <% end %>
 </div>
 
 <div class="w-full max-w-md mx-auto bg-light-gray/40 p-6 rounded-lg shadow-lg mt-4">
     <% if @welcome.present? %>
-        <h2 class="text-matcha font-bold">おかえりメッセージ一覧</h2>
+        <h2 class="text-matcha font-bold"><%= t("views.greeting.welcome_message") %></h2>
         <% @greetings.welcome.each do |greeting| %>
+          <% if greeting.user == current_user %>
             <div class="flex text-dark-gray">
                 <%= l(greeting.created_at, format: :short) %>
-                <h1>「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
+                <h1 class = "text-matcha">「<%= link_to greeting.message, edit_room_greeting_path(@room, greeting) %>」</h1>
             </div>
+          <% end %>
         <% end %>
     <% else %>
-        <h2 class="text-gray">※「おかえりメッセージ」の登録はまだありません</h2>
+        <h2 class="text-gray"><%= t("views.greeting.none_welcome") %></h2>
     <% end %>
 </div>
-<%= link_to "#{@room.name}🏠に戻る", room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition" %>
+<%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>

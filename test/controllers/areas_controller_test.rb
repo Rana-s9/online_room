@@ -10,7 +10,7 @@ class AreasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get rooms_url
+    get rooms_url(locale: :ja)
     assert_response :success
   end
 end

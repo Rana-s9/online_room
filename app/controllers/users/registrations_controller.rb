@@ -38,6 +38,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def build_resource(hash = {})
+    hash[:uid] = User.create_unique_string
+    super
+  end
+
+  def update_resource(resource, params)
+    return super if params["password"].present?
+
+    resource.update_without_password(params.except("current_password"))
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -52,7 +63,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    root_path
+    rooms_path
   end
 
   # The path used after sign up for inactive accounts.
