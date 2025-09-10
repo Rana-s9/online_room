@@ -1,1 +1,100 @@
-<%= image_tag '/room_top2.png', class: 'mx-auto max-w-xl w-full h-auto' %>
+<section class="w-full mx-auto max-w-2xl lg:max-w-full h-auto flex items-center justify-center mt-6 relative overflow-hidden px-6 lg:px-24">
+  <img src="/room.jpg" alt="" class="w-full h-auto object-contain object-center" />
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-white p-6 rounded">
+    <h1 class="text-2xl mb-4"><%= t("views.top.welcome") %></h1>
+    <h1 class="text-2xl animate-bounce mt-6" data-aos="fade-up">Scroll☟</h1>
+  </div>
+</section>
+<section class="bg-matcha-green/20 p-6 rounded-lg max-w-4xl mx-auto my-12 text-center">
+  <h2 class="text-xl font-bold mb-4"><%= t("views.top.messages.one") %></h2>
+  <p class="mb-2"><%= t("views.top.messages.two") %></p>
+  <p class="mb-4"><%= t("views.top.messages.three") %></p>
+</section>
+<section class="px-4 py-12 w-full flex items-center justify-center bg-white px-4">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <div class="w-full md:w-1/2">
+      <%= image_tag '/registration.png', class: 'w-full h-auto rounded shadow-md' %>
+    </div>
+    <div class="w-full md:w-1/2 text-center md:text-left">
+      <h1 class="text-4xl font-semibold mb-4">Step 1</h1>
+      <p class="text-lg text-gray-600">
+        <%= t("views.top.create_account") %><br>
+        <%= t("views.top.login_instruction") %>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="px-4 py-12 w-full flex items-center justify-center bg-gray-100">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <div class="w-full md:w-1/2 text-center md:text-right">
+      <h1 class="text-4xl font-semibold mb-4">Step 2</h1>
+      <p class="text-lg text-gray-600">
+        <%= t("views.top.make_room") %><br>
+        <%= t("views.top.entrance_click") %>
+      </p>
+    </div>
+    <div class="w-full md:w-1/2">
+      <%= image_tag '/new_room.gif', class: 'w-full h-auto rounded shadow-md' %>
+    </div>
+
+  </div>
+</section>
+
+<section class="px-4 py-12 w-full flex items-center justify-center bg-white">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <div class="w-full md:w-1/2">
+      <%= image_tag '/area.gif', class: 'w-full h-auto rounded shadow-md' %>
+    </div>
+    <div class="w-full md:w-1/2 text-center md:text-left">
+      <h1 class="text-4xl font-semibold mb-4">Step 3</h1>
+      <p class="text-lg text-gray-600">
+        <%= t("views.top.register_location") %><br>
+        <%= t("views.top.location_note") %>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="px-4 py-12 w-full flex items-center justify-center bg-gray-100">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <div class="w-full md:w-1/2 text-center md:text-right">
+      <h1 class="text-4xl font-semibold mb-4">Step 4</h1>
+      <p class="text-lg text-gray-600">
+        <%= t("views.top.invite_partner") %><br>
+        <%= t("views.top.entrance_click_again") %>
+      </p>
+      <p>1. <%= t("views.top.invite_click") %></p>
+      <p>2. <%= t("views.top.copy_link") %></p>
+      <p>3. <%= t("views.top.send_to_partner") %></p>
+    </div>
+    <div class="w-full md:w-1/2">
+      <%= image_tag '/invitation.gif', class: 'w-full h-auto rounded shadow-md' %>
+    </div>
+  </div>
+</section>
+
+<section class="px-4 py-12 w-full flex items-center justify-center bg-white">
+  <div class="flex flex-col md:flex-row items-center justify-center max-w-5xl w-full gap-8" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Step 5</h2>
+    <p class="text-base text-gray-600"><%= t("views.top.daily_life") %><br><%= t("views.top.seven_features") %></p>
+    <ul class="mt-2 text-left">
+      <li>1. <i class="fa-solid fa-cloud text-matcha"></i><%= t("views.top.weather_share") %></li>
+      <li>2. <i class="fa-solid fa-message text-matcha"></i><%= t("views.top.whiteboard") %></li>
+      <li>3. <i class="fa-solid fa-comments text-matcha"></i><%= t("views.top.greeting_message") %></li>
+      <li>4. <i class="fa-solid fa-book text-matcha"></i><%= t("views.top.diary") %></li>
+      <li>5. <i class="fa-solid fa-location-pin text-matcha"></i><%= t("views.top.favorite_place") %></li>
+      <li>6. <i class="fa-solid fa-heart-circle-check text-matcha"></i><%= t("views.top.condition_check") %></li>
+      <li>
+        7. <i class="fa-solid fa-calendar-days text-matcha"></i><%= t("views.top.calendar.one") %>
+        <ul class="list-disc pl-5 mt-2">
+          <li><%= t("views.top.calendar.two") %></li>
+          <li><%= t("views.top.calendar.three") %></li>
+          <li><%= t("views.top.calendar.four") %></li>
+          <li><%= t("views.top.calendar.five") %></li>
+        </ul>
+        <div class="text-red-500"><%= t("views.top.calendar.six") %></div>
+      </li>
+    </ul>
+  </div>
+</section>

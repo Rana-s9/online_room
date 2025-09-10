@@ -1,0 +1,129 @@
+<div class="text-center text-2xl font-bold underline mt-4"><%= t("views.footer.privacy_policy_line") %></div>
+<div class="flex justify-center mt-8">
+  <div class="text-left max-w-2xl w-full">
+    <div class="font-bold"><%= t("views.privacy_policy.retrieve_info.one") %></div>
+    <div class="pl-5">
+      <p>
+        <%= t("views.privacy_policy.retrieve_info.two") %>
+      </p>
+      <ul class="list-disc pl-5 mt-2">
+        <li><%= t("views.privacy_policy.retrieve_info.three") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.four") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.five") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.six") %><br>
+        <li><%= t("views.privacy_policy.retrieve_info.seven") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.eight") %></li>
+        <li><%= t("views.privacy_policy.retrieve_info.nine") %></li>
+      </ul>
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.purpose.one") %></div>
+    <div class="pl-5">
+      <p>
+        <%= t("views.privacy_policy.purpose.two") %>
+      </p>
+      <ul class="list-disc pl-5 mt-2">
+        <li><%= t("views.privacy_policy.purpose.three") %></li>
+        <li><%= t("views.privacy_policy.purpose.four") %></li>
+        <li><%= t("views.privacy_policy.purpose.five") %></li>
+        <li><%= t("views.privacy_policy.purpose.six") %><br>
+        <li><%= t("views.privacy_policy.purpose.seven") %></li>
+        <li><%= t("views.privacy_policy.purpose.eight") %></li>
+        <li><%= t("views.privacy_policy.purpose.nine") %></li>
+        <li><%= t("views.privacy_policy.purpose.ten") %></li>
+        <li><%= t("views.privacy_policy.purpose.eleven") %></li>
+        <li><%= t("views.privacy_policy.purpose.twelve") %></li>
+        <li><%= t("views.privacy_policy.purpose.thirteen") %></li>
+      </ul>
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.google_connect.one") %></div>
+    <div class="pl-5">
+      <p>
+        <%= t("views.privacy_policy.google_connect.two") %>
+      </p>
+      <ul class="list-disc pl-5 mt-2">
+        <li><%= t("views.privacy_policy.google_connect.three") %></li>
+        <li><%= t("views.privacy_policy.google_connect.four") %></li>
+        <li><%= t("views.privacy_policy.google_connect.five") %></li>
+        <li><%= t("views.privacy_policy.google_connect.six") %><br>
+        <li><%= t("views.privacy_policy.google_connect.seven") %></li>
+        <li><%= t("views.privacy_policy.google_connect.eight") %></li>
+        <li><%= t("views.privacy_policy.google_connect.disconnect_notice", link: link_to(t("views.privacy_policy.google_connect.account_settings"), "https://myaccount.google.com/permissions", class: "text-matcha underline")).html_safe %></li>
+      </ul>
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.data_share.one") %></div>
+    <div class="pl-5">
+      <p>
+        <%= t("views.privacy_policy.data_share.two") %>
+      </p>
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.google_protection.one") %></div>
+    <div class="pl-5">
+      <p>
+        <%= t("views.privacy_policy.google_protection.two") %>
+      </p>
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.google_save_period.one") %></div>
+    <div class="pl-5">
+      <p>
+        <%= t("views.privacy_policy.google_save_period.two") %>
+      </p>
+      <ul class="list-disc pl-5 mt-2">
+        <li><%= t("views.privacy_policy.google_save_period.three") %></li>
+        <li><%= t("views.privacy_policy.google_save_period.four") %></li>
+        <li><%= t("views.privacy_policy.google_save_period.five") %></li>
+        <li><%= t("views.privacy_policy.google_save_period.six", link: link_to(t("views.footer.contact"), contact_path, class: "text-matcha underline")).html_safe %>
+      </ul>
+    </div>
+
+
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.security.one") %></div>
+    <div class="pl-5">
+      <p>
+      <%= t("views.privacy_policy.security.two") %>
+      </p>  
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.provision.one") %></div>
+    <div class="pl-5">
+      <p>
+      <%= t("views.privacy_policy.provision.two") %>
+      </p>
+      <ul class="list-disc pl-5 mt-2">
+        <li><%= t("views.privacy_policy.provision.three") %></li>
+        <li><%= t("views.privacy_policy.provision.four") %></li>
+        <li><%= t("views.privacy_policy.provision.five") %></li>
+        <li><%= t("views.privacy_policy.provision.six") %></li>
+      </ul>
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.access.one") %></div>
+    <div class="pl-5">
+      <p>
+      <%= t("views.privacy_policy.access.analytics", link: link_to(t("views.privacy_policy.access.here"), I18n.locale == :ja ? "https://marketingplatform.google.com/about/analytics/terms/jp/" : "https://marketingplatform.google.com/about/analytics/terms/us/", class: "text-matcha underline")).html_safe %>
+      </p>
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.privacy_policy.policy_change.one") %></div>
+    <div class="pl-5">
+      <p>
+      <%= t("views.privacy_policy.policy_change.two") %>
+      </p>
+    </div>
+
+    <div class="font-bold mt-4"><%= t("views.footer.contact") %></div>
+    <div class="pl-5">
+      <p>
+      <%= t("views.privacy_policy.contact.one", link: link_to(t("views.footer.contact"), contact_path, class: "text-matcha underline")).html_safe %>
+      </p>
+    </div>
+    <div class="mt-4">
+    <%= t("views.privacy_policy.date") %>
+    </div>
+  </div>
+</div>

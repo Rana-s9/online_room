@@ -1,0 +1,110 @@
+<div class="mb-6">
+  <div class="text-dark-gray">
+    <h1><%= t("views.post.note") %></h1>
+    <%= form_with model: @post, local: true, class: "max-w-md mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-2" do |f| %>
+      <% if @post.errors.any? %>
+        <div class= "bg-beige/30 text-matcha/75 font-bold">
+          <ul class="list-disc pl-5">
+            <% @post.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.label :relationship, t("activerecord.attributes.post.relationship"), class: "text-dark-gray" %>
+      <div class="space-y-2">
+      <%= f.select :relationship,
+          [[t("views.post.relationship_options.partner"), "partner"], [t("views.post.relationship_options.friend"), "friend"], [t("views.post.relationship_options.family"), "family"], [t("views.post.relationship_options.other_relationship"), "other_relationship"]],
+          { prompt: t("views.post.select_relationship") }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "relationship-select" %>
+      <div id="custom-relationship-field" style="display: none;" class="mt-2">
+        <%= f.label :custom_relationship, t("activerecord.attributes.post.custom_relationship"), class: "text-dark-gray" %>
+        <%= f.text_field :custom_relationship,placeholder: t("views.post.select_relationship"), class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+      </div>
+
+      <%= f.label :post_type, t("activerecord.attributes.post.post_type"), class: "text-dark-gray" %>
+      <%= f.select :post_type,
+          [[t("views.post.post_type_options.tips"), "tips"], [t("views.post.post_type_options.question"), "question"]],
+          { prompt: t("views.post.select_type") }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha" %>
+
+      <%= f.label :situation, t("activerecord.attributes.post.situation"), class: "text-dark-gray" %>
+      <%= f.select :situation,
+          [[t("views.post.situation_options.long_distance"), "long_distance"], [t("views.post.situation_options.sometimes_meet"), "sometimes_meet"], [t("views.post.situation_options.living_together"), "living_together"], [t("views.post.situation_options.other_situation"), "other_situation"]],
+          { prompt: t("views.post.select_situation") }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "situation-select" %>
+      <div id="custom-situation-field" style="display: none;" class="mt-2">
+        <%= f.label :custom_situation, t("activerecord.attributes.post.custom_situation"), class: "text-dark-gray" %>
+        <%= f.text_field :custom_situation, placeholder: t("views.post.enter_situation"), class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+      </div>
+
+      <%= f.label :content, t("activerecord.attributes.post.content"), class: "text-dark-gray" %>
+      <%= f.text_area :content, placeholder: t("views.post.enter_content"), class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+
+      <%= f.label :display_name, t("activerecord.attributes.post.display_name"), class: "text-dark-gray" %>
+      <%= f.select :display_name,
+          [["#{current_user.name}", "username"], [t("views.post.display_name_options.anonymous"), "anonymous"], [t("views.post.display_name_options.nickname"), "nickname"]],
+          { prompt: t("views.post.select_name") }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha", id: "name-select" %>
+      <div id="custom-name-field" style="display: none;" class="mt-2">
+        <%= f.label :custom_name, t("activerecord.attributes.post.custom_name"), class: "text-dark-gray" %>
+        <%= f.text_field :custom_name,placeholder: t("views.post.enter_name"), class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+      </div>
+
+      <div class="text-center">
+        <%= f.submit t("buttons.save"), class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class= "text-center mt-6">
+  <%= link_to t("buttons.back"), posts_path, class: "bg-light-gray/75 p-4 rounded shadow mb-4 hover:bg-blue-30 transition text-dark-gray" %>
+</div>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    // Relationship
+    const relationshipSelect = document.getElementById("relationship-select");
+    const relationshipField = document.getElementById("custom-relationship-field");
+
+    function toggleRelationshipField() {
+      if (relationshipSelect.value === "other_relationship") {
+        relationshipField.style.display = "block";
+      } else {
+        relationshipField.style.display = "none";
+      }
+    }
+
+    relationshipSelect.addEventListener("change", toggleRelationshipField);
+    toggleRelationshipField();
+
+    // Situation
+    const situationSelect = document.getElementById("situation-select");
+    const situationField = document.getElementById("custom-situation-field");
+
+    function toggleSituationField() {
+      if (situationSelect.value === "other_situation") {
+        situationField.style.display = "block";
+      } else {
+        situationField.style.display = "none";
+      }
+    }
+
+    situationSelect.addEventListener("change", toggleSituationField);
+    toggleSituationField();
+
+    // Display Name
+    const nameSelect = document.getElementById("name-select");
+    const nameField = document.getElementById("custom-name-field");
+
+    function toggleNameField() {
+      if (nameSelect.value === "nickname") {
+        nameField.style.display = "block";
+      } else {
+        nameField.style.display = "none";
+      }
+    }
+
+    nameSelect.addEventListener("change", toggleNameField);
+    toggleNameField();
+  });
+</script>
+

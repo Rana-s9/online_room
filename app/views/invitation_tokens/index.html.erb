@@ -1,31 +1,86 @@
-<h2>招待トークン一覧</h2>
+<div class="max-w-2xl mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-2">
+  <div class="text-center">
+  <h1 class="text-dark-gray font-bold"><%= t("views.invitation.link_list") %></h1>
+  <% if @valid_tokens.present? %>
+    <% @valid_tokens.each do |token| %>
+      <div class="bg-beige p-4 rounded shadow mb-4">
+        <div class="flex justify-center">
+          <div id="post_<%= token.id %>" class="inline-block">
+            <%= link_to t("views.invitation.link"), join_roommate_lists_url(token: token.token), target: "_blank", class: "text-brown" %>
+            <h1 class="text-matcha-green font-semibold"><%= t("views.invitation.expiration") %>：<%= l(token.expires_at, format: :short) %></h1>
+            <h1 class="text-matcha-green font-semibold"><%= t("views.invitation.token_id") %>:No.<%= token.id %></h1>
+          </div>
 
-<%= form_with url: room_invitation_tokens_path(@room), method: :post, local: true, data: { turbo: false } do |f| %>
-  <%= f.submit "トークンを発行する", class: "btn btn-primary" %>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>トークン</th>
-      <th>有効期限</th>
-      <th>使用済み？</th>
-      <th>発行日</th>
-      <th>使用日</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invitation_tokens.each do |token| %>
-      <tr>
-        <td><%= token.token %></td>
-        <td>
-          <%= link_to "招待リンク", join_roommate_lists_url(token: token.token), target: "_blank" %>
-        </td>
-        <td><%= l(token.expires_at, format: :short) %></td>
-        <td><%= token.used_at.present? ? "はい" : "いいえ" %></td>
-        <td><%= l(token.created_at, format: :short) %></td>
-        <td><%= token.used_at ? l(token.used_at, format: :short) : "-" %></td>
-      </tr>
+          <div class="float-right ml-2 text-brown">
+            <button
+              class="copy-button btn btn-outline-secondary btn-sm"
+              data-url="<%= join_roommate_lists_url(token: token.token) %>"
+              data-copy-text="<%= t('views.invitation.copy') %>"
+              data-copied-text="<%= t('views.invitation.copied') %>"
+            >
+              <i class="far fa-copy mr-1"></i>
+              <span class="copy-text font-bold"><%= t("views.invitation.copy") %></span>
+            </button>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  <% else %>
+        <h1 class="text-matcha font-bold"><%= t("views.invitation.no_link") %><br>
+        <%= t("views.invitation.new_token") %></h1>
+  <% end %>
+
+    <%= form_with url: room_invitation_tokens_path(@room), method: :post, local: true, data: { turbo: false } do |f| %>
+      <%= f.submit t("views.invitation.add"), class: "bg-light-blue text-dark-gray px-4 py-2 mt-2 rounded hover:bg-light-blue/80 transition" %>
+    <% end %>
+    <div class="text-dark-gray mt-2">
+      <p><%= t("views.invitation.note1") %></p>
+      <p><%= t("views.invitation.note2") %></p>
+      <p class="underline"><%= t("views.invitation.note3") %></p>
+      <p class="underline"><%= t("views.invitation.note4") %></p>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-2xl mx-auto p-6 bg-light-gray/50 rounded-2xl shadow-lg mt-4">
+  <h2 class="text-center text-dark-gray font-bold"><%= t("views.invitation.history") %></h2>
+  <div class="flex justify-center items-center my-2 space-x-4">
+    <table>
+      <thead>
+        <tr>
+          <th><%= t("views.invitation.id") %></th>
+          <th><%= t("views.invitation.expiration") %></th>
+          <th><%= t("views.invitation.status") %></th>
+          <th><%= t("views.invitation.date_issued") %></th>
+          <th><%= t("views.invitation.date_used") %></th>
+          <th><%= t("views.invitation.expiry") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @invitation_tokens.each do |token| %>
+          <tr>
+            <td>No.<%= token.id %></td>
+            <td><%= l(token.expires_at, format: :short) %></td>
+            <td>
+              <% if token.used_at.present? %>
+                <span class="text-blue font-semibold"><%= t("views.invitation.used") %></span>
+              <% else %>
+                <span class="text-matcha-green font-semibold"><%= t("views.invitation.unused") %></span>
+              <% end %>
+            </td>
+            <td><%= l(token.created_at, format: :short) %></td>
+            <td><%= token.used_at ? l(token.used_at, format: :short) : "-" %></td>
+            <td>
+              <% if token.expires_at < Time.current %>
+                <span class="text-blue font-semibold">✕</span>
+              <% else %>
+                <span class="text-matcha-green font-semibold">〇</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>

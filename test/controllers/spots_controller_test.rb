@@ -11,7 +11,7 @@ class SpotsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get room_spots_url(@room)
+    get room_spots_url(@room, locale: :ja)
     assert_response :success
   end
 end

@@ -11,7 +11,7 @@ class GreetingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get room_greetings_url(@room)
+    get room_greetings_url(@room, locale: :ja)
     assert_response :success
   end
 end

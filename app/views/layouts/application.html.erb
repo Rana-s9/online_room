@@ -1,41 +1,74 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-22971Z128V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-22971Z128V');
+    </script>
+
+    <title><%= content_for(:title) || "Online_Room" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= yield :head %>
 
-    <% flash.each do |key, message| %>
-      <% text_color = key == "notice" ? "text-matcha" : "text-red-500" %>
-      <div class="flash <%= key %> <%= text_color %> font-semibold">
-        <%= message %>
-      </div>
-    <% end %>
-
     <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <!-- stylesheet_link_tag :app, "data-turbo-track": "reload" %>-->
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= display_meta_tags(default_meta_tags) %>
 
-    <script src="https://kit.fontawesome.com/3e9d8d532b.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- 補助ローダーやコントロール（非モジュール版） -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/DRACOLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <meta name="leave-room-message" content="<%= t('flash.leave_room') %>">
   </head>
 
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen bg-beige font-natural">
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
-    <main class="container mx-auto flex-1 flex flex-col justify-center items-center bg-beige">
+    <% flash.each do |key, message| %>
+      <% text_color = key == "notice" || key == "just_signed_in" ? "text-matcha-green" : "text-red-400" %>
+      <div class="flash <%= key %> <%= text_color %> font-semibold">
+        <%= message %>
+      </div>
+    <% end %>
+    <main class="pt-12 flex-1 <%= content_for?(:main_class) ? yield(:main_class) : 'container mx-auto flex-1 flex flex-col justify-center items-center' %>">
       <%= yield %>
     </main>
-    <%= render 'shared/footer' %>
+    <% unless controller.controller_name == 'rooms' && controller.action_name == 'show' %>
+      <%= render 'shared/footer' %>
+    <% end %>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>

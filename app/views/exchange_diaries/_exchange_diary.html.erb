@@ -1,9 +1,19 @@
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="gap-6">
   <div class="bg-light-gray/75 p-4 my-4 rounded shadow text-dark-gray">
-    <p class="mt-2 text-gray"><%= @diary_order.index(diary.id) + 1 %>日記目</p>
-    <div class="text-sm"><%= diary.created_at.strftime("%y年%m月%d日") %></div>
+    <p class="mt-2 text-gray"><%= t("views.diary.count", number: @diary_order.index(diary.id) + 1) %></p>
+    <div class="text-sm"><%= diary.created_at.strftime("%y/%m/%d") %></div>
     <% if diary.user == current_user %>
-      <!-- 非同期編集可能エリア -->
+      <div class= "text-right">
+        <% read_count = diary.reads.size %>
+        <% if read_count == 1 %>
+          <%= t("flash.read.success") %>
+          <i class='fa-solid fa-user'></i>
+        <% else %>
+          <%= t('flash.read.success') %>
+          <i class='fa-solid fa-user'></i>
+          <%= read_count %>
+        <% end %>
+      </div>
       <div
         data-controller="diary"
         data-diary-room-id-value="<%= @room.id %>"
@@ -11,20 +21,18 @@
         data-diary-target="diary"
         data-action="input->diary#save"
         contenteditable="true"
-        class="min-h-[100px] whitespace-pre-wrap focus:outline-none border rounded p-2 bg-white"
+        class="min-h-[100px] whitespace-pre-wrap focus:outline-none rounded p-2 bg-beige"
       >
         <%= h(diary.body) %>
       </div>
-      <p>diary.id: <%= diary.id.inspect %></p>
 
       <div class="flex justify-end mt-2 gap-x-2">
         <div class="text-sm"><%= diary.user.name %></div>
         <div>
-          <%= link_to '<i class="fa-solid fa-eraser text-xl"></i>'.html_safe, room_exchange_diary_path(@room, diary), data: { turbo_method: :delete, turbo_confirm: "本当に日記を消しますか？" } %>
+          <%= link_to '<i class="fa-solid fa-eraser text-xl"></i>'.html_safe, room_exchange_diary_path(@room, diary), data: { turbo_method: :delete, turbo_confirm: t("flash.alert") } %>
         </div>
       </div>
     <% else %>
-      <!-- 通常表示 -->
       <p class="mt-2"><%= diary.body %></p>
       <div class="text-right mt-2 text-sm"><%= diary.user.name %></div>
     <% end %>

@@ -1,0 +1,26 @@
+<%= link_to t("views.state_calendar.button"), room_state_calendars_path(@room), class: "bg-light-gray/75 p-4 rounded shadow mb-4" %>
+
+<div class="bg-light-gray/75 p-4 rounded shadow mb-4">
+  <p class="text-dark-gray mb-2">
+    <%= @state_calendar.date.strftime("%Y/%m/%d") %>
+  </p>
+
+  <p class="text-dark-gray mb-2">
+    <strong><%= t("views.state_calendar.mental_state") %>:</strong>
+    <span class="inline-block px-2 py-1 rounded bg-yellow text-dark-gray">
+      <%= t("views.state_calendar.#{mental_key(@state_calendar.mental_state)}") %>
+    </span>
+  </p>
+
+  <p class="text-dark-gray mb-2">
+    <strong><%= t("views.state_calendar.physical_state") %>:</strong>
+    <span class="inline-block px-2 py-1 rounded bg-light-blue/30 text-dark-gray">
+      <%= t("views.state_calendar.#{physical_key(@state_calendar.physical_state)}") %>
+    </span>
+  </p>
+
+</div>
+
+<div class="flex justify-center">
+  <%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mt-4 text-brown font-bold hover:bg-brown/70 transition" %>
+</div>

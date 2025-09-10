@@ -1,20 +1,22 @@
-<div class="text-center mt-4">
+<div class="fixed top-[400px] right-0 z-40 bg-white/50 p-4 rounded-lg shadow-md justify-end">
   <button id="calendar-button" class="text-3xl">
-    <i class="fa-regular fa-calendar-days"></i>
+    <i class="fa-regular fa-calendar-days text-blue"></i>
   </button>
 </div>
 
-<div
-  id="calendar-wrapper"
-  class="hidden inline-block max-w-[30%] w-full cursor-pointer rounded shadow-lg hover:ring-2 hover:ring-blue transition"
-  data-url="<%= room_state_calendars_path(@room) %>"
->
-  <%= week_calendar(events: @state_calendars, attribute: :calendar_date) do |date, states_on_day| %>
-    <% states_on_day.each do |state| %>
-      <p><%= state.mental_state %></p>
-      <p><%= state.physical_state %></p>
+<div class="fixed top-[450px] right-0 z-40 p-4 flex justify-end">
+  <div
+    id="calendar-wrapper"
+    class="hidden inline-block max-w-[30%] w-full cursor-pointer rounded shadow-lg hover:ring-2 hover:ring-blue transition"
+    data-url="<%= room_state_calendars_path(@room) %>"
+  >
+    <%= week_calendar(events: @state_calendars, attribute: :calendar_date) do |date, states_on_day| %>
+      <% states_on_day.each do |state| %>
+        <p><%= state.mental_state %></p>
+        <p><%= state.physical_state %></p>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
 <script>

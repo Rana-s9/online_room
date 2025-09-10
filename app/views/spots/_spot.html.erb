@@ -6,6 +6,7 @@
     const addressInput = document.getElementById("address");
     const placeNameInput = document.getElementById("fav_name");
     const searchBtn = document.getElementById("btn-search");
+    const nameInput = document.getElementById("name");
 
     map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 35.681236, lng: 139.767125 }, // 東京駅初期値
@@ -17,11 +18,18 @@
 
     searchBtn.addEventListener("click", async function (e) {
       e.preventDefault();
-      const query = addressInput.value;
-      if (!query) return;
 
-      // Geocoding API リクエスト
-      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(query)}&key=<%= ENV['GOOGLE_MAPS_API'] %>`;
+      const typedAddress = addressInput.value.trim();
+
+      const lastWord = typedAddress.split(/[\s　]+/).pop();
+
+      if (nameInput.value.trim() === "") {
+        nameInput.value = lastWord;
+      }
+
+      if (!typedAddress) return;
+
+      const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(typedAddress)}&key=<%= ENV['GOOGLE_MAPS_API'] %>`;
       const response = await fetch(geocodeUrl);
       const data = await response.json();
 
@@ -40,21 +48,17 @@
       document.getElementById("selected-address").value = place.formatted_address;
       addressInput.value = place.formatted_address;
 
-      // 中心移動（マップ初期化は行わない）
       map.setCenter(location);
 
-      // マーカー更新
       if (marker) marker.setMap(null);
       marker = new google.maps.marker.AdvancedMarkerElement({
         map: map,
         position: location
       })
 
-      // Hidden 保存
       setHiddenField("spot[latitude]", "lat", lat);
       setHiddenField("spot[longitude]", "lng", lng);
 
-      // 場所名抽出
       const components = place.address_components;
       const placeComponent = components.find(c =>
         c.types.includes("premise") || c.types.includes("point_of_interest") || c.types.includes("establishment")
@@ -79,5 +83,4 @@
   }
 </script>
 
-<!-- Google Maps 読み込み -->
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API'] %>&callback=initMap&libraries=marker&v=weekly&loading=async" async defer></script>

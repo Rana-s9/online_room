@@ -1,0 +1,86 @@
+<div class="relative min-h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-matcha-green text-xl font-bold mt-6"><%= t('views.calendar.calendar_name', name: @room.name) %></h1>
+
+    <%= button_to import_room_calendars_path(@room),
+          method: :post,
+          class: "flex items-center gap-2 bg-white border border-light-gray rounded-lg shadow-md px-4 py-2 text-dark-gray font-medium hover:bg-light_gray/30 transition",
+          data: { turbo: false } do %>
+      <%= image_tag '/Google_Calendar.png', alt: t('views.calendar.google_calendar'), width: 32, height: 32 %>
+      <span><%= t('views.calendar.google_calendar') %></span>
+    <% end %>
+    <div class="text-sm">
+      <%= t("views.calendar.notice_delete.one") %><br>
+      <%= t("views.calendar.notice_delete.two") %><br>
+      <%= t("views.calendar.notice_delete.three") %><br>
+    </div>
+
+    <div class="inline-block mt-6 mb-4 bg-matcha-green/20 p-2 rounded shadow-lg text-matcha font-bold hover:bg-brown/30 transition">
+      <%= link_to t('views.calendar.private'), room_calendars_path(@room, visibility: 'personal'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:visibility] == 'personal'} whitespace-nowrap px-2" %>
+    </div>
+
+    <div class="mb-4 mt-6">
+      <strong><%= t('views.calendar.category_filter') %>：</strong>
+      <div class="underline">
+        <%= link_to t('views.calendar.all'), room_calendars_path(@room), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category].blank? && params[:visibility].blank? }" %>
+        <%= link_to t('views.calendar.relax'), room_calendars_path(@room, category: 'relax'), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'relax'}" %>
+        <%= link_to t('views.calendar.work_study'), room_calendars_path(@room, category: 'work_study'), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'work_study'}" %>
+        <%= link_to t('views.calendar.event'), room_calendars_path(@room, category: 'event'), class: "mr-3 #{'text-matcha font-bold rounded bg-yellow' if params[:category] == 'event'}" %>
+        <%= link_to t('views.calendar.together'), room_calendars_path(@room, visibility: 'together'), class: "#{'text-matcha font-bold rounded bg-yellow' if params[:visibility] == 'together'}" %>
+      </div>
+    </div>
+
+    <%= month_calendar(events: @calendars, attribute: :calendar_date) do |date, plans_on_day| %>
+      <% if current_user %>
+        <% if plans_on_day.present? %>
+          <% calendar = plans_on_day.find { |s| s.user_id == current_user.id } %>
+          <% if calendar %>
+            <%= link_to date.day, edit_room_calendar_path(@room, calendar, date: date), class: "block w-full h-full text-center", data: { turbo: false } %>
+          <% else %>
+            <%= link_to date.day, new_room_calendar_path(@room, date: date), class: "block w-full h-full text-center", data: { turbo: false } %>
+          <% end %>
+        <% else %>
+          <%= link_to date.day, new_room_calendar_path(@room, date: date), class: "block w-full h-full text-center", data: { turbo: false } %>
+        <% end %>
+      <% else %>
+        <span><%= date.day %></span>
+      <% end %>
+
+      <% plans_on_day.each do |plan| %>
+        <% next unless plan.start_time.to_date == date %>
+
+        <% if plan.user == current_user && plan.visibility != 'personal' && params[:visibility] == 'personal' %>
+          <% next %>
+        <% end %>
+
+        <% css_class = case plan.category
+          when "relax" then "bg-yellow"
+          when "work_study" then "bg-pink-red/75"
+          else "bg-matcha-green/50"
+        end %>
+
+        <% duration_days = (plan.end_time.to_date - plan.start_time.to_date).to_i + 1 %>
+
+        <div class="text-xs leading-tight text-center">
+          <% if plan.user == current_user %>
+            <span class="inline-block px-0.5 py-0.5 rounded <%= css_class %>"><%= plan.name %></span>
+          <% else %>
+            <%= link_to room_calendar_path(@room, plan), class: "inline-block px-0.5 py-0.5 rounded #{css_class}" do %>
+              <%= plan.name %>
+            <% end %>
+          <% end %>
+          <% if plan.start_time.to_date != plan.end_time.to_date %>
+            <div class="text-[10px] text-matcha">
+              <%= l(plan.start_time.to_date, format: :short) %>-<%= l(plan.end_time.to_date, format: :short) %>（<%= "#{duration_days}日" %>）
+            </div>
+          <% end %>
+            <span class="text-gray-600 text-[10px] block"><%= plan.user.name %></span>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="text-center mt-8 mb-4">
+      <%= link_to t("buttons.add_today"), new_room_calendar_path(@room), class: "bg-blue/75 p-4 rounded shadow mb-4 mt-2 hover:bg-blue-30 transition text-dark-gray", data: { turbo: false } %>
+      <%= link_to t("views.room.back_to_room", room_name: @room.name), room_path(@room), class: "bg-brown/30 p-2 rounded shadow mb-2 mt-4 text-brown font-bold hover:bg-brown/70 transition", data: { turbo: false } %>
+    </div>
+  </div>
+</div>

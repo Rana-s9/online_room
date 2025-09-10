@@ -1,0 +1,95 @@
+<div class="schedule-type-selection">
+  <%= f.radio_button :schedule_type, "timed", id: "schedule_type_timed", checked: true %>
+  <%= f.label :schedule_type_timed, t('views.calendar.add_time') %>
+
+  <%= f.radio_button :schedule_type, "all_day", id: "schedule_type_all_day" %>
+  <%= f.label :schedule_type_all_day, t('views.calendar.all_day') %>
+</div>
+
+<!-- 終日 -->
+<div id="all-day-fields" style="display: none;">
+  <div class="form-group">
+    <%= f.label :start_time, t('activerecord.attributes.calendar.start_date') %>
+    <%= f.date_field :start_time, value: @calendar.start_time&.to_date || Date.current, class: "text-dark-gray bg-matcha/30" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_time, t('activerecord.attributes.calendar.end_date') %>
+    <%= f.date_field :end_time, value: (
+          (f.object.end_time || f.object.start_time || (params[:date].present? ? Date.parse(params[:date]) : Date.today))
+          ).to_date.strftime("%Y-%m-%d"), class: "text-dark-gray bg-matcha/30" %>
+  </div>
+</div>
+
+<!-- 時間指定　-->
+<div id="timed-fields">
+  <div class="form-group">
+    <%= f.label :start_time, t('activerecord.attributes.calendar.start_time') %>
+    <%= f.datetime_local_field :start_time, value: @calendar.start_time&.to_date || Date.current, class: "text-dark-gray bg-matcha/30" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_time, t('activerecord.attributes.calendar.end_time') %>
+    <%= f.datetime_local_field :end_time, value: (
+          (f.object.end_time ||
+           (f.object.start_time ? f.object.start_time + 30.minutes : nil) ||
+           (params[:datetime].present? ? Date.parse(params[:datetime]) : Time.current + 30.minutes))
+          ).strftime("%Y-%m-%dT%H:%M"), class: "text-dark-gray bg-matcha/30" %>
+  </div>
+</div>
+<div>
+  <%= f.label :name, t('activerecord.attributes.calendar.name') %>
+  <%= f.text_field :name, placeholder: t("views.calendar.enter"), class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+
+  <%= f.label :source, t('activerecord.attributes.calendar.source'), class: "text-dark-gray" %>
+  <%= f.select :source,
+    [[t('views.calendar.google'), "google"], [t('views.calendar.manual'), "manual"]],
+    { prompt: t('views.calendar.select') }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
+  %>
+
+  <%= f.label :description, t('activerecord.attributes.calendar.description'), class: "text-dark-gray" %>
+  <%= f.text_field :description, placeholder: t("views.calendar.add_note"), class: "w-full px-4 py-2 bg-light-gray/75 text-matcha rounded-lg focus:outline-none focus:ring-2 focus:ring-matcha" %>
+
+  <%= f.label :category, t('activerecord.attributes.calendar.category'), class: "text-dark-gray" %>
+  <%= f.select :category,
+    [[t('views.calendar.event'), "event"], [t('views.calendar.work_study'), "work_study"],[t('views.calendar.relax'), "relax"]],
+    { prompt: t('views.calendar.select') }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
+  %>
+
+  <%= f.label :visibility, t('activerecord.attributes.calendar.visibility'), class: "text-dark-gray" %>
+  <%= f.select :visibility,
+    [[t('views.calendar.personal'), "personal"], [t('views.calendar.share_only'), "share_only"],[t('views.calendar.together'), "together"]],
+    { prompt: t('views.calendar.select') }, class: "bg-matcha/65 text-beige py-2 pl-3 pr-10 rounded w-full focus:ring-2 focus:ring-matcha"
+  %>
+</div>
+<div class="text-center">
+  <%= f.submit t("buttons.save"), class: "bg-blue/75 text-dark-gray py-2 px-6 rounded hover:bg-blue/30 transition duration-200 mt-2", data: { turbo: false } %>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const timedRadio = document.querySelector('#schedule_type_timed');
+    const allDayRadio = document.querySelector('#schedule_type_all_day');
+
+    const timedFields = document.getElementById('timed-fields');
+    const allDayFields = document.getElementById('all-day-fields');
+
+    function toggleFields() {
+      const isAllDay = allDayRadio.checked;
+
+      timedFields.style.display = isAllDay ? 'none' : 'block';
+      allDayFields.style.display = isAllDay ? 'block' : 'none';
+
+      // 各 input を有効・無効化
+      allDayFields.querySelectorAll('input').forEach(input => {
+        input.disabled = !isAllDay;
+      });
+      timedFields.querySelectorAll('input').forEach(input => {
+        input.disabled = isAllDay;
+      });
+    }
+
+    timedRadio.addEventListener('change', toggleFields);
+    allDayRadio.addEventListener('change', toggleFields);
+
+    toggleFields(); // 初期化
+  });
+</script>

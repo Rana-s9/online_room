@@ -3,36 +3,24 @@ require "uri"
 require "json"
 class AreasController < ApplicationController
   before_action :set_area, only: [ :update ]
-
-  def index
-    api_key = ENV["WEATHER_API"]
-    city = "madagascar"
-    url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=ja")
-
-    response = Net::HTTP.get_response(url)
-    weather_data = JSON.parse(response.body)
-
-    Rails.logger.debug(weather_data)
-
-    @weather_data = weather_data
-  end
+  before_action :authenticate_user!
 
   def create
     @area = current_user.build_area(area_params)
 
     if save_area_weather!(@area)
-      redirect_to rooms_path, notice: "地域を登録しました"
+      redirect_to rooms_path, notice: t("flash.area.register")
     else
-      redirect_to areas_path, alert: "天気情報を取得できない都市名です。都市名をご確認ください。"
+      redirect_to rooms_path, alert: t("flash.area.failed_register")
     end
   end
 
   def update
     @area.assign_attributes(area_params)
     if save_area_weather!(@area)
-      redirect_to rooms_path, notice: "お住まいの地域を更新しました"
+      redirect_to rooms_path, notice: t("flash.area.update")
     else
-      redirect_to root_path, alert: "地域の変更に失敗しました"
+      redirect_to rooms_path, alert: t("flash.area.failed_update")
     end
   end
 
@@ -42,9 +30,9 @@ class AreasController < ApplicationController
     @area = Area.find(params[:id])
   end
 
-  def fetch_weather_from_api(city)
+  def fetch_weather_from_api(city, lang = I18n.locale)
     api_key = ENV["WEATHER_API"]
-    url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=ja")
+    url = URI("https://api.openweathermap.org/data/2.5/weather?q=#{city}&appid=#{api_key}&units=metric&lang=#{lang}")
     response = Net::HTTP.get_response(url)
     if response.is_a?(Net::HTTPSuccess)
         data = JSON.parse(response.body)
@@ -60,18 +48,20 @@ class AreasController < ApplicationController
   end
 
   def save_area_weather!(area)
-    api_data = fetch_weather_from_api(area.city)
-    return false unless api_data.present?
+    ja_data = fetch_weather_from_api(area.city, "ja")
+    en_data = fetch_weather_from_api(area.city, "en")
+    return false unless ja_data.present?
 
     ActiveRecord::Base.transaction do
       area.save!
       weather_record = area.weather_record || area.build_weather_record
       weather_record.update!(
-        temperature: api_data["main"]["temp"],
-        humidity: api_data["main"]["humidity"],
-        description: api_data["weather"][0]["description"],
-        temp_min: api_data["main"]["temp_min"],
-        temp_max: api_data["main"]["temp_max"]
+        temperature: ja_data["main"]["temp"],
+        humidity: ja_data["main"]["humidity"],
+        description: ja_data["weather"][0]["description"],
+        description_en: en_data["weather"][0]["description"],
+        temp_min: ja_data["main"]["temp_min"],
+        temp_max: ja_data["main"]["temp_max"]
       )
     end
     true

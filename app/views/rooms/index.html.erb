@@ -1,22 +1,44 @@
-<div class="container mx-auto px-4 ">
-  <% if @rooms.empty? %>
-    <p class="text-gray text-center text-lg">登録部屋はまだありません</p>
-    <div class="max-w-xl mx-auto">
-        <%= render 'form_room' %>
+<div class="container">
+  <div class="fixed inset-0 z-30 flex items-center justify-center px-4 pointer-events-none">
+    <div class="pointer-events-auto flex flex-col items-center gap-2 max-w-7xl w-full">
+      
+      <% if @rooms.empty? %>
+        <div class="pointer-events-auto flex flex-col justify-center items-center gap-6 max-w-4xl w-full mx-auto">
+          <div class="text-gray text-center text-lg animate-bounce"><%= t("flash.room.no_room") %></div>
+          <div class="max-w-xl w-full">
+            <%= render 'form_room' %>
+          </div>
+        </div>
+      <% else %>
+        <div class="w-full max-w-md bg-white/20 rounded-xl shadow-sm p-4">
+          <%= render 'room' %>
+        </div>
+      <% end %>
+
+      <div id="room-form" class="fixed inset-0 z-40 bg-black/30 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-xl shadow-xl max-w-md w-11/12 relative">
+          <%= link_to "×", rooms_path, class: "absolute top-2 right-4 text-xl" %>
+          <%= render 'form_room' %>
+        </div>
+      </div>
+
+      <% if @area.nil? %>
+        <div class="w-full max-w-md bg-white/20 rounded-xl shadow-sm p-4">
+          <p class="text-dark-gray text-center text-lg"><%= t("flash.room.no_area") %></p>
+          <%= render 'form_area' %>
+        </div>
+      <% else %>
+        <div class="w-full max-w-md bg-white/20 rounded-xl shadow-sm p-4">
+          <%= render 'area' %>
+        </div>
+      <% end %>
+
     </div>
-  <% else %>
-    <%= render 'room' %>
-  <% end %>
-  <div class="text-center mt-4">
-    <%= button_to '<i class="fa-solid fa-plus text-gray/50"></i>'.html_safe, rooms_path, id: "room-form-button", method: :post, class: "text-3xl" %>
   </div>
-  <div id="room-form" class="hidden mt-4">
-    <%= render 'form_room' %>
-  </div>
-  <% if @area.nil? %>
-    <p class="text-dark-gray text-center text-lg">お住まいの地域が登録されていません</p>
-    <%= render 'form_area' %>
-  <% else %>
-    <%= render 'area' %>
-  <% end %>
 </div>
+
+<div class="fixed inset-0 z-10">
+  <canvas id="three-canvas" class="w-full h-full block"></canvas>
+</div>
+
+<%= javascript_include_tag "door" %>

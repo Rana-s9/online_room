@@ -11,7 +11,7 @@ class ExchangeDiariesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get room_exchange_diaries_url(@room)
+    get room_exchange_diaries_url(@room, locale: :ja)
     assert_response :success
   end
 end

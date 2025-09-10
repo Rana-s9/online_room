@@ -1,17 +1,29 @@
-<% if @whiteboards.empty? %>
-    <p class="text-dark-gray text-center text-lg">伝言はまだありません</p>
-<% else %>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-light-gray/75 ">
+<div class="bg-white/65 shadow z-40 p-4 fixed top-[250px] left-4 w-[150px] h-[200px] md:w-[350px] md:h-[300px] overflow-y-auto">
+  <h1 class="text-sm md:text-base text-dark-gray"><%= t("views.message_board.board") %></h1>
+  <% if @whiteboards.empty? %>
+    <p class="text-dark-gray text-center text-sm"><%= t("views.message_board.no_message") %></p>
+  <% else %>
     <% @whiteboards.each do |board| %>
-        <div class="text-dark-gray rounded-lg shadow-md p-6">
-        <li><%= board.body %></li>
-        <p>住民:
-            <span class="<%= "text-dark-gray font-bold" if board.user == current_user %>">
-                <%= board.user.name %>
-            </span>
-        </p>
-        <p>伝言時：<%= board.created_at.strftime("%m月%d日") %></p>
+      <div class="mb-4 border-b border-gray-200 pb-2 text-sm text-dark-gray md:text-md">
+        <% if board.user == current_user %>
+            <div
+                data-controller="board"
+                data-board-room-id-value="<%= @room.id %>"
+                data-board-target="board"
+                data-action="keydown->board#insertBreak input->board#save"
+                contenteditable="true"
+                class="whitespace-pre-wrap focus:outline-none min-h-[40px]"
+            >
+            <%= h(board.body || "") %>
+            </div>
+        <% else %>
+          <%= board.body %>
+        <% end %>
+        <div class= "flex text-matcha font-bold" >
+          <h1><%= board.user.name %></h1>
+          (<%= board.updated_at.strftime('%y/%m/%d %H:%M') %>)
         </div>
+      </div>
     <% end %>
-    </div>
-<% end %>
+  <% end %>
+</div>

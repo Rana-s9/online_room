@@ -11,7 +11,7 @@ class StateCalendarsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get room_state_calendars_url(@room)
+    get room_state_calendars_url(@room, locale: :ja)
     assert_response :success
   end
 end

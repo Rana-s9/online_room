@@ -1,25 +1,63 @@
-<%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
-<% end %>
+<div class="container fixed top-[80px] left-1/2 transform -translate-x-1/2 z-50 p-4">
+  <div class="flex justify-center">
+    <div class="w-full max-w-lg">
+      <h1 class="text-2xl text-matcha font-bold mb-6"><%= t('devise.sessions.new.sign_in') %></h1>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
-<% end %>
+      <%= form_with model: resource, url: session_path(resource_name), local: true do |f| %>
+        <% if flash[:alert] %>
+          <ul class="list-disc pl-5 space-y-1">
+            <div id="flash_alert" class="bg-yellow/50 text-matcha font-semibold p-4 rounded mb-4">
+              <li><%= flash[:alert] %></li>
+            </div>
+          </ul>
+        <% end %>
+        <% if flash[:notice] %>
+          <div id="flash_notice" class="bg-green-100/50 text-matcha p-4 rounded mt-4">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
+        <%= render "devise/sessions/shared/error_messages", resource: resource %>
 
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-<% end %>
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-matcha" %>
+          <%= f.email_field :email, class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha" %>
+        </div>
+        <div>
+          <%= f.label :password, class: "block text-sm font-medium text-matcha" %>
+          <%= f.password_field :password, class: "bg-matcha/20 mt-1 mb-6 block w-full px-3 py-2 border border-matcha rounded-md shadow-sm focus:outline-none focus:ring-matcha focus:border-matcha text-matcha" %>
+        </div>
+        <%= f.submit t('devise.sessions.new.sign_in_button'), class: "w-full mb-6 bg-matcha/75 hover:bg-blue/75 text-white font-bold py-2 px-4 rounded-md shadow-md transition",
+        id: "blue-door" %>
+      <% end %>
 
-<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
-<% end %>
+      <div class="flex flex-col space-y-2 text-matcha text-center">
+        <% if controller_name != 'sessions' %>
+          <%= link_to t('devise.sessions.new.sign_in'), new_session_path(resource_name), class: "hover:underline" %>
+        <% end %>
 
-<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
-<% end %>
+        <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to t('devise.registrations.sign_up'), new_registration_path(resource_name), class: "hover:underline" %>
+        <% end %>
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
-  <% end %>
-<% end %>
+        <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+          <%= link_to t('devise.shared.links.forgot_your_password'), new_password_path(resource_name), class: "hover:underline" %>
+        <% end %>
+
+        <% if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+          <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "hover:underline" %>
+        <% end %>
+
+        <% if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+          <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "hover:underline" %>
+        <% end %>
+
+        <% if devise_mapping.omniauthable? %>
+          <% resource_class.omniauth_providers.each do |provider| %>
+            <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "mt-2 w-full bg-matcha/75 hover:bg-blue/75 text-white font-semibold py-2 rounded-md shadow-md transition" %>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

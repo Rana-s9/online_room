@@ -9,14 +9,10 @@ export default class extends Controller {
   static targets = ["diary"];
 
   connect() {
-    console.log("Diary controller connected");
-    console.log("初期 diaryIdValue:", this.diaryIdValue);
     this.timeout = null;
   }
 
   save() {
-    console.log("input received");
-    console.log("diaryIdValue:", this.diaryIdValue);
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       const body = this.diaryTarget.innerHTML;
@@ -43,7 +39,7 @@ export default class extends Controller {
         })
         .then((data) => {
           if (data && data.id) {
-            this.diaryIdValue = data.id; // 初回作成後にIDを保持しupdateへ切り替え
+            this.diaryIdValue = data.id;
           }
         })
         .catch((error) => {

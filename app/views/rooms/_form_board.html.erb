@@ -1,5 +1,4 @@
-<div class="bg-white shadow p-4">
-  <!-- ホワイトボード入力エリア -->
+<div class="bg-white shadow z-40 p-4 fixed top-[220px] right-4 w-[150px] h-[260px] overflow-y-auto">
   <div
     data-controller="board"
     data-board-room-id-value="<%= @room.id %>"
@@ -11,12 +10,11 @@
   <%= h(@whiteboard&.body || "") %>
   </div>
 
-  <!-- 投稿者と作成日 -->
   <% if @whiteboard.present? %>
     <div class="text-sm text-gray-600 border-t border-gray-200 pt-2">
       <p class="text-matcha">
         <span class="<%= @whiteboard.user == current_user ? 'text-gray-800 font-semibold' : '' %>">
-          <%= @whiteboard.user.name %>（<%= @whiteboard.created_at.strftime("%m月%d日") %>）
+          <%= @whiteboard.user.name %>（<%= @whiteboard.updated_at.strftime('%Y/%m/%d %H:%M') %>）
         </span>
       </p>
     </div>

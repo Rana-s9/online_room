@@ -11,7 +11,7 @@ class WhiteboardsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get room_url(@room)
+    get room_url(@room, locale: :ja)
     assert_response :success
   end
 end
