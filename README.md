@@ -94,7 +94,7 @@ ___
   - 行きたい日・行った日も任意で登録可
  
 ## 8. Tips投稿＆コメント
-![tips_video](https://github.com/user-attachments/assets/2bb1aa63-9f0b-4447-8cb5-71cf69731266)
+![tips gif](https://github.com/user-attachments/assets/280f6754-6821-4567-b4a6-fd2dfac0b363)
 - コミュニケーションにおけるコツや質問を投稿できます。
   - 投稿時は、プライバシー保護のため表示名を「ユーザー名」「匿名」「表示名登録」から選ぶことができます。
 - 投稿に対してコメントができます。
