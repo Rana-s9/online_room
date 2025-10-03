@@ -139,7 +139,8 @@ ___
 画面遷移図⓵（日本語切り替えバージョン）：https://www.figma.com/design/tmaoOMaAGZjTnmPJPfmUY9/Online-Room-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3---Copy-?node-id=0-1&t=Y0w5G8k7x1ZUEX0C-1
 画面遷移図⓶（英語切り替えバージョン）：https://www.figma.com/design/PQxKXzjPLAx65ejgxKvf6U/Online-Room--English-ver.---Copy-?node-id=0-1&t=FCma00ZvsiN8c95p-1
 
-ER図：![卒制online_room - Copy](https://github.com/user-attachments/assets/9be61fa5-ab24-4837-8d66-ceeb1e5692cd)
+ER図：<img width="1181" height="1552" alt="卒制online_room - ER図" src="https://github.com/user-attachments/assets/46e42a71-6470-4558-bcd9-20202fc9d071" />
+
 
 
 
