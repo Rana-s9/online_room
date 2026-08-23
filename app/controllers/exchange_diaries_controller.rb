@@ -86,6 +86,7 @@ class ExchangeDiariesController < ApplicationController
     other_diary_ids = @room.exchange_diaries
                            .where.not(user: current_user)
                            .includes(:reads)
+                           .order(created_at: :desc)
                            .page(params[:page])
                            .pluck(:id)
 
